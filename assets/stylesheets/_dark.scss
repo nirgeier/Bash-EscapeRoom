@@ -1,0 +1,73 @@
+[data-md-color-media="(prefers-color-scheme: dark)"] {
+  background-color: black;
+  color: #f2f2f2;
+
+  .md-typeset .admonition.note,
+  .md-typeset details.note {
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Change color and style as needed */
+    border-radius: 10px; /* Optional: rounded corners */
+    box-shadow: 0 0 1px whitesmoke;
+  }
+  .md-typeset h1 {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    color: #03dac5;
+    margin: 0 -10px;
+    padding: 0 10px;
+  }
+
+  .md-typeset h2 {
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    padding-top: 0.5em;
+    color: #bb86fc;
+  }
+
+  .md-typeset h3,
+  .md-typeset h4,
+  .md-typeset h5 {
+    color: #f2a71b;
+  }
+
+  /* When URL contains 'api' */
+  body[data-path*="02"] .md-content {
+    background-color: #f8f9fa;
+    border-left: none;
+  }
+
+  .md-nav--lifted > .md-nav__list > .md-nav__item--active > .md-nav__link {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .headline {
+    color: var(--color-headers);
+  }
+
+  .white-text {
+    color: #f7d078 !important;
+  }
+
+  .md-typeset table {
+    line-height: 1.25em !important;
+  }
+
+  .md-nav__link[for]:focus,
+  .md-nav__link[href]:focus,
+  .md-nav--secondary .md-nav__link--active {
+    color: #03dac5 !important;
+  }
+
+  .md-nav__link[for]:hover,
+  .md-nav__link[href]:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    color: #f2a71b;
+    margin-left: -5px;
+    outline-offset: -1px;
+    outline: solid 0.0625rem rgba(0, 0, 0, 0) !important;
+    padding: 0 5px;
+  }
+  .md-content a {
+    color: #df3079;
+  }
+}
