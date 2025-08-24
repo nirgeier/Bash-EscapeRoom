@@ -1,0 +1,25 @@
+name: Post-Template Setup
+
+on:
+  push:
+    branches:
+      - "main" # Or whatever your default branch is
+
+jobs:
+  run-setup-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Execute setup script
+        run: |
+          echo "Running post-creation setup script..."
+          # Replace this with the commands for your actual script
+          ./init_site.sh
+          git config --local user.email "nirgeier@github.com"
+          git config --local user.name "Nir Geier"
+          git add .
+          git commit -m "Automated setup changes"
+          git push

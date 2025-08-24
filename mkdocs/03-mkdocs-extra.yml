@@ -1,0 +1,23 @@
+###
+### mkdocs-extra.yml
+###
+
+extra:
+  assets:
+    - ./assets/images/
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/nirgeier/mkdocs
+      name: View on GitHub
+    - icon: octicons/star-16
+      link: https://github.com/nirgeier/mkdocs/stargazers
+      name: Star this repo
+    - icon: octicons/repo-forked-16
+      link: https://github.com/nirgeier/mkdocs/network/members
+      name: Fork this repo
+
+extra_css:
+  - ./assets/stylesheets/theme.css
+extra_javascript:
+  - https://buttons.github.io/buttons.js
