@@ -1,43 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://nirgeier.github.io/mkdocs/</loc>
+         <loc>https://nirgeier.github.io/Bash-EscapeRoom/</loc>
          <lastmod>2025-10-02</lastmod>
     </url>
     <url>
-         <loc>https://nirgeier.github.io/mkdocs/guides/</loc>
+         <loc>https://nirgeier.github.io/Bash-EscapeRoom/rooms/Room-01/</loc>
          <lastmod>2025-10-02</lastmod>
     </url>
     <url>
-         <loc>https://nirgeier.github.io/mkdocs/guides/github-avatars-setup/</loc>
-         <lastmod>2025-10-02</lastmod>
-    </url>
-    <url>
-         <loc>https://nirgeier.github.io/mkdocs/guides/installation-guide/</loc>
-         <lastmod>2025-10-02</lastmod>
-    </url>
-    <url>
-         <loc>https://nirgeier.github.io/mkdocs/guides/understanding-init-script/</loc>
-         <lastmod>2025-10-02</lastmod>
-    </url>
-    <url>
-         <loc>https://nirgeier.github.io/mkdocs/reference/</loc>
-         <lastmod>2025-10-02</lastmod>
-    </url>
-    <url>
-         <loc>https://nirgeier.github.io/mkdocs/reference/api-reference/</loc>
-         <lastmod>2025-10-02</lastmod>
-    </url>
-    <url>
-         <loc>https://nirgeier.github.io/mkdocs/tutorials/</loc>
-         <lastmod>2025-10-02</lastmod>
-    </url>
-    <url>
-         <loc>https://nirgeier.github.io/mkdocs/tutorials/01-basic-tutorial/</loc>
-         <lastmod>2025-10-02</lastmod>
-    </url>
-    <url>
-         <loc>https://nirgeier.github.io/mkdocs/tutorials/02-advanced-tutorial/</loc>
+         <loc>https://nirgeier.github.io/Bash-EscapeRoom/rooms/Room-02/</loc>
          <lastmod>2025-10-02</lastmod>
     </url>
 </urlset>
