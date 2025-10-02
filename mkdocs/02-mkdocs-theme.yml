@@ -1,10 +1,10 @@
 ###
 ### mkdocs-theme.yml
 ###
-copyright: "©2025-2025 Nir Geier"
+copyright: "©2021-2025 Nir Geier"
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: mkdocs/overrides
   features:
     - announce.dismiss
     - content.action.edit
@@ -38,21 +38,10 @@ theme:
     - toc.integrate
   # 👈 enables avatar display
   palette:
-    # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: indigo # You can choose any color here
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-
-    # Palette toggle for dark mode
+    # Dark mode only
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: indigo # You can choose any color here
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
 
   font:
     text: Mulish

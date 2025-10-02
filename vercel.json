@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "buildCommand": "python3 -m pip install --upgrade pip && python3 -m pip install -r mkdocs/requirements.txt && /python312/bin/mkdocs build",
+  "outputDirectory": "mkdocs-site",
+  "installCommand": "echo 'Using Python runtime'",
+  "framework": null
+}

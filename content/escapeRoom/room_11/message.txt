@@ -1,0 +1,24 @@
+Here are five facts about Bash:
+----------------------------------------------
+- Bash stands for "Bourne Again Shell" and is a widely used command-line
+  interpreter on Linux and Unix-like systems.
+
+- It was created by Brian Fox in 1989 for the GNU Project as a free
+  software replacement for the original Bourne Shell (sh).
+
+- Bash allows both interactive command execution and script automation,
+  making it valuable for system administration and task automation.
+
+- It supports features such as command history, tab completion, variables,
+  and powerful scripting capabilities including loops and conditionals.
+
+- Bash is the default login shell for most Linux distributions and can
+  also be found on macOS and other Unix-like operating systems.
+
+- Can you explain what this command does?    
+    awk 'END {print NR}' message.txt
+
+- The password for the next room is the output of:
+    awk_is_powerful
+
+----------------------------------------------

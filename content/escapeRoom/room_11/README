@@ -1,0 +1,26 @@
+- Congratulations! You have reached room 11!!
+
+To pass this room:
+---------------------------------------------------------------------
+
+- In this room, we dive into bash conditionals and decision-making.
+- You need to write a bash script that processes user data and filters based on conditions.
+- In this room we wish to learn and use `awk` and learn some of its capabilities. 
+- awk is most commonly used for `pattern matching` or `text processing`
+  
+Tasks
+------
+
+1. Examine the 'user_data.txt' file in this folder.
+2. Write a bash script named 'filter_users.sh' that:
+   - The file contains a header and each line contains user information in the format: name,age,subscription
+   - Reads each line from 'user_data.txt' 
+   - Using `bash` and `awk`, filter users based on the following criteria:
+     - Skip the header line (First line - Find out how to do this using `awk`)
+     - Age greater than 25  (Hint: This is the second field in each line)
+     - Subscription type is 'premium' (Hint: This is the third field in each line)
+   - Sums the ages of the matching users, and this sum will be the password for the next room.
+
+3. Run your script to get the password for the next room.
+
+Good Luck!!!

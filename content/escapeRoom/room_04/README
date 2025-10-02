@@ -1,0 +1,14 @@
+- Congratulations! You have reached room 4!!
+ 
+To pass this room:
+---------------------------------------------------------------------
+- The room keeper of this place is a crazy guy who speaks very odd.
+- To be able to read the message you will need to do the following:
+  1. The room keeper doesn't like the letter `H` so he replaced it with `zing` (dont ask me why...)
+  2. He is not into `h` as well, so he replace it with `blu`.
+  3. He despise the letter `i`, so he prefer to say it as `bla`.
+- The keeper **love** to use `sed` command....
+
+- What is the password to the next room?
+  >>> Hint: keep looking around the folder....
+

@@ -1,0 +1,33 @@
+- Congratulations! You have reached room 10!!
+
+To pass this room:
+---------------------------------------------------------------------
+
+- In this room, we focus on bash loops and arrays.
+- You need to write a bash script that processes a list of palindrome items.
+
+Palindrome: 
+      a word, phrase, or sequence that reads the same backward as forward   
+      (e.g., mom, madam, racecar, level).
+
+Tasks:
+------
+
+1. Examine the 'treasure_list.txt' file in this folder.
+2. Write a bash script named 'find_treasure.sh' that:
+   - Reads all the lines (items) into an array.
+   - Filters out (remove) items that are not palindromes.
+   - Takes the first letter of each item in the **exact order** its in the array.
+   - Outputs the concatenated letters as the password (lowercase).
+
+3. Recommended steps to complete the task:
+   - Use a loop to read lines from 'treasure_list.txt' into an array.
+     - Hint: You can read a file line by line using (IFS= read -r line)
+   - Use a function to check if a word is a palindrome.
+     - Hint: You can reverse a string using 'rev' command.
+   - Filter the array and build the password.
+   - Print the final password.
+4. Run your script to get the password for the next room.
+
+Good Luck!!!
+

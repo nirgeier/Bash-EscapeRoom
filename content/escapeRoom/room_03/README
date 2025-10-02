@@ -1,0 +1,29 @@
+- Congratulations! You have reached room 3!!
+To pass this room:
+---------------------------------------------------------------------
+
+- Get the key to the treasureChest!
+
+* This room has a strange but very kindly creature: `Scriptacorus!!`.
+* The creature is locked in his cage (`creature.sh`) with a key (`key`).
+* To release the creature you need to find the key (password) to open the encrypted cage:
+
+* The steps to get the `key` are the following:
+  
+  Perform the described action on the `song'` file and summarize the results, 
+  the **sum is the key** to open the (`creature.sh`) cage:
+
+  1. count all `do` word appearances
+  2. count only LINES which `NOT` contain `home`
+  3. count only `non empty` lines 
+ 
+To open the cage:
+-----------------
+ 
+1. Open the `creature.sh` using the key you found
+2. Disable encryption with `:set key=` command (setting the encrypt key to empty)
+3. Save the new (unencrypted) file
+4. Wake up the Scriptacorus!! (He will tell you the key to the treasureChest once you feed him)
+   >> hint: Once you opened the cage you can view its content
+5. Find the key to the treasure chest and use it
+

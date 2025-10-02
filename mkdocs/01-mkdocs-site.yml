@@ -3,10 +3,10 @@
 ###
 docs_dir: Labs
 edit_uri: ""
-repo_name: nirgeier/mkdocs
-repo_url: https://github.com/nirgeier/mkdocs
+repo_name: nirgeier/Bash-EscapeRoom
+repo_url: https://github.com/nirgeier/Bash-EscapeRoom
 site_author: Nir Geier - nirgeier@gmail.com
 site_description: A collection of GitHub Labs for learning and practicing GitHub skills.
 site_dir: ./mkdocs-site
 site_name: mkdocs
-site_url: https://nirgeier.github.io/mkdocs/
+site_url: https://nirgeier.github.io/Bash-EscapeRoom/

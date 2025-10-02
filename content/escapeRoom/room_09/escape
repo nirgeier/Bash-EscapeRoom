@@ -1,0 +1,45 @@
+#!/bin/bash
+
+source /home/escape/escapeRooms/_utils.sh
+###
+### This script calculates the sum of all numbers up to the input number
+### The file should be copied to `/usr/local/bin/`
+###   sudo cp escape /usr/local/bin/
+###
+
+# Function to calculate sum
+function help {
+    echo -e "";
+    echo -e "The script is executing the escape command with random numbers ";
+    echo -e "";
+    echo "escape <number>"
+    echo -e "";
+    echo -e "    Calculate the sum of the numbers up to the given number.";
+    echo -e "";
+    echo -e "    Usage:";
+    echo -e "      ${YELLOW}$ escape 10 ${NO_COLOR} -> [1+2+3+4+5+6+7+8+9+10=55]";
+    
+    exit 1
+}
+# Check if argument is provided
+if [ "$#" -ne 1 ]; then
+    help;
+fi
+
+# Function to calculate sum
+function calculate_sum {
+
+    # Start the sum variable
+    sum=0
+    # loop from 1 to the desired number
+    for (( i=1; i<=$1; i++ ))
+    do
+        # Calculate the result
+        sum=$((sum + i))
+    done
+    # Print out result
+    echo $sum
+}
+
+# Call the function with the input argument
+calculate_sum $1

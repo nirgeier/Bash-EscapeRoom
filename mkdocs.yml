@@ -1,22 +1,10 @@
 ###
-### mkdocs-site.yml
-###
-docs_dir: Labs
-edit_uri: ""
-repo_name: nirgeier/mkdocs
-repo_url: https://github.com/nirgeier/mkdocs
-site_author: Nir Geier - nirgeier@gmail.com
-site_description: A collection of GitHub Labs for learning and practicing GitHub skills.
-site_dir: ./mkdocs-site
-site_name: mkdocs
-site_url: https://nirgeier.github.io/mkdocs/
-###
 ### mkdocs-theme.yml
 ###
-copyright: "©2025-2025 Nir Geier"
+copyright: "©2021-2025 Nir Geier"
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: mkdocs/overrides
   features:
     - announce.dismiss
     - content.action.edit
@@ -50,21 +38,10 @@ theme:
     - toc.integrate
   # 👈 enables avatar display
   palette:
-    # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: indigo # You can choose any color here
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-
-    # Palette toggle for dark mode
+    # Dark mode only
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: indigo # You can choose any color here
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
 
   font:
     text: Mulish
@@ -76,6 +53,37 @@ theme:
     admonition:
       note: material/lightbulb
 ###
+### mkdocs-nav.yml
+###
+
+nav:
+  - Bash EscapeRoom Labs: README.md
+  - Rooms:
+      - Room 01: rooms/Room-01.md
+      - Room 02: rooms/Room-02.md
+      - Room 03: rooms/Room-03.md
+      - Room 04: rooms/Room-04.md
+      - Room 05: rooms/Room-05.md
+      - Room 06: rooms/Room-06.md
+      - Room 07: rooms/Room-07.md
+      - Room 08: rooms/Room-08.md
+      - Room 09: rooms/Room-09.md
+      - Room 10: rooms/Room-10.md
+      - Room 11: rooms/Room-11.md
+      #- Room 12: rooms/Room-12.md
+###
+### mkdocs-site.yml
+###
+docs_dir: Labs
+edit_uri: ""
+repo_name: nirgeier/Bash-EscapeRoom
+repo_url: https://github.com/nirgeier/Bash-EscapeRoom
+site_author: Nir Geier - nirgeier@gmail.com
+site_description: A collection of GitHub Labs for learning and practicing GitHub skills.
+site_dir: ./mkdocs-site
+site_name: mkdocs
+site_url: https://nirgeier.github.io/Bash-EscapeRoom/
+###
 ### mkdocs-extra.yml
 ###
 
@@ -85,53 +93,21 @@ extra:
   generator: false
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/nirgeier/mkdocs
+      link: https://github.com/nirgeier/Bash-EscapeRoom
       name: View on GitHub
     - icon: octicons/star-16
-      link: https://github.com/nirgeier/mkdocs/stargazers
+      link: https://github.com/nirgeier/Bash-EscapeRoom/stargazers
       name: Star this repo
     - icon: octicons/repo-forked-16
-      link: https://github.com/nirgeier/mkdocs/network/members
+      link: https://github.com/nirgeier/Bash-EscapeRoom/network/members
       name: Fork this repo
 
 extra_css:
   - ./assets/stylesheets/theme.css
+  - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css
 extra_javascript:
   - https://buttons.github.io/buttons.js
-###
-### mkdocs-plugins.yml
-###
-
-plugins:
-  - awesome-pages
-  - section-index
-  - meta
-  # - pdf-export:
-  #     combined: true # all pages in one PDF
-  #     combined_output_path: docs/Full-Documentation.pdf
-  #     media_type: print
-  #     verbose: true
-  # Git
-  - git-authors
-  - git-committers:
-      branch: main
-      docs_path: Labs # set if your docs folder is not root
-      enabled: true
-      repository: nirgeier/mkdocs
-  - git-revision-date-localized:
-      enable_creation_date: true
-      enable_git_follow: false
-      fallback_to_build_date: true
-      locale: en
-      timezone: UTC
-      type: date
-  - search:
-      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
-  - minify:
-      minify_html: true
-
-  # Leave this one as the last one in the list
-  - print-site
+  - ./assets/javascripts/encryption-fix.js
 ###
 ### mkdocs-extensions.yml
 ###
@@ -139,7 +115,7 @@ plugins:
 markdown_extensions:
   - toc:
       permalink: false
-      baselevel: 1
+      baselevel: 3
       toc_depth: 3
   - abbr
   - tables
@@ -176,20 +152,49 @@ markdown_extensions:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 ###
-### mkdocs-nav.yml
+### mkdocs-plugins.yml
 ###
 
-nav:
-  - Documentation Site Template: README.md
-  - How-to Guides:
-    - How-to Guides: guides/README.md
-    - GitHub Avatars Setup Guide: guides/github-avatars-setup.md
-    - Installation Guide: guides/installation-guide.md
-    - init_site.sh Script: guides/understanding-init-script.md
-  - Reference Documentation:
-    - Reference Documentation: reference/README.md
-    - API Reference: reference/api-reference.md
-  - Tutorials:
-    - Tutorials: tutorials/README.md
-    - Basic Tutorial: tutorials/01-basic-tutorial.md
-    - Advanced Features Tutorial: tutorials/02-advanced-tutorial.md
+plugins:
+  - awesome-pages
+  - section-index
+  - meta
+  - search:
+      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - encryptcontent:
+      arithmatex: false
+      encrypted_something:
+        mkdocs-encrypted-toc: "display:none;"
+        mySpecialClass: "color:red;"
+      hljs: false
+      mermaid2: false
+      password_button: true
+      password_file: "mkdocs/passwords.yml"
+      reload_scripts:
+        - "document.getElementById('mkdocs-decrypt-button').addEventListener('click', function() { setTimeout(function() { location.reload(); }, 1000); });"
+      remember_password: false
+      session_storage: true
+  # - pdf-export:
+  #     combined: true # all pages in one PDF
+  #     combined_output_path: docs/Full-Documentation.pdf
+  #     media_type: print
+  #     verbose: true
+  # Git
+  - git-authors
+  - git-committers:
+      branch: main
+      docs_path: Labs # set if your docs folder is not root
+      enabled: true
+      repository: nirgeier/Bash-EscapeRoom
+  - git-revision-date-localized:
+      enable_creation_date: true
+      enable_git_follow: false
+      fallback_to_build_date: true
+      locale: en
+      timezone: UTC
+      type: date
+  - minify:
+      minify_html: true
+
+  # Leave this one as the last one in the list
+  - print-site

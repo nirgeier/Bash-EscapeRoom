@@ -3,16 +3,17 @@
 ###
 
 nav:
-  - Documentation Site Template: README.md
-  - How-to Guides:
-    - How-to Guides: guides/README.md
-    - GitHub Avatars Setup Guide: guides/github-avatars-setup.md
-    - Installation Guide: guides/installation-guide.md
-    - init_site.sh Script: guides/understanding-init-script.md
-  - Reference Documentation:
-    - Reference Documentation: reference/README.md
-    - API Reference: reference/api-reference.md
-  - Tutorials:
-    - Tutorials: tutorials/README.md
-    - Basic Tutorial: tutorials/01-basic-tutorial.md
-    - Advanced Features Tutorial: tutorials/02-advanced-tutorial.md
+  - Bash EscapeRoom Labs: README.md
+  - Rooms:
+      - Room 01: rooms/Room-01.md
+      - Room 02: rooms/Room-02.md
+      - Room 03: rooms/Room-03.md
+      - Room 04: rooms/Room-04.md
+      - Room 05: rooms/Room-05.md
+      - Room 06: rooms/Room-06.md
+      - Room 07: rooms/Room-07.md
+      - Room 08: rooms/Room-08.md
+      - Room 09: rooms/Room-09.md
+      - Room 10: rooms/Room-10.md
+      - Room 11: rooms/Room-11.md
+      #- Room 12: rooms/Room-12.md

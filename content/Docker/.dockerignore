@@ -1,0 +1,36 @@
+# Ignore git and version control
+.git
+.gitignore
+.gitattributes
+
+# Ignore documentation and markdown files (if not needed in container)
+*.md
+README
+docs/
+
+# Ignore build artifacts and caches
+node_modules/
+npm-debug.log
+.npm/
+*.log
+
+# Ignore temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ignore CI/CD files
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Allow docker files in this context
+# (Dockerfile and entrypoint scripts are needed by the build)
