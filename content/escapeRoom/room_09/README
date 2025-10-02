@@ -1,0 +1,24 @@
+- Congratulations! You have reached room 9!!
+
+To pass this room:
+---------------------------------------------------------------------
+
+- In this room we will create a new Linux shell command named `escape`.
+- I order to pass this room you will need to implement the `escape` command.
+
+- The `escape` command should do the following:
+  
+```sh
+escape <number>
+    Calculate the sum of the numbers up to the given number.
+
+    Usage:
+        $ escape 10 
+        (print out 55, [1+2+3+4+5+6+7+8+9+10=55])
+```
+
+- Once you done execute the `getKey.sh`
+  - The `getKey` will test your command with few numbers. 
+  - Once the `getLey` is happy with the results it will print out the password.
+  
+Good Luck !!!

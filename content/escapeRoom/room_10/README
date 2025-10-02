@@ -1,0 +1,15 @@
+
+- Congratulations! You have reached room 10!!
+  
+  The exit is just around the corner ...
+
+To pass this room:
+---------------------------------------------------------------------
+
+- This room is all about trivia.
+- 
+- Once you done execute the `getKey.sh`
+  - The `getKey` will test your command with few numbers. 
+  - Once the `getLey` is happy with the results it will print out the password.
+  
+Good Luck !!!

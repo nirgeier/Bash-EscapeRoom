@@ -1,0 +1,24 @@
+- Congratulations! You have reached room 7!!
+
+To pass this room:
+---------------------------------------------------------------------
+
+- In room #7 we shell play the 7 boom game.
+- The original 7 boom game is played in the range of 1-100.
+- We will change the rules and calculate the 7 boom numbers between 1 to 1000 
+- The rules are very simple:
+  - If a number is divided by 7 (without leftover), or has the digit 7 in it (for example: 7,778 etc)
+    the number is counted as `boom` number  
+
+Tasks: 
+------
+
+1. Since we want to learn bash scripting write a `bash script` which prints out how many boom numbers are between 1 to 1000. 
+  You can still do it manually if you wish :-)
+
+2. With the password that you got unzip the `room7.zip` file
+3. Once you unzipped the content find a bash function which print out the contents of the .txt file 
+   with lines wrapped after `80` characters, **without** splitting any words!!!. (command)
+4. The password will popup in the file.
+
+Good Luck !!!

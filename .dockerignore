@@ -1,0 +1,15 @@
+# Ignore files not needed in Docker build
+.git
+.gitignore
+README.md
+docker-compose.yml
+.dockerignore
+Labs/
+mkdocs/
+mkdocs-site/
+scripts/
+memory-bank/
+*.md
+.DS_Store
+node_modules/
+npm-debug.log*

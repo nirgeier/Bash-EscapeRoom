@@ -1,3 +1,4 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap");
 :root {
@@ -120,6 +121,15 @@ body {
 
 .md-header {
   background-color: black;
+}
+
+img.height-64px {
+  height: 64px;
+  border-radius: 10px;
+}
+
+img.height-16px {
+  height: 16px;
 }
 
 [data-md-color-media="(prefers-color-scheme: dark)"] {

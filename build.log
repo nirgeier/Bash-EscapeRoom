@@ -1,0 +1,254 @@
+#0 building with "orbstack" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.81kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/alpine:3.18
+#2 DONE 0.6s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [builder 1/7] FROM docker.io/library/alpine:3.18@sha256:de0eb0b3f2a47ba1eb89389859a9bd88b28e82f5826b6969ad604979713c2d4f
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 8.86kB done
+#5 DONE 0.0s
+
+#6 [stage-1 2/8] RUN apk add --no-cache   bash   curl   man-pages   shadow   sudo   vim &&   apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing cowsay
+#6 0.151 fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/main/aarch64/APKINDEX.tar.gz
+#6 0.612 fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/community/aarch64/APKINDEX.tar.gz
+#6 0.860 (1/19) Installing ncurses-terminfo-base (6.4_p20230506-r0)
+#6 0.917 (2/19) Installing libncursesw (6.4_p20230506-r0)
+#6 0.986 (3/19) Installing readline (8.2.1-r1)
+#6 1.048 (4/19) Installing bash (5.2.15-r5)
+#6 1.135 Executing bash-5.2.15-r5.post-install
+#6 1.141 (5/19) Installing ca-certificates (20241121-r1)
+#6 1.747 (6/19) Installing brotli-libs (1.0.9-r14)
+#6 1.816 (7/19) Installing libunistring (1.1-r1)
+#6 1.896 (8/19) Installing libidn2 (2.3.4-r1)
+#6 1.955 (9/19) Installing nghttp2-libs (1.57.0-r0)
+#6 2.011 (10/19) Installing libpsl (0.21.5-r0)
+#6 2.069 (11/19) Installing libcurl (8.12.1-r0)
+#6 2.145 (12/19) Installing curl (8.12.1-r0)
+#6 2.211 (13/19) Installing man-pages (6.04-r2)
+#6 2.482 (14/19) Installing linux-pam (1.5.2-r10)
+#6 2.560 (15/19) Installing shadow (4.13-r4)
+#6 2.637 (16/19) Installing sudo (1.9.13_p3-r2)
+#6 2.737 (17/19) Installing vim-common (9.0.2073-r0)
+#6 3.256 (18/19) Installing xxd (9.0.2073-r0)
+#6 3.310 (19/19) Installing vim (9.0.2073-r0)
+#6 3.449 Executing busybox-1.36.1-r7.trigger
+#6 3.451 Executing ca-certificates-20241121-r1.trigger
+#6 3.475 OK: 61 MiB in 34 packages
+#6 3.501 fetch http://dl-cdn.alpinelinux.org/alpine/edge/testing/aarch64/APKINDEX.tar.gz
+#6 3.936 fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/main/aarch64/APKINDEX.tar.gz
+#6 4.422 fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/community/aarch64/APKINDEX.tar.gz
+#6 4.709 (1/3) Installing libbz2 (1.0.8-r5)
+#6 4.774 (2/3) Installing perl (5.36.2-r1)
+#6 5.497 (3/3) Installing cowsay (3.04-r2)
+#6 5.562 Executing busybox-1.36.1-r7.trigger
+#6 5.565 OK: 101 MiB in 37 packages
+#6 DONE 5.9s
+
+#7 [builder 2/7] RUN apk add --no-cache   attr   bash   curl   gcc   make   musl-dev   autoconf   automake   nodejs   npm   shadow   sudo   vim   zip &&   apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing cowsay &&   cd /tmp &&   curl -L https://github.com/neurobin/shc/archive/refs/tags/4.0.3.tar.gz -o shc.tar.gz &&   tar xzf shc.tar.gz &&   cd shc-4.0.3 &&   ./autogen.sh &&   ./configure &&   make &&   make install &&   cd / &&   rm -rf /tmp/shc* &&   npm -g install javascript-obfuscator &&   npm cache clean --force
+#7 0.153 fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/main/aarch64/APKINDEX.tar.gz
+#7 0.625 fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/community/aarch64/APKINDEX.tar.gz
+#7 0.871 (1/45) Installing libattr (2.5.1-r4)
+#7 0.928 (2/45) Installing attr (2.5.1-r4)
+#7 0.990 (3/45) Installing m4 (1.4.19-r3)
+#7 1.053 (4/45) Installing libbz2 (1.0.8-r5)
+#7 1.120 (5/45) Installing perl (5.36.2-r1)
+#7 1.607 (6/45) Installing autoconf (2.71-r2)
+#7 1.720 (7/45) Installing automake (1.16.5-r2)
+#7 1.795 (8/45) Installing ncurses-terminfo-base (6.4_p20230506-r0)
+#7 1.854 (9/45) Installing libncursesw (6.4_p20230506-r0)
+#7 1.917 (10/45) Installing readline (8.2.1-r1)
+#7 1.979 (11/45) Installing bash (5.2.15-r5)
+#7 2.066 Executing bash-5.2.15-r5.post-install
+#7 2.069 (12/45) Installing ca-certificates (20241121-r1)
+#7 2.154 (13/45) Installing brotli-libs (1.0.9-r14)
+#7 2.233 (14/45) Installing libunistring (1.1-r1)
+#7 2.414 (15/45) Installing libidn2 (2.3.4-r1)
+#7 2.507 (16/45) Installing nghttp2-libs (1.57.0-r0)
+#7 2.586 (17/45) Installing libpsl (0.21.5-r0)
+#7 2.662 (18/45) Installing libcurl (8.12.1-r0)
+#7 2.840 (19/45) Installing curl (8.12.1-r0)
+#7 2.957 (20/45) Installing libgcc (12.2.1_git20220924-r10)
+#7 3.024 (21/45) Installing libstdc++ (12.2.1_git20220924-r10)
+#7 3.302 (22/45) Installing zstd-libs (1.5.5-r4)
+#7 3.447 (23/45) Installing binutils (2.40-r8)
+#7 4.043 (24/45) Installing libgomp (12.2.1_git20220924-r10)
+#7 4.118 (25/45) Installing libatomic (12.2.1_git20220924-r10)
+#7 4.176 (26/45) Installing gmp (6.2.1-r3)
+#7 4.266 (27/45) Installing isl26 (0.26-r1)
+#7 4.468 (28/45) Installing mpfr4 (4.2.0_p12-r0)
+#7 4.551 (29/45) Installing mpc1 (1.3.1-r1)
+#7 4.615 (30/45) Installing gcc (12.2.1_git20220924-r10)
+#7 ...
+
+#8 [stage-1 3/8] RUN adduser -D -s /bin/bash escape &&   echo "root:escaperoom" | chpasswd &&   echo "escape:escape" | chpasswd &&   addgroup escape wheel &&   echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/wheel
+#8 DONE 0.1s
+
+#9 [stage-1 4/8] WORKDIR /home/escape
+#9 DONE 0.0s
+
+#7 [builder 2/7] RUN apk add --no-cache   attr   bash   curl   gcc   make   musl-dev   autoconf   automake   nodejs   npm   shadow   sudo   vim   zip &&   apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing cowsay &&   cd /tmp &&   curl -L https://github.com/neurobin/shc/archive/refs/tags/4.0.3.tar.gz -o shc.tar.gz &&   tar xzf shc.tar.gz &&   cd shc-4.0.3 &&   ./autogen.sh &&   ./configure &&   make &&   make install &&   cd / &&   rm -rf /tmp/shc* &&   npm -g install javascript-obfuscator &&   npm cache clean --force
+#7 13.08 (31/45) Installing make (4.4.1-r1)
+#7 13.16 (32/45) Installing musl-dev (1.2.4-r3)
+#7 13.67 (33/45) Installing c-ares (1.19.1-r1)
+#7 13.74 (34/45) Installing icu-data-en (73.2-r2)
+#7 13.98 Executing icu-data-en-73.2-r2.post-install
+#7 13.99 *
+#7 13.99 * If you need ICU with non-English locales and legacy charset support, install
+#7 13.99 * package icu-data-full.
+#7 13.99 *
+#7 13.99 (35/45) Installing icu-libs (73.2-r2)
+#7 14.38 (36/45) Installing nodejs (18.20.1-r0)
+#7 16.62 (37/45) Installing npm (9.6.6-r0)
+#7 17.03 (38/45) Installing linux-pam (1.5.2-r10)
+#7 17.12 (39/45) Installing shadow (4.13-r4)
+#7 17.24 (40/45) Installing sudo (1.9.13_p3-r2)
+#7 17.40 (41/45) Installing vim-common (9.0.2073-r0)
+#7 18.38 (42/45) Installing xxd (9.0.2073-r0)
+#7 18.44 (43/45) Installing vim (9.0.2073-r0)
+#7 18.65 (44/45) Installing unzip (6.0-r14)
+#7 18.75 (45/45) Installing zip (3.0-r12)
+#7 18.83 Executing busybox-1.36.1-r7.trigger
+#7 18.84 Executing ca-certificates-20241121-r1.trigger
+#7 18.87 OK: 289 MiB in 60 packages
+#7 18.90 fetch http://dl-cdn.alpinelinux.org/alpine/edge/testing/aarch64/APKINDEX.tar.gz
+#7 19.34 fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/main/aarch64/APKINDEX.tar.gz
+#7 19.78 fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/community/aarch64/APKINDEX.tar.gz
+#7 20.05 (1/1) Installing cowsay (3.04-r2)
+#7 20.11 Executing busybox-1.36.1-r7.trigger
+#7 20.12 OK: 290 MiB in 61 packages
+#7 20.16   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+#7 20.16                                  Dload  Upload   Total   Spent    Left  Speed
+#7 20.16   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+#7 20.70 100  121k  100  121k    0     0   223k      0 --:--:-- --:--:-- --:--:--  223k
+#7 21.84 aclocal: warning: couldn't open directory 'm4': No such file or directory
+#7 22.18 configure.ac:28: warning: AC_OUTPUT should be used without arguments.
+#7 22.18 configure.ac:28: You should run autoupdate.
+#7 22.33 configure.ac:22: installing 'config/config.guess'
+#7 22.33 configure.ac:22: installing 'config/config.sub'
+#7 22.39 checking for a BSD-compatible install... /usr/bin/install -c
+#7 22.49 checking whether build environment is sane... yes
+#7 23.51 checking for a race-free mkdir -p... ./config/install-sh -c -d
+#7 23.52 checking for gawk... no
+#7 23.52 checking for mawk... no
+#7 23.52 checking for nawk... no
+#7 23.52 checking for awk... awk
+#7 23.52 checking whether make sets $(MAKE)... yes
+#7 23.53 checking whether make supports nested variables... yes
+#7 23.53 checking for gcc... gcc
+#7 23.55 checking whether the C compiler works... yes
+#7 23.58 checking for C compiler default output file name... a.out
+#7 23.58 checking for suffix of executables... 
+#7 23.60 checking whether we are cross compiling... no
+#7 23.62 checking for suffix of object files... o
+#7 23.63 checking whether the compiler supports GNU C... yes
+#7 23.64 checking whether gcc accepts -g... yes
+#7 23.65 checking for gcc option to enable C11 features... none needed
+#7 23.69 checking whether gcc understands -c and -o together... yes
+#7 23.71 checking whether make supports the include directive... yes (GNU style)
+#7 23.72 checking dependency style of gcc... gcc3
+#7 23.73 checking for stdio.h... yes
+#7 23.74 checking for stdlib.h... yes
+#7 23.75 checking for string.h... yes
+#7 23.76 checking for inttypes.h... yes
+#7 23.77 checking for stdint.h... yes
+#7 23.78 checking for strings.h... yes
+#7 23.79 checking for sys/stat.h... yes
+#7 23.80 checking for sys/types.h... yes
+#7 23.82 checking for unistd.h... yes
+#7 23.83 checking for sys/time.h... yes
+#7 23.84 checking for fcntl.h... yes
+#7 23.85 checking for stdlib.h... (cached) yes
+#7 23.85 checking for string.h... (cached) yes
+#7 23.85 checking for unistd.h... (cached) yes
+#7 23.85 checking for struct stat.st_rdev... yes
+#7 23.87 checking build system type... aarch64-unknown-linux-musl
+#7 23.89 checking host system type... aarch64-unknown-linux-musl
+#7 23.89 checking for GNU libc compatible malloc... yes
+#7 23.91 checking for alarm... yes
+#7 23.93 checking for working mktime... yes
+#7 23.97 checking for GNU libc compatible realloc... yes
+#7 23.99 checking for memset... yes
+#7 24.00 checking for putenv... yes
+#7 24.02 checking for strchr... yes
+#7 24.04 checking for strdup... yes
+#7 24.06 checking for strrchr... yes
+#7 24.09 checking that generated files are newer than configure... done
+#7 24.09 configure: creating ./config.status
+#7 24.11 config.status: creating Makefile
+#7 24.11 config.status: creating src/Makefile
+#7 24.12 config.status: executing depfiles commands
+#7 24.14 Making all in src
+#7 24.14 make[1]: Entering directory '/tmp/shc-4.0.3/src'
+#7 24.14 gcc -DPACKAGE_NAME=\"shc\" -DPACKAGE_TARNAME=\"shc\" -DPACKAGE_VERSION=\"4.0.3\" -DPACKAGE_STRING=\"shc\ 4.0.3\" -DPACKAGE_BUGREPORT=\"http://github.com/neurobin/shc/issues\" -DPACKAGE_URL=\"\" -DPACKAGE=\"shc\" -DVERSION=\"4.0.3\" -DHAVE_STDIO_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_STRINGS_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_UNISTD_H=1 -DHAVE_SYS_TIME_H=1 -DSTDC_HEADERS=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STRUCT_STAT_ST_RDEV=1 -DHAVE_MALLOC=1 -DHAVE_ALARM=1 -DHAVE_REALLOC=1 -DHAVE_MEMSET=1 -DHAVE_PUTENV=1 -DHAVE_STRCHR=1 -DHAVE_STRDUP=1 -DHAVE_STRRCHR=1 -I.     -g -O2 -MT shc.o -MD -MP -MF .deps/shc.Tpo -c -o shc.o shc.c
+#7 24.33 mv -f .deps/shc.Tpo .deps/shc.Po
+#7 24.33 gcc  -g -O2   -o shc shc.o  
+#7 24.33 make[1]: Leaving directory '/tmp/shc-4.0.3/src'
+#7 24.33 make[1]: Entering directory '/tmp/shc-4.0.3'
+#7 24.33 make[1]: Nothing to be done for 'all-am'.
+#7 24.33 make[1]: Leaving directory '/tmp/shc-4.0.3'
+#7 24.33 Making install in src
+#7 24.34 make[1]: Entering directory '/tmp/shc-4.0.3/src'
+#7 24.34 make[2]: Entering directory '/tmp/shc-4.0.3/src'
+#7 24.34  .././config/install-sh -c -d '/usr/local/bin'
+#7 24.34   /usr/bin/install -c shc '/usr/local/bin'
+#7 24.36 make[2]: Nothing to be done for 'install-data-am'.
+#7 24.36 make[2]: Leaving directory '/tmp/shc-4.0.3/src'
+#7 24.36 make[1]: Leaving directory '/tmp/shc-4.0.3/src'
+#7 24.36 make[1]: Entering directory '/tmp/shc-4.0.3'
+#7 24.36 make[2]: Entering directory '/tmp/shc-4.0.3'
+#7 24.36 make[2]: Nothing to be done for 'install-exec-am'.
+#7 24.36  ./config/install-sh -c -d '/usr/local/share/man/man1'
+#7 24.36  /usr/bin/install -c -m 644 shc.1 '/usr/local/share/man/man1'
+#7 24.36 make[2]: Leaving directory '/tmp/shc-4.0.3'
+#7 24.36 make[1]: Leaving directory '/tmp/shc-4.0.3'
+#7 26.44 
+#7 26.44 added 93 packages in 2s
+#7 26.44 
+#7 26.44 26 packages are looking for funding
+#7 26.44   run `npm fund` for details
+#7 26.59 npm WARN using --force Recommended protections disabled.
+#7 DONE 27.1s
+
+#10 [builder 3/7] RUN adduser -D -s /bin/bash escape &&   echo "root:escaperoom" | chpasswd &&   echo "escape:escape" | chpasswd &&   addgroup escape wheel &&   echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/wheel
+#10 DONE 0.2s
+
+#11 [builder 4/7] WORKDIR /home/escape
+#11 DONE 0.0s
+
+#12 [builder 5/7] COPY escapeRoom escapeRooms
+#12 DONE 0.1s
+
+#13 [builder 6/7] COPY Docker/initEscapeRoom.sh ./initEscapeRoom.sh
+#13 DONE 0.1s
+
+#14 [builder 7/7] RUN chmod 755 initEscapeRoom.sh &&   ./initEscapeRoom.sh &&   rm initEscapeRoom.sh
+#14 2.220 [m[m[0m[H[2J[24;1H"/home/escape/escapeRooms/room_02/README" 14 lines, 593 bytes
+#14 2.238 "escapeRooms/room_02/README" [blowfish2] 14 lines, 593 bytes written
+#14 4.266 [m[m[0m[H[2J[24;1H"/home/escape/escapeRooms/room_03/README" 28 lines, 1126 bytes
+#14 4.286 "escapeRooms/room_03/README" [blowfish2] 28 lines, 1126 bytes written
+#14 6.310 [m[m[0m[H[2J[24;1H"/home/escape/escapeRooms/room_04/README" 14 lines, 636 bytes
+#14 6.332 "escapeRooms/room_04/README" [blowfish2] 14 lines, 636 bytes written
+#14 8.359 [m[m[0m[H[2J[24;1H"/home/escape/escapeRooms/room_05/README" 15 lines, 666 bytes
+#14 8.379 "escapeRooms/room_05/README" [blowfish2] 15 lines, 666 bytes written
+#14 10.41 [m[m[0m[H[2J[24;1H"/home/escape/escapeRooms/room_06/README" 17 lines, 615 bytes
+#14 10.43 "escapeRooms/room_06/README" [blowfish2] 17 lines, 615 bytes written
+#14 12.45 [m[m[0m[H[2J[24;1H"/home/escape/escapeRooms/room_07/README" [Incomplete last line] 24 lines, 993
+#14 12.45 [23;80Hb[24;1Hytes
+#14 12.48 "escapeRooms/room_07/README" [blowfish2] 24 lines, 994 bytes written
+#14 14.50 [m[m[0m[H[2J[24;1H"/home/escape/escapeRooms/room_08/README" [Incomplete last line] 24 lines, 847
+#14 14.51 [23;80Hb[24;1Hytes
+#14 14.53 "escapeRooms/room_08/README" [blowfish2] 24 lines, 848 bytes written
+#14 16.57 [m[m[0m[H[2J[24;1H"/home/escape/escapeRooms/room_09/README" 24 lines, 704 bytes
+#14 16.57 "escapeRooms/room_09/README" [blowfish2] 24 lines, 704 bytes written
+#14 18.60 [m[m[0m[H[2J[24;1H"/home/escape/escapeRooms/room_10/README" 15 lines, 414 bytes
+#14 18.61 "escapeRooms/room_10/README" [blowfish2] 15 lines, 414 bytes written

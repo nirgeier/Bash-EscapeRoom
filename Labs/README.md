@@ -1,378 +1,133 @@
-# Documentation Site Template
+# Bash EscapeRoom Labs
 
-Welcome to your MkDocs-powered documentation site! This is the homepage of your documentation built using [MkDocs](https://www.mkdocs.org/) with the [Material theme](https://squidfunk.github.io/mkdocs-material/).
+<!-- header start -->
+<div markdown style="text-align: center;border-radius: 20px;">
+![Logo](assets/images/escape_room.png)
+</div>
 
-## Getting Started
+---
 
-### Prerequisites
+<img src="assets/images/tldr.png" style="width:100px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
 
-Before you begin, make sure you have:
+!!! success "Decryption Tip"
+    If the content doesn't appear after entering the password in the selected room, please refresh the page (F5 or Ctrl+R).
 
-- Python 3.8 or higher installed
-- Git configured with your repository
-- Basic knowledge of Markdown
 
-### Quick Setup
+<div class="grid cards" markdown style="text-align: center;border-radius: 20px;">
 
-1. **Clone or download this template**
-2. **Navigate to your project directory**
-3. **Run the setup script**: `./init_site.sh`
+- ![](assets/images/docker.png)
+  ```sh
+  docker run -it nirgeier/escape-room-bash
+  ```
 
-That's it! Your documentation site will be built and served locally at `http://127.0.0.1:8000`.
+- ![](assets/images/killercoda.png){: .height-64px}<br/><br/>
+  [https://killercoda.com/codewizard/scenario/BashEscapeRoom](https://killercoda.com/codewizard/scenario/BashEscapeRoom)
 
-### Manual Setup (Alternative)
+</div>
 
-If you prefer to set things up manually:
+---
 
-#### 1. Create Virtual Environment
+## Room Links
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
+- [Rooms  Room 01](./rooms/Room-01.md)
 
-#### 2. Install Dependencies
+---
 
-```bash
-pip install -r requirements.txt
-```
+## Intro
 
-#### 3. Configure Your Site
+- **The inspiration comes from [github.com/andrey-zap/escapeRoomLinux](https://github.com/andrey-zap/escapeRoomLinux)**
+- This tutorial is for teaching bash scripting through puzzles designed as escape rooms.
+- Each room is packaged in its own folder and includes the files, scripts, and assets required to play.
+- Every room folder includes a `README` that describes the room's objectives, hints, rules, and how to verify the solution.
+- The Bash Escape Room is a series of bash puzzles (Escape-rooms, rooms similar to the real-life attractions of Escape rooms).
+- The Bash Escape Room puzzles are designed to teach the players Bash and Linux skills & features.
+- The inspiration for this project is the real-life Escape rooms.
 
-Edit the configuration files in the `mkdocs/` directory:
+---
 
-| Configuration File           | Description                   |
-| ---------------------------- | ----------------------------- |
-| **01-mkdocs-site.yml**       | Basic site information        |
-| **02-mkdocs-theme.yml**      | Theme and appearance settings |
-| **03-mkdocs-extra.yml**      | Social links and extras       |
-| **04-mkdocs-plugins.yml**    | Plugin configurations         |
-| **05-mkdocs-extensions.yml** | Markdown extensions           |
-| **06-mkdocs-nav.yml**        | Navigation structure          |
+## Pre-Requirements
 
-#### 4. Build Configuration
+- This tutorial will test your `Linux` and `Bash` skills.
+- You should be familiar with the following topics:
+  - Basic Linux commands
+  - Linux File system navigation
+  - Linux Text processing tools (like `grep`, `sed`, `awk`)
+  - Linux Shell scripting basics
+  - Linux Understanding of environment variables
+  - Basic knowledge of `Docker` (if you choose to run it with Docker)
+  - Basic knowledge of `Vim`
 
-```bash
-cat mkdocs/*.yml > mkdocs.yml
-```
+---
 
-#### 5. Start Development Server
+### Usage
 
-```bash
-mkdocs serve
-```
+There are several ways to run the Bash Escape Room. Choose the method that works best for your environment:
 
-## Adding and Organizing Content
+=== "![](assets/images/killercoda-icon.png){:. height-16px} Method 1: Killercoda  (Recommended)"
 
-### Creating New Pages
+    Play directly in your browser without any local installation:
 
-To add content to your documentation:
+    🌐 **[Launch on Killercoda](https://killercoda.com/codewizard/scenario/BashEscapeRoom)**
 
-1. **Create new Markdown files** in this `Labs/` directory
-2. **Add them to the navigation** in `mkdocs/06-mkdocs-nav.yml`
+    **Benefits:**
 
-Example navigation entry:
+    - No installation required
+    - Pre-configured environment
+    - Works on any device with a web browser
+    - All tools pre-installed
 
-```yaml
-nav:
-  - Home: README.md
-  - Getting Started: getting-started.md
-  - Your New Page: your-new-page.md
-```
+=== "🐳 Method 2: Docker"
 
-### Content Organization Structure
+    The easiest and fastest way to get started:
 
-Here's how you might organize your documentation:
-
-```text
-Labs/
-├── README.md              # This homepage
-├── tutorials/             # Tutorial section
-│   ├── README.md         # Tutorial overview
-│   ├── basic-tutorial.md
-│   └── advanced-tutorial.md
-├── guides/                # How-to guides
-│   ├── README.md         # Guides overview
-│   └── installation-guide.md
-├── reference/             # Reference documentation
-│   ├── README.md         # Reference overview
-│   ├── api-reference.md
-│   └── configuration.md
-└── assets/               # Images and other assets
-    ├── images/
-    │   ├── logo.png
-    │   └── screenshots/
-    └── stylesheets/
-```
-
-### Adding Images and Assets
-
-1. **Place images** in `Labs/assets/images/`
-2. **Reference them** in your Markdown:
-
-```markdown
-![Alt text](assets/images/your-image.png)
-```
-
-3. **Add custom stylesheets** to the `Labs/assets/stylesheets/` directory
-
-## Customization
-
-### Changing Theme Colors
-
-Edit `mkdocs/02-mkdocs-theme.yml` to customize the appearance:
-
-```yaml
-theme:
-  palette:
-    primary: blue  # Change to your preferred color
-```
-
-Available colors: red, pink, purple, deep purple, indigo, blue, light blue, cyan, teal, green, light green, lime, yellow, amber, orange, deep orange, brown, grey, blue grey
-
-### Adding Custom CSS
-
-1. **Create CSS files** in `Labs/assets/stylesheets/`
-2. **Reference them** in `mkdocs/03-mkdocs-extra.yml`:
-
-```yaml
-extra_css:
-  - ./assets/stylesheets/custom.css
-```
-
-## Template Features
-
-This documentation template includes many powerful features:
-
-### Markdown Extensions
-
-- **Admonitions**: Create beautiful callout boxes
-- **Code highlighting**: Syntax highlighting for code blocks
-- **Tables**: Enhanced table formatting
-- **Mermaid diagrams**: Create flowcharts and diagrams
-- **Math notation**: LaTeX-style mathematical expressions
-
-### Navigation Features
-
-- **Tabs**: Top-level navigation tabs
-- **Search**: Fast client-side search
-- **Table of contents**: Automatic TOC generation
-- **Navigation sections**: Collapsible navigation sections
-
-### Code Examples
-
-Here's a code block with syntax highlighting:
-
-```python
-def hello_world():
-    """A simple hello world function."""
-    print("Hello, World!")
-    return "Hello, World!"
-
-# Call the function
-hello_world()
-```
-
-### Admonitions
-
-MkDocs Material supports many different types of admonitions. Here are all the available types:
-
-!!! note "Note"
-    This is a note admonition. Use it to highlight important information.
-    
-    ```markdown
-    !!! note "Note"
-        Your content here
+    ```bash
+    docker run -it devopslive/escape-room-bash
     ```
 
-!!! abstract "Abstract/Summary/TL;DR"
-    This is an abstract admonition. Great for summaries or TL;DR sections.
+    **Prerequisites:**
+
+    - Docker installed on your system
+    - No additional setup required
     
-    ```markdown
-    !!! abstract "Abstract"
-        Your summary here
+=== "💻 Method 3: Local Installation"
+
+    For those who prefer to run it directly on their machine:
+
+    ```bash
+    # Clone the repository
+    git clone https://github.com/nirgeier/Bash-EscapeRoom.git
+    cd Bash-EscapeRoom/Labs
+    # Start the first room
+    cd rooms/room-01
+    cat README.md
+    ```
+    **Prerequisites:**
+
+    - A Unix-like operating system (Linux, macOS, or Windows with WSL)
+    - Bash shell
+    - Basic command-line tools (like `grep`, `sed`, `awk`, `vim`
+    - Optional: Docker for isolated environments
+  
+=== "🛠️ Method 4: Build from Source"
+
+    For developers who want to customize or contribute:
+
+    ```bash
+    # Clone the repository
+    git clone https://github.com/nirgeier/Bash-EscapeRoom.git
+    cd Bash-EscapeRoom
+
+    # Build and run with Docker
+    docker build -t bash-escape-room .
+    docker run -it bash-escape-room
     ```
 
-!!! info "Info/Todo"
-    This is an info admonition. Use it for informational content.
-    
-    ```markdown
-    !!! info "Info"
-        Your information here
-    ```
+    **Prerequisites:**
 
-!!! tip "Tip/Hint"
-    This is a tip admonition. Perfect for sharing helpful hints and best practices!
-    
-    ```markdown
-    !!! tip "Tip"
-        Your helpful tip here
-    ```
+    - Git
+    - Docker
+    - Basic knowledge of Docker builds
 
-!!! success "Success/Check/Done"
-    This is a success admonition. Use it to highlight successful outcomes or completed tasks.
-    
-    ```markdown
-    !!! success "Success"
-        Your success message here
-    ```
+---
 
-!!! question "Question/Help/FAQ"
-    This is a question admonition. Great for FAQs or help sections.
-    
-    ```markdown
-    !!! question "Question"
-        Your question or FAQ here
-    ```
-
-!!! warning "Warning/Caution/Attention"
-    This is a warning admonition. Use it to call attention to potential issues.
-    
-    ```markdown
-    !!! warning "Warning"
-        Your warning message here
-    ```
-
-!!! failure "Failure/Fail/Missing"
-    This is a failure admonition. Use it to highlight failures or missing items.
-    
-    ```markdown
-    !!! failure "Failure"
-        Your failure message here
-    ```
-
-!!! danger "Danger/Error"
-    This is a danger admonition. Reserve for critical warnings and errors.
-    
-    ```markdown
-    !!! danger "Danger"
-        Your critical warning here
-    ```
-
-!!! bug "Bug"
-    This is a bug admonition. Perfect for documenting known issues.
-    
-    ```markdown
-    !!! bug "Bug"
-        Your bug description here
-    ```
-
-!!! example "Example"
-    This is an example admonition. Use it to provide code examples or demonstrations.
-    
-    ```markdown
-    !!! example "Example"
-        Your example content here
-    ```
-
-!!! quote "Quote/Cite"
-    This is a quote admonition. Use it for citations or important quotes.
-    
-    ```markdown
-    !!! quote "Quote"
-        Your quote or citation here
-    ```
-
-#### Collapsible Admonitions
-
-You can make admonitions collapsible by using `???` instead of `!!!`:
-
-??? note "Collapsible Note (Click to expand)"
-    This admonition starts collapsed. Users can click to expand it.
-    
-    ```markdown
-    ??? note "Collapsible Note"
-        Hidden content here
-    ```
-
-???+ tip "Collapsible but Open by Default"
-    This admonition is collapsible but starts expanded. Use `???+` for this behavior.
-    
-    ```markdown
-    ???+ tip "Open Collapsible"
-        Content visible by default
-    ```
-
-#### Inline Admonitions
-
-You can also create inline admonitions that flow with the text:
-
-!!! info inline "Inline Info"
-    This is an inline admonition that takes up less space.
-
-!!! tip inline end "Inline at End"
-    This inline admonition is positioned at the end of the line.
-
-Regular text continues here, flowing around the inline admonitions above.
-
-```markdown
-!!! info inline "Inline Info"
-    Inline admonition content
-
-!!! tip inline end "Inline at End"  
-    End-positioned inline content
-```
-
-#### Custom Titles
-
-You can customize the title or remove it entirely:
-
-!!! warning ""
-    This admonition has no title - just leave the quotes empty.
-
-!!! success "🎉 Custom Title with Emoji"
-    You can use emojis and custom text for titles.
-
-```markdown
-!!! warning ""
-    No title admonition
-
-!!! success "🎉 Custom Title with Emoji"
-    Custom titled content
-```
-
-
-
-### Mermaid Diagram Example
-
-```mermaid
-graph LR
-    A[Start] --> B{Decision}
-    B -->|Yes| C[Action 1]
-    B -->|No| D[Action 2]
-    C --> E[End]
-    D --> E
-```
-
-## Deployment
-
-### GitHub Pages (Recommended)
-
-1. **Push your repository to GitHub**
-2. **Enable GitHub Pages** in repository settings
-3. **Use GitHub Actions** for automatic deployment
-
-### Manual Deployment
-
-Deploy your site manually using:
-
-```bash
-mkdocs gh-deploy
-```
-
-This will build and deploy your site to GitHub Pages automatically.
-
-## Next Steps and Resources
-
-1. **Customize the site configuration** in the `mkdocs/` directory
-2. **Add your own content** by creating new Markdown files
-3. **Update the navigation** to reflect your content structure
-4. **Deploy your site** to GitHub Pages or your preferred hosting platform
-
-### Learning Resources
-
-- **Explore** the [Material theme documentation](https://squidfunk.github.io/mkdocs-material/)
-- **Learn about** [MkDocs plugins](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins)
-- **Check out** [Markdown extensions](https://python-markdown.github.io/extensions/)
-
-Happy documenting! 📚✨
+Good Luck!

@@ -1,0 +1,8 @@
+Hints:
+
+1. Install missing packages.
+2. Figure out in which programming language the script is written. (try file <filename>)
+3. Follow the clues in the `Extended attributes` attached to the script file. (`getfattr -d`)
+4. Execute the script and get the key
+
+Good Luck !!!!

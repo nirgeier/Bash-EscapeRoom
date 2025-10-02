@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "Running post-creation setup script..."
           # Replace this with the commands for your actual script
-          ./init_site.sh
+          ./content/scripts/init_site.sh
           git config --local user.email "nirgeier@github.com"
           git config --local user.name "Nir Geier"
           git add .

@@ -8,16 +8,18 @@ extra:
   generator: false
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/nirgeier/mkdocs
+      link: https://github.com/nirgeier/Bash-EscapeRoom
       name: View on GitHub
     - icon: octicons/star-16
-      link: https://github.com/nirgeier/mkdocs/stargazers
+      link: https://github.com/nirgeier/Bash-EscapeRoom/stargazers
       name: Star this repo
     - icon: octicons/repo-forked-16
-      link: https://github.com/nirgeier/mkdocs/network/members
+      link: https://github.com/nirgeier/Bash-EscapeRoom/network/members
       name: Fork this repo
 
 extra_css:
   - ./assets/stylesheets/theme.css
+  - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css
 extra_javascript:
   - https://buttons.github.io/buttons.js
+  - ./assets/javascripts/encryption-fix.js

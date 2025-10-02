@@ -6,6 +6,21 @@ plugins:
   - awesome-pages
   - section-index
   - meta
+  - search:
+      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - encryptcontent:
+      arithmatex: false
+      encrypted_something:
+        mkdocs-encrypted-toc: "display:none;"
+        mySpecialClass: "color:red;"
+      hljs: false
+      mermaid2: false
+      password_button: true
+      password_file: "mkdocs/passwords.yml"
+      reload_scripts:
+        - "document.getElementById('mkdocs-decrypt-button').addEventListener('click', function() { setTimeout(function() { location.reload(); }, 1000); });"
+      remember_password: false
+      session_storage: true
   # - pdf-export:
   #     combined: true # all pages in one PDF
   #     combined_output_path: docs/Full-Documentation.pdf
@@ -17,7 +32,7 @@ plugins:
       branch: main
       docs_path: Labs # set if your docs folder is not root
       enabled: true
-      repository: nirgeier/mkdocs
+      repository: nirgeier/Bash-EscapeRoom
   - git-revision-date-localized:
       enable_creation_date: true
       enable_git_follow: false
@@ -25,8 +40,6 @@ plugins:
       locale: en
       timezone: UTC
       type: date
-  - search:
-      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
       minify_html: true
 

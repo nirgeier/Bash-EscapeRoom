@@ -1,0 +1,24 @@
+- Congratulations! You have reached room 8!!
+
+To pass this room:
+---------------------------------------------------------------------
+
+- In this room we will play with Linux users & processes.
+
+***********************************************
+** Read all the instruction before you start **
+***********************************************
+
+Tasks: 
+------
+
+1. Create a bash script named 'room08_proc.sh'
+2. The script should keep running forever without any output.
+3. Create a new user: 'testUser'
+4. Execute the script with the user 'testUser' in the background!
+   >> Yes in the background! means that your shell wont get affected.
+      So if you don't know how its a good time to learn it....
+5. Find out the process ID (PID) of the running script.
+6. Pass the PID to the script and you should get the password to the next room.
+
+Good Luck !!!

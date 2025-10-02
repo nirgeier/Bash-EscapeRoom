@@ -1,0 +1,15 @@
+- Congratulations! You have reached room 5!!
+
+To pass this room:
+---------------------------------------------------------------------
+- To proceed you need to figure out a way to get past the locked door. 
+- In order to open the door you will need to do the following:
+  1. Extract the key that is hidden inside the script in this folder.
+
+Hints:
+* Find out the type of the script - in which language the script is written?
+* The information on how to lock the door is hidden as `Extended Attribute`
+* Once you figure out what need to be done - just execute the `lockedDoor` script 
+
+In case you are really lost - unlock the hint script in this folder (key=hints)
+

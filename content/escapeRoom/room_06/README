@@ -1,0 +1,17 @@
+- Congratulations! You have reached room 6!!
+
+To pass this room:
+---------------------------------------------------------------------
+
+- This room is about filtering and text manipulation (hint: cat, awk, grep, sed, cut).
+- To proceed you need to do the following on the 'table.csv':
+
+1. Filter the `files` column content.
+2. Filter only `png` extensions files
+3. Remove the `junk` from the file names
+4. Sort by alphanumeric order
+5. Remove the `.png` extension and the numbers
+6. Save the output lines in a file named 'message', each word in separate line 
+7. Execute the node script to get the key
+
+Good Luck!!
