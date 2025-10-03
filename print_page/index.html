@@ -87,7 +87,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -150,21 +150,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
     
   
 </form>
@@ -465,11 +451,15 @@
 </div>
 <hr />
 <p><img src="../assets/images/tldr.png" style="width:100px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);"></p>
+<div class="admonition success">
+<p class="admonition-title">Decryption Tip</p>
+<p>If the content doesn&rsquo;t appear after entering the password in the selected room, please refresh the page (F5 or Ctrl+R).</p>
+</div>
 <div class="grid cards" style="text-align: center;border-radius: 20px;">
 <ul>
 <li>
 <p><img alt="" src="../assets/images/docker.png" />
-  <div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#index-__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>devopslive/escape-room-bash
+  <div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#index-__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>nirgeier/escape-room-bash
 </span></code></pre></div></p>
 </li>
 <li>
@@ -577,6 +567,16 @@
                     <section class="print-page" id="rooms-room-01" heading-number="2.1"><h1 id="rooms-room-01-rooms-room-01">Room 01</h1><ul>
 <li>Welcome to the first Room of the Bash Escape Room!</li>
 </ul>
+<div class="admonition danger">
+<p class="admonition-title">sudo Access</p>
+<ul>
+<li>You might need <code>sudo</code> access for some commands.</li>
+<li>The sudo password is required for elevated privileges.</li>
+<li>The sudo password is: <code>escape</code>.</li>
+<li>Write it down, you will need it later.</li>
+</ul>
+</div>
+<hr />
 <h4 id="rooms-room-01-objective-find-the-hidden-password-by-manipulating-files-in-the-room_files-folder">Objective: Find the hidden password by manipulating files in the <code>room_files</code> folder.</h4>
 <ol>
 <li>
@@ -646,17 +646,141 @@
 </div>
 </li>
 </ol>
-<p><strong>GOOD LUCK!</strong></p></section><section class="print-page" id="rooms-room-02" heading-number="2.2"><h1 id="rooms-room-02-rooms-room-02">[Protected] Room 02</h1><h3 id="room-02">Room 02</h3>
+<h4 id="rooms-room-01-useful-commands"><strong>Useful Commands:</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rm</code></td>
+<td>Remove files or directories</td>
+</tr>
+<tr>
+<td><code>mv</code></td>
+<td>Move or rename files or directories</td>
+</tr>
+<tr>
+<td><code>ls</code></td>
+<td>List directory contents</td>
+</tr>
+<tr>
+<td><code>cd</code></td>
+<td>Change directory</td>
+</tr>
+<tr>
+<td><code>vim</code></td>
+<td>Text editor</td>
+</tr>
+</tbody>
+</table>
+<p><strong>GOOD LUCK!</strong></p></section><section class="print-page" id="rooms-room-02" heading-number="2.2"><h1 id="rooms-room-02-rooms-room-02">[Protected] Room 02</h1><p><strong>GOOD LUCK FOLLOWING THE WHITE RABBIT!</strong></p>
+<hr />
+<h3 id="rooms-room-02-room-02">🐇 Room 02</h3>
 <div class="admonition tip">
 <p class="admonition-title">Decryption Tip</p>
 <p>If the content doesn&rsquo;t appear after entering the password, please refresh the page (F5 or Ctrl+R).</p>
 </div>
 <h4 id="rooms-room-02-welcome-to-room-02">Welcome to Room 02!</h4>
-<p>Congratulations on unlocking this room! Here&rsquo;s your next challenge:</p>
-<p>sdg</p>
-<p>d
-gds
-f</p></section></section></div><style>.print-site-enumerate-headings #index > h1:before { content: '1 ' }
+<p>Congratulations! You have reached room 02!!</p>
+<h4 id="rooms-room-02-objective-follow-the-white-rabbit-and-find-the-hidden-password-by-analyzing-user-data-and-log-files">Objective: Follow the White Rabbit and find the hidden password by analyzing user data and log files</h4>
+<ol>
+<li>
+<p><strong>Find the White Rabbit&rsquo;s user ID</strong></p>
+<div class="admonition tip">
+<p class="admonition-title">Linux Users Hint</p>
+<ul>
+<li>Learn about users in Linux systems</li>
+<li>The White Rabbit has a specific user ID that you need to identify</li>
+<li>Use commands like <code>whoami</code>, <code>id</code>, or check system files for user information</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Search in the <code>users_list.csv</code> file</strong></p>
+<div class="admonition warning">
+<ul>
+<li>Look for the name of the user that has an IP address which <strong>starts</strong> with the White Rabbit&rsquo;s user ID</li>
+<li>Use commands like <code>grep</code>, <code>cat</code>, <code>find</code>, or <code>vim</code> to search through the CSV file</li>
+<li>The CSV file contains user information including IDs, names, and IP addresses</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Search the Logs folder for appearances of the name</strong></p>
+<div class="admonition warning">
+<ul>
+<li>Search for <strong>all appearances</strong> of the name you found in step 2 within the <code>Logs</code> folder</li>
+<li>Use commands like <code>grep -r</code>, <code>find</code>, or similar tools to search recursively</li>
+<li>Look through all log files in the directory</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Sort the results by alphabetical order</strong></p>
+<div class="admonition warning">
+<ul>
+<li>Sort the <strong>content only</strong> (not the filenames)</li>
+<li>Use alphabetical ordering</li>
+<li>You might want to combine commands using pipes (<code>|</code>)</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Get the password for the next room</strong></p>
+<div class="admonition warning">
+<p>If all steps are done correctly, you will get the password for the next room from the sorted results.</p>
+</div>
+</li>
+</ol>
+<p><strong>Files and Directories:</strong></p>
+<ul>
+<li><code>users_list.csv</code> - Contains user information with IDs, names, and IP addresses</li>
+<li><code>Logs/</code> folder - Contains various system log files to search through</li>
+</ul>
+<h4 id="rooms-room-02-useful-commands"><strong>Useful Commands:</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>grep</code></td>
+<td>Search for patterns in files</td>
+</tr>
+<tr>
+<td><code>sort</code></td>
+<td>Sort lines of text</td>
+</tr>
+<tr>
+<td><code>cat</code></td>
+<td>Display file contents</td>
+</tr>
+<tr>
+<td><code>find</code></td>
+<td>Search for files and directories</td>
+</tr>
+<tr>
+<td><code>cut</code></td>
+<td>Extract specific columns from CSV</td>
+</tr>
+<tr>
+<td><code>awk</code></td>
+<td>Text processing tool</td>
+</tr>
+</tbody>
+</table>
+<h4 id="rooms-room-02-hints"><strong>Hints:</strong></h4>
+<ul>
+<li>Use <code>grep</code> to search for the White Rabbit&rsquo;s user ID in system files</li>
+<li>Find where user are stored in Linux systems</li>
+</ul></section></section></div><style>.print-site-enumerate-headings #index > h1:before { content: '1 ' }
 
                 .print-site-enumerate-headings #index h2:before { content: '1.' counter(counter-index-2) ' ' }
                 .print-site-enumerate-headings #index h2 {  counter-reset: counter-index-3 ;  counter-increment: counter-index-2 }
