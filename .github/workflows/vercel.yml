@@ -19,8 +19,11 @@ jobs:
       - name: Set Up Python
         uses: actions/setup-python@v5
 
-      - name: Install Dependencies
-        run: pip install -r mkdocs/requirements.txt
+      - name: Create and activate venv
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r mkdocs/requirements.txt
 
       - name: Build Documentation
         run: mkdocs build

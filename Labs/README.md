@@ -17,7 +17,8 @@
 
 - ![](assets/images/docker.png)
   ```sh
-  docker run -it nirgeier/escape-room-bash
+  docker  run -it --pull=always \
+          ghcr.io/nirgeier/bash-escaperoom:latest
   ```
 
 - ![](assets/images/killercoda.png){: .height-64px}<br/><br/>
@@ -81,7 +82,7 @@ There are several ways to run the Bash Escape Room. Choose the method that works
     The easiest and fastest way to get started:
 
     ```bash
-    docker run -it devopslive/escape-room-bash
+    docker run -it --pull=always ghcr.io/nirgeier/bash-escaperoom:latest
     ```
 
     **Prerequisites:**

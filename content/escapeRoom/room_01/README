@@ -1,4 +1,7 @@
-This is what you need to do in the First room:
+# Room 01
+
+## This is what you need to do in the First room
+
 ---------------------------------------------------------
 
 1. Go to 'room_files/room_01' folder
@@ -6,8 +9,8 @@ This is what you need to do in the First room:
 2. delete/move/filter-out all the files with 'txt' extension.
    - highly recommended to backup the folder before you make changes
 
-3. Sort the remaining files by size 
-   - Descending Order, including the hidden files!! 
+3. Sort the remaining files by size
+   - Descending Order, including the hidden files!!
   
 4. View the file names on the screen, then take the **first letter** of each filename top-to-bottom.
  
