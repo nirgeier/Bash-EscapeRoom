@@ -11,6 +11,7 @@ IFS=$'\n\t'
 SCRIPT_NAME=$(basename "$0")
 REPO_ROOT=$(cd "$(dirname "$0")/.." && pwd)
 
+
 # Defaults
 DEFAULT_CONTEXT="."
 DEFAULT_DOCKERFILE="Docker/Dockerfile"
@@ -150,6 +151,8 @@ else
   echo "Using existing buildx builder '$BUILDER_NAME'"
   docker buildx use "$BUILDER_NAME"
 fi
+
+
 
 echo "Bootstrapping builder (this may take a few seconds)..."
 docker buildx inspect --bootstrap

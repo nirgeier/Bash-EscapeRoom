@@ -27,7 +27,7 @@ plugins:
   #     media_type: print
   #     verbose: true
   # Git
-  - git-authors
+  #- git-authors
   - git-committers:
       branch: main
       docs_path: Labs # set if your docs folder is not root

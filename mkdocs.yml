@@ -153,9 +153,10 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
-###
-### mkdocs-plugins.yml
-###
+        ###
+        ### mkdocs-plugins.yml
+        ###
+
 
 plugins:
   - awesome-pages
@@ -182,7 +183,7 @@ plugins:
   #     media_type: print
   #     verbose: true
   # Git
-  - git-authors
+  #- git-authors
   - git-committers:
       branch: main
       docs_path: Labs # set if your docs folder is not root

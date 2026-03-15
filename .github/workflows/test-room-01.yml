@@ -1,0 +1,24 @@
+name: Test Room 01
+
+on:
+  push:
+    paths:
+      - "content/tests/test_room_01.sh"
+      - "content/escapeRoom/room_01/room_files/**"
+      - "rooms/Room-01.md"
+      - ".github/workflows/test-room-01.yml"
+  pull_request:
+    paths:
+      - "content/tests/test_room_01.sh"
+      - "content/escapeRoom/room_01/room_files/**"
+      - "rooms/Room-01.md"
+      - ".github/workflows/test-room-01.yml"
+
+jobs:
+  test-room-01:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Run test_room_01.sh
+        run: bash content/tests/test_room_01.sh
