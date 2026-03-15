@@ -1,0 +1,28 @@
+- Congratulations! You have reached room 19!!
+
+## Section: Security & Integrity
+
+To pass this room:
+---------------------------------------------------------------------
+
+- Seven documents were delivered but only one is authentic.
+- The authentic document matches a known SHA-256 checksum.
+- Find the authentic document and read it.
+
+## Tasks:
+
+1. Read authentic.sha256 to see the expected hash.
+   >> hint: `cat authentic.sha256`
+
+2. Calculate the SHA-256 hash of each document.
+   >> hint: `sha256sum documents/doc_*.txt`
+
+3. Find which document's hash matches the one in authentic.sha256.
+   >> hint: compare the hashes manually or use grep
+
+4. Read the matching document - its content is the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_20/README -out ../room_20/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

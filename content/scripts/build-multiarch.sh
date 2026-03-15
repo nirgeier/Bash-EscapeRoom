@@ -11,7 +11,6 @@ IFS=$'\n\t'
 SCRIPT_NAME=$(basename "$0")
 REPO_ROOT=$(cd "$(dirname "$0")/.." && pwd)
 
-
 # Defaults
 DEFAULT_CONTEXT="."
 DEFAULT_DOCKERFILE="Docker/Dockerfile"
@@ -54,37 +53,48 @@ REPO="$DEFAULT_REGISTRY_TAG"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    -h|--help)
-      print_usage
-      exit 0
-      ;;
-    -c|--context)
-      CONTEXT="$2"; shift 2
-      ;;
-    -f|--file)
-      DOCKERFILE="$2"; shift 2
-      ;;
-    -p|--platforms)
-      PLATFORMS="$2"; shift 2
-      ;;
-    -t|--tag|--tags)
-      TAGS="$2"; shift 2
-      ;;
-    -r|--repo)
-      REPO="$2"; shift 2
-      ;;
-    --push)
-      PUSH=true; shift
-      ;;
-    --no-push)
-      PUSH=false; shift
-      ;;
-    -n|--no-cache)
-      CACHE_FROM=""; CACHE_TO=""; shift
-      ;;
-    *)
-      echo "Unknown argument: $1" >&2; print_usage; exit 2
-      ;;
+  -h | --help)
+    print_usage
+    exit 0
+    ;;
+  -c | --context)
+    CONTEXT="$2"
+    shift 2
+    ;;
+  -f | --file)
+    DOCKERFILE="$2"
+    shift 2
+    ;;
+  -p | --platforms)
+    PLATFORMS="$2"
+    shift 2
+    ;;
+  -t | --tag | --tags)
+    TAGS="$2"
+    shift 2
+    ;;
+  -r | --repo)
+    REPO="$2"
+    shift 2
+    ;;
+  --push)
+    PUSH=true
+    shift
+    ;;
+  --no-push)
+    PUSH=false
+    shift
+    ;;
+  -n | --no-cache)
+    CACHE_FROM=""
+    CACHE_TO=""
+    shift
+    ;;
+  *)
+    echo "Unknown argument: $1" >&2
+    print_usage
+    exit 2
+    ;;
   esac
 done
 
@@ -102,7 +112,7 @@ fi
 # Normalize tags so each is a fully-qualified tag under $REPO unless user provided fully-qualified
 # If a tag already contains '/', assume it's a full image name; otherwise prefix repo
 normalized_tags=()
-IFS=',' read -r -a user_tags <<< "$TAGS"
+IFS=',' read -r -a user_tags <<<"$TAGS"
 for t in "${user_tags[@]}"; do
   if [[ "$t" == *"/"* || "$t" == *":"* ]]; then
     normalized_tags+=("$t")
@@ -111,7 +121,10 @@ for t in "${user_tags[@]}"; do
   fi
 done
 # join tags with comma
-TAGS_JOINED=$(IFS=,; echo "${normalized_tags[*]}")
+TAGS_JOINED=$(
+  IFS=,
+  echo "${normalized_tags[*]}"
+)
 
 echo "Context: $CONTEXT"
 echo "Dockerfile: $DOCKERFILE"
@@ -136,7 +149,7 @@ fi
 echo "Setting up QEMU binfmt handlers (best-effort) ..."
 if ! docker run --rm --privileged tonistiigi/binfmt:latest --install all; then
   echo "Warning: automated binfmt install failed. If you're on macOS Docker Desktop that's expected in some setups." >&2
-  echo "Continuing — Buildx may still emulate using existing handlers or the build may fail for certain platforms." >&2
+  echo "Continuing -Buildx may still emulate using existing handlers or the build may fail for certain platforms." >&2
 fi
 
 # Create/ensure a buildx builder
@@ -151,8 +164,6 @@ else
   echo "Using existing buildx builder '$BUILDER_NAME'"
   docker buildx use "$BUILDER_NAME"
 fi
-
-
 
 echo "Bootstrapping builder (this may take a few seconds)..."
 docker buildx inspect --bootstrap
@@ -169,7 +180,7 @@ fi
 build_cmd+=(--file "$FILE_ARG")
 
 # Add tags
-IFS=',' read -r -a _tags_array <<< "$TAGS_JOINED"
+IFS=',' read -r -a _tags_array <<<"$TAGS_JOINED"
 for tt in "${_tags_array[@]}"; do
   build_cmd+=(--tag "$tt")
 done
@@ -204,8 +215,8 @@ echo
 
 # Execute the build command safely using the array (avoids word-splitting/eval issues)
 (
-  cd "$REPO_ROOT" && 
-  "${build_cmd[@]}"
+  cd "$REPO_ROOT" &&
+    "${build_cmd[@]}"
 )
 
 EXIT_CODE=$?
@@ -214,7 +225,7 @@ if [[ $EXIT_CODE -ne 0 ]]; then
   exit $EXIT_CODE
 fi
 
-echo "Build finished successfully." 
+echo "Build finished successfully."
 if [[ "$PUSH" == true ]]; then
   echo "Images pushed:"
   for tt in "${_tags_array[@]}"; do

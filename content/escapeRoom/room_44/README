@@ -1,0 +1,27 @@
+- Congratulations! You have reached room 44!!
+
+## Section: File Operations
+
+To pass this room:
+---------------------------------------------------------------------
+
+- Two archives must be in sync, but mirror_archive/ has drifted.
+- Sync them using rsync and verify the result.
+
+## Tasks:
+
+1. Check what is in source_archive/ and mirror_archive/.
+   >> hint: `ls source_archive/ mirror_archive/`
+
+2. Sync source_archive/ TO mirror_archive/ using rsync.
+   >> hint: `rsync -av --delete source_archive/ mirror_archive/`
+
+3. After syncing, count the total files in mirror_archive/.
+   >> hint: `find mirror_archive/ -type f | wc -l`
+
+4. Run: ./getKey.sh to verify the sync and get the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_45/README -out ../room_45/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

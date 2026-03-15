@@ -1,6 +1,7 @@
 mkdocs-site/**
 .history
 .venv
-memory-bank/** 
+memory-bank/**
 encryptcontent.cache
 .vercel
+docker/docs/*

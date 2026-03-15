@@ -1,14 +1,33 @@
 - Congratulations! You have reached room 4!!
- 
+
+## Section: Text Mastery
+
 To pass this room:
 ---------------------------------------------------------------------
-- The room keeper of this place is a crazy guy who speaks very odd.
-- To be able to read the message you will need to do the following:
-  1. The room keeper doesn't like the letter `H` so he replaced it with `zing` (dont ask me why...)
-  2. He is not into `h` as well, so he replace it with `blu`.
-  3. He despise the letter `i`, so he prefer to say it as `bla`.
-- The keeper **love** to use `sed` command....
 
-- What is the password to the next room?
-  >>> Hint: keep looking around the folder....
+- A spy left an encoded message in the file `cipher.txt`.
+- The encoding substituted certain letters with codes:
 
+  | Original | Encoded |
+  |----------|---------|
+  | s        | Z7      |
+  | e        | Q3      |
+  | d        | X9      |
+  | m        | K1      |
+  | a        | J2      |
+  | t        | W8      |
+  | r        | P6      |
+
+## Tasks:
+
+1. Use the `sed` command to reverse ALL substitutions on `cipher.txt`.
+   >> hint: `sed` can do multiple substitutions in one command
+   >> hint: sed 's/ENCODED/ORIGINAL/g; s/ENCODED2/ORIGINAL2/g' cipher.txt
+
+2. Read the decoded output to find the password for the next room.
+   >> The password is mentioned in the decoded text.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_05/README -out ../room_05/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

@@ -81,8 +81,9 @@ RUN apk update && \
   newt      \
   shadow    \
   sudo      \
+  openssl   \
   unzip     \
-  vim       
+  vim
 
 # Create the same users
 RUN adduser -D -s /bin/bash escape && \

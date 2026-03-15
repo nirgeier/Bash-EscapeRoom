@@ -1,21 +1,32 @@
-# Room 01
+# Room 01 - The Lost Expedition
 
-## This is what you need to do in the First room
+## Section: Navigation & Discovery
 
----------------------------------------------------------
+---
 
-1. Go to 'room_files/room_01' folder
+- A famous explorer vanished deep in the jungle, leaving map fragments
+  scattered across the expedition camp.
+- The fragments are hidden in
+  a maze of directories and mixed in with thousands of decoy files.
 
-2. delete/move/filter-out all the files with 'txt' extension.
-   - highly recommended to backup the folder before you make changes
+## Tasks:
 
-3. Sort the remaining files by size
-   - Descending Order, including the hidden files!!
-  
-4. View the file names on the screen, then take the **first letter** of each filename top-to-bottom.
- 
-5. Once you discover the hidden message, move to the next room.
+1. Navigate into the `expedition/` directory.
 
-6. Open the README file using the hidden message in **lowercase** without spaces...
+2. The camp is littered with noise files (`.rock`, `.leaf`, `.twig`)
+   everywhere. Ignore them all.
 
+3. The explorer left exactly 9 map fragments (files ending in `.map`)
+   hidden across the sub-directories. Find them all.
 
+   > > hint: the `find` command can search recursively for files by name pattern
+
+4. Once you locate all `.map` files, sort their full paths alphabetically
+   and read (`cat`) their contents in that order.
+
+5. Concatenate the letters. They spell the password for the next room.
+
+> > Decrypt tip for next room:
+> > openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_02/README -out ../room_02/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

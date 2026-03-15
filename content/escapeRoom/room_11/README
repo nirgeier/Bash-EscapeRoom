@@ -1,26 +1,36 @@
 - Congratulations! You have reached room 11!!
 
+## Section: Advanced Pipeline
+
 To pass this room:
 ---------------------------------------------------------------------
 
-- In this room, we dive into bash conditionals and decision-making.
-- You need to write a bash script that processes user data and filters based on conditions.
-- In this room we wish to learn and use `awk` and learn some of its capabilities. 
-- awk is most commonly used for `pattern matching` or `text processing`
-  
-Tasks
-------
+- You found a mysterious artifact encoded in multiple layers!
+- The file `artifact.b64` has been wrapped in 3 layers of encoding:
 
-1. Examine the 'user_data.txt' file in this folder.
-2. Write a bash script named 'filter_users.sh' that:
-   - The file contains a header and each line contains user information in the format: name,age,subscription
-   - Reads each line from 'user_data.txt' 
-   - Using `bash` and `awk`, filter users based on the following criteria:
-     - Skip the header line (First line - Find out how to do this using `awk`)
-     - Age greater than 25  (Hint: This is the second field in each line)
-     - Subscription type is 'premium' (Hint: This is the third field in each line)
-   - Sums the ages of the matching users, and this sum will be the password for the next room.
+  Layer 3 (outermost): Base64
+  Layer 2: Gzip compression
+  Layer 1 (innermost): Tar archive
 
-3. Run your script to get the password for the next room.
+## Tasks:
 
-Good Luck!!!
+To unwrap, reverse the layers:
+
+1. Decode the Base64 layer:
+   >> `base64 -d artifact.b64 > artifact.tar.gz`
+
+2. Decompress the gzip layer:
+   >> `gunzip artifact.tar.gz` (produces artifact.tar)
+   >> OR: `gzip -d artifact.tar.gz`
+
+3. Extract the tar archive:
+   >> `tar xf artifact.tar`
+
+4. Read the extracted file to find the password!
+   >> hint: use `file` command to identify unknown file types
+   >> hint: `ls` to see what was extracted
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_12/README -out ../room_12/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

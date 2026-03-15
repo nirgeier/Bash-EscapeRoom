@@ -1,113 +1,90 @@
 ---
-password: "linuxrocks"
-title_prefix: "🤪 "
-summary: "Room 06 requires filtering and manipulating data from a CSV file."
+password: "translate"
+title_prefix: "🔍 "
+summary: "Use sort, uniq, comm, and wc to find unique gems between two vaults."
 ---
 
-**FILTER AND MANIPULATE DATA FROM A CSV FILE**
-
----
-
-# 🤪 Room 06
-
-!!! danger "sudo Access"
-    - You might need `sudo` access for some commands.
-    - The sudo password is required for elevated privileges.
-    - The sudo password is: `escape`.
-    - Write it down, you will need it later.
+**FIND THE UNIQUE GEMS!**
 
 ---
 
-## Objective: Filter and manipulate data from a CSV file to unlock the next room
+## 🔍 The Duplicate Detective
 
-```markdown
-To pass this room:
----------------------------------------------------------------------
+Two treasure vaults contain gem inventories. Some gems appear in both vaults,
+some are unique to one. Find the gems that exist ONLY in vault A.
 
-- This room is about filtering and text manipulation (hint: cat, awk, grep, sed, cut).
-- To proceed you need to do the following on the 'table.csv':
+!!! abstract "📜 Mission Briefing"
 
-1. Filter the `files` column content.
-2. Filter only `png` extensions files
-3. Remove the `junk` from the file names
-4. Sort by alphanumeric order
-5. Remove the `.png` extension and the numbers
-6. Save the output lines in a file named 'message', each word in separate line 
-7. Execute the node script to get the key
+    Two vaults (`vault_a.txt` and `vault_b.txt`) contain gem inventories with
+    duplicates within each file.
 
-Good Luck!!
+    1. Remove duplicate entries within each file.
+       > hint: `sort` + `uniq` removes duplicates from sorted input
+    2. Find gems that appear **only** in `vault_a.txt` (not in `vault_b.txt`).
+       > hint: `comm -23 file1 file2` shows lines only in file1 (both must be sorted)
+    3. Count those unique-to-vault-a gems.
+       > hint: pipe to `wc -l`
+    4. The password is the word `unique` followed by that count *(no space)*.
+       > Example: if there are 15 unique gems → `unique15`
+
+### Key Commands
+
+| Command    | Purpose                                                |
+| ---------- | ------------------------------------------------------ |
+| `sort`     | Sort lines alphabetically                              |
+| `uniq`     | Remove adjacent duplicate lines (input must be sorted) |
+| `comm`     | Compare two sorted files line by line                  |
+| `comm -23` | Show lines only in file 1 (not in file 2)              |
+| `diff`     | Show differences between two files                     |
+| `wc -l`    | Count lines                                            |
+
+---
+
+### How These Commands Work
+
+```bash
+# sort - order lines
+sort file.txt                        # alphabetical (default)
+sort -r file.txt                     # reverse order
+sort -n file.txt                     # numeric sort
+sort -k2 file.txt                    # sort by 2nd field
+sort -t',' -k2 -n file.txt           # CSV, numeric sort on field 2
+sort -u file.txt                     # sort and remove duplicates
+
+# uniq - filter duplicate adjacent lines (input must be sorted!)
+uniq file.txt                        # remove consecutive duplicates
+uniq -c file.txt                     # prefix count of occurrences
+uniq -d file.txt                     # show only duplicate lines
+uniq -u file.txt                     # show only unique lines
+uniq -i file.txt                     # case-insensitive comparison
+
+# comm - compare two sorted files line by line
+comm file1.txt file2.txt             # 3 columns: only-1 | only-2 | both
+comm -12 file1.txt file2.txt         # lines in BOTH files only
+comm -23 file1.txt file2.txt         # lines only in file1
+comm -13 file1.txt file2.txt         # lines only in file2
+comm -3  file1.txt file2.txt         # suppress lines in both
+
+# Process substitution (skip temp files)
+comm -23 <(sort fileA.txt | uniq) <(sort fileB.txt | uniq)
 ```
 
-1. Examine the `table.csv` file to understand its structure.
-   
-    !!! tip "CSV Structure"
-    
-        - The file contains columns: first_name, last_name, email, file, employee.
-        - Focus on the `file` column for filenames.
-    
-2. Extract the `file` column from the CSV.
-    
-    !!! tip "Extract Column"
-    
-        - Use `cut` or `awk` to extract the 4th column (file column).
-        - Skip the header row.
-        
-3. Filter only files with `.png` extension.
-               
-    !!! tip "Filter PNG Files"
-    
-        - Use `grep` to find lines ending with `.png`.
-        
-4. Remove the `junk` prefix and numbers from filenames.
-     
-    !!! tip "Remove Junk"
-    
-        - Use `sed` to remove `junk` and digits before `.png`.
-        - For example, `junk4good.png` becomes `good.png`.
-        
-5. Sort the filenames alphanumerically.
-     
-    !!! tip "Sort Filenames"
-    
-        - Use `sort` command to arrange in alphabetical order.
-        
-6. Remove the `.png` extension.
-     
-    !!! tip "Remove Extension"
-    
-        - Use `sed` or `cut` to remove `.png` from each filename.
-        
-7. Save each word on a separate line in a file named `message`.
-     
-    !!! tip "Create Message File"
-    
-        - Use output redirection to save to `message` file.
-        - Each filename should be on its own line.
-        
-8. Execute the Node.js script to get the key.
-     
-    !!! tip "Run Script"
-    
-        - Use `node script.js` to run the JavaScript file.
-        - If Node.js is not installed, you may need to install it.
-        - The script checks the `message` file and reveals the key if correct.
+---
 
-9. Use the key to proceed to the next room.
-     
+### Hints
+
+!!! tip "Hint"
+
+    The password format is: `unique` + the count (e.g., `unique15`).
 
 ---
 
-## **Useful Commands:**
+!!! info "🔓 Unlock Room 07"
 
-| Command | Man Page                                                      | Description                                       |
-| ------- | ------------------------------------------------------------- | ------------------------------------------------- |
-| `cat`   | 🔗 [`cat`](https://man7.org/linux/man-pages/man1/cat.1.html)   | Concatenate and display files                     |
-| `awk`   | 🔗 [`awk`](https://man7.org/linux/man-pages/man1/awk.1.html)   | Pattern scanning and processing language          |
-| `grep`  | 🔗 [`grep`](https://man7.org/linux/man-pages/man1/grep.1.html) | Print lines matching a pattern                    |
-| `sed`   | 🔗 [`sed`](https://man7.org/linux/man-pages/man1/sed.1.html)   | Stream editor for filtering and transforming text |
-| `cut`   | 🔗 [`cut`](https://man7.org/linux/man-pages/man1/cut.1.html)   | Remove sections from each line of files           |
-| `sort`  | 🔗 [`sort`](https://man7.org/linux/man-pages/man1/sort.1.html) | Sort lines of text files                          |
-| `node`  | 🔗 [`node`](https://manpages.org/node)                         | Run JavaScript files                              |
+    Once you have the password, decrypt the next room's README:
 
-
-**GOOD LUCK!**
+    ```bash
+    openssl enc -aes-256-cbc -d -a -pbkdf2 \
+      -in ../room_07/README -out ../room_07/README.txt -pass pass:PASSWORD
+    cat ../room_07/README
+    ```

@@ -1,0 +1,25 @@
+- Congratulations! You have reached room 45!!
+
+## Section: Security & Integrity
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A message was encrypted with openssl using a known algorithm and key.
+- Decrypt it to reveal the secret.
+
+## Tasks:
+
+1. The file encrypted_message.enc was encrypted with AES-256-CBC.
+   The encryption password is: cryptokey2024
+
+2. Decrypt it:
+   >> hint: `openssl enc -aes-256-cbc -d -a -pbkdf2 \`
+   >>              `-in encrypted_message.enc -pass pass:cryptokey2024`
+
+3. The decrypted output is the password for room 46.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_46/README -out ../room_46/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

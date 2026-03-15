@@ -1,36 +1,32 @@
 - Congratulations! You have reached room 12!!
 
+## Section: Advanced Pipeline
+
 To pass this room:
 ---------------------------------------------------------------------
 
-- In this room, we focus on xargs.
-- You have a file named addresses.txt which contains 1000 lines of addresses in the following format:
-  "Name,Street,City,State,ZipCode"
-- Your task is to calculate the sum of all the ZipCodes in the file using xargs.
-- You can use any other command you need, but the main focus should be on using xargs effectively.
-  
-Tasks:
-------
+- The Grand Pipeline Challenge! Master the art of chaining commands.
+- The file `stations.txt` contains 8 city records, one per line.
+- Format: `CityName|Population|Area|Code`
 
-1. Examine the 'addresses.txt' file in this folder.
-2. Extract the ZipCode from each line. (Hint: ZipCode is the 5th field in each line, you can use `cut` command)
-3. Use `xargs` to format the output into 5 columns (You will need to find out the xargs flag).
-   - Command: `cut -d, -f5 addresses.txt | xargs -n5`
-<!-- 4. 
-5. Calculate the sum of all ZipCodes in the file using xargs.
-   - Command: `echo addresses.txt | xargs head -n 1000 | cut -d, -f5 | xargs -n5 | xargs printf "%s+" | sed 's/.$//' | xargs -I {} echo {} | bc`
-   - To sum only the 5th line in the output: `echo addresses.txt | xargs head -n 1000 | cut -d, -f5 | xargs -n5 | sed -n '5p' | xargs printf "%s+" | sed 's/+$//' | bc`
-6. The sum will be the password for the next room. -->
+## Tasks:
 
+1. Extract ONLY the city names (first field, `|` is the delimiter).
+   >> hint: `cut -d'|' -f1 stations.txt`
 
-echo addresses.txt   | \
-  xargs head -n 1000  | \
-  cut -d, -f5 | \
-  xargs -n5 | \
-  xargs printf "%s+" | \
-  sed 's/.$//' | \
-  xargs -I {}  | \
-  bc
+2. Take the first letter of each city name.
+   >> hint: `cut -c1` extracts the first character
 
+3. Combine all letters into one line (remove newlines).
+   >> hint: `tr -d '\n'` removes all newline characters
 
-Good Luck!!!
+4. Convert to lowercase.
+   >> hint: `tr 'A-Z' 'a-z'` converts to lowercase
+
+5. The result is the password! Build it as ONE pipeline:
+   >> `cut -d'|' -f1 stations.txt | cut -c1 | tr -d '\n' | tr 'A-Z' 'a-z'`
+
+>> Decrypt tip for final room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_100/README -out ../room_100/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

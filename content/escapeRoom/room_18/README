@@ -1,0 +1,27 @@
+- Congratulations! You have reached room 18!!
+
+## Section: File Operations
+
+To pass this room:
+---------------------------------------------------------------------
+
+- Two versions of a blueprint exist.
+- A saboteur changed something between version 1 and version 2.
+- Find exactly what was added in version 2.
+
+## Tasks:
+
+1. Compare the two blueprint files.
+   >> hint: `diff blueprint_v1.txt blueprint_v2.txt`
+
+2. Lines starting with ">" are lines added in v2.
+
+3. Find the added line - it contains the password.
+   >> hint: `diff blueprint_v1.txt blueprint_v2.txt | grep '^>'`
+
+4. The word on the added line (after the "> ") is the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_19/README -out ../room_19/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

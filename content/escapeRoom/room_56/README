@@ -1,0 +1,32 @@
+=== ROOM 56: THE PROCESS CONTROLLER ===
+
+Rogue agent processes are multiplying in the background.
+Find them, read their secrets, and terminate them in the correct order.
+
+MISSION:
+1. Launch the agents: ./launch_agents.sh
+2. Find all agent processes: pgrep -a agent
+3. Read the keeper log: cat /tmp/agent_keeper.log
+4. Kill the keeper: pkill -f agent_keeper.sh
+5. Kill all remaining agents: pkill -f agent_worker.sh
+6. Validate: ./getKey.sh
+
+KEY COMMANDS:
+   pgrep name             Find PIDs by name
+   pgrep -l name          Show PID and name
+   pgrep -a name          Show PID and full command
+   pgrep -f pattern       Match full command line
+   pkill name             Send SIGTERM to matching processes
+   pkill -9 name          Force kill (SIGKILL)
+   pkill -f pattern       Kill by full command line
+   nohup cmd &            Run immune to hangups
+   nohup cmd > out.log 2>&1 &  With output capture
+   nice -n 10 cmd         Lower priority execution
+   renice -n 5 -p PID     Change priority of running process
+   killall name           Kill all by name
+   wait PID               Wait for process to finish
+
+To access the Exit Exam after completing the Bonus Track:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 \
+     -in ../room_100/README -out ../room_100/README.txt -pass pass:masterkey
+   cat ../room_100/README.txt

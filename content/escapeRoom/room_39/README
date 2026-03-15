@@ -1,0 +1,28 @@
+- Congratulations! You have reached room 39!!
+
+## Section: Network Tools
+
+To pass this room:
+---------------------------------------------------------------------
+
+- The password is hidden in a file that reveals its location
+  through network socket information.
+
+## Tasks:
+
+1. List all listening TCP ports.
+   >> hint: `ss -tlnp` or `netstat -tlnp`
+
+2. Find which port in the range 8000-9000 has a listener.
+   >> hint: `ss -tlnp | grep ':8[0-9][0-9][0-9]'`
+
+3. Connect to it to get the password.
+   >> hint: `curl http://localhost:<PORT>` or `nc localhost <PORT>`
+
+NOTE: If no server is running, the password is in network_secret.txt
+   >> hint: `cat network_secret.txt`
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_40/README -out ../room_40/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

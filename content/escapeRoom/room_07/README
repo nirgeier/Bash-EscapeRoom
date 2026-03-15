@@ -1,23 +1,34 @@
 - Congratulations! You have reached room 7!!
 
+## Section: System Mastery
+
 To pass this room:
 ---------------------------------------------------------------------
 
-- In room #7 we shell play the 7 boom game.
-- The original 7 boom game is played in the range of 1-100.
-- We will change the rules and calculate the 7 boom numbers between 1 to 1000 
-- The rules are very simple:
-  - If a number is divided by 7 (without leftover), or has the digit 7 in it (for example: 7,778 etc)
-    the number is counted as `boom` number  
+- Seven locked gates block your path. Each gate is a file with
+  WRONG permissions. Fix them all to proceed!
 
-Tasks: 
-------
+## The gates and their REQUIRED permissions:
 
-1. Since we want to learn bash scripting write a `bash script` which prints out how many boom numbers are between 1 to 1000. 
-  You can still do it manually if you wish :-)
-2. With the password that you got unzip the `room7.zip` file
-3. Once you unzipped the content find a bash function which print out the contents of the .txt file 
-   with lines wrapped after `80` characters, **without** splitting any words!!!. (command)
-4. The password will popup in the file.
+  | File     | Required Permission | Numeric |
+  |----------|-------------------- |---------|
+  | gate_1   | rwxr-xr-x           | 755     |
+  | gate_2   | rw-r--r--           | 644     |
+  | gate_3   | rwx------           | 700     |
+  | gate_4   | r--r--r--           | 444     |
+  | gate_5   | rwxrwxr-x           | 775     |
+  | gate_6   | rw-rw----           | 660     |
+  | gate_7   | r-x--x--x           | 511     |
+
+## Tasks:
+
+1. Check current permissions: `ls -l gate_*`
+2. Fix each gate's permissions using `chmod`.
+   >> hint: `chmod 755 gate_1` or `chmod u=rwx,g=rx,o=rx gate_1`
+3. Once ALL gates have the correct permissions, run `./getKey.sh`
+   >> The script will verify all permissions and give you the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_08/README -out ../room_08/README.txt -pass pass:PASSWORD
 
 Good Luck !!!

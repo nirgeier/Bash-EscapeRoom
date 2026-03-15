@@ -1,0 +1,24 @@
+- Congratulations! You have reached room 43!!
+
+## Section: System Administration
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A mystery program writes the password using system calls.
+- Use strace to observe what it writes, or simply run it directly.
+
+## Tasks:
+
+1. Run the mystery program directly.
+   >> hint: `bash mystery_program.sh`
+
+2. ADVANCED: Run it under strace to see the system calls.
+   >> hint: `strace bash mystery_program.sh 2>&1 | grep write`
+
+3. The program outputs the password when run.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_44/README -out ../room_44/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

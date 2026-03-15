@@ -1,763 +1,1022 @@
 # Bash Escape Room Solutions
 
-- Open the next room instructions by running the following command:
-  
+- Decrypt a room README with OpenSSL:
+
   ```bash
-  # Set the room number and password here
   PASSWORD=xxx
   ROOM_NUM=xxx
-  FILENAME=README.md
 
-  # Navigate to the room directory, set the password in the README file, and display its content
   cd ~/escapeRooms/room_$ROOM_NUM && \
-  echo $PASSWORD                  | \
-  echo $FILENAME                   | \
-  
-  vim -e "$FILENAME" << EOF
-  set key=$PASSWORD
-  set key=
-  wq!
-  EOF
-  cat $FILENAME
+  openssl enc -aes-256-cbc -d -a -pbkdf2 -in README -out README.txt -pass pass:$PASSWORD && \
+  mv README.txt README && \
+  cat README
   ```
+
+## Password Chain
+
+| Room | Encrypted With  | Solution Gives  |
+| ---- | --------------- | --------------- |
+| 01   | (open)          | northstar       |
+| 02   | northstar       | signal59        |
+| 03   | signal59        | rewind99        |
+| 04   | rewind99        | sedmaster       |
+| 05   | sedmaster       | translate       |
+| 06   | translate       | unique37        |
+| 07   | unique37        | access42        |
+| 08   | access42        | export99        |
+| 09   | export99        | daemon77        |
+| 10   | daemon77        | awk2025         |
+| 11   | awk2025         | layered7        |
+| 12   | layered7        | pipeline        |
+| 13   | pipeline        | link42          |
+| 14   | link42          | webfetch        |
+| 15   | webfetch        | json64          |
+| 16   | json64          | modulereactor   |
+| 17   | modulereactor   | cron5min        |
+| 18   | cron5min        | patch13         |
+| 19   | patch13         | hash256         |
+| 20   | hash256         | deadbeef        |
+| 21   | deadbeef        | hidden42        |
+| 22   | hidden42        | calc1337        |
+| 23   | calc1337        | epoch6026       |
+| 24   | epoch6026       | format77        |
+| 25   | format77        | teeoff          |
+| 26   | teeoff          | expand99        |
+| 27   | expand99        | array10         |
+| 28   | array10         | loop50          |
+| 29   | loop50          | while100        |
+| 30   | while100        | branch3         |
+| 31   | branch3         | matched7        |
+| 32   | matched7        | funcret         |
+| 33   | funcret         | optparse        |
+| 34   | optparse        | heredoc5        |
+| 35   | heredoc5        | nested42        |
+| 36   | nested42        | sigcatch        |
+| 37   | sigcatch        | readline        |
+| 38   | readline        | timeout3        |
+| 39   | timeout3        | port80          |
+| 40   | port80          | resolve9        |
+| 41   | resolve9        | ncat7           |
+| 42   | ncat7           | openfd          |
+| 43   | openfd          | syscall         |
+| 44   | syscall         | synced          |
+| 45   | synced          | cipher99        |
+| 46   | cipher99        | vimmode         |
+| 47   | vimmode         | sshkey          |
+| 48   | sshkey          | commit42        |
+| 49   | commit42        | pipeline9       |
+| 50   | pipeline9       | masterkey       |
+| 51   | masterkey       | chownit         |
+| 52   | chownit         | netprobe        |
+| 53   | netprobe        | monitor5        |
+| 54   | monitor5        | sysinfo9        |
+| 55   | sysinfo9        | procctrl        |
+| 56   | procctrl        | allclear        |
+| 100  | masterkey       | escaped         |
+
+---
 
 <details>
-<summary>Room 01 - Click to reveal the solution</summary>
+<summary>Room 01 - The Lost Expedition</summary>
 
----
+**Commands:** `find`, `cat`, `sort`, `xargs`
 
-- Navigate to the `room_files` directory
-- Delete all `.txt` files
-- Sort the remaining files by size
-- Extract the first letter of each filename in lowercase.
-  ```bash
-  # Navigate to the directory
-  cd ~/escapeRooms/room_01
-
-  # Switch to the files directory
-  cd room_files
-
-  # Delete all the text files
-  rm -rf *.txt
-
-  # List all files (including hidden ones), sorted by size (descending), and show only the names:
-  ls -laS
-  ```
-- Now read the first letter of each file in lowercase.
-- Here is an advanced command that does this in one line:
-  ```bash
-    cd ~/escapeRooms/room_01/room_files &&  \
-    rm -rf *.txt &&                         \
-    ls -laS                               | \
-    awk '{print $9}'                      | \
-    grep -v '^$'                          | \
-    grep -v '^\.{1,2}$'                   | \
-    sed 's/^[^a-zA-Z]*//'                 | \
-    cut -c1                               | \
-    tr -d '\n'                            | \
-    tr 'A-Z' 'a-z';                         \
-    echo
-  ```
-
-</details>
-
-<details>
-<summary>Room 02 - Click to reveal the solution</summary>
-
----
-
-**Challenge:** Follow the white rabbit!
-
-1. Find the White Rabbit's user ID from `/etc/passwd`:
-   ```bash
-   cat /etc/passwd | grep white_rabbit
-   
-   # Output: 
-   white_rabbit:x:521:1001::/home/white_rabbit:/bin/false
-   ```
-
-    > The White Rabbit's user ID is **521**.
-
-2. Search for a user in `users_list.csv` whose IP address starts with 521:
-   ```bash
-   grep ",521\." users_list.csv
-   
-   # Output: 
-   827,jackie,Ekkel,jekkelmy@china.com.cn,Male,521.155.111.106
-   ```
-
-    > The matching user is **jekkelmy@china.com.cn**.  
-    > The user is **jackie** (first name).
-
-3.  Search for all appearances of "jackie" in the Logs folder:
-    ```bash
-    grep -r "jackie" Logs/
-    ```
-    This will find all occurrences of "jackie" in all log files.
-
-4. Get just the content and sort alphabetically:
-    ```bash
-    # The `-h` flag suppresses filenames, 
-    # showing only the matching content.
-   
-    # The `sort` command arranges the results
-    # in alphabetical order.
-
-    grep -rh "jackie" Logs/ | sort
-
-    # Output:
-    jackie1: _  _ _____ ____
-    jackie2:| || |___  |___ \
-    jackie3:| || |_ / /  __) |
-    jackie4:|__   _/ /  / __/
-    jackie5:   |_|/_/  |_____|
-   ```
-
----
-
--  One-liner solution:
--  Using `grep`, `cut`, and `sort`:
-    ```bash
-    cd ~/escapeRooms/room_02                                      && \
-    USER_ID=$(grep white_rabbit /etc/passwd | cut -d: -f3)        && \
-    USER_NAME=$(grep ",$USER_ID\." users_list.csv | cut -d, -f2)  
-    ```
-
-- Using `awk` for a more elegant solution:
-  
-  ```bash
-  cd ~/escapeRooms/room_02                                                          && \
-  USER_ID=$(awk -F: '/white_rabbit/{print $3}' /etc/passwd)                         && \
-  USER_NAME=$(awk -F, -v id="$USER_ID" '$6 ~ "^"id"\\." {print $2}' users_list.csv) 
-  ```
-
-- Finally, search the logs and sort:
-  ```bash
-  echo "White Rabbit User ID: $USER_ID"                         && \
-  echo "Found user: $USER_NAME"                                 && \
-  echo "Searching logs for $USER_NAME..."                       && \
-  grep -rh "$USER_NAME" Logs/ | sort
-  ```  
-
-- One-liner combining everything:
-  
-  ```bash
-  cd ~/escapeRooms/room_02                                      && \
-  USER_ID=$(grep white_rabbit /etc/passwd | cut -d: -f3)        && \
-  USER_NAME=$(grep ",$USER_ID\." users_list.csv | cut -d, -f2)  && \
-  grep -rh "$USER_NAME" Logs/ | sort
-  ```
-
-      cd ~/escapeRooms/room_02                                      && \
-    USER_ID=$(grep white_rabbit /etc/passwd | cut -d: -f3)        && \
-    USER_NAME=$(grep ",$USER_ID\." users_list.csv | cut -d, -f2)  
-  ```
-
-- The sorted alphabetical list of all lines containing ***jackie*** from the log files, which when completed correctly will reveal the password for the next room.
-
-</details>
-
-<details>
-<summary>Room 03 - Feed the creature</summary>
-
----
-
-**Challenge:** Feed the creature!
-
-- Solution:
-  ```bash
-  # Switch to room 03, calculate password, decrypt creature.sh, make executable, and run
-  cd ~/escapeRooms/room_03                                       
-  PASSWORD=$(( $(grep -w 'do' song | wc -l) + $(grep -v 'home' song | wc -l) + $(grep -c '.' song) )) 
-    
-  # Edit the creature.sh file to set the password 
-  vim -e creature.sh << EOF
-  set key=$PASSWORD
-  set key=
-  wq!
-  EOF
-  
-  # Make the script executable and run it
-  sudo chmod +x ./creature.sh
-  ./creature.sh
-
-  # Create the food file and vegan group, change group ownership, and run the script again
-  touch food
-  sudo groupadd vegan
-  sudo chgrp vegan food
-  ./creature.sh
-
-  # Grab the key from the output
-  # Use the key to open the treasureChest file
-  vim treasureChest
-
-  # Use the password to open the next rooms
-  ```
-
-- One-liner solution:
 ```bash
-cd ~/escapeRooms/room_03                                                                            && \
-PASSWORD=$(( $(grep -w 'do' song | wc -l) + $(grep -v 'home' song | wc -l) + $(grep -c '.' song) )) && \
-echo "Calculated password: $PASSWORD"                                                               && \
-vim --cmd "set key=$PASSWORD" -e "creature.sh" << EOF
-set key=
-wq!
-EOF
+cd ~/escapeRooms/room_01
+find expedition/ -name "*.map" | sort | xargs cat
+# Output: northstar
 ```
 
-```
-cat creature.sh                                                                                     && \
-sudo chmod +x ./creature.sh                                                                         && \
-touch food                                                                                          && \
-sudo groupadd vegan 2>/dev/null                                                                     && \
-sudo chgrp vegan food                                                                               && \
-./creature.sh                                                                                       && \
-echo "Treasure chest key should be revealed above. Use it to open treasureChest with vim."
-```
-
- </details>
-
-<details>
-<summary>Room 04 - Decode the crazy text</summary>
-
----
-
-**Challenge:** Decode the crazy guy's text!
-
-1. The crazy guy replaced letters with words:
-   - `H` → `zing`
-   - `h` → `blu`
-   - `i` → `bla`
-
-2. Decode the `crazyText` file using `sed`:
-   ```bash
-   cd ~/escapeRooms/room_04
-   
-   # Decode the text by replacing the substitutions
-   sed 's/zing/H/g; s/blu/h/g; s/bla/i/g' crazyText
-   
-   # Print the decoded text to find the password
-   ```
-3. The password for the `key` will appear in the decoded text.
-
-4. Use the password to decrypt the `key` file:
-   ```bash
-   # Open the key file with vim and enter the password
-   vim key
-   
-   # Inside vim, disable encryption and save
-   :set key=
-   :wq
-   ```
-
-5. The decrypted `key` file contains the password for the next room.
-
----
-
-- One-liner solution:
-  ```bash
-  cd ~/escapeRooms/room_04                                            &&  \
-  PASSWORD=$(sed 's/zing/H/g; s/blu/h/g; s/bla/i/g' crazyText         |   \
-  grep "password for the key" | sed 's/.*password for the key is //') &&  \
-  echo "Password for key file: $PASSWORD"                             && \
-  echo $PASSWORD | vim -c "set key=" -c "wq" key                      && \
-  cat key
-  ```
+**Password:** `northstar`
 
 </details>
 
 <details>
-<summary>Room 05 - Get past the locked door</summary>
+<summary>Room 02 - The Broken Radio</summary>
 
----
+**Commands:** `grep`, `wc`
 
-**Challenge:** Get past the locked door by extracting the key from the JavaScript script.
-
-1. Determine the script language:
-   ```bash
-   cd ~/escapeRooms/room_05
-   file lockedDoor
-   # Output: lockedDoor: a /usr/bin/env node script, ASCII text executable
-   ```
-
-2. Check extended attributes for clues:
-   ```bash
-   getfattr -d lockedDoor
-   # This should show an attribute with instructions, e.g., "run with showKey"
-   ```
-
-3. Install Node.js if needed:
-   ```bash
-   # Check if installed
-   node --version
-   # If not, install
-   sudo apk add nodejs
-   ```
-
-4. Run the script with the correct parameter:
-   ```bash
-   node lockedDoor showKey
-   # Output:
-   # The key for the next room is
-   # linuxrocks
-   ```
-
-5. The password for the next room is `********` 😊.
-
----
-
-- One-liner solution:
-  ```bash
-  cd ~/escapeRooms/room_05                    && \
-  sudo apk add attr file nodejs 2>/dev/null   && \
-  file lockedDoor                             && \
-  getfattr -d lockedDoor                      && \
-  node lockedDoor showKey
-  ```
-
-</details>
-
-<details>
-<summary>Room 06 - Filter and manipulate CSV data</summary>
-
----
-
-**Challenge:** Process the `table.csv fil`e to extract and manipulate data, then run a script to get the key.
-
-1. Navigate to room 06:
-   ```bash
-   cd ~/escapeRooms/room_06
-   ```
-
-2. Extract the `file` column from `table.csv` (skip header):
-   ```bash
-   tail -n +2 table.csv | cut -d',' -f4
-   ```
-
-3. Filter only `.png` files:
-   ```bash
-   tail -n +2 table.csv | cut -d',' -f4 | grep '\.png$'
-   ```
-
-4. Remove `junk` from filenames:
-   ```bash
-   tail -n +2 table.csv | cut -d',' -f4 | grep '\.png$' | sed 's/junk//'
-   ```
-
-5. Sort alphanumerically:
-   ```bash
-   tail -n +2 table.csv | cut -d',' -f4 | grep '\.png$' | sed 's/junk//' | sort
-   ```
-
-6. Remove `.png` extension and numbers:
-   ```bash
-   tail -n +2 table.csv | cut -d',' -f4 | grep '\.png$' | sed 's/junk//' | sort | sed 's/^[0-9]*//' | sed 's/\.png$//'
-   ```
-
-7. Save each word to `message` file, one per line:
-   ```bash
-   tail -n +2 table.csv | cut -d',' -f4 | grep '\.png$' | sed 's/junk//' | sort | sed 's/^[0-9]*//' | sed 's/\.png$//' > message
-   ```
-
-8. Run the Node.js script:
-   ```bash
-   node script.js
-   ```
-9. The output will provide the key for the next room.
-
----
-
-- One-liner solution:
-  ```bash
-  cd ~/escapeRooms/room_06 &&   \
-  tail  -n +2 table.csv         \
-        | cut -d',' -f4         \
-        | grep '\.png$'         \
-        | sed 's/junk//'        \
-        | sort                  \
-        | sed 's/^[0-9]*//'     \
-        | sed 's/\.png$//' > message && \
-  node script.js
-  ```
-
-</details>
-
-<details>
-<summary>Room 07 - 7 Boom game and text wrapping</summary>
-
----
-
-**Challenge:** Play 7 boom, decrypt a file, and find the text wrapping command.
-
-1. Write a bash script to count boom numbers between 1 and 1000:
-   ```bash
-   #!/bin/bash
-   COUNTER=0
-   for i in {1..1000}
-   do
-       if (( i % 7 == 0 )) || [[ $i == *7* ]]
-       then
-           let COUNTER++
-       fi
-   done
-   echo "Total number of boom numbers between 1 to 1000 are: [$COUNTER]"
-   ```
-
-2. Unzip the `room7.zip` file using the password obtained from the script.
-   ```bash
-   unzip room7.zip
-   ```
-      
-
-3. Decrypt the `about_linux.txt` file using the password password `***`:
-   
-4. Find the command to wrap the text after 80 characters without splitting words:
-   ```bash
-   fold -s -w 80 about_linux.txt
-   ```
-
-   This reveals the password `***` in the output.
-
----
-
-- One-liner solution:
 ```bash
-cd ~/escapeRooms/room_07              && \
-PASSWORD=$(echo 'COUNTER=0; for i in {1..1000}; do if (( i % 7 == 0 )) || [[ $i == *7* ]]; then let COUNTER++; fi; done; echo $COUNTER' | bash)                     && \
-echo "Calculated password: $PASSWORD" && \
-unzip -P $PASSWORD room_07.zip        && \
-vim --cmd "set key=$PASSWORD" -e "about_linux.txt" << EOF
-set key=
-wq!
+cd ~/escapeRooms/room_02
+grep -c "SOS" radio_intercepts.txt
+# Output: 59
+```
+
+**Password:** `signal59` (the word "signal" + the count)
+
+</details>
+
+<details>
+<summary>Room 03 - The Time Capsule</summary>
+
+**Commands:** `tac`, `rev`, `head`, `wc`
+
+```bash
+cd ~/escapeRooms/room_03
+wc -l time_capsule.txt
+# Output: 99
+
+tac time_capsule.txt | head -1 | rev
+# Output: The secret word is: rewind
+```
+
+**Password:** `rewind99` (the word "rewind" + line count 99)
+
+</details>
+
+<details>
+<summary>Room 04 - The Spy Cipher</summary>
+
+**Commands:** `sed`
+
+```bash
+cd ~/escapeRooms/room_04
+sed 's/Z7/s/g; s/Q3/e/g; s/X9/d/g; s/K1/m/g; s/J2/a/g; s/W8/t/g; s/P6/r/g' cipher.txt
+# Last line reveals: The password for the next room is: sedmaster
+```
+
+**Password:** `sedmaster`
+
+</details>
+
+<details>
+<summary>Room 05 - The Decoder Ring</summary>
+
+**Commands:** `base64`, `tr`, `rev`, pipes
+
+```bash
+cd ~/escapeRooms/room_05
+base64 -d encoded_message.txt | tr 'a-zA-Z' 'n-za-mN-ZA-M' | rev
+# Output: translate
+```
+
+**Password:** `translate`
+
+</details>
+
+<details>
+<summary>Room 06 - The Duplicate Detective</summary>
+
+**Commands:** `sort`, `uniq`, `comm`, `wc`
+
+```bash
+cd ~/escapeRooms/room_06
+comm -23 <(sort vault_a.txt | uniq) <(sort vault_b.txt | uniq) | wc -l
+# Output: 37
+```
+
+**Password:** `unique37` (the word "unique" + the count)
+
+</details>
+
+<details>
+<summary>Room 07 - The Permission Maze</summary>
+
+**Commands:** `chmod`, `stat`, `ls -l`
+
+```bash
+cd ~/escapeRooms/room_07
+chmod 755 gate_1
+chmod 644 gate_2
+chmod 700 gate_3
+chmod 444 gate_4
+chmod 775 gate_5
+chmod 660 gate_6
+chmod 511 gate_7
+./getKey.sh
+# Output: access42
+```
+
+**Password:** `access42`
+
+</details>
+
+<details>
+<summary>Room 08 - The Environment Lab</summary>
+
+**Commands:** `source`, `export`, `alias`, `env`
+
+```bash
+cd ~/escapeRooms/room_08
+source .lab_config
+export LAB_KEY=42
+export EXPERIMENT=active
+export SCIENTIST=darwin
+alias labstatus='echo ready'
+./getKey.sh
+# Output: export99
+```
+
+**Password:** `export99`
+
+</details>
+
+<details>
+<summary>Room 09 - The Ghost Process</summary>
+
+**Commands:** `useradd`, `ps`, `kill`, `&` (background)
+
+```bash
+cd ~/escapeRooms/room_09
+sudo adduser -D ghost_user
+echo 'while true; do sleep 1; done' > ghost_loop.sh
+chmod +x ghost_loop.sh
+sudo -u ghost_user bash ./ghost_loop.sh &
+PID=$(ps -eo pid,user,args | grep ghost_user | grep ghost_loop | grep -v grep | awk '{print $1}')
+./getKey.sh $PID
+# Output: daemon77
+```
+
+**Password:** `daemon77`
+
+</details>
+
+<details>
+<summary>Room 10 - The Data Mine</summary>
+
+**Commands:** `awk`
+
+```bash
+cd ~/escapeRooms/room_10
+awk -F',' 'NR>1 && $2>50 {sum+=$3} END {print sum}' mine_data.csv
+# Output: 2025
+```
+
+**Password:** `awk2025` (the word "awk" + the sum)
+
+</details>
+
+<details>
+<summary>Room 11 - The Nested Archive</summary>
+
+**Commands:** `base64`, `gzip`/`gunzip`, `tar`, `file`
+
+```bash
+cd ~/escapeRooms/room_11
+base64 -d artifact.b64 > artifact.tar.gz
+gunzip artifact.tar.gz
+tar xf artifact.tar
+cat secret_scroll.txt
+# Reveals: layered7
+```
+
+**Password:** `layered7`
+
+</details>
+
+<details>
+<summary>Room 12 - The Grand Pipeline</summary>
+
+**Commands:** `cut`, `tr`, pipes
+
+```bash
+cd ~/escapeRooms/room_12
+cut -d'|' -f1 stations.txt | cut -c1 | tr -d '\n' | tr 'A-Z' 'a-z'
+# Output: pipeline
+```
+
+**Password:** `pipeline`
+
+</details>
+
+<details>
+<summary>Room 13 - The Mirror Maze</summary>
+
+**Commands:** `ln -s`, `readlink`, `cat`
+
+```bash
+cd ~/escapeRooms/room_13
+readlink -f start.link
+# Shows the chain ends at treasure.txt
+cat start.link
+# Output: link42
+```
+
+**Password:** `link42`
+
+</details>
+
+<details>
+<summary>Room 14 - The Web Crawler</summary>
+
+**Commands:** `curl`, `curl -H`
+
+```bash
+cd ~/escapeRooms/room_14
+curl -s -H "X-Access-Key: escape" http://localhost:8080/secret
+# Output: webfetch
+# Fallback: cat backup_password.txt
+```
+
+**Password:** `webfetch`
+
+</details>
+
+<details>
+<summary>Room 15 - The JSON Vault</summary>
+
+**Commands:** `jq`, `jq -r`, `sort`, `tr`
+
+```bash
+cd ~/escapeRooms/room_15
+jq -r '.agents[] | select(.status == "active") | .code' database.json | sort | tr -d '\n'
+# Output: json64
+```
+
+**Password:** `json64`
+
+</details>
+
+<details>
+<summary>Room 16 - The Space Station</summary>
+
+**Commands:** `df -h`, `du -sh`, `sort -rh`
+
+```bash
+cd ~/escapeRooms/room_16
+du -sh station/*/ | sort -rh | head -1
+# Output: ...  station/reactor/
+```
+
+**Password:** `modulereactor` (the word "module" + directory name)
+
+</details>
+
+<details>
+<summary>Room 17 - The Clockwork Fortress</summary>
+
+**Commands:** `crontab`, cron expressions
+
+```bash
+cd ~/escapeRooms/room_17
+cat schedule.cron
+# Find the # ALARM line: */5 * * * *
+# Interval = every 5 minutes
+```
+
+**Password:** `cron5min` (the word "cron" + the interval)
+
+</details>
+
+<details>
+<summary>Room 18 - The Twin Blueprints</summary>
+
+**Commands:** `diff`
+
+```bash
+cd ~/escapeRooms/room_18
+diff blueprint_v1.txt blueprint_v2.txt | grep '^>'
+# Output: > SecretCode: patch13
+```
+
+**Password:** `patch13`
+
+</details>
+
+<details>
+<summary>Room 19 - The Integrity Check</summary>
+
+**Commands:** `sha256sum`, `sha256sum -c`
+
+```bash
+cd ~/escapeRooms/room_19
+sha256sum documents/*.txt
+# Compare hashes against authentic.sha256
+# Matching file (doc_4.txt) contains: hash256
+cat documents/doc_4.txt
+```
+
+**Password:** `hash256`
+
+</details>
+
+<details>
+<summary>Room 20 - The Hex Dungeon</summary>
+
+**Commands:** `xxd`, `xxd -r`
+
+```bash
+cd ~/escapeRooms/room_20
+xxd -r hex_message.hex
+# Output: deadbeef
+```
+
+**Password:** `deadbeef`
+
+</details>
+
+<details>
+<summary>Room 21 - The Binary Library</summary>
+
+**Commands:** `strings`
+
+```bash
+cd ~/escapeRooms/room_21
+strings vault_binary | grep "PASSWORD" | cut -d'=' -f2
+# Output: hidden42
+```
+
+**Password:** `hidden42`
+
+</details>
+
+<details>
+<summary>Room 22 - The Calculator Cave</summary>
+
+**Commands:** `bc`, `expr`, `$(( ))`
+
+```bash
+cd ~/escapeRooms/room_22
+cat equations.txt
+echo "2^10" | bc        # 1024
+echo "9 * 9" | bc       # 81
+echo "8 * 29" | bc      # 232
+echo $((1024 + 81 + 232))  # 1337
+```
+
+**Password:** `calc1337` (the word "calc" + the sum 1337)
+
+</details>
+
+<details>
+<summary>Room 23 - The Time Machine</summary>
+
+**Commands:** `date`, `date -d @TIMESTAMP`
+
+```bash
+cd ~/escapeRooms/room_23
+cat timestamps.txt
+date -d @946684800 +%Y   # 2000
+date -d @1276560000 +%Y  # 2010
+date -d @1458432000 +%Y  # 2016
+echo $((2000 + 2010 + 2016))  # 6026
+```
+
+**Password:** `epoch6026` (the word "epoch" + sum of years)
+
+</details>
+
+<details>
+<summary>Room 24 - The Formatter's Workshop</summary>
+
+**Commands:** `printf`
+
+```bash
+cd ~/escapeRooms/room_24
+printf "%-10s | %05d | %s\n" "key" 77 "format77"
+# Last word of last row: format77
+```
+
+**Password:** `format77`
+
+</details>
+
+<details>
+<summary>Room 25 - The Signal Crossroads</summary>
+
+**Commands:** `tee`, `grep`, `cut`, `tr`
+
+```bash
+cd ~/escapeRooms/room_25
+./generate_signal.sh | tee signal.log | grep "CODE:" | cut -d':' -f2 | tr -d ' '
+# Output: teeoff
+```
+
+**Password:** `teeoff`
+
+</details>
+
+<details>
+<summary>Room 26 - The Variable Vault</summary>
+
+**Commands:** parameter expansion `${var##*/}`
+
+```bash
+cd ~/escapeRooms/room_26
+source vault_env.sh
+echo ${TREASURE_PATH##*/}
+# Output: expand99
+```
+
+**Password:** `expand99`
+
+</details>
+
+<details>
+<summary>Room 27 - The Array Arsenal</summary>
+
+**Commands:** bash arrays, `mapfile`, `sort`, `uniq`
+
+```bash
+cd ~/escapeRooms/room_27
+sort weapons.txt | uniq | wc -l
+# Output: 10
+```
+
+**Password:** `array10` (the word "array" + unique count)
+
+</details>
+
+<details>
+<summary>Room 28 - The Loop Labyrinth</summary>
+
+**Commands:** `for` loops, `$(( ))`
+
+```bash
+cd ~/escapeRooms/room_28
+total=0
+for f in chambers/chamber_*.txt; do
+  total=$(( total + $(cat "$f") ))
+done
+echo $total
+# Output: 50
+```
+
+**Password:** `loop50` (the word "loop" + the sum)
+
+</details>
+
+<details>
+<summary>Room 29 - The Endless Corridor</summary>
+
+**Commands:** `while read`, `grep -c`
+
+```bash
+cd ~/escapeRooms/room_29
+grep -c "OPEN" door_log.txt
+# Output: 100
+```
+
+**Password:** `while100` (the word "while" + open door count)
+
+</details>
+
+<details>
+<summary>Room 30 - The Fork in the Road</summary>
+
+**Commands:** `if`/`elif`/`else`, test operators
+
+```bash
+cd ~/escapeRooms/room_30
+bash decision_tree.sh 42 unlock
+# Output: The password is: branch3
+```
+
+**Password:** `branch3`
+
+</details>
+
+<details>
+<summary>Room 31 - The Decision Chamber</summary>
+
+**Commands:** `case`, `grep -c`
+
+```bash
+cd ~/escapeRooms/room_31
+grep -c '\$' symbols.txt
+# Output: 7
+```
+
+**Password:** `matched7` (the word "matched" + count of $ lines)
+
+</details>
+
+<details>
+<summary>Room 32 - The Function Factory</summary>
+
+**Commands:** bash functions, `while read`, parameter expansion
+
+```bash
+cd ~/escapeRooms/room_32
+total=0
+while IFS= read -r code; do
+  [[ "$code" == PROD-* ]] && total=$(( total + ${code#PROD-} ))
+done < assembly.txt
+echo $total   # 200
+./getKey.sh 200
+# Output: funcret
+```
+
+**Password:** `funcret`
+
+</details>
+
+<details>
+<summary>Room 33 - The Argument Decoder</summary>
+
+**Commands:** `getopts`, `$OPTARG`
+
+```bash
+cd ~/escapeRooms/room_33
+bash locked_program.sh -u agent -p 1337 -v
+# Output: optparse
+```
+
+**Password:** `optparse`
+
+</details>
+
+<details>
+<summary>Room 34 - The Ancient Scroll</summary>
+
+**Commands:** here-documents `<< 'EOF'`
+
+```bash
+cd ~/escapeRooms/room_34
+./verify_config.sh << 'EOF'
+MODE=escape
+LEVEL=master
+KEY=ancient
 EOF
-fold -s -w 80 puzzle/about_linux.txt
+# Output: heredoc5
+```
+
+**Password:** `heredoc5`
+
+</details>
+
+<details>
+<summary>Room 35 - The Nested Worlds</summary>
+
+**Commands:** `$()`, `<(cmd)` process substitution, `comm`
+
+```bash
+cd ~/escapeRooms/room_35
+comm -12 <(sort world_a.txt) <(sort world_b.txt) | wc -l
+# Output: 42
+```
+
+**Password:** `nested42` (the word "nested" + intersection count)
+
+</details>
+
+<details>
+<summary>Room 36 - The Signal Tower</summary>
+
+**Commands:** `trap`, `kill -SIGUSR1`
+
+```bash
+cd ~/escapeRooms/room_36
+# Full challenge:
+trap 'echo "sigcatch" > trap_result.txt' SIGUSR1
+while true; do sleep 1; done &
+kill -SIGUSR1 $!
+cat trap_result.txt
+# Shortcut:
+./reveal_signal.sh
+# Output: sigcatch
+```
+
+**Password:** `sigcatch`
+
+</details>
+
+<details>
+<summary>Room 37 - The Interactive Gateway</summary>
+
+**Commands:** `read`, `read -p`
+
+```bash
+cd ~/escapeRooms/room_37
+printf "bash\nescape\n$(date +%Y)\n" | bash guardian.sh
+# Output: readline
+```
+
+**Password:** `readline`
+
+</details>
+
+<details>
+<summary>Room 38 - The Time Bomb</summary>
+
+**Commands:** `timeout`, `watch`
+
+```bash
+cd ~/escapeRooms/room_38
+timeout 5 ./countdown.sh
+grep "BOMB_CODE" progress.log | tail -1 | cut -d'=' -f2
+# Output: timeout3
+```
+
+**Password:** `timeout3`
+
+</details>
+
+<details>
+<summary>Room 39 - The Network Hub</summary>
+
+**Commands:** `ss -tlnp`, `netstat`
+
+```bash
+cd ~/escapeRooms/room_39
+ss -tlnp | grep ':8[0-9][0-9][0-9]'
+# Find open port, then: curl http://localhost:<PORT>
+# Fallback: cat network_secret.txt
+# Output: port80
+```
+
+**Password:** `port80`
+
+</details>
+
+<details>
+<summary>Room 40 - The DNS Oracle</summary>
+
+**Commands:** `dig`, `host`, `nslookup`
+
+```bash
+cd ~/escapeRooms/room_40
+dig TXT secret.escape.local +short
+# Fallback: cat dns_fallback.txt
+# Output: resolve9
+```
+
+**Password:** `resolve9`
+
+</details>
+
+<details>
+<summary>Room 41 - The Netcat Tunnel</summary>
+
+**Commands:** `nc`, `echo | nc`
+
+```bash
+cd ~/escapeRooms/room_41
+echo "OPEN" | nc localhost 4444
+# Fallback: cat nc_fallback.txt
+# Output: ncat7
+```
+
+**Password:** `ncat7`
+
+</details>
+
+<details>
+<summary>Room 42 - The Open Files Archive</summary>
+
+**Commands:** `lsof`, `lsof -p`
+
+```bash
+cd ~/escapeRooms/room_42
+bash start_keeper.sh &
+lsof | grep secret_key
+# Note PID, then: lsof -p <PID> | grep password.txt
+# Fallback: cat lsof_secret.txt
+# Output: openfd
+```
+
+**Password:** `openfd`
+
+</details>
+
+<details>
+<summary>Room 43 - The System Call Observatory</summary>
+
+**Commands:** `strace`, `strace -e trace=write`
+
+```bash
+cd ~/escapeRooms/room_43
+./mystery_program
+# OR: strace -e trace=write ./mystery_program 2>&1 | grep '"'
+# Output: syscall
+```
+
+**Password:** `syscall`
+
+</details>
+
+<details>
+<summary>Room 44 - The Mirror Sync</summary>
+
+**Commands:** `rsync -av`, `rsync --delete`, `find`
+
+```bash
+cd ~/escapeRooms/room_44
+rsync -av --delete source_archive/ mirror_archive/
+find mirror_archive/ -type f | wc -l   # 10
+./getKey.sh 10
+# Output: synced
+```
+
+**Password:** `synced`
+
+</details>
+
+<details>
+<summary>Room 45 - The Cryptographer's Den</summary>
+
+**Commands:** `openssl enc -d`
+
+```bash
+cd ~/escapeRooms/room_45
+openssl enc -aes-256-cbc -d -a -pbkdf2 \
+  -in encrypted_message.enc -pass pass:cryptokey2024
+# Output: cipher99
+```
+
+**Password:** `cipher99`
+
+</details>
+
+<details>
+<summary>Room 46 - The Vi Vortex</summary>
+
+**Commands:** `vim`, `sed -n`
+
+```bash
+cd ~/escapeRooms/room_46
+sed -n '777p' ancient_tome.txt
+# Output: SECRET: vimmode
+# In vim: open file, type 777G, read line, :q!
+```
+
+**Password:** `vimmode`
+
+</details>
+
+<details>
+<summary>Room 47 - The Remote Gateway</summary>
+
+**Commands:** `ssh-keygen`, `ssh -i`, `scp`
+
+```bash
+cd ~/escapeRooms/room_47
+ssh-keygen -t ed25519 -f /tmp/escape_key -N ""
+./setup_ssh_access.sh /tmp/escape_key.pub
+ssh -i /tmp/escape_key -o StrictHostKeyChecking=no escape@localhost
+# Fallback: cat ssh_secret.txt
+# Output: sshkey
+```
+
+**Password:** `sshkey`
+
+</details>
+
+<details>
+<summary>Room 48 - The Version Vault</summary>
+
+**Commands:** `git log`, `git show`
+
+```bash
+cd ~/escapeRooms/room_48/vault_repo
+git log --oneline
+# Find hash where secret.txt was added
+git show <HASH>:secret.txt
+# Output: commit42
+```
+
+**Password:** `commit42`
+
+</details>
+
+<details>
+<summary>Room 49 - The Grand Pipeline II</summary>
+
+**Commands:** `awk`, `sort`, `uniq -c`, `sort -rn`, `head`
+
+```bash
+cd ~/escapeRooms/room_49
+awk '$3 == "SUCCESS" {print $2}' factory_log.txt \
+  | sort | uniq -c | sort -rn | head -1
+# Output: 9 M001
+# Top machine had 9 successes
+```
+
+**Password:** `pipeline9` (the word "pipeline" + top count)
+
+</details>
+
+<details>
+<summary>Room 50 - The Master Terminal</summary>
+
+**Commands:** `find`, `base64 -d`, `grep -E`, `paste -sd`, `bc`
+
+```bash
+cd ~/escapeRooms/room_50
+find final_challenge/ -name "*.key" | sort \
+  | xargs -I{} base64 -d {} \
+  | grep -E '^[0-9]+$' \
+  | paste -sd'+' | bc
+# Output: 1000
+./getKey.sh 1000
+# Output: masterkey
+```
+
+**Password:** `masterkey`
+
+</details>
+
+<details>
+<summary>Room 51 — xargs (password: masterkey → chownit)</summary>
+
+**Challenge:** Sum numeric VALUES from all .part files using xargs.
+
+**Solution:**
+
+```bash
+find parts/ -name "*.part" | xargs grep -h "VALUE=" | cut -d= -f2 | paste -sd+ | bc
+# Output: 777
+./getKey.sh 777
+# Password: chownit
 ```
 
 </details>
 
 <details>
-<summary>Room 08 - Play with Linux users & processes</summary>
+<summary>Room 52 — chown, chgrp, umask (password: chownit → netprobe)</summary>
 
----
+**Challenge:** Fix file ownership in vault/ to escape:escape.
 
-**Challenge:** Create a user, run a background process, and find its PID.
+**Solution:**
 
-1. Navigate to room 08:
-
-   ```bash
-   cd ~/escapeRooms/room_08
-   ```
-
-2. Create a bash script that runs forever without output:
-
-   ```bash
-   # Create room08_proc.sh
-   echo 'sleep 1d' > room08_proc.sh
-   # Make it executable
-   chmod +x room08_proc.sh
-   ```
-
-3. Create a new user 'testUser':
-
-   ```bash
-   sudo useradd testUser
-   ```
-
-4. Execute the script with the user 'testUser' in the background:
-
-   ```bash
-   sudo -u testUser ./room08_proc.sh &
-   ```
-
-5. Find out the process ID (PID) of the running script:
-
-   ```bash
-   ps -u testUser | grep room08_proc
-   # The PID is in the first column
-   ```
-
-   On BusyBox/Alpine systems where `ps -u` isn't supported:
-
-   ```bash
-   ps -o pid,user,comm | grep testUser | grep room08_proc
-   ```
-
-6. Pass the PID to the script to get the password:
-
-   ```bash
-   ./script.sh <PID>
-   # Output: Password for the next room is: lessismore
-   ```
-
----
-
-- solution:
-
-  ```bash
-  sudo -i
-  cd /home/escape/escapeRooms/room_08/  && \
-  echo 'sleep 1d' > room08_proc.sh      && \
-  sudo useradd testUser 2>/dev/null     && \
-  chmod +x room08_proc.sh               && \
-  (sudo -u testUser ./room08_proc.sh &) && \
-  sleep 1                               && \
-  PID=$(ps -o pid,user,comm,args | grep testUser | grep room08 | awk '{print $1}') && \
-  echo "PID: $PID" && \
-  ./getKey.sh $PID
-  ```
+```bash
+chown escape:escape vault/access.key vault/config.cfg vault/secret.dat
+# or: chown -R escape:escape vault/
+./getKey.sh
+# Password: netprobe
+```
 
 </details>
 
 <details>
-<summary>Room 09 - Optimize your bash code</summary>
+<summary>Room 53 — ping, traceroute, wget (password: netprobe → monitor5)</summary>
 
----
+**Challenge:** Start the beacon server and wget the key file.
 
-**Challenge:** Implement an efficient sum calculation command using the mathematical formula.
+**Solution:**
 
-1. Navigate to room 09:
-   ```bash
-   cd ~/escapeRooms/room_09
-   ```
-
-2. Create the `escape` command in `/usr/local/bin/`:
-
-   ```bash
-   echo "#!/bin/bash" > /usr/local/bin/escape
-   echo "echo \$(( \$1 * (\$1 + 1) / 2 ))" >> /usr/local/bin/escape
-   ```
-
-3. Make the script executable:
-
-   ```bash
-   sudo chmod +x /usr/local/bin/escape
-   ```
-
-4. Test the command manually:
-
-   ```bash
-   escape 10   # Should output: 55
-   escape 20   # Should output: 210
-   escape 100  # Should output: 5050
-   ```
-
-5. Run the test script to get the password:
-
-   ```bash
-   ./getKey.sh
-   ```
-
----
-
-- One-liner solution:
-
-  ```bash
-  sudo -i
-  cd /home/escape/escapeRooms/room_09                    && \
-  echo "#!/bin/bash" > /usr/local/bin/escape  && \
-  echo "echo \$(( \$1 * (\$1 + 1) / 2 ))" >> /usr/local/bin/escape && \
-  sudo chmod +x /usr/local/bin/escape         && \
-  ./getKey.sh
-  ```
+```bash
+ping -c 3 127.0.0.1
+./start_server.sh &
+wget -q -O - http://127.0.0.1:9053/key.txt
+# Password: monitor5
+```
 
 </details>
 
 <details>
-<summary>Room 10 - Bash loops and arrays with palindromes</summary>
+<summary>Room 54 — top, free, uptime (password: monitor5 → sysinfo9)</summary>
 
----
+**Challenge:** Parse system_snapshot.txt to extract total_mem=2048, load1=0.42, running=2.
 
-**Challenge:** Process a treasure list to find palindromes and extract the password.
+**Solution:**
 
-1. Navigate to room 10:
-   ```bash
-   cd ~/escapeRooms/room_10
-   ```
+```bash
+grep 'Mem:' system_snapshot.txt | awk '{print $2}'       # 2048
+grep 'load average' system_snapshot.txt | awk -F': ' '{print $2}' | cut -d, -f1 | xargs  # 0.42
+grep 'running' system_snapshot.txt | awk '{print $4}'    # 2
+./getKey.sh 2048 0.42 2
+# Password: sysinfo9
+```
 
-2. Examine the `treasure_list.txt` file:
-   ```bash
-   cat treasure_list.txt
-   ```
-
-3. Key concepts:
-   - A palindrome reads the same backward as forward (e.g., boob, mom, madam, level)
-   - Use the `rev` command to reverse a string for comparison
-   - Use array operations to build the password
-
-4. Create a bash script `find_treasure.sh` that:
-   - Reads all lines from the file into an array `while IFS= read -r item`
-   - Filters out items that are **not** palindromes (keeps only palindromes) `[[ "$item" == "$(echo "$item" | rev)" ]] `
-   - Takes the first letter of each palindrome in order `password+="${item:0:1}"`
-   - Outputs the concatenated letters in lowercase
-
-5. A short and optimized solution:
-   ```bash
-   #!/bin/bash
-   
-   # Set the password variable
-   password=""
-   
-   # Read each line, check if palindrome, extract first letter
-   while IFS= read -r item; do
-    # Check if the item is a palindrome with rev command
-    # Extract the first letter if it is a palindrome and append to password variable 
-    [[ "$item" == "$(echo "$item" | rev)" ]] && password+="${item:0:1}"
-   done < treasure_list.txt
-   
-   # Output password in lowercase
-   echo "$password"
-   ```
-
-
----
-
-- One-liner solution:
-  ```bash
-  cd ~/escapeRooms/room_10 && \
-  (password=""; while IFS= read -r item; do \
-      [[ "$item" == "$(echo "$item" | rev)" ]] && password+="${item:0:1}"; \
-  done < treasure_list.txt; echo "$password")
-  ```
 </details>
 
 <details>
-<summary>Room 11 - Advanced CSV filtering with awk</summary>
+<summary>Room 55 — uname, hostname, id, who (password: sysinfo9 → procctrl)</summary>
 
----
+**Challenge:** Submit your username and OS kernel name.
 
-**Challenge:** Filter users from a CSV file and calculate the sum of their ages using efficient awk commands.
+**Solution:**
 
-1. Navigate to room 11:
-   ```bash
-   cd ~/escapeRooms/room_11
-   ```
+```bash
+whoami   # escape
+uname -s # Linux
+./getKey.sh "$(whoami)" "$(uname -s)"
+# Password: procctrl
+```
 
-2. Examine the `user_data.txt` CSV file to understand its structure:
-   ```bash
-   cat user_data.txt
-   # Expected format: name,age,subscription_type
-   ```
-
-3. Requirements:
-   - Filter users with age > 25 **AND** subscription == 'premium'
-   - Calculate the sum of their ages
-   - Use `awk` for efficient processing
-
-4. Understanding the awk solution:
-   - `-F','` : Set field separator to comma (for CSV parsing)
-   - `NR > 1` : Skip the first line (header row)
-   - `$2 > 25` : Filter where age (field 2) is greater than 25
-   - `$3 == "premium"` : Filter where subscription (field 3) equals "premium"
-   - `sum += $2` : Add the age to the running sum
-   - `END {print sum}` : Print the total sum at the end
-
-5. The optimized solution using awk:
-   ```bash
-   awk -F',' 'NR > 1 && $2 > 25 && $3 == "premium" {sum += $2} END {print sum}' user_data.txt
-   ```
-
-6. This single command efficiently:
-   - Parses the CSV file
-   - Filters matching users in one pass
-   - Calculates the sum without intermediate files or pipes
-   - Outputs the result which is the password for the next room
-
----
-
-- One-liner solution:
-  ```bash
-  cd ~/escapeRooms/room_11 && \
-  awk -F',' 'NR > 1 && $2 > 25 && $3 == "premium" {sum += $2} END {print sum}' user_data.txt
-
-  # use the output as the password for the message file where you will find the password for the next room
-  ```
 </details>
 
 <details>
-<summary>Room 12 - xargs and data processing</summary>
+<summary>Room 56 — pgrep, pkill, nohup (password: procctrl → allclear)</summary>
 
----
+**Challenge:** Launch agents, find them with pgrep, and terminate them.
 
-**Challenge:** Master xargs for efficient data processing!
+**Solution:**
 
-1. Navigate to room 12:
-   ```bash
-   cd ~/escapeRooms/room_12
-   ```
+```bash
+./launch_agents.sh
+pgrep -a agent                # find all agent PIDs
+cat /tmp/agent_keeper.log     # read the keeper log
+pkill -f agent_keeper.sh      # kill keeper
+pkill -f agent_worker         # kill workers
+./getKey.sh
+# Code: allclear
+```
 
-2. The room focuses on using `xargs` for efficient command-line data processing. The `output.txt` file contains US state abbreviations (one per line, with duplicates).
+</details>
 
-3. Key xargs concepts:
-   - `xargs` builds and executes command lines from standard input
-   - `-n` specifies maximum arguments per command line
-   - `-I` replaces strings in commands
-   - Useful for processing large datasets efficiently
+<details>
+<summary>Room 99 - The Exit Exam</summary>
 
-4. Common xargs patterns:
-   ```bash
-   # Process items 5 at a time
-   cat output.txt | xargs -n5
-   
-   # Use placeholder for each item
-   cat output.txt | xargs -I {} echo "Processing: {}"
-   
-   # Count unique items
-   cat output.txt | sort | uniq -c | sort -nr
-   ```
+**Commands:** all of the above
 
-5. For the actual puzzle, create a script that processes numbers (if numbers.txt existed):
-   ```bash
-   #!/bin/bash
-   # process_numbers.sh
-   
-   # Read numbers into array
-   mapfile -t numbers < numbers.txt
-   
-   sum_even=0
-   count_odd=0
-   
-   # Process each number
-   for num in "${numbers[@]}"; do
-       if (( num % 2 == 0 )); then
-           ((sum_even += num))
-       else
-           ((count_odd++))
-       fi
-   done
-   
-   # Output in required format
-   echo "${sum_even}_${count_odd}"
-   ```
+```bash
+cd ~/escapeRooms/room_99
+./getKey.sh
+# Answer 5 random trivia questions about Linux commands
+```
 
-6. Using xargs for efficient processing:
-   ```bash
-   # Sum all numbers using xargs and bc
-   cat numbers.txt | xargs | sed 's/ /+/g' | bc
-   
-   # Count even/odd using xargs
-   cat numbers.txt | xargs -n1 bash -c 'if (( $1 % 2 == 0 )); then echo even; else echo odd; fi' -- | sort | uniq -c
-   ```
-
-7. Advanced xargs usage with the state data:
-   ```bash
-   # Process states in batches of 5
-   cat output.txt | xargs -n5 echo "Batch:"
-   
-   # Count occurrences using xargs
-   cat output.txt | xargs -I {} bash -c 'echo {}' | sort | uniq -c | sort -nr
-   ```
-
----
-
-- One-liner solution demonstrating xargs power:
-  ```bash
-  cd ~/escapeRooms/room_12 && \
-  echo "Demonstrating xargs with state data:" && \
-  cat output.txt | xargs -n5 | head -3 && \
-  echo -e "\nCounting unique states:" && \
-  cat output.txt | sort | uniq -c | sort -nr | head -5
-  ```
-
-  This showcases xargs for batch processing and data analysis, which is the core concept of room 12.
+**Password:** `escaped`
 
 </details>

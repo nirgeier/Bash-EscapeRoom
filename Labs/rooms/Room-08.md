@@ -1,102 +1,95 @@
 ---
-password: "linuxkernel"
-title_prefix: "👤 "
-summary: "Room 08 involves creating users, running background processes, and finding process IDs."
+password: "access42"
+title_prefix: "🧪 "
+summary: "Configure environment variables, aliases, and source config files."
 ---
 
-**PLAY WITH LINUX USERS & PROCESSES!**
-
----
-
-# 👤 Room 08
-
-!!! danger "sudo Access"
-    - You might need `sudo` access for some commands.
-    - The sudo password is required for elevated privileges.
-    - The sudo password is: `escape`.
-    - Write it down, you will need it later.
+**CONFIGURE THE ENVIRONMENT!**
 
 ---
 
-## Objective: Create and manage Linux users and processes
+## 🧪 The Environment Lab
 
-```markdown
-To pass this room:
----------------------------------------------------------------------
+Your shell environment must be configured precisely to unlock the lab door.
 
-- In this room we will play with Linux users & processes.
+!!! abstract "📜 Mission Briefing"
 
-***********************************************
-** Read all the instruction before you start **
-***********************************************
+    Configure your shell environment precisely to unlock the lab door.
 
-Tasks: 
-------
+    1. Find the hidden configuration file in this room.
+       > hint: hidden files start with `.` -use `ls -a`
+    2. Source the hidden config file to load its settings.
+       > hint: `source .filename` or `. .filename`
+    3. The config tells you what environment variables to set. Set them with `export`.
+    4. Create an alias named `labstatus` that prints `ready`.
+       > hint: `alias labstatus='echo ready'`
+    5. Once everything is set, run `./getKey.sh` to verify and get the password.
 
-1. Create a bash script named `room08_proc.sh`
-2. The script should keep running forever without any output.
-3. Create a new user: `testUser`
-4. Execute the script with the user `testUser` in the background!
-   >> Yes in the background! means that your shell wont get affected.
-      So if you don't know how its a good time to learn it....
-5. Find out the process ID (PID) of the running script.
-6. Pass the PID to the script and you should get the password to the next room.
+### Key Commands
 
-Good Luck !!!
+| Command        | Purpose                                                  |
+| -------------- | -------------------------------------------------------- |
+| `export`       | Set an environment variable                              |
+| `env`          | Display all environment variables                        |
+| `source` / `.` | Execute commands from a file in the current shell        |
+| `alias`        | Create a command shortcut                                |
+| `ls -a`        | List all files including hidden ones (starting with `.`) |
+
+### How Environment Variables Work
+
+```bash
+# Set and export a variable (available to child processes)
+export MY_VAR=hello
+export PATH="$PATH:/new/dir"      # append to existing variable
+
+# Access and inspect variables
+echo $MY_VAR                      # print one variable
+echo ${MY_VAR:-default}           # print value or default if unset
+env                               # list all environment variables
+env | grep MY_VAR                 # search for a specific one
+printenv MY_VAR                   # print a single variable
+
+# Unset a variable
+unset MY_VAR
+
+# Source a file (run it in the current shell, not a subshell)
+source config.sh                  # bash syntax
+. config.sh                       # POSIX syntax (same effect)
+
+# Aliases
+alias ll='ls -la'                 # define a shortcut
+alias grep='grep --color=auto'    # alias with flags
+alias                             # list all defined aliases
+unalias ll                        # remove an alias
+
+# Run a command with a temporary variable (doesn't persist)
+MY_VAR=hello ./script.sh
 ```
 
-  1. Create a bash script named `room08_proc.sh` that runs forever without output.
-   
-    !!! warning ""
-    
-        "Infinite Loop Script": Use a `while` or `sleep` 
-    
-  2. Create a new user named `testUser`.
-    
-    !!! warning ""
-    
-        You will need sudo privileges to create a new user.
-    
-  3. Run the script in the background as `testUser`.
-               
-    !!! warning ""
-    
-        "Background Execution": Find how to run scripts in background.
-
-  4. Find the PID of the running script.
-     
-    !!! warning ""
-    
-        - Try `ps` to list processes for the user. (find out the right flags)
-        - Grep for the script name.
-        - The command `ps -u` might not work on alpine... find out another way.
-        - On BusyBox/Alpine, use: `ps -o pid,user,comm | grep ...` to find the PID.'`
-
-  5. Pass the PID to `script.sh` to get the password.
-     
 ---
 
-## **Useful Commands:**
+### Hints
 
-| Command   | Man Page                                                            | Description                                |
-| --------- | ------------------------------------------------------------------- | ------------------------------------------ |
-| `sudo`    | 🔗 [`sudo`](https://man7.org/linux/man-pages/man8/sudo.8.html)       | Execute a command as another user          |
-| `useradd` | 🔗 [`useradd`](https://man7.org/linux/man-pages/man8/useradd.8.html) | Create a new user account                  |
-| `ps`      | 🔗 [`ps`](https://man7.org/linux/man-pages/man1/ps.1.html)           | Report a snapshot of the current processes |
-| `grep`    | 🔗 [`grep`](https://man7.org/linux/man-pages/man1/grep.1.html)       | Print lines matching a pattern             |
-| `bash`    | 🔗 [`bash`](https://man7.org/linux/man-pages/man1/bash.1.html)       | GNU Bourne-Again SHell                     |
+!!! tip "Hint 1"
 
-## **Useful ps Command flags:**
+    Hidden files start with a dot (`.`) -use `ls -a` to find them.
 
-| Flag     | Description                        |
-| -------- | ---------------------------------- |
-| `-u`     | Show processes for a specific user |
-| `-e`     | Show all processes                 |
-| `-f`     | Show full format listing           |
-| `--user` | Show processes for a specific user |
-| `-p`     | Select by PID                      |
-| `-a`     | Show processes for all users       |
-| `-C`     | Select by command name             |
-| `-o`     | User-defined format                |
+!!! tip "Hint 2"
 
-**GOOD LUCK!**
+    Source the hidden config file first -it tells you what to set.
+
+!!! tip "Hint 3"
+
+    All commands (`export`, `alias`) must be run in the same shell session.
+
+---
+
+!!! info "🔓 Unlock Room 09"
+
+    Once you have the password, decrypt the next room's README:
+
+    ```bash
+    openssl enc -aes-256-cbc -d -a -pbkdf2 \
+      -in ../room_09/README -out ../room_09/README.txt -pass pass:PASSWORD
+    cat ../room_09/README
+    ```

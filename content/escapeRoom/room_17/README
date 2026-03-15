@@ -1,0 +1,28 @@
+- Congratulations! You have reached room 17!!
+
+## Section: System Administration
+
+To pass this room:
+---------------------------------------------------------------------
+
+- An ancient fortress runs on a clockwork schedule.
+- The alarm system has been misconfigured.
+- Decode the cron expressions to find the interval of the ALARM job.
+
+## Tasks:
+
+1. Read the schedule.cron file to see all scheduled jobs.
+   >> hint: `cat schedule.cron`
+
+2. Find the line marked with # ALARM
+
+3. Analyze the minute field of the ALARM cron expression.
+   >> hint: `*/N` means "every N minutes"
+
+4. The password is "cron" followed by the interval in minutes followed by "min".
+   >> Example: if the alarm fires every 5 minutes, password = "cron5min"
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_18/README -out ../room_18/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

@@ -1,0 +1,11 @@
+# Solve all three equations and sum the results to get the password.
+# Password format: "calc" followed by the total sum.
+
+# Equation 1: What is 2 to the power of 10?
+2^10
+
+# Equation 2: What is 9 multiplied by 9?
+9 * 9
+
+# Equation 3: What is 8 multiplied by 29?
+8 * 29

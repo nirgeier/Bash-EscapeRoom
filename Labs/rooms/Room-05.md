@@ -1,82 +1,100 @@
 ---
-password: "crazyroom"
-title_prefix: "🤪 "
-summary: "Room 05 requires extracting a key from a JavaScript script using extended attributes."
+password: "sedmaster"
+title_prefix: "💍 "
+summary: "Chain base64, tr (ROT13), and rev to decode a triple-encoded message."
 ---
 
-**GET PAST THE LOCKED DOOR!**
-
----
-
-!!! danger "sudo Access"
-    - You might need `sudo` access for some commands.
-    - The sudo password is required for elevated privileges.
-    - The sudo password is: `escape`.
-    - Write it down, you will need it later.
+**DECODE THE TRIPLE-ENCODED MESSAGE!**
 
 ---
 
-## Objective: Get past the locked door by extracting the key from the JavaScript script
+## 💍 The Decoder Ring
 
-```markdown
-To pass this room:
----------------------------------------------------------------------
-- To proceed you need to figure out a way to get past the locked door. 
-- In order to open the door you will need to do the following:
-  1. Extract the key that is hidden inside the script in this folder.
+- A message was encoded with **3 layers** of transformation.
+- Peel them off in reverse order using pipes.
 
-Hints:
-  * Find out the type of the script - in which language the script is written?
-  * The information on how to lock the door is hidden as `Extended Attribute`
-  * Once you figure out what need to be done - just execute the `lockedDoor` script 
+!!! abstract "📜 Mission Briefing"
 
-In case you are really lost - unlock the hint script in this folder (key=hints)
+        The file `encoded_message.txt` has been encoded in **3 layers** (applied in this order):
+
+        1. Characters were **reversed** (`rev`)
+        2. **ROT13** was applied (each letter shifted 13 positions)
+        3. Result was **Base64-encoded**
+
+        To decode, undo the layers in **reverse order**:
+
+        1. Decode Base64 → `base64 -d`
+        2. Undo ROT13 → `tr 'a-zA-Z' 'n-za-mN-ZA-M'`
+        3. Reverse characters → `rev`
+        4. Chain all three with pipes in one command.
+        5. The decoded output **is** the password.
+
+---
+
+### The 3 Encoding Layers (applied in order)
+
+1. **Reversed** characters (`rev`)
+2. **ROT13** applied (`tr` character shift)
+3. **Base64** encoded
+
+### Key Commands
+
+| Command                      | Purpose                                |
+| ---------------------------- | -------------------------------------- |
+| `base64 -d`                  | Decode base64 encoding                 |
+| `tr 'a-zA-Z' 'n-za-mN-ZA-M'` | Apply/reverse ROT13 cipher             |
+| `rev`                        | Reverse characters                     |
+| `\|` (pipe)                  | Send output of one command to the next |
+
+---
+
+### How Encoding Tools Work
+
+```bash
+# base64 - encode/decode binary-safe text
+base64 file.txt                    # encode a file to stdout
+base64 -d file.b64                 # decode base64 back to original
+echo "hello" | base64              # encode a string
+echo "aGVsbG8=" | base64 -d       # decode a string
+base64 -d file.b64 > output.bin    # decode and save to file
+base64 -w 0 file.txt               # encode with no line wrapping
+
+# tr - translate or delete characters
+tr 'a-z' 'A-Z' < file.txt         # lowercase to uppercase
+tr 'A-Z' 'a-z' < file.txt         # uppercase to lowercase
+tr -d '\n' < file.txt             # delete all newlines
+tr -d '[:space:]' < file.txt      # delete all whitespace
+tr -s ' ' < file.txt              # squeeze repeated spaces to one
+tr '[:upper:]' '[:lower:]'        # use character class names
+tr 'a-mn-z' 'n-za-m'              # ROT13 (lowercase only)
+tr 'a-zA-Z' 'n-za-mN-ZA-M'       # ROT13 (full alphabet)
+
+# rev - reverse characters on each line
+echo "hello" | rev                # outputs: olleh
+rev file.txt                      # reverse each line in a file
+echo "racecar" | rev              # outputs: racecar (palindrome)
 ```
 
-  1. Determine the programming language of the script.
-   
-    !!! tip "Identify File Type"
-    
-        - Use the `file` command to identify the file type.
-        - You will need to install `file` it if not already available.
-    
-  2. Check for extended attributes on the script file.
-    
-    !!! tip "Extended Attributes"
-    
-        - Extended attributes store additional metadata.
-        - The attribute should provide clues on how to run the script.
-        - Find out the required flags for the `getfattr` command.
-        - If `getfattr` is not available, you may need to install it.
-        
-  3. Install the required tool you found in the previous step.
-               
-  4. Execute the script with the correct parameter.
-     
-    !!! warning ""
+---
 
-        - Based on the extended attribute, run the script with the specified argument.
-        - This should reveal the key for the next room.
+### Hints
 
-  5. Use the key to proceed to the next room.
-     
-    !!! warning ""
+!!! tip "Hint 1"
 
-        The password for the next room is `********` 😊.
+    ROT13 is its own inverse -applying it twice gets you back to the original.
 
-## **Useful Commands:**
+!!! tip "Hint 2"
 
-| Command    | Man Page                                                              | Description             |
-| ---------- | --------------------------------------------------------------------- | ----------------------- |
-| `file`     | 🔗 [`file`](https://man7.org/linux/man-pages/man1/file.1.html)         | Determine file type     |
-| `getfattr` | 🔗 [`getfattr`](https://man7.org/linux/man-pages/man1/getfattr.1.html) | Get extended attributes |
-| `node`     | 🔗 [`node`](https://manpages.org/node)                                 | Run JavaScript files    |
-| `python3`  | 🔗 [`python3`](https://manpages.org/python3)                           | Run Python scripts      |
-| `ruby`     | 🔗 [`ruby`](https://manpages.org/ruby)                                 | Run Ruby scripts        |
-| `perl`     | 🔗 [`perl`](https://manpages.org/perl)                                 | Run Perl scripts        |
-| `php`      | 🔗 [`php`](https://manpages.org/php)                                   | Run PHP scripts         |
-| `lua`      | 🔗 [`lua`](https://manpages.org/lua)                                   | Run Lua scripts         |
-| `vim`      | 🔗 [`vim`](https://manpages.org/vim)                                   | Text editor             |
+    The decoded output IS the password -one single word.
 
+---
 
-**GOOD LUCK!**
+!!! info "🔓 Unlock Room 06"
+
+    Once you have the password, decrypt the next room's README:
+
+    ```bash
+    openssl enc -aes-256-cbc -d -a -pbkdf2 \
+      -in ../room_06/README -out ../room_06/README.txt -pass pass:PASSWORD
+    cat ../room_06/README
+    ```

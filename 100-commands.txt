@@ -1,0 +1,115 @@
+# --- 1. File & Directory Navigation ---
+1. ls - List directory contents
+2. cd - Change directory
+3. pwd - Print working directory
+4. mkdir - Create directory
+5. rmdir - Remove empty directory
+6. rm - Remove files or directories
+7. cp - Copy files or directories
+8. mv - Move or rename files/directories
+9. touch - Create empty file or update timestamps
+10. find - Search for files in a hierarchy
+11. locate - Find files by name (database-driven)
+12. tree - Recursive directory listing as a diagram
+13. ln - Create soft (symbolic) or hard links
+14. rename - Bulk rename files using patterns
+15. file - Determine file type (text, binary, etc.)
+16. basename - Strip directory and suffix from filenames
+17. dirname - Strip last component from file path
+
+# --- 2. Text Processing & Manipulation ---
+18. cat - Concatenate and display files
+19. tac - Display files in reverse (bottom to top)
+20. less - Interactive page-by-page file viewer
+21. head - Output the first part of files
+22. tail - Output the last part of files (tail -f for live logs)
+23. grep - Search for patterns using regular expressions
+24. egrep - Extended grep for complex patterns
+25. sed - Stream editor for filtering/transforming text
+26. awk - Pattern scanning and processing language
+27. cut - Remove sections/columns from lines of files
+28. sort - Sort lines of text files
+29. uniq - Report or omit repeated lines
+30. wc - Print newline, word, and byte counts
+31. tr - Translate or delete characters
+32. diff - Compare files line by line
+33. comm - Compare two sorted files line by line
+34. tee - Read from stdin and write to stdout and files
+35. column - Format input into multiple columns
+36. paste - Merge lines of files side-by-side
+37. join - Join lines of two files on a common field
+38. split - Split a file into pieces
+39. rev - Reverse lines of a file characterwise
+
+# --- 3. Permissions, Users & Ownership ---
+40. chmod - Change file mode bits (permissions)
+41. chown - Change file owner and group
+42. chgrp - Change group ownership
+43. umask - Set default file creation permissions
+44. sudo - Execute a command as another user (usually root)
+45. su - Run a shell with substitute user/group IDs
+46. whoami - Print effective userid
+47. id - Print real and effective user and group IDs
+48. groups - Print the groups a user is in
+49. passwd - Change user password
+50. visudo - Safely edit the sudoers file
+51. useradd - Create a new user
+52. usermod - Modify a user account
+53. userdel - Delete a user account
+
+# --- 4. Process & Job Control ---
+54. top - Display Linux processes in real-time
+55. ps - Report a snapshot of current processes
+56. kill - Send a signal to a process (usually to stop it)
+57. pkill - Look up or signal processes based on name
+58. killall - Kill processes by name
+59. nice - Run a program with modified scheduling priority
+60. renice - Alter priority of running processes
+61. jobs - List active background jobs
+62. bg - Put a job in the background
+63. fg - Bring a job to the foreground
+64. nohup - Run a command immune to hangups
+65. wait - Wait for process to complete
+66. sleep - Delay for a specified amount of time
+67. watch - Execute a program periodically
+
+# --- 5. System Information & Hardware ---
+68. df - Report file system disk space usage
+69. du - Estimate file space usage
+70. free - Display amount of free and used memory
+71. uname - Print system information (kernel version, etc.)
+72. uptime - Tell how long the system has been running
+73. hostname - Show or set the system's host name
+74. dmesg - Print or control the kernel ring buffer
+75. date - Print or set the system date and time
+76. cal - Display a calendar
+
+# --- 6. Networking Primitives ---
+77. ping - Send ICMP ECHO_REQUEST to network hosts
+78. ip - Show/manipulate routing, devices, and tunnels
+79. ss - Utility to investigate sockets (replaces netstat)
+80. dig - DNS lookup utility
+81. nslookup - Query Internet name servers interactively
+82. host - DNS lookup utility (simpler than dig)
+83. hostname -I - Display all IP addresses of the host
+
+# --- 7. Archives & Compression ---
+84. tar - Tape archiver utility (extract/create)
+85. gzip - Compress files
+86. gunzip - Decompress files
+87. zip - Package and compress (archive) files
+88. unzip - Extract compressed files in a ZIP archive
+89. bzip2 - Block-sorting file compressor
+
+# --- 8. Bash Built-ins & Scripting Logic ---
+90. echo - Write arguments to the standard output
+91. printf - Format and print data (more robust than echo)
+92. read - Read a line from standard input
+93. alias - Define or display aliases
+94. unalias - Remove alias definitions
+95. export - Set an environment variable
+96. env - Run a program in a modified environment
+97. set - Set or unset shell options and positional parameters
+98. unset - Unset values and attributes of variables/functions
+99. source - Execute commands from a file in the current shell
+100. man - Interface to the system reference manuals

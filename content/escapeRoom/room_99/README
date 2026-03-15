@@ -1,0 +1,19 @@
+- Congratulations! You have reached the FINAL room!!
+
+  The exit is just around the corner ...
+
+## Section: The Exit Exam
+
+To pass this room:
+---------------------------------------------------------------------
+
+- This room tests your knowledge of the top Linux commands.
+- You will be asked 5 random questions about commands, symbols,
+  directories, and operators.
+- Answer all 5 correctly to escape!
+
+- Execute the `getKey.sh` to start the quiz.
+  - The quiz selects random questions each time.
+  - Answer all correctly and you will get the final password.
+
+Good Luck !!!

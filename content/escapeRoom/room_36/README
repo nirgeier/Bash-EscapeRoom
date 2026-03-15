@@ -1,0 +1,35 @@
+- Congratulations! You have reached room 36!!
+
+## Section: Process Management
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A process sends signals that must be caught and handled.
+- Write a script that traps SIGUSR1 and records the event.
+
+## Tasks:
+
+1. Write a script that:
+   - Sets a trap for SIGUSR1 that writes the password to trap_result.txt
+   - Runs in the background waiting for the signal
+   >> hint:
+   >>   trap 'echo "sigcatch" > trap_result.txt' SIGUSR1
+   >>   echo "PID: $$"
+   >>   while true; do sleep 1; done
+
+2. Run your script in background and note its PID.
+   >> hint: `bash your_script.sh &`
+
+3. Send SIGUSR1 to it.
+   >> hint: `kill -SIGUSR1 <PID>`
+
+4. Read trap_result.txt - it contains the password.
+   >> hint: `cat trap_result.txt`
+
+SHORTCUT: Run ./reveal_signal.sh to get the password directly.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_37/README -out ../room_37/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

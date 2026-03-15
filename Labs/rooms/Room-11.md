@@ -1,93 +1,100 @@
 ---
-password: "bashisfun"
-title_prefix: "🔢 "
-summary: "Room 11 involves bash conditionals and awk to process user data and find the password."
+password: "awk2025"
+title_prefix: "🪆 "
+summary: "Unwrap a multi-layered archive using base64, gzip, and tar."
 ---
 
-**AWK SCRIPTING - Filtering User Data**
-
-!!! danger "sudo Access"
-    - You might need `sudo` access for some commands.
-    - The sudo password is required for elevated privileges.
-    - The sudo password is: `escape`.
-    - Write it down, you will need it later.
+**UNWRAP THE MATRYOSHKA!**
 
 ---
 
-## Objective: Write a bash script using conditionals to filter user data and find the password.
+## 🪆 The Nested Archive
 
-```markdown
+A mysterious artifact has been encoded in **3 layers** -like a Russian nesting doll.
+Peel each layer to reveal the secret.
 
-To pass this room:
----------------------------------------------------------------------
+!!! abstract "📜 Mission Briefing"
 
-- In this room, we dive into bash conditionals and decision-making.
-- You need to write a bash script that processes user data and filters based on conditions.
-- In this room we wish to learn and use `awk` and learn some of its capabilities. 
-- awk is most commonly used for `pattern matching` or `text processing`
-  
-Tasks
-------
+    The file `artifact.b64` has been wrapped in **3 layers** of encoding:
 
-1. Examine the 'user_data.txt' file in this folder.
-2. Write a bash script named 'filter_users.sh' that:
-   - The file contains a header and each line contains user information in the format: 
-         name,age,subscription
-   - Reads each line from 'user_data.txt' 
-   - Using `bash` and `awk`, filter users based on the following criteria:
-     - Skip the header line (First line - Find out how to do this using `awk`)
-     - Age greater than 25  (Hint: This is the second field in each line)
-     - Subscription type is 'premium' (Hint: This is the third field in each line)
-   - Sums the ages of the matching users, and this sum will be the password for the next room.
+    - Layer 3 (outermost): **Base64**
+    - Layer 2: **Gzip** compression
+    - Layer 1 (innermost): **Tar** archive
 
-3. Run your script to get the password for the next room.
+    Unwrap in reverse order:
 
-Good Luck!!!
+    1. Decode Base64 → `base64 -d artifact.b64 > artifact.tar.gz`
+    2. Decompress gzip → `gunzip artifact.tar.gz`
+    3. Extract tar → `tar xf artifact.tar`
+    4. Read the extracted file -it contains the password!
 
+### The 3 Layers (outermost to innermost)
+
+1. **Base64** encoding
+2. **Gzip** compression
+3. **Tar** archive
+
+### Key Commands
+
+| Command              | Purpose                 |
+| -------------------- | ----------------------- |
+| `base64 -d`          | Decode base64 to binary |
+| `gunzip` / `gzip -d` | Decompress gzip files   |
+| `tar xf`             | Extract tar archives    |
+| `file`               | Identify file type      |
+
+### How Archive Tools Work
+
+```bash
+# base64 - encode/decode binary data as text
+base64 file.bin > file.b64          # encode binary to base64 text
+base64 -d file.b64 > file.bin       # decode base64 back to binary
+base64 -d file.b64 | file -         # decode and identify type on the fly
+base64 -w 0 file.bin > file.b64     # encode with no line wrapping
+
+# gzip - compress / decompress files
+gzip file.txt                       # compress (creates file.txt.gz, removes original)
+gzip -d file.txt.gz                 # decompress
+gunzip file.txt.gz                  # same as gzip -d
+gzip -k file.txt                    # compress and keep original
+gzip -l file.gz                     # list compression ratio and sizes
+gzip -t file.gz                     # test archive integrity
+
+# tar - archive (bundle) files
+tar cf archive.tar dir/             # create archive from directory
+tar czf archive.tar.gz dir/         # create and gzip-compress in one step
+tar xf archive.tar                  # extract archive
+tar xzf archive.tar.gz              # extract gzip-compressed archive
+tar tf archive.tar                  # list contents without extracting
+tar xf archive.tar -C /dest/        # extract to a specific directory
+
+# file - identify an unknown file type
+file mystery                        # prints: "gzip compressed data", "POSIX tar archive", etc.
+file *                              # identify all files in current directory
 ```
 
+### Pro Tip: Use `file` to Identify Unknown Types
+
+```bash
+file artifact.b64           # "ASCII text"
+file artifact.tar.gz        # "gzip compressed data"
+file artifact.tar           # "POSIX tar archive"
+```
+
+### Hints
+
+!!! tip "Hint"
+
+    After each step, use `ls` to see what appeared and `file` to identify it.
+
 ---
 
-## Steps to Solve
+!!! info "🔓 Unlock Room 12"
 
-1. **Examine the data file**
-   
-    !!! warning ""
-        Use `cat user_data.txt` to view the CSV structure: name,age,subscription.
+    Once you have the password, decrypt the next room's README:
 
-2. **Write the script**
-   
-    !!! warning ""
-        - Use `awk` to process the CSV file
-        - Set field separator to comma with `-F','`
-        - Skip header with `NR > 1`
-        - Filter `age > 25` and `subscription == "premium"`
-        - Sum the ages with `sum += $2`
-        - Print sum in END block
-
-3. **Example script structure**
-
-    !!! example ""
-        ```bash
-        #!/bin/bash
-        awk -F',' 'NR > 1 && $2 > 25 && $3 == "premium" {sum += $2} END {print sum}' user_data.txt
-        ```
-
-4. **Run and get password**
-   
-    !!! warning ""
-        - Execute `./filter_users.sh`
-        - The output is the password to open the message file and find the password for the next room.
-
-## **Useful Commands:**
-
-| Command | Man Page                                                  | Description                     |
-| ------- | --------------------------------------------------------- | ------------------------------- |
-| `awk`   | 🔗 [awk](https://man7.org/linux/man-pages/man1/awk.1.html) | Pattern scanning and processing |
-| `-F`    |                                                           | Field separator in awk          |
-| `NR`    |                                                           | Number of input records (lines) |
-| `END`   |                                                           | Block executed after all input  |
-| `$x`    |                                                           | X field in awk                  |
-
-**GOOD LUCK!**
-
+    ```bash
+    openssl enc -aes-256-cbc -d -a -pbkdf2 \
+      -in ../room_12/README -out ../room_12/README.txt -pass pass:PASSWORD
+    cat ../room_12/README
+    ```

@@ -1,24 +1,33 @@
 - Congratulations! You have reached room 8!!
 
+## Section: System Mastery
+
 To pass this room:
 ---------------------------------------------------------------------
 
-- In this room we will play with Linux users & processes.
+- Welcome to the Environment Lab!
+- You must configure your shell environment correctly to unlock the door.
 
-***********************************************
-** Read all the instruction before you start **
-***********************************************
+** Read all instructions before starting **
 
-Tasks: 
-------
+## Tasks:
 
-1. Create a bash script named 'room08_proc.sh'
-2. The script should keep running forever without any output.
-3. Create a new user: 'testUser'
-4. Execute the script with the user 'testUser' in the background!
-   >> Yes in the background! means that your shell wont get affected.
-      So if you don't know how its a good time to learn it....
-5. Find out the process ID (PID) of the running script.
-6. Pass the PID to the script and you should get the password to the next room.
+1. There is a hidden configuration file in this room.
+   >> hint: hidden files start with a dot (.) - use `ls -a` to see them
+
+2. Source the hidden config file to load its settings.
+   >> hint: `source .filename` or `. .filename`
+
+3. After sourcing, the config tells you what environment variables
+   to set. Set them using `export`.
+   >> hint: `export VARIABLE_NAME=value`
+
+4. Create an alias named `labstatus` that prints "ready".
+   >> hint: `alias labstatus='echo ready'`
+
+5. Once everything is set, run `./getKey.sh` to verify and get the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_09/README -out ../room_09/README.txt -pass pass:PASSWORD
 
 Good Luck !!!

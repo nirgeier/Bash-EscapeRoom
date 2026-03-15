@@ -20,24 +20,32 @@ echo -e ""
 
 slow_typing "- Welcome to the Linux Bash Escape Room." ${PURPLE} 
 slow_typing "- This place is full of secrets and only the chosen ones can escape ... " ${GREEN}
-slow_typing "- The folder /home/escape/escapeRooms contain the different rooms (folders names room_xx)" ${PURPLE} 
-slow_typing "- Each folder has an encrypted room_XX.sh file (except the first room README - This file)" ${GREEN}
-slow_typing "- To reveal the next room room_XX.sh file, following the clues ..." ${PURPLE} 
-echo -e "- Every room_XX.sh file uses ${GREEN}'vim encryption' ${NO_COLOR} ... " ${GREEN}
-slow_typing "- To run (decrypt) them you will need a password (key), which you will get at the end of each room... " ${PURPLE} 
+slow_typing "- The folder /home/escape/escapeRooms contains the different rooms (folders named room_xx)" ${PURPLE} 
+slow_typing "- Each folder has an encrypted README file (except the first room)" ${GREEN}
+slow_typing "- To reveal the next room README, follow the clues ..." ${PURPLE} 
+echo -e "- Every README uses ${GREEN}'OpenSSL AES-256-CBC encryption' ${NO_COLOR} ... " ${GREEN}
+slow_typing "- To decrypt them you will need a password (key), which you get at the end of each room... " ${PURPLE} 
 
 slow_typing ""
 slow_typing ">> Tip 01: " ${CYAN} 
-slow_typing "   Once you open the encrypted file, the command: " ${CYAN} 
-echo -e     "   ${GREEN}:set key=${NO_COLOR}." 
-slow_typing "   will unlock the file for you to read it." ${CYAN}
-slow_typing "   Don't forget to save the changes with (ESC + :wq) in order to keep the file unlocked (keep it in mind for other rooms)." ${CYAN} 
+slow_typing "   To decrypt a room README, use:" ${CYAN} 
+echo -e     "   ${GREEN}openssl enc -aes-256-cbc -d -a -pbkdf2 -in README -out README.txt -pass pass:YOUR_PASSWORD${NO_COLOR}" 
+echo -e     "   ${GREEN}mv README.txt README${NO_COLOR}" 
+slow_typing "   Then you can read the decrypted file with: cat README" ${CYAN}
   
 slow_typing "" ${CYAN}
 slow_typing ">> Tip 02: " ${CYAN} 
-slow_typing "   To make the magic happen (delete, rename, change ownership, create files and etc.) " ${CYAN}  
+slow_typing "   To make the magic happen (delete, rename, change ownership, create files etc.) " ${CYAN}  
 slow_typing "   you will need your secret sudo password: " ${CYAN}
 echo -e     "   ${YELLOW}escape${NO_COLOR}." 
+
+slow_typing "" ${CYAN}
+slow_typing ">> Sections: " ${CYAN} 
+slow_typing "   🧭 Navigation & Discovery  (Rooms 01-03)" ${GREEN}
+slow_typing "   ✏️  Text Mastery            (Rooms 04-06)" ${YELLOW}
+slow_typing "   ⚙️  System Mastery          (Rooms 07-09)" ${PURPLE}
+slow_typing "   🔗 Advanced Pipeline       (Rooms 10-12)" ${CYAN}
+slow_typing "   🏆 The Exit Exam           (Room 99)" ${BRed}
 
 echo -e ""
 echo -e "${RED}>>> Press any key to continue to room #01${NO_COLOR}"
@@ -52,24 +60,24 @@ echo -e     ""
 slow_typing "This is what you need to do in the First room (room_01):" ${BYELLOW} 
 echo -e      "---------------------------------------------------------"
 
-slow_typing "Welcome to your first room." ${GREEN} 
-slow_typing "1. Go to 'room_files' folder" ${GREEN} 
+slow_typing "Welcome to your first room: The Lost Expedition" ${GREEN} 
+slow_typing "1. Go to the 'expedition/' directory" ${GREEN} 
 
-slow_typing "2. Delete/move/filter-out all the files with '.txt' extension." ${YELLOW}
-slow_typing "   - highly recommended to backup the folder before you make changes" ${YELLOW} 
+slow_typing "2. The camp is littered with noise files (.rock, .leaf, .twig)" ${YELLOW}
+slow_typing "   - You need to FIND the real map fragments hidden in subdirectories" ${YELLOW} 
 
-slow_typing "3. Sort the remaining files by 'size' " ${GREEN} 
-slow_typing "   - Ascending Order, including the hidden files!! " ${GREEN} 
+slow_typing "3. Locate all files ending in '.map' " ${GREEN} 
+slow_typing "   - hint: the 'find' command searches recursively!" ${GREEN} 
   
-slow_typing "4. View the file names on the screen, then take the [first letter] of each filename top-to-bottom." ${YELLOW} 
+slow_typing "4. Sort the found paths alphabetically and cat their contents." ${YELLOW} 
  
-slow_typing "5. Once you discover the hidden message, move to the next room." ${GREEN} 
+slow_typing "5. The concatenated letters spell the password for the next room." ${GREEN} 
 
-slow_typing "6. Open the README file using the hidden message in [lowercase] without spaces..." ${YELLOW} 
+slow_typing "6. Decrypt the next room README with that password:" ${YELLOW} 
 
 echo -e "${CYAN}>> Reminder: ${NO_COLOR}" 
-echo -e "${CYAN}      Once you open the encrypted file, the command: ${YELLOW}:set key=${NO_COLOR}. "
-echo -e "${CYAN}      Don't forget to save ${YELLOW}(:wq)${CYAN} in order to keep the file unlocked (keep it in mind for other rooms).${NO_COLOR}"  
+echo -e "${CYAN}      To decrypt: ${YELLOW}openssl enc -aes-256-cbc -d -a -pbkdf2 -in README -out README.txt -pass pass:PASSWORD${NO_COLOR}"
+echo -e "${CYAN}      Then: ${YELLOW}mv README.txt README${NO_COLOR}"
       
 echo -e ""
 echo -e ""

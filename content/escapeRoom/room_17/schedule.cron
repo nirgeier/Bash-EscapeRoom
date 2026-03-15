@@ -1,0 +1,11 @@
+# System maintenance jobs
+0 2 * * * /usr/bin/backup.sh
+0 * * * * /usr/bin/health_check.sh
+0 9 * * 1-5 /usr/bin/report.sh
+
+# ALARM
+*/5 * * * * /usr/bin/alarm.sh
+
+# Cleanup
+0 0 * * 0 /usr/bin/weekly_cleanup.sh
+30 6 * * * /usr/bin/morning_check.sh

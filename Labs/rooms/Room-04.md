@@ -1,105 +1,122 @@
 ---
-password: "linuxistallfun"
-title_prefix: "🤪 "
-summary: "Room 04 requires deciphering crazy text by replacing substituted letters to find the password."
+password: "rewind99"
+title_prefix: "🕵️ "
+summary: "Use sed substitutions to decode an encrypted spy message."
 ---
 
-**DECODE THE CRAZY TEXT!**
+**CRACK THE SPY CODE!**
 
 ---
 
-# 🤪 Room 04
+## 🕵️ The Spy Cipher
 
-!!! tip "Decryption Tip"
-    If the content doesn't appear after entering the password, please refresh the page (F5 or Ctrl+R).
+- A spy left an encoded message.
+- Certain letters were replaced with codes.
+- Use `sed` to reverse the substitutions and reveal the hidden password.
 
-## Welcome to Room 04
+---
 
-## Objective: Decode the `crazyText` file by replacing substituted letters to find the password for the `key`
+!!! abstract "📜 Mission Briefing"
 
-```markdown
-To pass this room:
----------------------------------------------------------------------
+    A spy left an encoded message in `cipher.txt`. Certain letters were
+    replaced with codes using this substitution table:
 
-- The room keeper of this place is a crazy guy who `speaks` very odd.
-- To be able to read the message you will need to do the following:
+    | Original | Encoded |
+    |----------|---------|
+    | s        | Z7      |
+    | e        | Q3      |
+    | d        | X9      |
+    | m        | K1      |
+    | a        | J2      |
+    | t        | W8      |
+    | r        | P6      |
 
-  1. The room keeper doesn't like the letter `H` so he replaced it with `zing` (dont ask me why...)
-  2. He is not into `h` as well, so he replace it with `blu`.
-  3. He despise the letter `i`, so he prefer to say it as `bla`.
-  4. The keeper **love** to use `sed` command....
+    1. Use `sed` to reverse **all** substitutions on `cipher.txt`.
+       > hint: `sed 's/ENCODED/ORIGINAL/g; s/ENCODED2/ORIGINAL2/g' cipher.txt`
+    2. Read the decoded output -the password is in the decoded text.
 
-- What is the password to the next room?
-  >>> Hint: keep looking around the folder....
-- The password is in the `key` file, but it is encrypted with `vim` encryption.
+### Key Commands
+
+| Command | Purpose |
+| --- | --- |
+| `sed 's/old/new/' file` | Replace first occurrence per line |
+| `sed 's/old/new/g' file` | Replace all occurrences (global) |
+| `sed 's/old/new/I' file` | Case-insensitive replace |
+| `sed -n '5p' file` | Print only line 5 |
+| `sed -n '5,10p' file` | Print lines 5-10 |
+| `sed '5d' file` | Delete line 5 |
+| `sed '/pattern/d' file` | Delete lines matching pattern |
+| `sed 's/^/  /' file` | Add indent to every line |
+| `sed 's/ *$//' file` | Strip trailing whitespace |
+| `sed -i 's/old/new/g' file` | Edit file in-place |
+| `sed -i.bak 's/old/new/g' file` | In-place edit with backup |
+| `sed 'y/abc/ABC/' file` | Transliterate characters |
+| `sed -n '/start/,/end/p' file` | Print between two patterns |
+| `sed '1i\header' file` | Insert line before line 1 |
+| `sed '$a\footer' file` | Append line after last line |
+| `sed 's/\t/ /g' file` | Replace tabs with spaces |
+
+### How `sed` Works
+
+```bash
+# Basic substitution: replace first match per line
+sed 's/old/new/' file.txt
+
+# Replace ALL matches per line (global flag)
+sed 's/old/new/g' file.txt
+
+# Multiple substitutions chained in one command
+sed 's/foo/bar/g; s/baz/qux/g' file.txt
+
+# Case-insensitive replacement
+sed 's/hello/world/gi' file.txt
+
+# Delete lines matching a pattern
+sed '/pattern/d' file.txt
+
+# Print only specific lines (use -n to suppress default output)
+sed -n '5p' file.txt           # line 5 only
+sed -n '1,10p' file.txt        # lines 1 through 10
+sed -n '/pattern/p' file.txt   # lines matching pattern
+
+# Use alternate delimiters (useful when value contains /)
+sed 's|/usr/local|/opt|g' file.txt
+
+# Edit file in-place
+sed -i 's/old/new/g' file.txt
+sed -i.bak 's/old/new/g' file.txt  # keep .bak backup
 ```
 
 ---
 
-  1. **Understand the substitutions**
-   
-    !!! tip "Letter Substitutions"
-    
-        - The crazy guy replaced certain letters with words:
-          - `H` (capital H) → `zing`
-          - `h` (lowercase h) → `blu`
-          - `i` (lowercase i) → `bla`
-        - You need to reverse these substitutions to read the real message
-    
-  2. **Read the `crazyText` file**
-    
-    !!! warning ""
-    
-        - Use commands like `cat`, `less`, or `vim` to view the file content
-        - Look for the hidden message by replacing the substituted words back to letters
+### The Substitution Table
 
-  3. **Use `sed` to decode the text**
-    
-    !!! tip "Using sed for Decoding"
+| Original Letter | Was Replaced With |
+| --------------- | ----------------- |
+| s               | Z7                |
+| e               | Q3                |
+| d               | X9                |
+| m               | K1                |
+| a               | J2                |
+| t               | W8                |
+| r               | P6                |
 
-          - The room keeper loves `sed` command - use it to perform the replacements
-          - You can chain multiple `sed` commands to replace all substitutions at once
-          - Example: `sed 's/zing/H/g; s/blu/h/g; s/bla/i/g' crazyText`
-           
-  4. **Find the password**
-  
-    !!! warning ""
-    
-        - The decoded text will reveal the password for the `key` file
-        - The password is a single word that describes something fun related to Linux
-     
-  5. **Use the password to unlock the key**
-  
-    !!! warning ""
-    
-        - The `key` file is encrypted with `vim` encryption
-        - Use `vim key` and enter the password when prompted
-        - Inside vim, disable encryption with `:set key=` and save with `:wq`
-        - The unlocked key will contain the password for the next room
+---
 
-## **Files and Directories:**
+### Hints
 
-| File        | Description                                                      |
-| ----------- | ---------------------------------------------------------------- |
-| `crazyText` | File containing the crazy guy's message with substituted letters |
-| `key`       | Encrypted file containing the password for the next room         |
-| `README`    | Instructions for the room (this file)                            |
+!!! tip "Hint"
 
-## **Useful Commands:**
+    The decoded text contains the password in its final line.
 
-| Command | Man Page                                                      | Description                            |
-| ------- | ------------------------------------------------------------- | -------------------------------------- |
-| `sed`   | 🔗 [`sed`](https://man7.org/linux/man-pages/man1/sed.1.html)   | Stream editor for text transformations |
-| `cat`   | 🔗 [`cat`](https://man7.org/linux/man-pages/man1/cat.1.html)   | Display file contents                  |
-| `vim`   | 🔗 [`vim`](https://manpages.org/vim)                           | Text editor (supports file encryption) |
-| `grep`  | 🔗 [`grep`](https://man7.org/linux/man-pages/man1/grep.1.html) | Search for patterns in files           |
+---
 
-## **Hints:**
+!!! info "🔓 Unlock Room 05"
 
-- Use `sed` with multiple substitution commands separated by semicolons
-- The substitutions are `case-sensitive` 
-- After decoding, look for the line that mentions "password for the key"
-- Remember to save the decrypted key file with `:wq` in vim
+    Once you have the password, decrypt the next room's README:
 
-**GOOD LUCK!**
-
+    ```bash
+    openssl enc -aes-256-cbc -d -a -pbkdf2 \
+      -in ../room_05/README -out ../room_05/README.txt -pass pass:PASSWORD
+    cat ../room_05/README
+    ```

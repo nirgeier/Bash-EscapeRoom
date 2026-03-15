@@ -1,0 +1,27 @@
+- Congratulations! You have reached room 33!!
+
+## Section: Bash Scripting
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A protected script only responds to the correct combination of flags.
+- Study the locked_program.sh script and call it with the right flags.
+
+## Tasks:
+
+1. Read locked_program.sh to understand what flags it expects.
+   >> hint: `cat locked_program.sh`
+
+2. The script uses getopts to validate its arguments.
+   It expects: -u <username> -p <pin> and optionally -v (verbose)
+
+3. Call it with the correct values.
+   >> hint: `bash locked_program.sh -u agent -p 1337 -v`
+
+4. The output when all conditions pass is the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_34/README -out ../room_34/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

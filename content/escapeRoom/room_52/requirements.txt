@@ -1,0 +1,8 @@
+OWNERSHIP REQUIREMENTS
+======================
+vault/access.key   => owner: escape,  group: escape
+vault/config.cfg   => owner: escape,  group: escape
+vault/secret.dat   => owner: escape,  group: escape
+umask              => must be 022
+
+Run ./getKey.sh to validate all conditions.

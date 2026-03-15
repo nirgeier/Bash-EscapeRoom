@@ -1,0 +1,26 @@
+services:
+  escape-room-bash:
+    build:
+      context: content
+      dockerfile: Docker/Dockerfile
+      args:
+        # pass IMAGE and IMAGE_TAG so CI can control tags; keep defaults for local dev
+        IMAGE: ${IMAGE:-nirgeier/escape-room-bash}
+        IMAGE_TAG: ${IMAGE_TAG:-latest}
+        LastTagTime: ${BUILD_TIME:-}
+        SourceRepository: ${SourceRepository:-}
+      x-bake:
+        platforms:
+          - linux/amd64
+          - linux/arm64
+          - linux/arm/v6
+          - linux/arm/v7
+          - linux/arm/v8
+    container_name: bash-escape-room
+    image: "${IMAGE:-nirgeier/escape-room-bash}:${IMAGE_TAG:-latest}"
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    labels:
+      - "com.example.app.Metadata.LastTagTime=${BUILD_TIME:-}"
+      - "com.example.app.Metadata.SourceRepository=${SourceRepository:-}"

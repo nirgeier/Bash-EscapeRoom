@@ -1,7 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
-  "buildCommand": "python3 -m pip install --upgrade pip && python3 -m pip install -r mkdocs/requirements.txt && /python312/bin/mkdocs build",
+  "build": {
+    "env": {
+      "PYTHON_VERSION": "3.12"
+    }
+  },
+  "buildCommand": "uv python install 3.12 && uv venv --python 3.12 .venv && . .venv/bin/activate && uv pip install -r mkdocs/requirements.txt && mkdocs build",
   "outputDirectory": "mkdocs-site",
   "installCommand": "echo 'Using Python runtime'",
   "framework": null

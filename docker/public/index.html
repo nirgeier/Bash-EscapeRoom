@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bash Escape Room</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xterm/xterm@5.5.0/css/xterm.min.css">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-deep: #0d0d1a;
+      --bg-panel: #12122a;
+      --bg-header: #0a0a1f;
+      --accent: #e94560;
+      --accent2: #1abc9c;
+      --border: #1e1e3f;
+      --text: #c8d0e0;
+      --text-dim: #5a6072;
+      --handle-w: 6px;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg-deep);
+      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* ── Header ─────────────────────────────────────────── */
+    #header {
+      height: 48px;
+      background: var(--bg-header);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 16px;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+
+    #header h1 {
+      font-size: 1.1rem;
+      color: var(--accent);
+      white-space: nowrap;
+      letter-spacing: 0.03em;
+    }
+
+    .spacer {
+      flex: 1;
+    }
+
+    /* ── Status ─────────────────────────────────────────── */
+    #status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    #status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--text-dim);
+      transition: background 0.3s;
+      flex-shrink: 0;
+    }
+
+    #status-dot.connected {
+      background: #4caf50;
+    }
+
+    #status-dot.disconnected {
+      background: var(--accent);
+    }
+
+    /* ── Main split layout ──────────────────────────────── */
+    #main {
+      display: flex;
+      height: calc(100vh - 48px);
+      overflow: hidden;
+    }
+
+    /* ── Docs pane ──────────────────────────────────────── */
+    #docs-pane {
+      width: 50%;
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--border);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    #docs-pane-bar {
+      height: 32px;
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      flex-shrink: 0;
+    }
+
+    #docs-pane-bar svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--accent2);
+      flex-shrink: 0;
+    }
+
+    #docs-frame {
+      flex: 1;
+      border: none;
+      width: 100%;
+      background: #fff;
+    }
+
+    /* ── Drag handle ────────────────────────────────────── */
+    #drag-handle {
+      width: var(--handle-w);
+      background: var(--border);
+      cursor: col-resize;
+      flex-shrink: 0;
+      position: relative;
+      transition: background 0.15s;
+      z-index: 5;
+    }
+
+    #drag-handle:hover,
+    #drag-handle.dragging {
+      background: var(--accent2);
+    }
+
+    #drag-handle::after {
+      content: '';
+      position: absolute;
+      inset: 0 -4px;
+    }
+
+    /* ── Terminal pane ──────────────────────────────────── */
+    #terminal-pane {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    #terminal-pane-bar {
+      height: 32px;
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      flex-shrink: 0;
+    }
+
+    #terminal-pane-bar svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--accent);
+      flex-shrink: 0;
+    }
+
+    #terminal-container {
+      flex: 1;
+      padding: 6px 8px;
+      overflow: hidden;
+      background: var(--bg-deep);
+    }
+
+    #terminal-container .xterm {
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <div id="header">
+    <h1>Bash Escape Room</h1>
+
+    <div class="spacer"></div>
+
+    <div id="status">
+      <div id="status-dot"></div>
+      <span id="status-text">Connecting…</span>
+    </div>
+  </div>
+
+  <!-- ── Main ──────────────────────────────────────────── -->
+  <div id="main">
+
+    <!-- Left: Docs pane -->
+    <div id="docs-pane">
+      <div id="docs-pane-bar">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z" />
+        </svg>
+        <span>Documentation</span>
+      </div>
+      <iframe id="docs-frame" src="about:blank" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+        title="Documentation"></iframe>
+    </div>
+
+    <!-- Drag handle -->
+    <div id="drag-handle"></div>
+
+    <!-- Right: Terminal pane -->
+    <div id="terminal-pane">
+      <div id="terminal-pane-bar">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M20 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zm-1 16H5V5h14v14zM7.293 15.293l1.414 1.414L13.414 12l-4.707-4.707-1.414 1.414L10.586 12l-3.293 3.293z" />
+        </svg>
+        <span>Terminal</span>
+      </div>
+      <div id="terminal-container"></div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@xterm/xterm@5.5.0/lib/xterm.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@xterm/addon-fit@0.10.0/lib/addon-fit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@xterm/addon-web-links@0.11.0/lib/addon-web-links.min.js"></script>
+  <script>
+    (function () {
+
+      /* ── Docs frame ──────────────────────────────────────── */
+      const docsFrame = document.getElementById('docs-frame');
+
+      // Load /docs/ if available on this server, otherwise fall back to GitHub Pages
+      const DEFAULT_DOCS_URL = '/docs/';
+      const FALLBACK_DOCS_URL = 'https://nirgeier.github.io/Bash-EscapeRoom/';
+
+      fetch(DEFAULT_DOCS_URL, { method: 'HEAD' })
+        .then(r => { docsFrame.src = r.ok ? DEFAULT_DOCS_URL : FALLBACK_DOCS_URL; })
+        .catch(() => { docsFrame.src = FALLBACK_DOCS_URL; });
+
+      /* ── Resizable split ─────────────────────────────────── */
+      const mainEl = document.getElementById('main');
+      const docsPane = document.getElementById('docs-pane');
+      const handle = document.getElementById('drag-handle');
+      let dragging = false;
+      let startX, startW;
+
+      handle.addEventListener('mousedown', e => {
+        dragging = true;
+        startX = e.clientX;
+        startW = docsPane.getBoundingClientRect().width;
+        handle.classList.add('dragging');
+        document.body.style.cursor = 'col-resize';
+        document.body.style.userSelect = 'none';
+        // Block iframe pointer events while dragging
+        docsFrame.style.pointerEvents = 'none';
+      });
+
+      document.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        const totalW = mainEl.getBoundingClientRect().width;
+        const newW = Math.max(200, Math.min(startW + (e.clientX - startX), totalW - 200));
+        docsPane.style.width = newW + 'px';
+        fitTerminal();
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (!dragging) return;
+        dragging = false;
+        handle.classList.remove('dragging');
+        document.body.style.cursor = '';
+        document.body.style.userSelect = '';
+        docsFrame.style.pointerEvents = '';
+        fitTerminal();
+      });
+
+      /* ── xterm.js terminal ───────────────────────────────── */
+      const termContainer = document.getElementById('terminal-container');
+      const statusDot = document.getElementById('status-dot');
+      const statusText = document.getElementById('status-text');
+
+      const term = new Terminal({
+        cursorBlink: true,
+        fontSize: 14,
+        fontFamily: '"Cascadia Code", "Fira Code", "JetBrains Mono", Menlo, Monaco, monospace',
+        theme: {
+          background: '#0d0d1a',
+          foreground: '#c8d0e0',
+          cursor: '#e94560',
+          selectionBackground: '#1e1e3f',
+          black: '#0d0d1a',
+          red: '#e94560',
+          green: '#4caf50',
+          yellow: '#f0db4f',
+          blue: '#3e84e0',
+          magenta: '#9b59b6',
+          cyan: '#1abc9c',
+          white: '#c8d0e0',
+          brightBlack: '#4a5068',
+          brightRed: '#ff6b81',
+          brightGreen: '#6bcb77',
+          brightYellow: '#ffd460',
+          brightBlue: '#74b9ff',
+          brightMagenta: '#c39bd3',
+          brightCyan: '#55efc4',
+          brightWhite: '#e0e6f0',
+        },
+        allowProposedApi: true,
+        scrollback: 5000,
+      });
+
+      const fitAddon = new FitAddon.FitAddon();
+      const webLinksAddon = new WebLinksAddon.WebLinksAddon();
+
+      term.loadAddon(fitAddon);
+      term.loadAddon(webLinksAddon);
+      term.open(termContainer);
+
+      function fitTerminal() {
+        // Small delay lets layout reflow before measuring
+        requestAnimationFrame(() => fitAddon.fit());
+      }
+      fitTerminal();
+
+      /* ── WebSocket connection ────────────────────────────── */
+      const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const wsUrl = protocol + '//' + location.host;
+      let ws;
+
+      function setStatus(connected) {
+        statusDot.className = 'dot ' + (connected ? 'connected' : 'disconnected');
+        statusText.textContent = connected ? 'Connected' : 'Disconnected';
+      }
+
+      function connect() {
+        ws = new WebSocket(wsUrl);
+
+        ws.onopen = function () {
+          setStatus(true);
+          ws.send(JSON.stringify({ type: 'resize', cols: term.cols, rows: term.rows }));
+        };
+
+        ws.onmessage = function (event) {
+          try {
+            const msg = JSON.parse(event.data);
+            if (msg.type === 'output') term.write(msg.data);
+            if (msg.type === 'exit') { term.writeln('\r\n\x1b[31m[Session ended]\x1b[0m'); setStatus(false); }
+          } catch (e) { /* ignore */ }
+        };
+
+        ws.onclose = function () {
+          setStatus(false);
+          term.writeln('\r\n\x1b[33m[Connection lost -reconnecting in 3s…]\x1b[0m');
+          setTimeout(connect, 3000);
+        };
+
+        ws.onerror = function () { setStatus(false); };
+      }
+
+      term.onData(data => {
+        if (ws && ws.readyState === WebSocket.OPEN)
+          ws.send(JSON.stringify({ type: 'input', data }));
+      });
+
+      term.onResize(size => {
+        if (ws && ws.readyState === WebSocket.OPEN)
+          ws.send(JSON.stringify({ type: 'resize', cols: size.cols, rows: size.rows }));
+      });
+
+      window.addEventListener('resize', fitTerminal);
+      connect();
+
+    })();
+  </script>
+</body>
+
+</html>

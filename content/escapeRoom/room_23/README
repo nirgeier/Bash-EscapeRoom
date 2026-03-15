@@ -1,0 +1,26 @@
+- Congratulations! You have reached room 23!!
+
+## Section: System Tools
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A time traveler left coordinates encoded as UNIX timestamps.
+- Decode them using the date command.
+
+## Tasks:
+
+1. Read timestamps.txt to get the three UNIX timestamps.
+   >> hint: `cat timestamps.txt`
+
+2. Convert each timestamp to a human-readable date and extract the year.
+   >> hint (Linux):  `date -d @TIMESTAMP +%Y`
+   >> hint (macOS):  `date -r TIMESTAMP +%Y`
+
+3. The password is "epoch" followed by the SUM of the three years.
+   >> Example: if the years are 2000, 2010, 2016, sum=6026, password = "epoch6026"
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_24/README -out ../room_24/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

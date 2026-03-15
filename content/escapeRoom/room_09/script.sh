@@ -1,52 +1,33 @@
 #!/bin/bash
 
-source /home/escape/escapeRooms/_utils.sh
-###
-### This script will test if the user solved the puzzle
-###
+source ../_utils.sh
 
-# Function to calculate sum
-function calculate_sum {
-
-    # Start the sum variable
-    sum=0
-    # loop from 1 to the desired number
-    for (( i=1; i<=$1; i++ ))
-    do
-        # Calculate the result
-        sum=$((sum + i))
-    done
-    # Print out result
-    echo $sum
+# Find the ghost_user's process
+function getPID(){
+    PID=$(ps -eo pid,user,args | grep ghost_user | grep ghost_loop | grep -v grep | awk '{print $1}')
+    if [ -z "$PID" ]; then
+        PID=-1
+    fi
 }
 
-# Test the function with random number
-for i in {1..5}
-do
-    # Generate random number
-    NUMBER=$(shuf -i 1-1000 -n 1)
-    echo -e "Testing ${BYELLOW}escape $NUMBER${NO_COLOR}"
+getPID
 
-    # calculate usign user script
-    SUM=$(escape $NUMBER)
-    # calculated using our script
-    EXPECTED=$(calculate_sum $NUMBER)
+if [ "$PID" == "-1" ]; then
+    echo -e "${BRed}Cannot find ghost_user's ghost_loop process.${NO_COLOR}"
+    echo "Make sure you:"
+    echo " - Created user 'ghost_user'"
+    echo " - Created script 'ghost_loop.sh'"
+    echo " - Running it as ghost_user in the background"
+    exit 1
+fi
 
-    # Verify if the results are equal
-    if [ "$SUM" == "$EXPECTED" ] 
-    then    
-        echo -e "${GREEN}Passed [$SUM]${NO_COLOR}"
-    else
-        echo -e "${RED}Failed [$SUM]${NO_COLOR}"
-        exit 1
-    fi    
-done
-
-echo -e ""
-echo -e ""
-echo -e "${CYAN}--------------------------------------------------------------${NO_COLOR}"
-echo -e "${CYAN}Well Done !!!${NO_COLOR}"
-echo -e ""
-echo -e "${GREEN}The password for the next room is: ${BYELLOW}linux${BGreen}is${BYELLOW}free${NO_COLOR}"
-echo -e ""
-echo -e ""
+if [[ "$PID" == "$1" ]]; then
+    echo -e "${BGreen}Ghost captured!${NO_COLOR}"
+    echo -e "Process management mastered!"
+    echo -e "The password for the next room is: ${BYELLOW}daemon77${NO_COLOR}"
+    sudo kill -9 $PID 2>/dev/null
+else
+    echo -e "${BRed}Wrong PID. The ghost is still hiding!${NO_COLOR}"
+    echo "Expected PID: $PID"
+    echo "You provided: $1"
+fi

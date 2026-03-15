@@ -1,0 +1,29 @@
+- Congratulations! You have reached room 34!!
+
+## Section: Bash Scripting
+
+To pass this room:
+---------------------------------------------------------------------
+
+- The vault door requires a precisely formatted configuration scroll.
+- Use a here-document to pass multi-line input to the verifier.
+
+## Tasks:
+
+1. The verify_config.sh script reads from stdin and checks values.
+   >> hint: `cat verify_config.sh` to see what it expects
+
+2. Pass the correct configuration using a heredoc.
+   >> hint:
+   >>   bash verify_config.sh << 'EOF'
+   >>   MODE=escape
+   >>   LEVEL=master
+   >>   KEY=ancient
+   >>   EOF
+
+3. When all fields are correct, the script prints the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_35/README -out ../room_35/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

@@ -1,0 +1,6 @@
+# UNIX Timestamps - decode these to find the years
+# Convert with: date -d @TIMESTAMP +%Y  (Linux)
+#           or: date -r TIMESTAMP +%Y   (macOS)
+946684800
+1276560000
+1458432000

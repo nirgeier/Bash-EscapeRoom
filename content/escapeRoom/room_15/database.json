@@ -1,0 +1,13 @@
+{
+  "mission": "Operation Lockdown",
+  "year": 2024,
+  "agents": [
+    {"id": 1, "name": "Alpha", "status": "active", "code": "json64"},
+    {"id": 2, "name": "Bravo", "status": "inactive", "code": "zzzz"},
+    {"id": 3, "name": "Charlie", "status": "inactive", "code": "xxxx"},
+    {"id": 4, "name": "Delta", "status": "inactive", "code": "yyyy"},
+    {"id": 5, "name": "Echo", "status": "retired", "code": "abcd"}
+  ],
+  "base": "classified",
+  "clearance": "top-secret"
+}

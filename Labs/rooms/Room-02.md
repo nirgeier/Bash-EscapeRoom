@@ -1,94 +1,112 @@
 ---
-password: "welldone"
-title_prefix: "🔐 "
-summary: "Room 02 requires a password to unlock."
+password: "northstar"
+title_prefix: "📻 "
+summary: "Count SOS signals in intercepted radio transmissions using grep."
 ---
 
-**GOOD LUCK FOLLOWING THE WHITE RABBIT!**
+**COUNT THE DISTRESS SIGNALS!**
 
 ---
 
+## 📻 The Broken Radio
 
-# 🐇 Room 02
+- You intercepted **200 enemy radio transmissions**.
+- Each message has a status tag - `OK`, `SOS`, `LOST`, or `NOISE`.
+- Count the `SOS` signals to crack the code.
 
-!!! tip "Decryption Tip"
-    If the content doesn't appear after entering the password, please refresh the page (F5 or Ctrl+R).
+---
 
+!!! abstract "📜 Mission Briefing"
 
-## Objective: Follow the White Rabbit and find the hidden password by analyzing user data and log files
+    * The file `radio_intercepts.txt` contains **200** intercepted messages tagged with: `OK`, `SOS`, `LOST`, or `NOISE`.
 
-```markdown
-To pass this room:
----------------------------------------------------------------------
+    1. Count the number of lines containing `"SOS"` in `radio_intercepts.txt`.
+       > hint: `grep -c` counts matching lines
+    2. The password is the word `signal` followed by that count *(no space)*.
+       > Example: if there are 23 SOS lines → password is `signal23`
 
-- Follow the white rabbit!....
+### Key Commands
 
-1. Find out the White Rabbit's user ID. 
-   >> hint: read about users in Linux.
-2. Search in `users_list.csv` file for the name of the user that has the IP which starts with this ID!!. 
-   >> hint: use find/grep/cat/vim and etc.
-3. Search for all the appearances of the **name** you found in Logs folder
-4. Sort the results(content only) by alphabetical order
-5. If all done correctly you will get the password for the next room
+| Command | Purpose |
+| --- | --- |
+| `grep pattern file` | Search for pattern in file |
+| `grep -i pattern file` | Case-insensitive search |
+| `grep -v pattern file` | Invert match (lines NOT matching) |
+| `grep -c pattern file` | Count matching lines |
+| `grep -n pattern file` | Show line numbers |
+| `grep -l pattern dir/` | List files containing pattern |
+| `grep -r pattern dir/` | Recursive search |
+| `grep -w word file` | Match whole word only |
+| `grep -E "pat1\|pat2" file` | Extended regex (OR) |
+| `grep -o pattern file` | Print only matched part |
+| `grep -A 2 pattern file` | Show 2 lines after match |
+| `grep -B 2 pattern file` | Show 2 lines before match |
+| `grep -C 2 pattern file` | Show 2 lines around match |
+| `grep --include="*.sh" -r pattern .` | Grep only .sh files |
+| `wc file` | Count lines, words, bytes |
+| `wc -l file` | Count lines only |
+| `wc -w file` | Count words only |
+| `wc -c file` | Count bytes |
+| `wc -m file` | Count characters |
+
+---
+
+### How `grep` Works
+
+```bash
+# Basic usage
+grep "pattern" file.txt               # search for pattern in a file
+grep "pattern" *.txt                  # search across multiple files
+grep "pattern" file1.txt file2.txt    # search in listed files
+
+# Common flags
+grep -c "pattern" file.txt            # count matching lines (not the lines themselves)
+grep -i "pattern" file.txt            # case-insensitive search
+grep -v "pattern" file.txt            # invert: show lines that do NOT match
+grep -w "word" file.txt               # whole-word match only
+grep -n "pattern" file.txt            # show line numbers alongside matches
+grep -l "pattern" *.txt               # list filenames that match (not the lines)
+grep -r "pattern" dir/                # recursive search through a directory
+
+# Context around matches
+grep -A 2 "pattern" file.txt          # 2 lines after each match
+grep -B 2 "pattern" file.txt          # 2 lines before each match
+grep -C 2 "pattern" file.txt          # 2 lines before AND after
+
+# Regex patterns
+grep "^start" file.txt                # lines starting with "start"
+grep "end$" file.txt                  # lines ending with "end"
+grep -E "cat|dog" file.txt            # extended regex: match either word
+grep -E "^[0-9]+" file.txt            # lines starting with digits
+
+# Combine with other commands
+grep "ERROR" app.log | wc -l          # count error lines
+grep -v "^#" config.txt               # skip comment lines
+grep "pattern" file.txt | sort | uniq # unique matching lines
 ```
+
 ---
 
-  1. **Find the White Rabbit's user ID**
-   
-    !!! tip "Linux Users Hint"
-    
-        - Learn about users in Linux systems
-        - The White Rabbit has a specific user ID that you need to identify
-        - Use commands like `whoami`, `id`, or check system files for user information
-    
-  2. **Search in the `users_list.csv` file**
-    
-    !!! warning ""
-    
-        - Look for the name of the user that has an IP address which **starts** with the White Rabbit's user ID
-        - Use commands like `grep`, `cat`, `find`, or `vim` to search through the CSV file
-        - The CSV file contains user information including IDs, names, and IP addresses
+### Hints
 
-  3. **Search the Logs folder for appearances of the name**
-    
-    !!! warning ""
+!!! tip "Hint: Counting with `grep`"
 
-          - Search for **all appearances** of the name you found in step 2 within the `Logs` folder
-          - Use commands like `grep -r`, `find`, or similar tools to search recursively
-          - Look through all log files in the directory
-           
-  4. **Sort the results by alphabetical order**
-  
-    !!! warning ""
-    
-        - Sort the **content only** (not the filenames)
-        - Use alphabetical ordering
-        - You might want to combine commands using pipes (`|`)
-     
-  5. **Get the password for the next room**
-  
-    !!! warning ""
-    
-        If all steps are done correctly, you will get the password for the next room from the sorted results.
+    To count lines containing "SOS", use:
+    ```bash
+    grep -c "<text>" <file>
+    ```
 
-**Files and Directories:**
+    * This will return a single number - the count of lines that contain "S<text>".
+    * `grep -c` gives you a single number -the count of matching lines.
 
-- `users_list.csv` - Contains user information with IDs, names, and IP addresses
-- `Logs/` folder - Contains various system log files to search through
+---
 
-## **Useful Commands:**
+!!! info "🔓 Unlock Room 03"
 
-| Command | Man Page                                                      | Description                       |
-| ------- | ------------------------------------------------------------- | --------------------------------- |
-| `grep`  | 🔗 [`grep`](https://man7.org/linux/man-pages/man1/grep.1.html) | Search for patterns in files      |
-| `sort`  | 🔗 [`sort`](https://man7.org/linux/man-pages/man1/sort.1.html) | Sort lines of text                |
-| `cat`   | 🔗 [`cat`](https://man7.org/linux/man-pages/man1/cat.1.html)   | Display file contents             |
-| `find`  | 🔗 [`find`](https://man7.org/linux/man-pages/man1/find.1.html) | Search for files and directories  |
-| `cut`   | 🔗 [`cut`](https://man7.org/linux/man-pages/man1/cut.1.html)   | Extract specific columns from CSV |
-| `awk`   | 🔗 [`awk`](https://man7.org/linux/man-pages/man1/awk.1.html)   | Text processing tool              |
+    Once you have the password, decrypt the next room's README:
 
-## **Hints:**
-- Use `grep` to search for the White Rabbit's user ID in system files
-- Find where user are stored in Linux systems
-
-
+    ```bash
+    openssl enc -aes-256-cbc -d -a -pbkdf2 \
+    -in ../room_03/README -out ../room_03/README.txt -pass pass:PASSWORD
+    cat ../room_03/README.txt
+    ```

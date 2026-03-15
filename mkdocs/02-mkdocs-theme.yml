@@ -19,30 +19,29 @@ theme:
     - content.tooltips
     - content.footer.last-updated
     - content.footer.contributors
-    - navigation.expand: true
+    - navigation.expand
     - navigation.footer
     - navigation.indexes
     - navigation.instant
     - navigation.instant.prefetch
     - navigation.instant.progress
-    - navigation.prune
+    #- navigation.prune        # Disabled - hides sections when tabs are off
     - navigation.sections
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.top: true
+    #- navigation.tabs          # Disabled - left nav only
+    #- navigation.tabs.sticky   # Disabled - left nav only
+    - navigation.top
     - navigation.tracking
     - search.highlight
     - search.share
     - search.suggest
     - toc.follow
     - toc.integrate
+    - toc.sticky
     #- header.autohide  # Disabled to keep top nav always visible
-    - toc.integrate
   # 👈 enables avatar display
   palette:
     # Dark mode only
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+    - scheme: slate
       primary: indigo # You can choose any color here
 
   font:

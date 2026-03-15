@@ -1,0 +1,32 @@
+- Congratulations! You have reached room 29!!
+
+## Section: Bash Scripting
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A long corridor has doors on both sides.
+- Read the door log line by line and count how many doors were OPEN.
+
+## Tasks:
+
+1. Read door_log.txt to see the format.
+   >> hint: `head -5 door_log.txt`
+
+2. Use a while read loop to count OPEN doors.
+   >> hint:
+   >>   count=0
+   >>   while read -r id status; do
+   >>     [ "$status" = "OPEN" ] && (( count++ ))
+   >>   done < door_log.txt
+   >>   echo $count
+
+3. The password is "while" followed by the count of OPEN doors.
+   >> Example: if 100 doors are OPEN, password = "while100"
+
+   NOTE: You can also just use: grep -c "OPEN" door_log.txt
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_30/README -out ../room_30/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

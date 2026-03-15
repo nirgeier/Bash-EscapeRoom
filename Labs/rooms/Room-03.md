@@ -1,134 +1,116 @@
 ---
-password: "472"
-title_prefix: "🦜 "
-summary: "Room 03 requires analyzing a song file to compute a numeric key that unlocks the creature's cage."
+password: "signal59"
+title_prefix: "⏳ "
+summary: "Use tac, rev, head, tail, and wc to decode a time capsule journal."
 ---
 
-**FOLLOW THE CREATURE, FREE SCRIPTACORUS!**
+**DECODE THE TIME CAPSULE!**
 
 ---
 
-# 🦜 Room 03
+## ⏳ The Time Capsule
 
-!!! tip "Decryption Tip"
-    If the content doesn't appear after entering the password, please refresh the page (F5 or Ctrl+R).
+- An ancient journal was found buried underground.
+- Its last entry holds a secret - but the characters are written **backwards**.
+- Use line and character reversal tools to decode it.
 
-## Welcome to Room 03!
+!!! abstract "📜 Mission Briefing"
 
-## Objective: Analyze the `song` file to compute a numeric key, free the `creature`, and `unlock` the `treasure chest`
+    - The file `time_capsule.txt` contains journal entries.
+    - The last entry holds a secret, but it is written **backwards**.
 
-```markdown
-To pass this room:
----------------------------------------------------------------------
+    1. Count how many lines the file has.
+       > hint: `wc -l` counts lines
+    2. Reverse the **line order** so the last line becomes the first.
+       > hint: `tac` reverses line order (it is `cat` spelled backwards!)
+    3. Take the first line of the reversed output.
+       > hint: pipe `tac` output to `head -1`
+    4. That line has its **characters** reversed -unreverse it!
+       > hint: `rev` reverses character order within each line
+    5. The decoded line reveals a secret word.
+    6. The password is that word
+       followed by the total line count *(no space)*.
+       > Example: if the word is "hello" and there are 50 lines → `hello50`
 
-- Get the key to the treasureChest!
+### Key Commands
 
-* This room has a strange but very kindly creature: `Scriptacorus!!`.
-* The creature is locked in his cage (`creature.sh`) with a key (`key`).
-* To release the creature you need to find the key (password) to open the encrypted cage:
+| Command | Purpose |
+| --- | --- |
+| `head file` | Show first 10 lines |
+| `head -n 20 file` | Show first 20 lines |
+| `head -c 100 file` | Show first 100 bytes |
+| `tail file` | Show last 10 lines |
+| `tail -n 20 file` | Show last 20 lines |
+| `tail -f file` | Follow file as it grows (live log) |
+| `tail -F file` | Follow even if file is rotated |
+| `tail -c 100 file` | Show last 100 bytes |
+| `tail -n +5 file` | Show from line 5 to end |
+| `tac file` | Print lines in reverse order |
+| `rev file` | Reverse each line character by character |
+| `wc -l file` | Count lines |
+| `wc -w file` | Count words |
+| `wc -c file` | Count bytes |
+| `nl file` | Number lines (like cat -n) |
+| `head -1 file \| wc -c` | Count chars in first line |
 
-* The steps to get the `key` are the following:
-  
-  Perform the described action on the `song'` file and summarize the results, 
-  the **sum is the key** to open the (`creature.sh`) cage:
+### How Text Processing Tools Work
 
-  1. count all `do` word appearances
-  2. count only LINES which `NOT` contain `home`
-  3. count only `non empty` lines 
- 
-To open the cage:
------------------
- 
-1. Open the `creature.sh` using the key you found
-2. Disable encryption with `:set key=` command (setting the encrypt key to empty)
-3. Save the new (unencrypted) file
-4. Wake up the Scriptacorus!! (He will tell you the key to the treasureChest once you feed him)
-   >> hint: Once you opened the cage you can view its content
-5. Find the key to the treasure chest and use it
+```bash
+# tac - reverse line order (cat spelled backwards)
+tac file.txt                          # print lines in reverse order
+tac file1.txt file2.txt               # reverse and concatenate files
+tac file.txt | head -1                # get the very last line of a file
+
+# rev - reverse characters on each line
+rev file.txt                          # reverse chars on every line
+echo "hello" | rev                    # outputs: olleh
+rev file.txt | tac                    # reverse chars AND line order
+
+# head - show the beginning of a file
+head file.txt                         # first 10 lines (default)
+head -n 5 file.txt                    # first N lines
+head -n -5 file.txt                   # all lines EXCEPT the last 5
+head -c 100 file.txt                  # first 100 bytes
+
+# tail - show the end of a file
+tail file.txt                         # last 10 lines (default)
+tail -n 5 file.txt                    # last N lines
+tail -n +2 file.txt                   # skip first line, print the rest
+tail -f file.txt                      # follow: live-stream new appended lines
+
+# wc - count lines, words, bytes
+wc file.txt                           # lines, words, bytes (all three)
+wc -l file.txt                        # count lines only
+wc -w file.txt                        # count words only
+wc -c file.txt                        # count bytes
+wc -m file.txt                        # count characters
+wc -l *.txt                           # count lines across multiple files
 ```
 
 ---
 
-  1. **Compute three counts from the `song` file**
-   
-    !!! tip "Understanding the Key"
-    
-        - The key to open the encrypted `script.sh` (creature's cage) is the **sum** of three numbers
-        - You must count specific patterns in the `song` file
-        - Each count contributes to the final numeric key
-    
-  2. **Calculate the three values**
-    
-    !!! tip "Useful `grep` Flags for Counting the expected patterns"
-    
-        | Flag | Description                                                |
-        | ---- | ---------------------------------------------------------- |
-        | `-o` | Print only the matched parts of a matching line            |
-        | `-i` | Ignore case distinctions in patterns and data              |
-        | `-E` | Interpret patterns as extended regular expressions         |
-        | `-v` | Invert the sense of matching, to select non-matching lines |
-        | `-c` | Print a count of matching lines for each input file        |
-        | `-e` | Use the following argument as a pattern                    |
+### Hints
 
-  3. **Open the encrypted cage (`script.sh`)**
-    
-    !!! warning "Opening Encrypted Files"
+!!! tip "Hint 1"
 
-          - Use `vim` to open the encrypted script
-          - The file will prompt you for a password/key
-          - Enter the numeric key you computed from step 2
-          - Command: `vim script.sh`
-           
-  4. **Disable the encryption inside vim**
-  
-    !!! warning ""
-    
-        - Once the file is open, disable encryption with: `:set key=`
-        - This sets the encryption key to empty, unlocking the file
-        - Save and exit with `:wq`
-     
-  5. **Wake and feed Scriptacorus**
-  
-    !!! warning ""
-    
-        - After opening the cage, you can view the script content
-        - Follow the instructions in the unlocked `script.sh` to wake the creature
-        - Feed the creature using the `food` file if needed
-        - Scriptacorus will reveal the key to the `treasureChest`
+    `tac` is `cat` spelled backwards -and it reverses **line order**.
 
-  6. **Use the treasure key to unlock the treasure chest**
-  
-    !!! warning ""
-    
-        - Once Scriptacorus gives you the treasure key, use it to open `treasureChest`
-        - This may be another encrypted file or a final puzzle
+!!! tip "Hint 2"
 
-## **Files and Directories:**
+    `rev` reverses the **characters** within each line.
 
-| File          | Description                                                                           |
-| ------------- | ------------------------------------------------------------------------------------- |
-| `song`        | Text file to analyze for counting patterns                                            |
-| `creature.sh` | The encrypted cage holding Scriptacorus (may be named `creature.sh` in some versions) |
-| `food`        | Feed the creature after releasing it                                                  |
+!!! tip "Hint 3"
 
+    The password format is: the secret word + the line count (e.g., `word50`).
 
-## **Useful Commands:**
+---
 
-| Command | Man Page                                                      | Description                            |
-| ------- | ------------------------------------------------------------- | -------------------------------------- |
-| `grep`  | 🔗 [`grep`](https://man7.org/linux/man-pages/man1/grep.1.html) | Search for patterns in files           |
-| `wc`    | 🔗 [`wc`](https://man7.org/linux/man-pages/man1/wc.1.html)     | Count lines, words, or characters      |
-| `vim`   | 🔗 [`vim`](https://manpages.org/vim)                           | Text editor (supports file encryption) |
-| `cat`   | 🔗 [`cat`](https://man7.org/linux/man-pages/man1/cat.1.html)   | Display file contents                  |
-| `echo`  | 🔗 [`echo`](https://man7.org/linux/man-pages/man1/echo.1.html) | Print text or variables                |
+!!! info "🔓 Unlock Room 04"
 
-## **Hints:**
+    Once you have the password, decrypt the next room's README:
 
-- Remember to save the file after using `:set key=` in vim to permanently decrypt it
-- You can use mulltiple `grep` flags together to achieve the desired counts
-- Use `\b` word boundaries in `grep` to match whole words only (e.g., "do" but not "doing")
-- The `-v` flag in `grep` inverts the match (shows lines that do NOT match)
-- You will need to resole multiple tasks to get the final key
-
-**GOOD LUCK!**
-
+    ```bash
+    openssl enc -aes-256-cbc -d -a -pbkdf2 \
+      -in ../room_04/README -out ../room_04/README.txt -pass pass:PASSWORD
+    cat ../room_04/README
+    ```

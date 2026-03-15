@@ -1,80 +1,126 @@
 ---
-password: "LinusTorvalds"
-title_prefix: "🤪 "
-summary: "Room 07 requires playing the 7 boom game, decrypting a file, and finding the text wrapping command."
+password: "unique37"
+title_prefix: "🔐 "
+summary: "Fix file permissions using chmod to unlock the gates."
 ---
 
-**PLAY 7 BOOM, DECRYPT A FILE, AND FIND THE TEXT WRAPPING COMMAND!**
-
----
-
-# 🤪 Room 07
-
-!!! danger "sudo Access"
-    - You might need `sudo` access for some commands.
-    - The sudo password is required for elevated privileges.
-    - The sudo password is: `escape`.
-    - Write it down, you will need it later.
+**FIX THE PERMISSIONS!**
 
 ---
 
-## Objective: Play 7 boom game, decrypt a file, and find the text wrapping command
+## 🔐 The Permission Maze
 
-```markdown
-To pass this room:
----------------------------------------------------------------------
+- Seven gates block your path, each with wrong permissions.
+- Set them correctly to proceed.
 
-- In room #7 we shell play the `7 boom` game.
-- The original 7 boom game is played in the range of 1-100.
-- We will change the rules and calculate the 7 boom numbers between 1 to 1000 
-- The rules are very simple:
-  - If a number is divided by 7 (without leftover), or has the digit 7 in it (for example: 7,778 etc)
-    the number is counted as `boom` number  
+!!! abstract "📜 Mission Briefing"
 
-Tasks: 
-------
+    Seven locked gates block your path. Each gate is a file with **wrong**
+    permissions. Fix them all to proceed!
 
-1. Since we want to learn bash scripting write a `bash script` which prints out how many boom numbers are between 1 to 1000. 
-  You can still do it manually if you wish :-)
-2. With the password that you got unzip the `room7.zip` file
-3. Once you unzipped the content find a bash function which print out the contents of the .txt file 
-   with lines wrapped after `80` characters, **without** splitting any words!!!. 
-4. The password will popup in the file.
+    | File   | Required Permission | Numeric |
+    |--------|---------------------|---------|
+    | gate_1 | rwxr-xr-x           | 755     |
+    | gate_2 | rw-r--r--           | 644     |
+    | gate_3 | rwx------           | 700     |
+    | gate_4 | r--r--r--           | 444     |
+    | gate_5 | rwxrwxr-x           | 775     |
+    | gate_6 | rw-rw----           | 660     |
+    | gate_7 | r-x--x--x           | 511     |
 
-Good Luck !!!
+    1. Check current permissions: `ls -l gate_*`
+    2. Fix each gate using `chmod`.
+    3. Once **all** gates are correct, run `./getKey.sh` to get the password.
+
+---
+
+### Key Commands
+
+| Command | Purpose |
+| --- | --- |
+| `chmod 755 file` | Set rwxr-xr-x (octal) |
+| `chmod 644 file` | Set rw-r--r-- (octal) |
+| `chmod u+x file` | Add execute for owner |
+| `chmod go-w file` | Remove write for group and others |
+| `chmod a+r file` | Add read for all |
+| `chmod -R 755 dir/` | Recursive chmod |
+| `chmod u=rwx,go=rx file` | Explicit symbolic notation |
+| `stat file` | Detailed file metadata |
+| `stat -c "%a" file` | Show octal permissions only |
+| `stat -c "%U %G" file` | Show owner and group |
+| `stat -c "%s" file` | Show file size in bytes |
+| `ls -l file` | Long listing with permissions |
+| `ls -la` | Include hidden files |
+| `ls -lh` | Human-readable sizes |
+| `ls -lt` | Sort by modification time |
+| `ls -lS` | Sort by file size |
+| `ls -ld dir/` | Show dir itself, not contents |
+| `umask` | Show default permission mask |
+
+---
+
+### How `chmod` Works
+
+```bash
+# Numeric (octal) mode
+chmod 755 file       # rwxr-xr-x  (owner: all, group+others: read+execute)
+chmod 644 file       # rw-r--r--  (owner: read+write, others: read)
+chmod 700 file       # rwx------  (owner only, no access for others)
+chmod 777 file       # rwxrwxrwx  (full access for everyone)
+chmod 000 file       # ---------  (no permissions for anyone)
+chmod 600 file       # rw-------  (owner read+write only)
+chmod 444 file       # r--r--r--  (read-only for everyone)
+
+# Symbolic mode - add, remove, or set permissions
+chmod u+x file       # add execute for user (owner)
+chmod g-w file       # remove write from group
+chmod o=r file       # set others to read only (exact)
+chmod a+r file       # add read for all (user, group, others)
+chmod u=rwx,g=rx,o=r file   # set all three at once
+
+# Apply recursively to a directory
+chmod -R 755 mydir/
+
+# Check current permissions
+ls -l file           # shows symbolic: -rwxr-xr-x
+stat -c "%a %n" file # shows numeric:  755 file
+stat -c "%A %n" file # shows symbolic: -rwxr-xr-x file
 ```
 
-  1. Write a bash script to count boom numbers between 1 and 1000.
-   
-    !!! tip "7 Boom Rules"
-    
-        - A number is a `boom` if it's divisible by 7 or contains the digit 7.
-        - Count such numbers from `1` to `1000`.
-        - The count is xxx.
-    
-  2. Use the count (xxx) as the key to decrypt the file.
-            
-  3. Find the command to wrap text after 80 characters without splitting words.
-               
-    !!! tip "Text Wrapping"
-    
-        - Use the `fold` command with appropriate options (flags).
-        - This will reveal the password in the file.
-
-  4. Use the revealed password to proceed to the next room.
-     
 ---
 
-## **Useful Commands:**
+### Linux Permission System
 
-| Command | Man Page                                                        | Description                                     |
-| ------- | --------------------------------------------------------------- | ----------------------------------------------- |
-| `bash`  | 🔗 [`bash`](https://man7.org/linux/man-pages/man1/bash.1.html)   | GNU Bourne-Again SHell                          |
-| `vim`   | 🔗 [`vim`](https://manpages.org/vim)                             | Text editor                                     |
-| `fold`  | 🔗 [`fold`](https://man7.org/linux/man-pages/man1/fold.1.html)   | Wrap each input line to fit in specified width  |
-| `sleep` | 🔗 [`sleep`](https://man7.org/linux/man-pages/man1/sleep.1.html) | Delay for a specified amount of time            |
-| `wait`  | 🔗 [`wait`](https://man7.org/linux/man-pages/man1/wait.1.html)   | Wait for job completion                         |
-| `while` | 🔗 [`bash`](https://man7.org/linux/man-pages/man1/bash.1.html)   | Execute commands in a loop (for infinite loops) |
+```
+rwxrwxrwx = User, Group, Others
+r = read (4), w = write (2), x = execute (1)
 
+Examples:
+  755 = rwxr-xr-x (owner: full, others: read+execute)
+  644 = rw-r--r-- (owner: read+write, others: read only)
+  700 = rwx------ (owner only)
+```
 
-**GOOD LUCK!**
+### Required Permissions
+
+| File   | Permission | Numeric |
+| ------ | ---------- | ------- |
+| gate_1 | rwxr-xr-x  | 755     |
+| gate_2 | rw-r--r--  | 644     |
+| gate_3 | rwx------  | 700     |
+| gate_4 | r--r--r--  | 444     |
+| gate_5 | rwxrwxr-x  | 775     |
+| gate_6 | rw-rw----  | 660     |
+| gate_7 | r-x--x--x  | 511     |
+
+---
+
+!!! info "🔓 Unlock Room 08"
+
+    Once you have the password, decrypt the next room's README:
+
+    ```bash
+    openssl enc -aes-256-cbc -d -a -pbkdf2 \
+      -in ../room_08/README -out ../room_08/README.txt -pass pass:PASSWORD
+    cat ../room_08/README
+    ```

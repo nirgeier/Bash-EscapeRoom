@@ -1,0 +1,27 @@
+- Congratulations! You have reached room 41!!
+
+## Section: Network Tools
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A secret server is waiting for the magic word.
+- Send it using nc and receive the key in return.
+
+## Tasks:
+
+1. Start the secret server in the background.
+   >> hint: `bash start_server.sh &`
+
+2. Send the magic word to it.
+   >> hint: `echo "OPEN" | nc localhost 4444`
+
+3. The server responds with the password.
+
+NOTE: If nc/netcat is not available, check: nc_fallback.txt
+   >> hint: `cat nc_fallback.txt`
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_42/README -out ../room_42/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

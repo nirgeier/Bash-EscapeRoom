@@ -2,39 +2,47 @@
 
 source ../_utils.sh
 
-# Get the PID of the testUser
-function getPID(){
-    PID=$(ps -o pid,user,comm,args | grep testUser | grep room08 | awk '{print $1}')
-    # If no PID is found, return -1
-    if [ -z "$PID" ]; then
-        PID=-1
-    fi
-}
+ERRORS=0
 
-getPID
-# Check if an error occurred
-if [ "$PID" != "$1" ]; 
-then
-    echo -e "${BRed}--------------------------------------------------${NO_COLOR}"
-    echo -e "${BRed}   An error occurred. Try again${NO_COLOR}"
-    echo -e "${BRed}   Verify that you done it correctly and Try again${NO_COLOR}"
-    echo -e "${BRed}--------------------------------------------------${NO_COLOR}"
-    exit 1
-fi
-
-# Check if we have passed the correct PID
-if [[ $PID -eq $1 ]]
-then
-    echo -e "${GREEN}--------------------------------------------------${NO_COLOR}"
-    echo -e "${GREEN}Good work.${NO_COLOR}"
-    echo -e "${RED}- Im killing the process for you :-)${NO_COLOR}"
-    echo -e "${GREEN}- In Linux ${CYAN}less${NO_COLOR} is ${CYAN}more${NO_COLOR} ...${NO_COLOR}"
-    echo -e "${GREEN}- Password for the next room is: ${BYELLOW}less${BGreen}is${BYELLOW}more${NO_COLOR}"
-    echo -e "${GREEN}--------------------------------------------------${NO_COLOR}"
-    sudo kill -9 $PID
+# Check LAB_KEY
+if [ "$LAB_KEY" != "42" ]; then
+    echo -e "${BRed}LAB_KEY is not set correctly (expected 42)${NO_COLOR}"
+    ERRORS=$((ERRORS + 1))
 else
-    echo -e "${YELLOW}Please make sure that you have done the following:${NO_COLOR}"
-    echo -e "${YELLOW} - Script named:        'room08_proc'${NO_COLOR}"
-    echo -e "${YELLOW} - Script is invoked as 'testUser'${NO_COLOR}"
+    echo -e "${BGreen}LAB_KEY: OK${NO_COLOR}"
 fi
 
+# Check EXPERIMENT
+if [ "$EXPERIMENT" != "active" ]; then
+    echo -e "${BRed}EXPERIMENT is not set correctly (expected 'active')${NO_COLOR}"
+    ERRORS=$((ERRORS + 1))
+else
+    echo -e "${BGreen}EXPERIMENT: OK${NO_COLOR}"
+fi
+
+# Check SCIENTIST
+if [ "$SCIENTIST" != "darwin" ]; then
+    echo -e "${BRed}SCIENTIST is not set correctly (expected 'darwin')${NO_COLOR}"
+    ERRORS=$((ERRORS + 1))
+else
+    echo -e "${BGreen}SCIENTIST: OK${NO_COLOR}"
+fi
+
+# Check alias
+ALIAS_OUTPUT=$(labstatus 2>/dev/null)
+if [ "$ALIAS_OUTPUT" != "ready" ]; then
+    echo -e "${BRed}Alias 'labstatus' not set correctly (should echo 'ready')${NO_COLOR}"
+    ERRORS=$((ERRORS + 1))
+else
+    echo -e "${BGreen}labstatus alias: OK${NO_COLOR}"
+fi
+
+if [ $ERRORS -eq 0 ]; then
+    echo ""
+    echo -e "${BGreen}Environment configured correctly!${NO_COLOR}"
+    echo -e "The password for the next room is: ${BYELLOW}export99${NO_COLOR}"
+    echo ""
+else
+    echo ""
+    echo -e "${BRed}$ERRORS check(s) failed. Fix your environment!${NO_COLOR}"
+fi
