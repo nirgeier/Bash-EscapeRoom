@@ -60,7 +60,7 @@
     
       <link rel="stylesheet" href="../css/print-site-material.css">
     
-      <link rel="stylesheet" href="../assets/stylesheets/codewizard.css?v=1773621018">
+      <link rel="stylesheet" href="../assets/stylesheets/codewizard.css?v=1773623894">
     
     <script>__md_scope=new URL("/Bash-EscapeRoom/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -2913,14 +2913,19 @@
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#index-__codelineno-3-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/nirgeier/Bash-EscapeRoom.git
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#index-__codelineno-3-3"></a><span class="nb">cd</span><span class="w"> </span>Bash-EscapeRoom
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#index-__codelineno-3-4"></a>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#index-__codelineno-3-5"></a><span class="c1"># Build and run with Docker</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#index-__codelineno-3-6"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>bash-escape-room<span class="w"> </span>.
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#index-__codelineno-3-7"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>bash-escape-room
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#index-__codelineno-3-5"></a><span class="c1"># Build and run with Docker Compose</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#index-__codelineno-3-6"></a><span class="nb">cd</span><span class="w"> </span>docker
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#index-__codelineno-3-7"></a>docker-compose<span class="w"> </span>build
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#index-__codelineno-3-8"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#index-__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#index-__codelineno-3-10"></a><span class="c1"># Or build and run directly with Docker</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#index-__codelineno-3-11"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>bash-escape-room<span class="w"> </span>-f<span class="w"> </span>docker/Dockerfile<span class="w"> </span>.
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#index-__codelineno-3-12"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>bash-escape-room
 </span></code></pre></div>
 <p><strong>Prerequisites:</strong></p>
 <ul>
 <li>Git</li>
-<li>Docker</li>
+<li>Docker and Docker Compose</li>
 <li>Basic knowledge of Docker builds</li>
 </ul>
 </div>
@@ -10878,11 +10883,9 @@ answer is 4 characters long.</p>
       
         <script src="../js/print-site.js"></script>
       
-        <script src="https://buttons.github.io/buttons.js?v=1773621018"></script>
+        <script src="https://buttons.github.io/buttons.js?v=1773623894"></script>
       
-        <script src="../assets/javascripts/encryption-fix.js?v=1773621018"></script>
-      
-        <script src="../assets/javascripts/truncate_nav.js?v=1773621018"></script>
+        <script src="../assets/javascripts/encryption-fix.js?v=1773623894"></script>
       
     
   </body>
