@@ -1,0 +1,30 @@
+- Congratulations! You have reached room 6!!
+
+## Section: Text Mastery
+
+To pass this room:
+---------------------------------------------------------------------
+
+- Two rival treasure hunters made inventories of gems in their vaults.
+- The files `vault_a.txt` and `vault_b.txt` each contain gem names,
+  with some duplicates within each file.
+
+## Tasks:
+
+1. Remove duplicate entries within each file.
+   >> hint: `sort` + `uniq` removes duplicates from sorted input
+
+2. Find gems that appear ONLY in `vault_a.txt` (not in `vault_b.txt`).
+   >> hint: `comm -23 file1 file2` shows lines only in file1
+   >> (both files must be sorted first!)
+
+3. Count those unique-to-vault-a gems.
+   >> hint: pipe the result to `wc -l`
+
+4. The password is the word `unique` followed by that count.
+   >> Example: if there are 15 unique gems, password is "unique15"
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_07/README -out ../room_07/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

@@ -1,0 +1,26 @@
+- Congratulations! You have reached room 40!!
+
+## Section: Network Tools
+
+To pass this room:
+---------------------------------------------------------------------
+
+- An ancient domain holds the password encoded in its DNS TXT record.
+- Consult the DNS oracle to reveal it.
+
+## Tasks:
+
+1. Query the TXT records for: secret.escape.local
+   >> hint: `dig TXT secret.escape.local +short`
+   >> OR:   `host -t TXT secret.escape.local`
+
+2. The TXT record value is the password.
+
+NOTE: If DNS is not configured in this environment,
+   the password is stored in dns_fallback.txt
+   >> hint: `cat dns_fallback.txt`
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_41/README -out ../room_41/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

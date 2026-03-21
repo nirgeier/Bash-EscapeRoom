@@ -1,0 +1,33 @@
+- Congratulations! You have reached room 3!!
+
+## Section: Navigation & Discovery
+
+To pass this room:
+---------------------------------------------------------------------
+
+- You found an ancient time capsule buried underground!
+- The file `time_capsule.txt` contains journal entries.
+- The last entry holds a secret, but it is written BACKWARDS.
+
+## Tasks:
+
+1. Count how many lines the file has.
+   >> hint: `wc -l` counts lines
+
+2. Reverse the LINE ORDER of the file so the last line becomes the first.
+   >> hint: `tac` reverses line order (it is `cat` spelled backwards!)
+
+3. Take the first line of the reversed output.
+   >> hint: pipe tac output to `head -1`
+
+4. That line is written with characters reversed. Unreverse it!
+   >> hint: `rev` reverses character order within each line
+
+5. The decoded line reveals a secret word. The password is that word
+   followed by the total line count (no space).
+   >> Example: if the word is "hello" and there are 50 lines, password is "hello50"
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_04/README -out ../room_04/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

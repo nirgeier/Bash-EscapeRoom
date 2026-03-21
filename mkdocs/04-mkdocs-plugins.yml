@@ -1,0 +1,49 @@
+###
+### mkdocs-plugins.yml
+###
+
+plugins:
+      - awesome-pages
+      - section-index
+      - meta
+      - search:
+              separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+      - encryptcontent:
+              arithmatex: false
+              encrypted_something:
+                    mkdocs-encrypted-toc: "display:none;"
+                    mySpecialClass: "color:red;"
+              hljs: false
+              mermaid2: false
+              password_button: true
+              password_file: ".mkdocs-build/passwords.yml"
+              reload_scripts:
+                    - "document.getElementById('mkdocs-decrypt-button').addEventListener('click', function() { setTimeout(function() { location.reload(); }, 1000); });"
+              remember_password: false
+              session_storage: true
+      # - pdf-export:
+      #     combined: true # all pages in one PDF
+      #     combined_output_path: docs/Full-Documentation.pdf
+      #     media_type: print
+      #     verbose: true
+      # Git
+      #- git-authors
+      - git-committers:
+              branch: main
+              docs_path: Labs # set if your docs folder is not root
+              enabled: true
+              repository: nirgeier/Bash-EscapeRoom
+      - git-revision-date-localized:
+              enable_creation_date: true
+              enable_git_follow: false
+              fallback_to_build_date: true
+              locale: en
+              timezone: UTC
+              type: date
+      - minify:
+              minify_html: true
+
+      - include-markdown
+
+      # Leave this one as the last one in the list
+      - print-site

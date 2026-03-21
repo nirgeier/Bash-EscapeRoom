@@ -1,0 +1,33 @@
+- Congratulations! You have reached room 8!!
+
+## Section: System Mastery
+
+To pass this room:
+---------------------------------------------------------------------
+
+- Welcome to the Environment Lab!
+- You must configure your shell environment correctly to unlock the door.
+
+** Read all instructions before starting **
+
+## Tasks:
+
+1. There is a hidden configuration file in this room.
+   >> hint: hidden files start with a dot (.) - use `ls -a` to see them
+
+2. Source the hidden config file to load its settings.
+   >> hint: `source .filename` or `. .filename`
+
+3. After sourcing, the config tells you what environment variables
+   to set. Set them using `export`.
+   >> hint: `export VARIABLE_NAME=value`
+
+4. Create an alias named `labstatus` that prints "ready".
+   >> hint: `alias labstatus='echo ready'`
+
+5. Once everything is set, run `./getKey.sh` to verify and get the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_09/README -out ../room_09/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

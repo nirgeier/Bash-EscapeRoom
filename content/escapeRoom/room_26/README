@@ -1,0 +1,29 @@
+- Congratulations! You have reached room 26!!
+
+## Section: Bash Scripting
+
+To pass this room:
+---------------------------------------------------------------------
+
+- The combination to the vault is hidden inside shell variable values.
+- Source vault_env.sh and use parameter expansion to extract the pieces.
+
+## Tasks:
+
+1. Source the environment file.
+   >> hint: `source vault_env.sh`
+
+2. The variable TREASURE_PATH contains a path like /deep/in/the/vault/jewel
+   Extract just the filename part (after the last /).
+   >> hint: `echo ${TREASURE_PATH##*/}`
+
+3. The variable GEMCODE contains something like "gem-WORD-2024"
+   Extract the middle part between the two dashes.
+   >> hint: first do `result=${GEMCODE#*-}` then `echo ${result%-*}`
+
+4. The filename from step 2 IS the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_27/README -out ../room_27/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

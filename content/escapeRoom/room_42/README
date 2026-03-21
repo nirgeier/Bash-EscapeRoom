@@ -1,0 +1,33 @@
+- Congratulations! You have reached room 42!!
+
+## Section: System Administration
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A process is keeping a secret file open.
+- Use lsof to find which process holds the key.
+
+## Tasks:
+
+1. Run the keeper process in the background.
+   >> hint: `bash start_keeper.sh &`
+
+2. Use lsof to find which process has "secret_key.txt" open.
+   >> hint: `lsof | grep secret_key`
+
+3. Note the PID of that process.
+
+4. See all files that process has open.
+   >> hint: `lsof -p <PID>`
+
+5. Among those files, find "password.txt" and read it.
+   >> hint: look at the NAME column in lsof output, then cat the file path
+
+SHORTCUT: Just read lsof_secret.txt
+   >> hint: `cat lsof_secret.txt`
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_43/README -out ../room_43/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

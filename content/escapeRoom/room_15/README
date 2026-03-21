@@ -1,0 +1,31 @@
+- Congratulations! You have reached room 15!!
+
+## Section: Data Processing
+
+To pass this room:
+---------------------------------------------------------------------
+
+- The database has been exported as a JSON file.
+- The password is buried inside nested objects.
+- Only active agents hold the clue.
+
+## Tasks:
+
+1. Explore the JSON structure.
+   >> hint: `jq 'keys' database.json`
+
+2. List all agents and their status.
+   >> hint: `jq '.agents[] | {name: .name, status: .status}' database.json`
+
+3. Filter for agents with status "active" and extract their code field.
+   >> hint: `jq -r '.agents[] | select(.status == "active") | .code' database.json`
+
+4. Sort the codes alphabetically and concatenate them (no separator, no quotes).
+   >> hint: pipe to `sort | tr -d '\n'`
+
+5. The concatenated result is the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_16/README -out ../room_16/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

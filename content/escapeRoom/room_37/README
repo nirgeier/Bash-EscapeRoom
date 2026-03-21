@@ -1,0 +1,26 @@
+- Congratulations! You have reached room 37!!
+
+## Section: Bash Scripting
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A guardian blocks the gate and asks you questions.
+- Answer correctly to receive the password.
+
+## Tasks:
+
+1. Run guardian.sh and answer the questions.
+   >> hint: `bash guardian.sh`
+
+2. Alternatively, pipe all answers at once.
+   >> hint: `printf "bash\nescape\n$(date +%Y)\n" | bash guardian.sh`
+
+3. The correct answers are: "bash", "escape", and the current year.
+
+4. When all answers are correct, the script prints the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_38/README -out ../room_38/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

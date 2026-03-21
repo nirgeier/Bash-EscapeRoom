@@ -1,0 +1,35 @@
+- Congratulations! You have reached room 5!!
+
+## Section: Text Mastery
+
+To pass this room:
+---------------------------------------------------------------------
+
+- This room has a decoder ring puzzle with 3 layers of encoding.
+- The file `encoded_message.txt` contains a secret message.
+- It has been encoded in 3 layers (applied in this order):
+  1. The text was REVERSED (characters flipped)
+  2. Then ROT13 was applied (each letter shifted by 13 positions)
+  3. Then the result was Base64-encoded
+
+## Tasks:
+
+To decode, you need to UNDO the layers in reverse order:
+
+1. First, decode the Base64:
+   >> hint: `base64 -d` decodes base64
+
+2. Then, undo the ROT13:
+   >> hint: `tr 'a-zA-Z' 'n-za-mN-ZA-M'` applies/reverses ROT13
+
+3. Finally, reverse the characters:
+   >> hint: `rev` reverses characters in each line
+
+4. Chain all three steps with pipes (|) to decode in one command!
+
+5. The decoded output is the password for the next room.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_06/README -out ../room_06/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

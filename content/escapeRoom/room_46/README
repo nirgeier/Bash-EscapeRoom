@@ -1,0 +1,30 @@
+- Congratulations! You have reached room 46!!
+
+## Section: Text Editor
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A critical document is locked inside a 1000-line file.
+- The password is on line 777 - find it without scrolling!
+
+## Tasks:
+
+1. Open the file in vim.
+   >> hint: `vim ancient_tome.txt`
+
+2. Jump directly to line 777.
+   >> hint: type `777G` or `:777` in vim
+
+3. The line reads "SECRET: <password>" - note the password word.
+
+4. Exit vim without saving.
+   >> hint: `:q!`
+
+SHORTCUT (if you prefer not to use vim):
+   >> hint: `sed -n '777p' ancient_tome.txt`
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_47/README -out ../room_47/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

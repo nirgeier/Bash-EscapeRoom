@@ -1,0 +1,30 @@
+- Congratulations! You have reached room 48!!
+
+## Section: Version Control
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A secret was committed to this git repository, then deleted.
+- Nothing is truly gone from git history!
+
+## Tasks:
+
+1. Navigate into the repository.
+   >> hint: `cd vault_repo`
+
+2. View the commit history.
+   >> hint: `git log --oneline`
+
+3. Find the commit where secret.txt was added.
+   >> hint: `git log --oneline --all -- secret.txt`
+
+4. Show the file content from that commit.
+   >> hint: `git show <COMMIT_HASH>:secret.txt`
+
+5. The content of secret.txt is the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_49/README -out ../room_49/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

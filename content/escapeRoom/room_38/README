@@ -1,0 +1,29 @@
+- Congratulations! You have reached room 38!!
+
+## Section: Process Management
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A countdown timer is ticking. The script runs for a long time,
+  but writes clues to progress.log as it goes.
+- Use timeout to stop it after 5 seconds, then read the log.
+
+## Tasks:
+
+1. Run countdown.sh with a 5-second timeout.
+   >> hint: `timeout 5 bash countdown.sh`
+   >> (it will be killed after 5 seconds - that is expected!)
+
+2. Read progress.log to find the code.
+   >> hint: `cat progress.log`
+
+3. Find the BOMB_CODE line.
+   >> hint: `grep "BOMB_CODE" progress.log | tail -1 | cut -d'=' -f2`
+
+4. That value is the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_39/README -out ../room_39/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

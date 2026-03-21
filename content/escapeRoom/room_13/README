@@ -1,0 +1,31 @@
+- Congratulations! You have reached room 13!!
+
+## Section: File System Mastery
+
+To pass this room:
+---------------------------------------------------------------------
+
+- Someone has created a labyrinth of symbolic links.
+- Each mirror points to the next, forming a chain.
+- Follow the chain from `start.link` to reach the treasure.
+
+## Tasks:
+
+1. List all files in this directory.
+   >> hint: `ls -la`
+
+2. Start from `start.link` - it is a symbolic link.
+   >> hint: `readlink start.link` shows what it points to
+
+3. Follow the chain - each link points to the next.
+   >> hint: `readlink -f start.link` resolves the entire chain at once
+
+4. Read the final file at the end of the chain.
+   >> hint: `cat start.link` follows symlinks automatically
+
+5. The content of the final file is the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_14/README -out ../room_14/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

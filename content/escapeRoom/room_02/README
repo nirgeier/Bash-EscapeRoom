@@ -1,0 +1,24 @@
+- Congratulations! You have reached room 2!!
+
+## Section: Navigation & Discovery
+
+To pass this room:
+---------------------------------------------------------------------
+
+- You intercepted enemy radio transmissions!
+- The file `radio_intercepts.txt` contains 200 intercepted messages.
+- Each message is tagged with a status: OK, SOS, LOST, or NOISE.
+
+## Tasks:
+
+1. Count the number of lines containing "SOS" in `radio_intercepts.txt`.
+   >> hint: `grep -c` counts matching lines
+
+2. The password for the next room is the word `signal` followed by
+   that count (no space between them).
+   >> Example: if there are 23 SOS lines, the password would be "signal23"
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_03/README -out ../room_03/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

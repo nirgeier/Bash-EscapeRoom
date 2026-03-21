@@ -1,0 +1,18 @@
+#!/bin/bash
+# Lab Configuration File
+# After sourcing this file, set the following environment variables:
+#
+# 1. export LAB_KEY=42
+# 2. export EXPERIMENT=active
+# 3. export SCIENTIST=darwin
+#
+# Then create an alias:
+#   alias labstatus='echo ready'
+#
+# Finally run ./getKey.sh to verify your environment.
+
+echo "Lab config loaded! Now set the required variables."
+echo "  export LAB_KEY=42"
+echo "  export EXPERIMENT=active"
+echo "  export SCIENTIST=darwin"
+echo "  alias labstatus='echo ready'"

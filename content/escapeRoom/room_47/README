@@ -1,0 +1,30 @@
+- Congratulations! You have reached room 47!!
+
+## Section: Remote Access
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A remote vault only accepts SSH key authentication.
+- Generate a key pair and use it to retrieve the secret.
+
+## Tasks:
+
+1. Generate an SSH key pair (no passphrase).
+   >> hint: `ssh-keygen -t rsa -f /tmp/escape_key -N ""`
+
+2. Add your public key to the authorized keys.
+   >> hint: `bash setup_ssh_access.sh /tmp/escape_key.pub`
+
+3. Connect using your key.
+   >> hint: `ssh -i /tmp/escape_key -o StrictHostKeyChecking=no escape@localhost`
+
+4. The welcome message after login contains the password.
+
+SHORTCUT: The password is also in ssh_secret.txt
+   >> hint: `cat ssh_secret.txt`
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_48/README -out ../room_48/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

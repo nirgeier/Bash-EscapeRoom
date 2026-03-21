@@ -1,0 +1,32 @@
+- Congratulations! You have reached room 12!!
+
+## Section: Advanced Pipeline
+
+To pass this room:
+---------------------------------------------------------------------
+
+- The Grand Pipeline Challenge! Master the art of chaining commands.
+- The file `stations.txt` contains 8 city records, one per line.
+- Format: `CityName|Population|Area|Code`
+
+## Tasks:
+
+1. Extract ONLY the city names (first field, `|` is the delimiter).
+   >> hint: `cut -d'|' -f1 stations.txt`
+
+2. Take the first letter of each city name.
+   >> hint: `cut -c1` extracts the first character
+
+3. Combine all letters into one line (remove newlines).
+   >> hint: `tr -d '\n'` removes all newline characters
+
+4. Convert to lowercase.
+   >> hint: `tr 'A-Z' 'a-z'` converts to lowercase
+
+5. The result is the password! Build it as ONE pipeline:
+   >> `cut -d'|' -f1 stations.txt | cut -c1 | tr -d '\n' | tr 'A-Z' 'a-z'`
+
+>> Decrypt tip for final room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_100/README -out ../room_100/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

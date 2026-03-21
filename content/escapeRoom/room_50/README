@@ -1,0 +1,43 @@
+- Congratulations! You have reached room 50!!
+
+## Section: Final Challenge
+
+To pass this room:
+---------------------------------------------------------------------
+
+ ######   #######  ##    ##  ######   ########     ###    ########  ######
+##    ## ##     ## ###   ## ##    ##  ##     ##   ## ##      ##    ##    ##
+##       ##     ## ####  ## ##        ##     ##  ##   ##     ##    ##
+##       ##     ## ## ## ## ##   #### ########  ##     ##    ##     ######
+##       ##     ## ##  #### ##    ##  ##   ##   #########    ##          ##
+##    ## ##     ## ##   ### ##    ##  ##    ##  ##     ##    ##    ##    ##
+ ######   #######  ##    ##  ######   ##     ## ##     ##    ##     ######
+
+You have mastered 49 rooms. Now combine everything you have learned!
+
+## Tasks:
+
+1. Find all .key files recursively in final_challenge/
+   >> hint: `find final_challenge/ -name "*.key" | sort`
+
+2. Each .key file contains a base64-encoded value. Decode all of them.
+   >> hint: `base64 -d <filename>`
+
+3. Keep only decoded values that are purely numeric.
+   >> hint: `grep -E '^[0-9]+$'`
+
+4. Sum all numeric values.
+   >> hint: `paste -sd'+' | bc`
+
+5. Run: ./getKey.sh <sum>
+
+The master pipeline (put it all together):
+   find final_challenge/ -name "*.key" | sort | \
+     xargs -I{} base64 -d {} | \
+     grep -E '^[0-9]+$' | \
+     paste -sd'+' | bc
+
+>> Decrypt tip for final exam:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_100/README -out ../room_100/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

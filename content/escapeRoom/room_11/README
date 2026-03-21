@@ -1,0 +1,36 @@
+- Congratulations! You have reached room 11!!
+
+## Section: Advanced Pipeline
+
+To pass this room:
+---------------------------------------------------------------------
+
+- You found a mysterious artifact encoded in multiple layers!
+- The file `artifact.b64` has been wrapped in 3 layers of encoding:
+
+  Layer 3 (outermost): Base64
+  Layer 2: Gzip compression
+  Layer 1 (innermost): Tar archive
+
+## Tasks:
+
+To unwrap, reverse the layers:
+
+1. Decode the Base64 layer:
+   >> `base64 -d artifact.b64 > artifact.tar.gz`
+
+2. Decompress the gzip layer:
+   >> `gunzip artifact.tar.gz` (produces artifact.tar)
+   >> OR: `gzip -d artifact.tar.gz`
+
+3. Extract the tar archive:
+   >> `tar xf artifact.tar`
+
+4. Read the extracted file to find the password!
+   >> hint: use `file` command to identify unknown file types
+   >> hint: `ls` to see what was extracted
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_12/README -out ../room_12/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

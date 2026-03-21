@@ -1,0 +1,10 @@
+mkdocs-site/**
+Labs/assets/
+.history
+.venv
+memory-bank/**
+encryptcontent.cache
+.vercel
+docker/docs/*
+**/node_modules/**
+.mkdocs-build/**

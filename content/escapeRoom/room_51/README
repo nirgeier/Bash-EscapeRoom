@@ -1,0 +1,29 @@
+=== ROOM 51: THE COMMAND ASSEMBLER ===
+
+The Command Assembler's workshop is scattered with orphaned parts.
+Each part file in the parts/ directory contains a numeric VALUE.
+You must assemble them all using xargs to find the total.
+
+MISSION:
+1. List all .part files: find parts/ -name "*.part"
+2. Use xargs to extract VALUE= lines from each file:
+   find parts/ -name "*.part" | xargs grep -h "VALUE="
+3. Cut the numbers: | cut -d= -f2
+4. Sum them: | paste -sd+ | bc
+5. Submit the sum: ./getKey.sh <your_answer>
+
+MASTER PIPELINE:
+   find parts/ -name "*.part" | xargs grep -h "VALUE=" | cut -d= -f2 | paste -sd+ | bc
+
+KEY COMMANDS:
+   xargs -I{} cmd {}      Replace {} with each input item
+   xargs -n N cmd         Pass N args per command execution
+   xargs -P N cmd         Run N parallel processes
+   xargs -0 cmd           Null-separated input (safe for spaces)
+   find . -print0 | xargs -0 cmd   Null-safe pattern
+   xargs -t cmd           Print each command before executing
+
+To decrypt room_52 when you have the password:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 \
+     -in ../room_52/README -out ../room_52/README.txt -pass pass:PASSWORD
+   cat ../room_52/README.txt

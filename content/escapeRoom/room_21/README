@@ -1,0 +1,28 @@
+- Congratulations! You have reached room 21!!
+
+## Section: Binary Analysis
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A compiled program contains a hidden password in its binary data.
+- The strings command can extract human-readable text from binary files.
+
+## Tasks:
+
+1. Run strings on the vault_binary file to extract readable text.
+   >> hint: `strings vault_binary`
+
+2. The output contains many strings - filter for the password.
+   >> hint: `strings vault_binary | grep "PASSWORD"`
+
+3. The line format is PASSWORD=<value>
+   Extract just the value after the = sign.
+   >> hint: `strings vault_binary | grep "PASSWORD" | cut -d'=' -f2`
+
+4. That value is the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_22/README -out ../room_22/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

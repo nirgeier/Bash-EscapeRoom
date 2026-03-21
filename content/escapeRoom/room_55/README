@@ -1,0 +1,34 @@
+=== ROOM 55: THE SYSTEM INSPECTOR ===
+
+You've entered an uncharted system. Your mission: identify it
+completely using system inspection commands.
+
+MISSION:
+1. Run: uname -a  (get full system information)
+2. Run: hostname  (get system name)
+3. Run: id        (get your user identity)
+4. Run: who       (see logged-in sessions)
+5. Submit: ./getKey.sh "$(whoami)" "$(uname -s)"
+   This passes your username and OS kernel name.
+
+KEY COMMANDS:
+   uname -a               All system info
+   uname -r               Kernel release version
+   uname -m               Machine hardware (x86_64, arm64)
+   uname -s               Kernel name (Linux, Darwin)
+   hostname               Show system hostname
+   hostname -I            Show all IP addresses
+   whoami                 Print effective username
+   id                     Show uid, gid, groups
+   id -u                  Just the numeric uid
+   id -un                 Just the username
+   who                    Show logged-in users
+   w                      Who + what they're running
+   last -n 5              Last 5 logins
+   lscpu                  CPU architecture details
+   cat /etc/os-release    Linux distribution info
+
+To decrypt room_56 when you have the password:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 \
+     -in ../room_56/README -out ../room_56/README.txt -pass pass:PASSWORD
+   cat ../room_56/README.txt

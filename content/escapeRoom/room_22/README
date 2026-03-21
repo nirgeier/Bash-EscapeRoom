@@ -1,0 +1,26 @@
+- Congratulations! You have reached room 22!!
+
+## Section: Data Processing
+
+To pass this room:
+---------------------------------------------------------------------
+
+- The door lock requires solving mathematical equations.
+- The equations.txt file contains 3 problems.
+- Solve them all using the bc calculator.
+
+## Tasks:
+
+1. Read equations.txt to see the 3 problems.
+   >> hint: `cat equations.txt`
+
+2. Solve each equation using bc.
+   >> hint: `echo "EXPRESSION" | bc`
+
+3. The password is "calc" followed by the SUM of all three answers.
+   >> Example: if answers are 1024, 81, and 232, sum=1337, password = "calc1337"
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_23/README -out ../room_23/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

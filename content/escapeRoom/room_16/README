@@ -1,0 +1,30 @@
+- Congratulations! You have reached room 16!!
+
+## Section: System Administration
+
+To pass this room:
+---------------------------------------------------------------------
+
+- The space station storage system is overloaded.
+- One module is consuming far more space than the others.
+- Identify it to unlock the emergency door.
+
+## Tasks:
+
+1. Check the station/ directory structure.
+   >> hint: `ls station/`
+
+2. Find which direct subdirectory of station/ uses the most disk space.
+   >> hint: `du -sh station/*/`
+
+3. Sort by size to find the largest module.
+   >> hint: `du -sh station/*/ | sort -rh | head -1`
+
+4. The password is the word "module" followed by the name of the
+   largest subdirectory (no space).
+   >> Example: if station/reactor/ is largest, password = "modulereactor"
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_17/README -out ../room_17/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

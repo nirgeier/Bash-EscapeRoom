@@ -1,0 +1,10 @@
+BLUEPRINT v1 - Structure A
+==========================
+Foundation: Concrete
+Walls: Brick
+Roof: Steel
+Windows: Double-glazed
+Doors: Reinforced steel
+Floors: Marble
+Ceiling: Plaster
+Security: Standard

@@ -1,0 +1,289 @@
+###
+### mkdocs-site.yml
+###
+docs_dir: Labs
+edit_uri:
+repo_name: nirgeier/Bash-EscapeRoom
+repo_url: https://github.com/nirgeier/Bash-EscapeRoom
+site_author: Nir Geier - nirgeier@gmail.com
+site_description: A collection of Bash-EscapeRoom Labs
+site_dir: ./mkdocs-site
+site_name: Bash-EscapeRoom
+site_url: https://nirgeier.github.io/Bash-EscapeRoom/
+###
+### mkdocs-theme.yml
+###
+copyright:
+  '©2026 Nir Geier<br/><a href="https://visitor-badge.laobi.icu/badge?page_id=nirgeier" target="_blank" rel="noopener"><img
+  src="https://visitor-badge.laobi.icu/badge?page_id=nirgeier" alt="Visitor Badge"></a>'
+theme:
+  name: material
+  custom_dir: .mkdocs-build/overrides
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.footnote.tooltips
+    - content.tabs.link
+    - content.tooltips
+    - content.footer.last-updated
+    - content.footer.contributors
+    - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    #- navigation.prune        # Disabled - hides sections when tabs are off
+    - navigation.sections
+    #- navigation.tabs          # Disabled - left nav only
+    #- navigation.tabs.sticky   # Disabled - left nav only
+    #- navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    - toc.integrate
+    - toc.sticky
+
+    #- header.autohide  # Disabled to keep top nav always visible
+
+  # 👈 enables avatar display
+  palette:
+    # Dark mode only
+    - scheme: slate
+      primary: indigo # You can choose any color here
+
+  font:
+    text: Mulish
+    code: JetBrains Mono
+  favicon: assets/favicon.png
+  icon:
+    logo: logo
+    repo: fontawesome/brands/github
+    admonition:
+      note: material/lightbulb
+###
+### mkdocs-extra.yml
+###
+
+extra:
+  assets:
+    - ./assets/images/
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/nirgeier/Bash-EscapeRoom
+      name: View on GitHub
+      class: social-class__github
+
+    - icon: octicons/repo-forked-16
+      link: https://github.com/nirgeier/Bash-EscapeRoom/network/members
+      name: Fork this repo
+      class: social-class__fork
+
+    - icon: octicons/star-16
+      link: https://github.com/nirgeier/Bash-EscapeRoom/stargazers
+      name: Star this repo
+      class: social-class__star
+
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/nirgeier/
+      name: Connect on LinkedIn
+      class: social-class__linkedin
+
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/U6xW23Ss
+      name: Follow me on Discord
+      class: social-class__discord
+
+    - icon: fontawesome/brands/stack-overflow
+      link: https://stackoverflow.com/users/1755598/codewizard
+      name: Follow me on Stack Overflow
+      class: social-class__stackoverflow
+
+    - icon: fontawesome/brands/whatsapp
+      link: https://wa.me/972548122310
+      name: Follow me on WhatsApp
+      class: social-class__whatsapp
+
+    - icon: fontawesome/solid/envelope
+      link: mailto:nirg@codewizard.co.il
+      name: Email me
+      class: social-class__email
+
+extra_css:
+  - ./assets/stylesheets/codewizard.css?v=1774113731
+extra_javascript:
+  - https://buttons.github.io/buttons.js?v=1774113731
+###
+### mkdocs-plugins.yml
+###
+
+plugins:
+      - awesome-pages
+      - section-index
+      - meta
+      - search:
+              separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+      - encryptcontent:
+              arithmatex: false
+              encrypted_something:
+                    mkdocs-encrypted-toc: "display:none;"
+                    mySpecialClass: "color:red;"
+              hljs: false
+              mermaid2: false
+              password_button: true
+              password_file: ".mkdocs-build/passwords.yml"
+              reload_scripts:
+                    - "document.getElementById('mkdocs-decrypt-button').addEventListener('click', function() { setTimeout(function() { location.reload(); }, 1000); });"
+              remember_password: false
+              session_storage: true
+      # - pdf-export:
+      #     combined: true # all pages in one PDF
+      #     combined_output_path: docs/Full-Documentation.pdf
+      #     media_type: print
+      #     verbose: true
+      # Git
+      #- git-authors
+      - git-committers:
+              branch: main
+              docs_path: Labs # set if your docs folder is not root
+              enabled: true
+              repository: nirgeier/Bash-EscapeRoom
+      - git-revision-date-localized:
+              enable_creation_date: true
+              enable_git_follow: false
+              fallback_to_build_date: true
+              locale: en
+              timezone: UTC
+              type: date
+      - minify:
+              minify_html: true
+
+      - include-markdown
+
+      # Leave this one as the last one in the list
+      - print-site
+###
+### mkdocs-extensions.yml
+###
+
+markdown_extensions:
+    - toc:
+          permalink: false
+          baselevel: 3
+          toc_depth: 3
+    - abbr
+    - tables
+    - admonition # For callouts/notes
+    - footnotes # Footnotes support
+    - attr_list # Attribute lists for elements
+    - def_list # Definition lists
+    - md_in_html # Markdown inside HTML blocks
+    - smarty # Smart punctuation
+    - meta
+    - codehilite:
+          guess_lang: true # Fallback code highlighting
+    - pymdownx.tabbed:
+          alternate_style: true
+    - pymdownx.details # Collapsible details
+    - pymdownx.inlinehilite # Inline code highlighting
+    - pymdownx.keys # Keyboard key formatting
+    - pymdownx.tasklist:
+          custom_checkbox: true
+    - pymdownx.betterem:
+          smart_enable: all
+    - pymdownx.tilde # Subscript/superscript
+    - pymdownx.snippets # Snippet includes
+    - pymdownx.highlight:
+          anchor_linenums: true
+          line_spans: __span
+          pygments_lang_class: true
+    - pymdownx.superfences:
+          custom_fences:
+              - name: mermaid
+                class: mermaid
+                format: "!!python/name:pymdownx.superfences.fence_code_format"
+    - pymdownx.emoji:
+          emoji_index: !!python/name:material.extensions.emoji.twemoji
+          emoji_generator: !!python/name:material.extensions.emoji.to_svg
+###
+### mkdocs-nav.yml
+###
+
+nav:
+  - README.md
+  - "📁 Part 1 - File & Text Basics":
+      - "Room 01 - find, cat, sort, xargs": rooms/Room-01.md
+      - "Room 02 - grep, wc": rooms/Room-02.md
+      - "Room 03 - head, tail, tac, rev, wc": rooms/Room-03.md
+      - "Room 04 - sed": rooms/Room-04.md
+      - "Room 05 - base64, tr, rev": rooms/Room-05.md
+      - "Room 06 - sort, uniq, comm, diff": rooms/Room-06.md
+  - "🔐 Part 2 - System & Permissions":
+      - "Room 07 - chmod, stat, ls": rooms/Room-07.md
+      - "Room 08 - export, env, source, alias": rooms/Room-08.md
+      - "Room 09 - ps, kill, bg, fg, jobs": rooms/Room-09.md
+  - "⚙️ Part 3 - Data Processing":
+      - "Room 10 - awk": rooms/Room-10.md
+      - "Room 11 - tar, gzip, base64": rooms/Room-11.md
+      - "Room 12 - cut, tr, pipes": rooms/Room-12.md
+      - "Room 13 - ln, readlink": rooms/Room-13.md
+  - "🌐 Part 4 - Web & Storage":
+      - "Room 14 - curl, wget": rooms/Room-14.md
+      - "Room 15 - jq": rooms/Room-15.md
+      - "Room 16 - df, du": rooms/Room-16.md
+  - "🕐 Part 5 - System Operations":
+      - "Room 17 - crontab": rooms/Room-17.md
+      - "Room 18 - diff, patch": rooms/Room-18.md
+      - "Room 19 - sha256sum, md5sum": rooms/Room-19.md
+      - "Room 20 - xxd, od, hexdump": rooms/Room-20.md
+  - "🛠️ Part 6 - Tools & Utilities":
+      - "Room 21 - strings": rooms/Room-21.md
+      - "Room 22 - bc, expr": rooms/Room-22.md
+      - "Room 23 - date": rooms/Room-23.md
+      - "Room 24 - printf, echo": rooms/Room-24.md
+      - "Room 25 - tee, paste": rooms/Room-25.md
+  - "📝 Part 7 - Bash Scripting":
+      - "Room 26 - Parameter Expansion": rooms/Room-26.md
+      - "Room 27 - Arrays, mapfile": rooms/Room-27.md
+      - "Room 28 - for loops": rooms/Room-28.md
+      - "Room 29 - while loops": rooms/Room-29.md
+      - "Room 30 - if/else, test, [[": rooms/Room-30.md
+      - "Room 31 - case statements": rooms/Room-31.md
+      - "Room 32 - Functions, return": rooms/Room-32.md
+  - "⚡ Part 8 - Advanced Scripting":
+      - "Room 33 - getopts": rooms/Room-33.md
+      - "Room 34 - Heredocs": rooms/Room-34.md
+      - "Room 35 - Command & Process Substitution": rooms/Room-35.md
+      - "Room 36 - trap, signals": rooms/Room-36.md
+      - "Room 37 - read": rooms/Room-37.md
+      - "Room 38 - timeout, watch, sleep": rooms/Room-38.md
+  - "🔌 Part 9 - Networking & Debugging":
+      - "Room 39 - ss, netstat": rooms/Room-39.md
+      - "Room 40 - dig, host, nslookup": rooms/Room-40.md
+      - "Room 41 - nc (netcat)": rooms/Room-41.md
+      - "Room 42 - lsof": rooms/Room-42.md
+      - "Room 43 - strace, ltrace": rooms/Room-43.md
+  - "🔑 Part 10 - Security & Version Control":
+      - "Room 44 - rsync": rooms/Room-44.md
+      - "Room 45 - openssl": rooms/Room-45.md
+      - "Room 46 - vim": rooms/Room-46.md
+      - "Room 47 - ssh, ssh-keygen, scp": rooms/Room-47.md
+      - "Room 48 - git": rooms/Room-48.md
+  - "🏭 Part 11 - Advanced Challenges":
+      - "Room 49 - Advanced Pipeline": rooms/Room-49.md
+      - "Room 50 - Master Terminal": rooms/Room-50.md
+  - "⭐ Bonus Track - Complete the 100":
+      - "Room 51 - xargs": rooms/Room-51.md
+      - "Room 52 - chown, chgrp, umask": rooms/Room-52.md
+      - "Room 53 - ping, traceroute, wget": rooms/Room-53.md
+      - "Room 54 - top, free, uptime, vmstat": rooms/Room-54.md
+      - "Room 55 - uname, hostname, id, who": rooms/Room-55.md
+      - "Room 56 - pgrep, pkill, nohup, nice": rooms/Room-56.md
+  - "🏆 Exit Exam": rooms/Room-99.md

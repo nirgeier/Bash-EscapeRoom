@@ -1,0 +1,27 @@
+- Congratulations! You have reached room 10!!
+
+## Section: Advanced Pipeline
+
+To pass this room:
+---------------------------------------------------------------------
+
+- Welcome to the data mine! A rich deposit of minerals awaits.
+- The file `mine_data.csv` contains 100 mineral survey records.
+- Format: `mineral,depth,weight,sector`
+
+## Tasks:
+
+1. Use `awk` to process `mine_data.csv`:
+   - Skip the header line (line 1)
+   - Filter rows where `depth` (field 2) is GREATER than 50
+   - Sum the `weight` values (field 3) of those filtered rows
+
+2. The password is `awk` followed by the calculated sum.
+   >> Example: if the sum is 1234, the password is "awk1234"
+
+>> hint: `awk -F',' 'NR>1 && $2>50 {sum+=$3} END {print sum}' mine_data.csv`
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_11/README -out ../room_11/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

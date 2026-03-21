@@ -1,0 +1,34 @@
+- Congratulations! You have reached room 32!!
+
+## Section: Bash Scripting
+
+To pass this room:
+---------------------------------------------------------------------
+
+- The factory machines only work when the right functions are called.
+- Process the assembly line using bash functions.
+
+## Tasks:
+
+1. Read assembly.txt - it contains 10 product codes.
+   >> hint: `cat assembly.txt`
+
+2. Write a script using functions to:
+   - Validate: only process lines starting with "PROD-"
+   - Extract: get the numeric part after "PROD-"
+   - Sum all valid numeric IDs
+
+   >> hint:
+   >>   total=0
+   >>   while IFS= read -r code; do
+   >>     [[ "$code" == PROD-* ]] && total=$(( total + ${code#PROD-} ))
+   >>   done < assembly.txt
+   >>   echo $total
+
+3. Run: ./getKey.sh <sum>
+   >> hint: sum only the numeric parts of PROD-XX lines
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_33/README -out ../room_33/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

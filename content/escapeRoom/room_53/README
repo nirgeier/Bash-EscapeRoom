@@ -1,0 +1,27 @@
+=== ROOM 53: THE NETWORK PROBE ===
+
+A signal is being transmitted from a remote beacon.
+Verify connectivity, trace the route, and retrieve the transmission.
+
+MISSION:
+1. Test connectivity: ping -c 3 127.0.0.1
+2. Trace route: traceroute 127.0.0.1  (or: tracepath 127.0.0.1)
+3. Start the local beacon server: ./start_server.sh
+4. Retrieve the secret: wget -q -O - http://127.0.0.1:9053/key.txt
+5. The content of key.txt IS the password for the next room
+
+KEY COMMANDS:
+   ping -c 3 host         Send 3 ICMP packets
+   ping -W 2 host         2 second timeout per reply
+   traceroute host        Trace hops to destination
+   tracepath host         Alternative (no root needed)
+   wget URL               Download from URL
+   wget -O - URL          Output to stdout
+   wget -q URL            Quiet mode
+   wget --spider URL      Check URL exists without downloading
+   curl -s URL            Alternative: curl silent to stdout
+
+To decrypt room_54 when you have the password:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 \
+     -in ../room_54/README -out ../room_54/README.txt -pass pass:PASSWORD
+   cat ../room_54/README.txt

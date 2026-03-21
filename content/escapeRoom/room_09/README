@@ -1,0 +1,32 @@
+- Congratulations! You have reached room 9!!
+
+## Section: System Mastery
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A ghost process must be summoned and captured!
+
+** Read all instructions before starting **
+
+## Tasks:
+
+1. Create a new user named `ghost_user`.
+   >> hint: `sudo adduser -D ghost_user` (Alpine) or `sudo useradd ghost_user`
+
+2. Create a bash script named `ghost_loop.sh` that runs an infinite loop
+   with no output. Example: `while true; do sleep 1; done`
+
+3. Run the script as `ghost_user` in the BACKGROUND.
+   >> hint: `sudo -u ghost_user bash ./ghost_loop.sh &`
+
+4. Find the process ID (PID) of the running ghost script.
+   >> hint: `ps aux | grep ghost` or `ps -eo pid,user,comm | grep ghost`
+
+5. Pass the PID to `./getKey.sh`:
+   >> `./getKey.sh <PID>`
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_10/README -out ../room_10/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

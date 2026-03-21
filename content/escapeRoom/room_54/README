@@ -1,0 +1,29 @@
+=== ROOM 54: THE SYSTEM MONITOR ===
+
+Resource anomalies detected. Parse the system snapshot to identify
+the memory total, load average, and running process count.
+
+MISSION:
+1. Study the static system_snapshot.txt (pre-captured monitoring data)
+2. Find: total memory in MB (from the 'Mem:' line)
+3. Find: the 1-minute load average (first number after 'load average:')
+4. Find: number of running processes (from the 'Tasks:' line, 'running' field)
+5. Run: ./getKey.sh <total_mem_mb> <load1> <running_procs>
+   Example: ./getKey.sh 2048 0.15 3
+
+KEY COMMANDS:
+   free -m                Show memory in megabytes
+   free -h                Human-readable memory stats
+   uptime                 Time, users, load averages
+   top -bn1               Batch snapshot (non-interactive)
+   top -bn1 | grep "^%Cpu"  CPU stats
+   vmstat                 Virtual memory statistics
+   vmstat 1 3             Sample 3 times, 1 second apart
+   cat /proc/meminfo      Detailed kernel memory info
+   cat /proc/loadavg      Raw load average numbers
+   nproc                  Number of CPUs
+
+To decrypt room_55 when you have the password:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 \
+     -in ../room_55/README -out ../room_55/README.txt -pass pass:PASSWORD
+   cat ../room_55/README.txt

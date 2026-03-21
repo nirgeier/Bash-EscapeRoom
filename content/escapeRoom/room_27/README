@@ -1,0 +1,30 @@
+- Congratulations! You have reached room 27!!
+
+## Section: Bash Scripting
+
+To pass this room:
+---------------------------------------------------------------------
+
+- The armory inventory has been scrambled - some weapons appear multiple times.
+- Use bash arrays to count how many UNIQUE weapons exist.
+
+## Tasks:
+
+1. Read weapons.txt to see the inventory.
+   >> hint: `cat weapons.txt`
+
+2. Count the total lines (with duplicates).
+   >> hint: `wc -l weapons.txt`
+
+3. Count unique weapon names.
+   >> hint: `sort weapons.txt | uniq | wc -l`
+   >> OR use arrays: `mapfile -t weapons < weapons.txt`
+   >>               `printf '%s\n' "${weapons[@]}" | sort | uniq | wc -l`
+
+4. The password is "array" followed by the count of unique weapons.
+   >> Example: if there are 10 unique weapons, password = "array10"
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_28/README -out ../room_28/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

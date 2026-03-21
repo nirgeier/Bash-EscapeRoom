@@ -1,0 +1,25 @@
+- Congratulations! You have reached room 20!!
+
+## Section: Binary Analysis
+
+To pass this room:
+---------------------------------------------------------------------
+
+- An ancient computer left a message encoded in hexadecimal.
+- The file hex_message.hex contains a hex dump.
+- Reverse it to reveal the original text.
+
+## Tasks:
+
+1. Look at the hex dump file.
+   >> hint: `cat hex_message.hex`
+
+2. Reverse the hex dump back to its original content.
+   >> hint: `xxd -r hex_message.hex`
+
+3. The decoded text is the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_21/README -out ../room_21/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

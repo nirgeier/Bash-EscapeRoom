@@ -1,0 +1,27 @@
+=== ROOM 52: THE OWNERSHIP VAULT ===
+
+Files in the Ownership Vault have been scrambled - wrong owners
+and wrong groups. The vault's mechanism checks ownership before
+granting access. Fix everything to match the requirements.
+
+MISSION:
+1. Read requirements.txt to see what each file's ownership should be
+2. Use id and groups to understand the available users/groups
+3. Fix ownership: chown user:group file
+4. Fix group only: chgrp group file
+5. Set umask to 022: umask 022
+6. Validate: ./getKey.sh
+
+KEY COMMANDS:
+   chown user:group file   Change owner and group
+   chown -R user:group dir/  Recursive ownership change
+   chgrp group file        Change group only
+   umask                   Show current umask
+   umask 022               Set umask (new files get 644, dirs 755)
+   id                      Show uid, gid, groups
+   stat -c "%U %G %a" file Show owner, group, octal perms
+
+To decrypt room_53 when you have the password:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 \
+     -in ../room_53/README -out ../room_53/README.txt -pass pass:PASSWORD
+   cat ../room_53/README.txt

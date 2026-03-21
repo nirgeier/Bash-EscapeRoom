@@ -1,0 +1,26 @@
+- Congratulations! You have reached room 30!!
+
+## Section: Bash Scripting
+
+To pass this room:
+---------------------------------------------------------------------
+
+- A decision tree guards the exit.
+- The script decision_tree.sh expects two arguments.
+- Find the correct number and string to reach the password.
+
+## Tasks:
+
+1. Read the decision_tree.sh script to understand its conditions.
+   >> hint: `cat decision_tree.sh`
+
+2. Find the number and string that satisfy ALL branches.
+
+3. Run: `bash decision_tree.sh <number> <string>`
+
+4. The correct output will print the password.
+
+>> Decrypt tip for next room:
+   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_31/README -out ../room_31/README.txt -pass pass:PASSWORD
+
+Good Luck !!!

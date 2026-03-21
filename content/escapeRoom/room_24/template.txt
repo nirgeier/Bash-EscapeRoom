@@ -1,0 +1,16 @@
+FORMAT SPECIFICATION:
+=====================
+Format string: "%-10s | %05d | %s\n"
+
+Values to format (in order):
+  Row 1: "alpha"    1    "noise"
+  Row 2: "beta"     2    "noise"
+  Row 3: "gamma"    3    "noise"
+  Row 4: "delta"    4    "noise"
+  Row 5: "key"      77   "format77"
+
+TASK: Use printf to format all 5 rows using the format string above.
+The last word on the last row IS the password.
+
+Example output for Row 1:
+  alpha      | 00001 | noise
