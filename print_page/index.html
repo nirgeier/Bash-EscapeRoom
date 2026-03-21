@@ -60,7 +60,7 @@
     
       <link rel="stylesheet" href="../css/print-site-material.css">
     
-      <link rel="stylesheet" href="../assets/stylesheets/codewizard.css?v=1774112407">
+      <link rel="stylesheet" href="../assets/stylesheets/codewizard.css?v=1774114027">
     
     <script>__md_scope=new URL("/Bash-EscapeRoom/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -2531,25 +2531,107 @@
 <p class="admonition-title">Decryption Tip</p>
 <p>If the content doesn&rsquo;t appear after entering the password in the selected room, please refresh the page (F5 or Ctrl+R).</p>
 </div>
-<!-- markdownlint-disable MD033 -->
-<div class="grid cards" style="border-radius: 20px;">
-<ul>
-<li>
-<p><img alt="" class="height-48px" src="../assets/images/docker.png" /></p>
 <hr />
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#index-__codelineno-0-1"></a><span class="c1"># GitHub Container Registry</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#index-__codelineno-0-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--pull<span class="o">=</span>always<span class="w"> </span>-p<span class="w"> </span><span class="m">3000</span>:3000<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#index-__codelineno-0-3"></a>ghcr.io/nirgeier/bash-escaperoom
+<!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD033 -->
+
+<h4 id="index-usage">Usage</h4>
+<ul>
+<li>There are several ways to run the Bash-EscapeRoom Labs.</li>
+<li>Choose the method that works best for you.</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="index-__tabbed_1_1" name="index-__tabbed_1" type="radio" /><input id="index-__tabbed_1_2" name="index-__tabbed_1" type="radio" /><input id="index-__tabbed_1_3" name="index-__tabbed_1" type="radio" /><input id="index-__tabbed_1_4" name="index-__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="index-__tabbed_1_1">🐳 Docker (Recommended)</label><label for="index-__tabbed_1_2"><img alt="" class="" src="../assets/images/killercoda-icon.png" width-24px="width-24px" /> Killercoda</label><label for="index-__tabbed_1_3">📜 From Source</label><label for="index-__tabbed_1_4"><img alt="" class="width-24px" src="../assets/images/gcp.png" /> Using Google Cloud Shell</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Using Docker is the easiest way to get started locally with the labs:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#index-__codelineno-0-1"></a><span class="c1"># GitHub Container Registry</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#index-__codelineno-0-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--pull<span class="o">=</span>always<span class="w"> </span>-p<span class="w"> </span><span class="m">3000</span>:3000<span class="w"> </span>ghcr.io/nirgeier/bash-escaperoom
 </span></code></pre></div>
-</li>
-<li>
-<p><img alt="" class="height-48px" src="../assets/images/killercoda.png" />
-    <a href="https://killercoda.com/codewizard/scenario/BashEscapeRoom">Launch on Killercoda</a></p>
-</li>
+<p><strong>Prerequisites:</strong></p>
+<ul>
+<li>Docker and Docker Compose installed on your system</li>
+<li>No additional setup required</li>
 </ul>
 </div>
+<div class="tabbed-block">
+<ul>
+<li>The easiest way to get started with the labs</li>
+<li>Learn in your browser without any local installation</li>
+</ul>
+<p>🌐 <a href="https://killercoda.com/codewizard/scenario/BashEscapeRoom" target="_blank"><strong>Launch on Killercoda</strong></a></p>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>No installation required</li>
+<li>Pre-configured environment</li>
+<li>Works on any device with a web browser</li>
+<li>All tools pre-installed</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>For those who prefer to run it directly on their machine:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#index-__codelineno-1-1"></a><span class="c1"># Clone the repository</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#index-__codelineno-1-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/nirgeier/Bash-EscapeRoom
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#index-__codelineno-1-3"></a><span class="c1"># Change to the Labs directory</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#index-__codelineno-1-4"></a><span class="nb">cd</span><span class="w"> </span>Bash-EscapeRoom/Labs
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#index-__codelineno-1-5"></a><span class="c1"># Start with the setup lab</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#index-__codelineno-1-6"></a><span class="nb">cd</span><span class="w"> </span>assets
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#index-__codelineno-1-7"></a><span class="c1"># Follow the instructions in the README of each lab</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#index-__codelineno-1-8"></a>cat<span class="w"> </span>README.md
+</span></code></pre></div>
+<p><strong>Prerequisites:</strong></p>
+<ul>
+<li>A Unix-like operating system (Linux, macOS, or Windows with WSL)</li>
+<li>Basic command-line tools</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>Google Cloud Shell provides a free, browser-based environment with all necessary tools pre-installed.</li>
+<li>Click on the <code>Open in Google Cloud Shell</code> button below:</li>
+</ul>
+<p><a href="https://console.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/nirgeier/Bash-EscapeRoom"><img alt="Open in Cloud Shell" src="https://gstatic.com/cloudssh/images/open-btn.svg" /></a></p>
+<ul>
+<li>The repository will automatically be cloned into a free Cloud instance.</li>
+<li>Use <strong><kbd>CTRL</kbd></strong> + click to open it in a new window.</li>
+<li>Follow the instructions in the README of each lab.</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>No local installation required</li>
+<li>Pre-configured environment</li>
+<li>Works on any device with a web browser</li>
+<li>All tools pre-installed</li>
+<li>Free tier available</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- markdownlint-enable MD033 -->
 <!-- markdownlint-enable MD033 -->
 
+<hr />
+<h4 id="index-intro">Intro</h4>
+<ul>
+<li>This tutorial is for teaching bash scripting through puzzles designed as escape rooms.</li>
+<li>Each room is packaged in its own folder and includes the files, scripts, and assets required to play.</li>
+<li>Every room folder includes a <code>README</code> that describes the room&rsquo;s objectives, hints, rules, and how to verify the solution.</li>
+<li>The Bash Escape Room is a series of bash puzzles (Escape-rooms, rooms similar to the real-life attractions of Escape rooms).</li>
+<li>The Bash Escape Room puzzles are designed to teach the players Bash and Linux skills &amp; features.</li>
+<li>The inspiration for this project is the real-life Escape rooms.</li>
+</ul>
+<hr />
+<h4 id="index-pre-requirements">Pre-Requirements</h4>
+<ul>
+<li>This tutorial will test your <code>Linux</code> and <code>Bash</code> skills.</li>
+<li>You should be familiar with the following topics:</li>
+<li>Basic Linux commands</li>
+<li>Linux File system navigation</li>
+<li>Linux Text processing tools (like <code>grep</code>, <code>sed</code>, <code>awk</code>)</li>
+<li>Linux Shell scripting basics</li>
+<li>Linux Understanding of environment variables</li>
+<li>Basic knowledge of <code>Docker</code> (if you choose to run it with Docker)</li>
+<li>Basic knowledge of <code>Vim</code></li>
+</ul>
 <hr />
 <h4 id="index-room-links">Room Links</h4>
 <table>
@@ -2848,108 +2930,6 @@
 </tr>
 </tbody>
 </table>
-<hr />
-<h4 id="index-intro">Intro</h4>
-<ul>
-<li>This tutorial is for teaching bash scripting through puzzles designed as escape rooms.</li>
-<li>Each room is packaged in its own folder and includes the files, scripts, and assets required to play.</li>
-<li>Every room folder includes a <code>README</code> that describes the room&rsquo;s objectives, hints, rules, and how to verify the solution.</li>
-<li>The Bash Escape Room is a series of bash puzzles (Escape-rooms, rooms similar to the real-life attractions of Escape rooms).</li>
-<li>The Bash Escape Room puzzles are designed to teach the players Bash and Linux skills &amp; features.</li>
-<li>The inspiration for this project is the real-life Escape rooms.</li>
-</ul>
-<hr />
-<h4 id="index-pre-requirements">Pre-Requirements</h4>
-<ul>
-<li>This tutorial will test your <code>Linux</code> and <code>Bash</code> skills.</li>
-<li>You should be familiar with the following topics:</li>
-<li>Basic Linux commands</li>
-<li>Linux File system navigation</li>
-<li>Linux Text processing tools (like <code>grep</code>, <code>sed</code>, <code>awk</code>)</li>
-<li>Linux Shell scripting basics</li>
-<li>Linux Understanding of environment variables</li>
-<li>Basic knowledge of <code>Docker</code> (if you choose to run it with Docker)</li>
-<li>Basic knowledge of <code>Vim</code></li>
-</ul>
-<hr />
-<h5 id="index-usage">Usage</h5>
-<!-- markdownlint-disable MD033 -->
-
-<h4 id="index-usage_1">Usage</h4>
-<ul>
-<li>There are several ways to run the Bash-EscapeRoom Labs.</li>
-<li>Choose the method that works best for you.</li>
-<li><img alt="" class="width-24px" src="../assets/images/killercoda-icon.png" /> Killercoda (Recommended)</li>
-<li>🐳 Docker / 📜 From Source / <img alt="" class="width-24px" src="../assets/images/gcp.png" /> Using Google Cloud Shell</li>
-</ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="index-__tabbed_1_1" name="index-__tabbed_1" type="radio" /><input id="index-__tabbed_1_2" name="index-__tabbed_1" type="radio" /><input id="index-__tabbed_1_3" name="index-__tabbed_1" type="radio" /><input id="index-__tabbed_1_4" name="index-__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="index-__tabbed_1_1">🐳 Docker</label><label for="index-__tabbed_1_2"><img alt="" class="" src="../assets/images/killercoda-icon.png" width-24px="width-24px" /> Killercoda (Recommended)</label><label for="index-__tabbed_1_3">📜 From Source</label><label for="index-__tabbed_1_4"><img alt="" class="width-24px" src="../assets/images/gcp.png" /> Using Google Cloud Shell</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>Using Docker is the easiest way to get started locally with the labs:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#index-__codelineno-1-1"></a><span class="c1"># GitHub Container Registry</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#index-__codelineno-1-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--pull<span class="o">=</span>always<span class="w"> </span>-p<span class="w"> </span><span class="m">3000</span>:3000<span class="w"> </span>ghcr.io/nirgeier/bash-escaperoom
-</span></code></pre></div>
-<p><strong>Prerequisites:</strong></p>
-<ul>
-<li>Docker and Docker Compose installed on your system</li>
-<li>No additional setup required</li>
-</ul>
-</div>
-<div class="tabbed-block">
-<ul>
-<li>The easiest way to get started with the labs</li>
-<li>Learn in your browser without any local installation</li>
-</ul>
-<p>🌐 <a href="https://killercoda.com/codewizard/scenario/BashEscapeRoom" target="_blank"><strong>Launch on Killercoda</strong></a></p>
-<p><strong>Benefits:</strong></p>
-<ul>
-<li>No installation required</li>
-<li>Pre-configured environment</li>
-<li>Works on any device with a web browser</li>
-<li>All tools pre-installed</li>
-</ul>
-</div>
-<div class="tabbed-block">
-<p>For those who prefer to run it directly on their machine:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#index-__codelineno-2-1"></a><span class="c1"># Clone the repository</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#index-__codelineno-2-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/nirgeier/Bash-EscapeRoom
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#index-__codelineno-2-3"></a><span class="c1"># Change to the Labs directory</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#index-__codelineno-2-4"></a><span class="nb">cd</span><span class="w"> </span>Bash-EscapeRoom/Labs
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#index-__codelineno-2-5"></a><span class="c1"># Start with the setup lab</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#index-__codelineno-2-6"></a><span class="nb">cd</span><span class="w"> </span>assets
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#index-__codelineno-2-7"></a><span class="c1"># Follow the instructions in the README of each lab</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#index-__codelineno-2-8"></a>cat<span class="w"> </span>README.md
-</span></code></pre></div>
-<p><strong>Prerequisites:</strong></p>
-<ul>
-<li>A Unix-like operating system (Linux, macOS, or Windows with WSL)</li>
-<li>Basic command-line tools</li>
-</ul>
-</div>
-<div class="tabbed-block">
-<ul>
-<li>Google Cloud Shell provides a free, browser-based environment with all necessary tools pre-installed.</li>
-<li>Click on the <code>Open in Google Cloud Shell</code> button below:</li>
-</ul>
-<p><a href="https://console.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/nirgeier/Bash-EscapeRoom"><img alt="Open in Cloud Shell" src="https://gstatic.com/cloudssh/images/open-btn.svg" /></a></p>
-<ul>
-<li>The repository will automatically be cloned into a free Cloud instance.</li>
-<li>Use <strong><kbd>CTRL</kbd></strong> + click to open it in a new window.</li>
-<li>Follow the instructions in the README of each lab.</li>
-</ul>
-<p><strong>Benefits:</strong></p>
-<ul>
-<li>No local installation required</li>
-<li>Pre-configured environment</li>
-<li>Works on any device with a web browser</li>
-<li>All tools pre-installed</li>
-<li>Free tier available</li>
-</ul>
-</div>
-</div>
-</div>
-<!-- markdownlint-enable MD033 -->
-
 <hr />
 <p>Good Luck!</p></section>
                     <section class='print-page md-section' id='section-2' heading-number='2'>
@@ -10896,7 +10876,7 @@ answer is 4 characters long.</p>
       
         <script src="../js/print-site.js"></script>
       
-        <script src="https://buttons.github.io/buttons.js?v=1774112407"></script>
+        <script src="https://buttons.github.io/buttons.js?v=1774114027"></script>
       
     
   </body>
