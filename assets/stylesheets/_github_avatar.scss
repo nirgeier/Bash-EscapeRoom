@@ -67,24 +67,24 @@
 }
 
 /* Dark mode styles for committers */
-[data-md-color-media="(prefers-color-scheme: dark)"] .md-source-file {
+.md-source-file {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-[data-md-color-media="(prefers-color-scheme: dark)"] .md-source-file__fact {
+.md-source-file__fact {
   color: rgba(255, 255, 255, 0.7);
 }
 
-[data-md-color-media="(prefers-color-scheme: dark)"] .md-author img {
+.md-author img {
   border: 2px solid rgba(255, 255, 255, 0.12);
 }
 
-[data-md-color-media="(prefers-color-scheme: dark)"] .md-author--more {
+.md-author--more {
   background: rgba(255, 255, 255, 0.07);
   color: rgba(255, 255, 255, 0.54);
 }
 
-[data-md-color-media="(prefers-color-scheme: dark)"] .md-author--more:hover {
+.md-author--more:hover {
   background: rgba(255, 255, 255, 0.12);
   color: rgba(255, 255, 255, 0.87);
 }
@@ -110,7 +110,7 @@
   margin-left: -1rem;
 }
 
-[data-md-color-media="(prefers-color-scheme: dark)"] .md-author[title]:hover::after {
+.md-author[title]:hover::after {
   background: rgba(255, 255, 255, 0.9);
   color: black;
 }
