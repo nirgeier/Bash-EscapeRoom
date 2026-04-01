@@ -25,7 +25,6 @@ To pass this room:
 
 5. The concatenated result is the password.
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_16/README -out ../room_16/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

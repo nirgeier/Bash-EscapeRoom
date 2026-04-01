@@ -24,7 +24,6 @@ To pass this room:
 4. The password is "array" followed by the count of unique weapons.
    >> Example: if there are 10 unique weapons, password = "array10"
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_28/README -out ../room_28/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

@@ -4,6 +4,9 @@ title_prefix: "🪞 "
 summary: "Follow a chain of symbolic links to find the hidden treasure."
 ---
 
+[![Room-13](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-13.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-13.yml)
+
+
 **FOLLOW THE MIRRORS!**
 
 ---

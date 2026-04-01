@@ -18,7 +18,6 @@ To pass this room:
 
 3. The program outputs the password when run.
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_44/README -out ../room_44/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

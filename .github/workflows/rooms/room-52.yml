@@ -1,0 +1,30 @@
+name: Room-52
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "content/escapeRoom/room_52/**"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "content/escapeRoom/room_52/**"
+
+jobs:
+  test:
+    name: "Test Room 52"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq jq rsync xxd openssl netcat-openbsd wget curl bc
+
+      - name: Run Room 52 Solution
+        working-directory: content/escapeRoom/room_52
+        run: bash _solution.sh
+        timeout-minutes: 2

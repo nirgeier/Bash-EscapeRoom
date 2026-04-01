@@ -4,6 +4,9 @@ title_prefix: "🧪 "
 summary: "Configure environment variables, aliases, and source config files."
 ---
 
+[![Room-08](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-08.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-08.yml)
+
+
 **CONFIGURE THE ENVIRONMENT!**
 
 ---

@@ -10,19 +10,18 @@ To pass this room:
 
 ## Tasks:
 
-1. A web server is running at http://localhost:8080
-   >> hint: `curl http://localhost:8080/`
+1. A web server is running at http://localhost:3456
+   >> hint: `curl http://localhost:3456/`
 
 2. The index page tells you which endpoint to hit next.
 
 3. The /secret endpoint requires a custom header: X-Access-Key: escape
-   >> hint: `curl -H "X-Access-Key: escape" http://localhost:8080/secret`
+   >> hint: `curl -H "X-Access-Key: escape" http://localhost:3456/secret`
 
 4. The response body contains the password.
 
 NOTE: If the local server is not running, the password is stored in `backup_password.txt`
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_15/README -out ../room_15/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

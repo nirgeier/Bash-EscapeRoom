@@ -24,7 +24,6 @@ To pass this room:
    largest subdirectory (no space).
    >> Example: if station/reactor/ is largest, password = "modulereactor"
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_17/README -out ../room_17/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

@@ -4,6 +4,9 @@ title_prefix: "🔀 "
 summary: "Use tee to split output to both a file and the screen simultaneously."
 ---
 
+[![Room-25](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-25.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-25.yml)
+
+
 **SPLIT THE SIGNAL!**
 
 ---

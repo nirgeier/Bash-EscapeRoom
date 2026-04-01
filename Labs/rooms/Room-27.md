@@ -4,6 +4,9 @@ title_prefix: "🗃️ "
 summary: "Use bash arrays to collect, sort, and process a list of items."
 ---
 
+[![Room-27](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-27.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-27.yml)
+
+
 **INVENTORY THE ARSENAL!**
 
 ---

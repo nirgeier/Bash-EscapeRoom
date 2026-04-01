@@ -3,16 +3,18 @@
 # Bash Escape Room - Container Entrypoint
 #
 # 1. Creates the 'escape' user with sudo access
-# 2. Copies room content fresh into /home/escape/escapeRooms/
-# 3. Runs all room setup: encrypts READMEs, generates noise, sets permissions,
-#    wraps archives, and locks validation scripts behind getKey.sh
+# 2. Copies pre-built room content into /home/escape/escapeRooms/
+# 3. Scatters noise files in room_01 (random per container)
 # 4. Writes helper .bashrc / .bash_profile for the user shell
 # 5. Starts the Node.js web-terminal server
+#
+# Room setup (encryption, archive, permissions, script renames) is done
+# at docker build time in the Dockerfile for faster container startup.
 # =============================================================================
 set -eu
 
 BASE=/home/escape/escapeRooms
-CONTENT=/app/rooms # mounted/copied from content/escapeRoom/
+CONTENT=/app/rooms
 
 # ── 1. Create user ────────────────────────────────────────────────────────────
 adduser -D -s /bin/bash -h /home/escape escape 2>/dev/null || true
@@ -22,23 +24,20 @@ echo "escape:escape" | chpasswd
 echo "escape ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/escape
 chmod 0440 /etc/sudoers.d/escape
 
-# ── 2. Copy fresh room content ────────────────────────────────────────────────
+# ── 2. Copy pre-built room content ───────────────────────────────────────────
 rm -rf "$BASE"
 cp -rp "$CONTENT" "$BASE"
 chmod -R a+rwX "$BASE"
 
-# ── 3a. Room 01 - The Lost Expedition: scatter 500 noise files ───────────────
+# ── 3. Room 01 - scatter 500 random noise files (fresh per container) ────────
 cd "$BASE/room_01"
-# Read subdirs into an indexed array (mapfile requires bash 4, use read loop instead)
 SUBDIRS=()
 while IFS= read -r d; do SUBDIRS+=("$d"); done < <(find expedition/ -type d)
 NSUBDIRS=${#SUBDIRS[@]}
 for i in $(seq 1 500); do
     target="${SUBDIRS[RANDOM%NSUBDIRS]}"
-    # Use dd + od to generate a random 8-char hex name without SIGPIPE
     fname=$(dd if=/dev/urandom bs=4 count=1 2>/dev/null | od -A n -t x1 | tr -dc 'a-f0-9')
-    ext_choice=$((RANDOM % 3))
-    case $ext_choice in
+    case $((RANDOM % 3)) in
     0) ext=".rock" ;;
     1) ext=".leaf" ;;
     2) ext=".twig" ;;
@@ -46,67 +45,7 @@ for i in $(seq 1 500); do
     echo "noise data $i" >"${target}/${fname}${ext}"
 done
 
-# ── 3b. Encrypt READMEs for rooms 02-12 and 100 ─────────────────────────────
-encrypt_readme() {
-    local room=$1 password=$2
-    local readme="$BASE/$room/README"
-    openssl enc -aes-256-cbc -a -salt -pbkdf2 \
-        -in "$readme" \
-        -out "${readme}.enc" \
-        -pass pass:"$password" 2>/dev/null
-    mv "${readme}.enc" "$readme"
-    echo "  [OK] $room encrypted"
-}
-
-echo "Encrypting room READMEs..."
-encrypt_readme room_02 "northstar"
-encrypt_readme room_03 "signal59"
-encrypt_readme room_04 "rewind99"
-encrypt_readme room_05 "sedmaster"
-encrypt_readme room_06 "translate"
-encrypt_readme room_07 "unique37"
-encrypt_readme room_08 "access42"
-encrypt_readme room_09 "export99"
-encrypt_readme room_10 "daemon77"
-encrypt_readme room_11 "awk2025"
-encrypt_readme room_12 "layered7"
-encrypt_readme room_99 "pipeline"
-
-# ── 3c. Room 07 - Permission Maze: set deliberately wrong permissions ─────────
-cd "$BASE/room_07"
-chmod 000 gate_1 # student must set 755
-chmod 777 gate_2 # student must set 644
-chmod 644 gate_3 # student must set 700
-chmod 755 gate_4 # student must set 444
-chmod 000 gate_5 # student must set 775
-chmod 777 gate_6 # student must set 660
-chmod 644 gate_7 # student must set 511
-mv script.sh getKey.sh
-chmod +x getKey.sh
-
-# ── 3d. Room 08 - Environment Lab: hide validation script ────────────────────
-cd "$BASE/room_08"
-mv script.sh getKey.sh
-chmod +x getKey.sh
-
-# ── 3e. Room 09 - Ghost Process: hide validation script ──────────────────────
-cd "$BASE/room_09"
-mv script.sh getKey.sh
-chmod +x getKey.sh
-
-# ── 3f. Room 11 - Nested Archive: wrap secret_scroll.txt in tar→gzip→base64 ──
-cd "$BASE/room_11"
-tar cf secret.tar secret_scroll.txt
-gzip secret.tar # → secret.tar.gz
-base64 secret.tar.gz >artifact.b64
-rm -f secret_scroll.txt secret.tar.gz
-
-# ── 3g. Room 99 - Exit Exam: hide validation script ─────────────────────────
-cd "$BASE/room_99"
-mv script.sh getKey.sh
-chmod +x getKey.sh
-
-# ── 4. Fix final ownership ────────────────────────────────────────────────────
+# ── 4. Fix ownership ──────────────────────────────────────────────────────────
 chown -R escape:escape /home/escape
 
 # ── 5. Write .bashrc ─────────────────────────────────────────────────────────
@@ -133,6 +72,92 @@ decrypt_room() {
     || echo "Wrong password or file already decrypted."
 }
 
+# Navigate to the next room, optionally decrypt its README
+# Usage: next [password]
+next() {
+    local cur="$PWD"
+    local num=$(echo "$cur" | grep -oE 'room_[0-9]+' | tail -1 | sed 's/room_0*//')
+    if [ -z "$num" ]; then
+        echo -e "\033[0;31mCannot detect current room. Navigate to a room folder first.\033[0m"
+        return 1
+    fi
+    local next_num=$(printf "%02d" $((num + 1)))
+    local next_dir="$ESCAPE_ROOMS/room_${next_num}"
+    if [ ! -d "$next_dir" ]; then
+        echo -e "\033[0;31mNo room_${next_num} found. You may have reached the end!\033[0m"
+        return 1
+    fi
+    local decrypted=0
+    if [ -n "${1:-}" ]; then
+        local readme="$next_dir/README"
+        if [ -f "$readme" ]; then
+            if ! head -1 "$readme" 2>/dev/null | grep -q '^U2FsdGVk'; then
+                echo -e "\033[0;33mRoom is already decrypted.\033[0m"
+                decrypted=1
+            else
+                openssl enc -aes-256-cbc -d -a -pbkdf2 \
+                    -in "$readme" \
+                    -out "${readme}.dec" \
+                    -pass pass:"$1" 2>/dev/null \
+                && mv "${readme}.dec" "$readme" \
+                && decrypted=1 \
+                || { rm -f "${readme}.dec"; echo -e "\033[0;31mWrong password! Room was not decrypted.\033[0m"; return 1; }
+            fi
+        fi
+    fi
+    cd "$next_dir"
+    echo -e "\033[0;32m>> Moved to Room ${next_num}\033[0m"
+    if [ "$decrypted" -eq 1 ]; then
+        echo -e "\033]1337;UnlockRoom=${next_num}:${1}\007"
+        # Copy password to clipboard via OSC 52
+        local b64pass
+        b64pass=$(printf '%s' "$1" | base64)
+        printf '\033]52;c;%s\007' "$b64pass"
+        echo -e "\033[0;36m[Password copied to clipboard]\033[0m"
+        clear
+    fi
+}
+
+# Jump directly to any room by number, optionally decrypt its README
+# Usage: room <number> [password]
+room() {
+    local target_num
+    target_num=$(printf "%02d" "${1:-0}" 2>/dev/null) || { echo -e "\033[0;31mUsage: room <number> [password]\033[0m"; return 1; }
+    local target_dir="$ESCAPE_ROOMS/room_${target_num}"
+    if [ ! -d "$target_dir" ]; then
+        echo -e "\033[0;31mNo room_${target_num} found.\033[0m"
+        return 1
+    fi
+    local decrypted=0
+    if [ -n "${2:-}" ]; then
+        local readme="$target_dir/README"
+        if [ -f "$readme" ]; then
+            if ! head -1 "$readme" 2>/dev/null | grep -q '^U2FsdGVk'; then
+                echo -e "\033[0;33mRoom is already decrypted.\033[0m"
+                decrypted=1
+            else
+                openssl enc -aes-256-cbc -d -a -pbkdf2 \
+                    -in "$readme" \
+                    -out "${readme}.dec" \
+                    -pass pass:"$2" 2>/dev/null \
+                && mv "${readme}.dec" "$readme" \
+                && decrypted=1 \
+                || { rm -f "${readme}.dec"; echo -e "\033[0;31mWrong password! Room was not decrypted.\033[0m"; return 1; }
+            fi
+        fi
+    fi
+    cd "$target_dir"
+    echo -e "\033[0;32m>> Moved to Room ${target_num}\033[0m"
+    if [ "$decrypted" -eq 1 ]; then
+        echo -e "\033]1337;UnlockRoom=${target_num}:${2}\007"
+        local b64pass
+        b64pass=$(printf '%s' "$2" | base64)
+        printf '\033]52;c;%s\007' "$b64pass"
+        echo -e "\033[0;36m[Password copied to clipboard]\033[0m"
+        clear
+    fi
+}
+
 # Show welcome + room 01 instructions on first interactive login
 if [ -z "${ESCAPE_ROOM_WELCOMED:-}" ]; then
     export ESCAPE_ROOM_WELCOMED=1
@@ -148,5 +173,8 @@ PROFILE
 
 chown escape:escape /home/escape/.bashrc /home/escape/.bash_profile
 
-# ── 6. Start web server ───────────────────────────────────────────────────────
+# ── 6. Start room 14 web server (port 3456) ───────────────────────────────────
+su -s /bin/sh escape -c "python3 $BASE/room_14/server.py" &
+
+# ── 7. Start web-terminal server ─────────────────────────────────────────────
 exec node /app/server.js

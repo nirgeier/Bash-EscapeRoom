@@ -21,7 +21,6 @@ To pass this room:
 
 >> hint: `awk -F',' 'NR>1 && $2>50 {sum+=$3} END {print sum}' mine_data.csv`
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_11/README -out ../room_11/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

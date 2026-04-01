@@ -24,7 +24,6 @@ To pass this room:
 SHORTCUT: The password is also in ssh_secret.txt
    >> hint: `cat ssh_secret.txt`
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_48/README -out ../room_48/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

@@ -26,7 +26,6 @@ To pass this room:
 5. The result is the password! Build it as ONE pipeline:
    >> `cut -d'|' -f1 stations.txt | cut -c1 | tr -d '\n' | tr 'A-Z' 'a-z'`
 
->> Decrypt tip for final room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_100/README -out ../room_100/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

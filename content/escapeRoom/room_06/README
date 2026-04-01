@@ -24,7 +24,6 @@ To pass this room:
 4. The password is the word `unique` followed by that count.
    >> Example: if there are 15 unique gems, password is "unique15"
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_07/README -out ../room_07/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

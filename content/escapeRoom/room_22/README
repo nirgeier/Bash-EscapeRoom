@@ -20,7 +20,6 @@ To pass this room:
 3. The password is "calc" followed by the SUM of all three answers.
    >> Example: if answers are 1024, 81, and 232, sum=1337, password = "calc1337"
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_23/README -out ../room_23/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

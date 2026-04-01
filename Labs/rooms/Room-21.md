@@ -4,6 +4,9 @@ title_prefix: "📚 "
 summary: "Use the strings command to extract readable text from a compiled binary."
 ---
 
+[![Room-21](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-21.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-21.yml)
+
+
 **RAID THE BINARY LIBRARY!**
 
 ---

@@ -22,7 +22,6 @@ To pass this room:
 4. The password is "nested" followed by the intersection count.
    >> Example: if 42 words are in both, password = "nested42"
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_36/README -out ../room_36/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

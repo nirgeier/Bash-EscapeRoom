@@ -4,6 +4,9 @@ title_prefix: "🍃 "
 summary: "Use if/else conditions and test operators to navigate a decision tree."
 ---
 
+[![Room-30](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-30.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-30.yml)
+
+
 **CHOOSE YOUR PATH!**
 
 ---

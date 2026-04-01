@@ -24,7 +24,6 @@ To pass this room:
 3. The password is "loop" followed by the total sum.
    >> Example: if the sum is 50, password = "loop50"
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_29/README -out ../room_29/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

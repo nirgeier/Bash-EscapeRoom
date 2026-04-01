@@ -28,7 +28,6 @@ To pass this room:
 3. Run: ./getKey.sh <sum>
    >> hint: sum only the numeric parts of PROD-XX lines
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_33/README -out ../room_33/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

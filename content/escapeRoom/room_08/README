@@ -27,7 +27,6 @@ To pass this room:
 
 5. Once everything is set, run `./getKey.sh` to verify and get the password.
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_09/README -out ../room_09/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

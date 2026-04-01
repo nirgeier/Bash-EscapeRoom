@@ -29,3 +29,20 @@ services:
       - "3000:3000"
     stdin_open: true
     tty: true
+    develop:
+      watch:
+        # Sync static UI files without rebuild
+        - action: sync
+          path: ../docker/public/
+          target: /app/public/
+        # Sync room content without rebuild
+        - action: sync
+          path: ../content/escapeRoom/
+          target: /app/rooms/
+        # Rebuild on server or Dockerfile changes
+        - action: rebuild
+          path: ../docker/server.js
+        - action: rebuild
+          path: ../docker/Dockerfile
+        - action: rebuild
+          path: ../docker/entrypoint.sh

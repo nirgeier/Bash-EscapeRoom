@@ -4,6 +4,9 @@ title_prefix: "👑 "
 summary: "The final challenge - combine all skills to defeat the Master Terminal."
 ---
 
+[![Room-50](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-50.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-50.yml)
+
+
 **CONQUER THE MASTER TERMINAL!**
 
 ---

@@ -21,7 +21,6 @@ To pass this room:
 
 4. The output when all conditions pass is the password.
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_34/README -out ../room_34/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

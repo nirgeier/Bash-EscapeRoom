@@ -1,0 +1,30 @@
+name: Room-16
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "content/escapeRoom/room_16/**"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "content/escapeRoom/room_16/**"
+
+jobs:
+  test:
+    name: "Test Room 16"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq jq rsync xxd openssl netcat-openbsd wget curl bc
+
+      - name: Run Room 16 Solution
+        working-directory: content/escapeRoom/room_16
+        run: bash _solution.sh
+        timeout-minutes: 2

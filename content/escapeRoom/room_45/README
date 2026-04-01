@@ -19,7 +19,6 @@ To pass this room:
 
 3. The decrypted output is the password for room 46.
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_46/README -out ../room_46/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

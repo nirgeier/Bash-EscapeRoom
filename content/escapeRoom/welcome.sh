@@ -83,7 +83,7 @@ slow_typing "5. The concatenated letters spell the password for the next room." 
 slow_typing "6. Decrypt the next room README with that password:" ${YELLOW}
 
 echo -e "${CYAN}>> Reminder: ${NO_COLOR}"
-echo -e "${CYAN}      To decrypt: ${YELLOW}openssl enc -aes-256-cbc -d -a -pbkdf2 -in README -out README.txt -pass pass:PASSWORD${NO_COLOR}"
+echo -e "${CYAN}      To decrypt: next <PASSWORD>${NO_COLOR}"
 echo -e "${CYAN}      Then: ${YELLOW}mv README.txt README${NO_COLOR}"
 
 echo -e ""

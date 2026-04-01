@@ -4,6 +4,9 @@ title_prefix: "📡 "
 summary: "Use trap to catch signals and ensure cleanup tasks always run."
 ---
 
+[![Room-36](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-36.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-36.yml)
+
+
 **CATCH THE SIGNAL!**
 
 ---

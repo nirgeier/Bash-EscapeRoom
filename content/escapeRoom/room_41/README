@@ -21,7 +21,6 @@ To pass this room:
 NOTE: If nc/netcat is not available, check: nc_fallback.txt
    >> hint: `cat nc_fallback.txt`
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_42/README -out ../room_42/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

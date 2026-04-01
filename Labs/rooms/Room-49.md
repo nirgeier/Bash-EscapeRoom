@@ -4,6 +4,9 @@ title_prefix: "🏭 "
 summary: "Build an advanced multi-stage pipeline combining awk, sed, sort, and uniq."
 ---
 
+[![Room-49](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-49.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-49.yml)
+
+
 **BUILD THE GRAND PIPELINE!**
 
 ---

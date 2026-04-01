@@ -27,7 +27,6 @@ To pass this room:
 3. The password is "matched" followed by that count.
    >> Example: if 7 lines have $, password = "matched7"
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_32/README -out ../room_32/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

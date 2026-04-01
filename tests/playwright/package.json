@@ -1,0 +1,14 @@
+{
+  "name": "bash-escaperoom-playwright",
+  "version": "1.0.0",
+  "description": "Playwright E2E tests for Bash Escape Room",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0"
+  }
+}

@@ -4,6 +4,9 @@ title_prefix: "📊 "
 summary: "Monitor system resources: memory, CPU load, and uptime using top, free, and vmstat."
 ---
 
+[![Room-54](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-54.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-54.yml)
+
+
 **WATCH THE SYSTEM!**
 
 ---

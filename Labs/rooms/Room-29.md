@@ -4,6 +4,9 @@ title_prefix: "🌀 "
 summary: "Use a while loop to read and process a file line by line."
 ---
 
+[![Room-29](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-29.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-29.yml)
+
+
 **TRAVERSE THE ENDLESS CORRIDOR!**
 
 ---

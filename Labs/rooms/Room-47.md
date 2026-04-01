@@ -4,6 +4,9 @@ title_prefix: "🛰️ "
 summary: "Generate an SSH key pair and use it to authenticate to a local service."
 ---
 
+[![Room-47](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-47.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-47.yml)
+
+
 **OPEN THE REMOTE GATEWAY!**
 
 ---

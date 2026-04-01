@@ -4,6 +4,9 @@ title_prefix: "📻 "
 summary: "Count SOS signals in intercepted radio transmissions using grep."
 ---
 
+[![Room-02](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-02.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-02.yml)
+
+
 **COUNT THE DISTRESS SIGNALS!**
 
 ---

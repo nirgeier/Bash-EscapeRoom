@@ -19,7 +19,6 @@ To pass this room:
 
 3. The decoded text is the password.
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_21/README -out ../room_21/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

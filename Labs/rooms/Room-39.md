@@ -4,6 +4,9 @@ title_prefix: "🕸️ "
 summary: "Use ss and netstat to inspect network connections and find the listening port."
 ---
 
+[![Room-39](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-39.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-39.yml)
+
+
 **MAP THE NETWORK HUB!**
 
 ---

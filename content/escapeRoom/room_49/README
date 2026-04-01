@@ -27,7 +27,6 @@ To pass this room:
 3. The password is "pipeline" followed by the count of the top machine's successes.
    >> Example: if the top machine had 9 successes, password = "pipeline9"
 
->> Decrypt tip for final room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_50/README -out ../room_50/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

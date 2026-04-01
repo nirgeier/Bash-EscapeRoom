@@ -4,6 +4,9 @@ title_prefix: "🔭 "
 summary: "Use strace to trace system calls and discover what a mystery program is doing."
 ---
 
+[![Room-43](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-43.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-43.yml)
+
+
 **OBSERVE THE SYSTEM CALLS!**
 
 ---

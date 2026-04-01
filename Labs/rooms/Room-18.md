@@ -4,6 +4,9 @@ title_prefix: "🏗️ "
 summary: "Use diff and patch to identify changes between blueprint versions."
 ---
 
+[![Room-18](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-18.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-18.yml)
+
+
 **SPOT THE SABOTAGE!**
 
 ---

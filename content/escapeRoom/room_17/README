@@ -22,7 +22,6 @@ To pass this room:
 4. The password is "cron" followed by the interval in minutes followed by "min".
    >> Example: if the alarm fires every 5 minutes, password = "cron5min"
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_18/README -out ../room_18/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

@@ -23,7 +23,6 @@ To pass this room:
 
 3. When all fields are correct, the script prints the password.
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_35/README -out ../room_35/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

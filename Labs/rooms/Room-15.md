@@ -4,6 +4,9 @@ title_prefix: "📦 "
 summary: "Parse a JSON data file using jq to extract the hidden password."
 ---
 
+[![Room-15](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-15.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-15.yml)
+
+
 **CRACK THE JSON VAULT!**
 
 ---

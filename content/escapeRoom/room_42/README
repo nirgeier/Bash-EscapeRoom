@@ -27,7 +27,6 @@ To pass this room:
 SHORTCUT: Just read lsof_secret.txt
    >> hint: `cat lsof_secret.txt`
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_43/README -out ../room_43/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

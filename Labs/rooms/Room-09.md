@@ -4,6 +4,9 @@ title_prefix: "👻 "
 summary: "Create users, manage background processes, and find PIDs."
 ---
 
+[![Room-09](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-09.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-09.yml)
+
+
 **SUMMON AND CAPTURE THE GHOST!**
 
 ---

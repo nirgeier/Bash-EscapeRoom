@@ -4,6 +4,9 @@ title_prefix: "🌐 "
 summary: "Use curl to fetch and process data from a local web server."
 ---
 
+[![Room-14](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-14.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-14.yml)
+
+
 **SURF THE WEB!**
 
 ---
@@ -17,12 +20,12 @@ summary: "Use curl to fetch and process data from a local web server."
 
 !!! abstract "📜 Mission Briefing"
 
-    A local web server is running at `http://localhost:8080`.
+    A local web server is running at `http://localhost:3456`.
 
     1. Fetch the index page to see what endpoints are available.
-       > hint: `curl http://localhost:8080/`
+       > hint: `curl http://localhost:3456/`
     2. The server has a `/secret` endpoint - but it requires a custom header `X-Access-Key: escape`.
-       > hint: `curl -H "X-Access-Key: escape" http://localhost:8080/secret`
+       > hint: `curl -H "X-Access-Key: escape" http://localhost:3456/secret`
     3. The response contains a JSON body - extract the `password` field.
        > hint: pipe to `grep` or `jq`
     4. The value of `password` in the response **is** the password.

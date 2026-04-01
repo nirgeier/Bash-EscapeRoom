@@ -4,6 +4,9 @@ title_prefix: "🔁 "
 summary: "Use a for loop to process files and accumulate a result."
 ---
 
+[![Room-28](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-28.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-28.yml)
+
+
 **LOOP THROUGH THE LABYRINTH!**
 
 ---

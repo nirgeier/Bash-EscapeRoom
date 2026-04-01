@@ -37,7 +37,6 @@ The master pipeline (put it all together):
      grep -E '^[0-9]+$' | \
      paste -sd'+' | bc
 
->> Decrypt tip for final exam:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_100/README -out ../room_100/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

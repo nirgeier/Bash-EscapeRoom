@@ -4,6 +4,9 @@ title_prefix: "🔍 "
 summary: "Use sort, uniq, comm, and wc to find unique gems between two vaults."
 ---
 
+[![Room-06](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-06.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-06.yml)
+
+
 **FIND THE UNIQUE GEMS!**
 
 ---

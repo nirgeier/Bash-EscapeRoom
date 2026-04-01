@@ -28,7 +28,6 @@ To pass this room:
 3. Once ALL gates have the correct permissions, run `./getKey.sh`
    >> The script will verify all permissions and give you the password.
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_08/README -out ../room_08/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

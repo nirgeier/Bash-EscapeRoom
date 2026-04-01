@@ -22,7 +22,6 @@ To pass this room:
 NOTE: If no server is running, the password is in network_secret.txt
    >> hint: `cat network_secret.txt`
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_40/README -out ../room_40/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

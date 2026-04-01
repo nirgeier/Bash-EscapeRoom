@@ -30,7 +30,6 @@ To unwrap, reverse the layers:
    >> hint: use `file` command to identify unknown file types
    >> hint: `ls` to see what was extracted
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_12/README -out ../room_12/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

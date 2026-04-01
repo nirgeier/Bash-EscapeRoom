@@ -29,7 +29,6 @@ To pass this room:
 
 SHORTCUT: Run ./reveal_signal.sh to get the password directly.
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_37/README -out ../room_37/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

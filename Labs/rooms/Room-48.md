@@ -4,6 +4,9 @@ title_prefix: "🌿 "
 summary: "Use git to explore a repository's history and recover a deleted secret."
 ---
 
+[![Room-48](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-48.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-48.yml)
+
+
 **RECOVER THE LOST COMMIT!**
 
 ---

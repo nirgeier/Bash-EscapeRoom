@@ -60,6 +60,51 @@
       flex: 1;
     }
 
+    /* ── Progress bar ───────────────────────────────────── */
+    #progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    #progress-label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    #progress-bar {
+      flex: 1;
+      height: 18px;
+      background: var(--bg-deep);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #1abc9c, #16a085);
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
+
+    #progress-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--text);
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+    }
+
     /* ── Status ─────────────────────────────────────────── */
     #status {
       display: flex;
@@ -169,18 +214,84 @@
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      padding: 0 12px;
-      gap: 8px;
+      padding: 0;
+      gap: 0;
       font-size: 0.75rem;
       color: var(--text-dim);
       flex-shrink: 0;
+      overflow-x: auto;
     }
 
-    #terminal-pane-bar svg {
+    #term-tabs {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .term-tab {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 10px;
+      height: 100%;
+      cursor: pointer;
+      border-right: 1px solid var(--border);
+      white-space: nowrap;
+      user-select: none;
+      transition: background 0.15s;
+    }
+
+    .term-tab:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .term-tab.active {
+      background: var(--bg-deep);
+      color: var(--text);
+    }
+
+    .term-tab svg {
       width: 14px;
       height: 14px;
       fill: var(--accent);
       flex-shrink: 0;
+    }
+
+    .term-tab .close-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+      font-size: 14px;
+      line-height: 1;
+      color: var(--text-dim);
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .term-tab .close-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+    }
+
+    #add-term-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 100%;
+      cursor: pointer;
+      color: var(--text-dim);
+      font-size: 18px;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+      user-select: none;
+    }
+
+    #add-term-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
     }
 
     #terminal-container {
@@ -188,9 +299,20 @@
       padding: 6px 8px;
       overflow: hidden;
       background: var(--bg-deep);
+      position: relative;
     }
 
-    #terminal-container .xterm {
+    #terminal-container .term-instance {
+      position: absolute;
+      inset: 6px 8px;
+      display: none;
+    }
+
+    #terminal-container .term-instance.active {
+      display: block;
+    }
+
+    #terminal-container .term-instance .xterm {
       height: 100%;
     }
   </style>
@@ -200,9 +322,15 @@
 
   <!-- ── Header ─────────────────────────────────────────── -->
   <div id="header">
-    <h1>Bash Escape Room</h1>
+    <h1>&#x1F4BB; Bash Escape Room</h1>
 
-    <div class="spacer"></div>
+    <div id="progress-wrap">
+      <span id="progress-label">Room 1/56</span>
+      <div id="progress-bar">
+        <div id="progress-fill"></div>
+        <div id="progress-text">2%</div>
+      </div>
+    </div>
 
     <div id="status">
       <div id="status-dot"></div>
@@ -232,11 +360,8 @@
     <!-- Right: Terminal pane -->
     <div id="terminal-pane">
       <div id="terminal-pane-bar">
-        <svg viewBox="0 0 24 24">
-          <path
-            d="M20 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zm-1 16H5V5h14v14zM7.293 15.293l1.414 1.414L13.414 12l-4.707-4.707-1.414 1.414L10.586 12l-3.293 3.293z" />
-        </svg>
-        <span>Terminal</span>
+        <div id="term-tabs"></div>
+        <div id="add-term-btn" title="New Terminal">+</div>
       </div>
       <div id="terminal-container"></div>
     </div>
@@ -274,7 +399,6 @@
         handle.classList.add('dragging');
         document.body.style.cursor = 'col-resize';
         document.body.style.userSelect = 'none';
-        // Block iframe pointer events while dragging
         docsFrame.style.pointerEvents = 'none';
       });
 
@@ -296,101 +420,237 @@
         fitTerminal();
       });
 
-      /* ── xterm.js terminal ───────────────────────────────── */
+      /* ── Progress bar tracking ──────────────────────────────── */
+      const TOTAL_ROOMS = 56;
+      const progressFill = document.getElementById('progress-fill');
+      const progressText = document.getElementById('progress-text');
+      const progressLabel = document.getElementById('progress-label');
+      let currentRoom = 1;
+
+      let pendingPassword = null;
+
+      function updateProgress(roomNum) {
+        if (roomNum < 1 || roomNum > TOTAL_ROOMS || roomNum === currentRoom) return;
+        currentRoom = roomNum;
+        const pct = Math.round((roomNum / TOTAL_ROOMS) * 100);
+        progressFill.style.width = pct + '%';
+        progressText.textContent = pct + '%';
+        progressLabel.textContent = 'Room ' + roomNum + '/' + TOTAL_ROOMS;
+        // Navigate docs panel to the new room
+        const pad = String(roomNum).padStart(2, '0');
+        docsFrame.src = '/docs/rooms/Room-' + pad + '/';
+      }
+
+      // Auto-fill password in the docs iframe after it loads
+      docsFrame.addEventListener('load', () => {
+        if (!pendingPassword) return;
+        try {
+          const iframeDoc = docsFrame.contentDocument || docsFrame.contentWindow.document;
+          const pwdInput = iframeDoc.getElementById('mkdocs-content-password');
+          const decryptBtn = iframeDoc.getElementById('mkdocs-decrypt-button');
+          if (pwdInput) {
+            // Change password input type to text
+            pwdInput.type = 'text';
+          }
+          if (pwdInput && decryptBtn) {
+            pwdInput.value = pendingPassword;
+            decryptBtn.click();
+          }
+        } catch (e) { /* cross-origin or not ready */ }
+        pendingPassword = null;
+      });
+
+      // Parse terminal output to detect room changes
+      function detectRoom(data) {
+        // Capture hidden unlock marker: \033]1337;UnlockRoom=NN:password\007
+        const unlock = data.match(/\]1337;UnlockRoom=(\d+):([^\x07]+)\x07/);
+        if (unlock) {
+          pendingPassword = unlock[2];
+        }
+        const moved = data.match(/Moved to Room\s+(\d+)/i);
+        if (moved) { updateProgress(parseInt(moved[1], 10)); return; }
+        const prompt = data.match(/room_(\d+)/);
+        if (prompt) { updateProgress(parseInt(prompt[1], 10)); }
+      }
+
+      /* ── Multi-terminal state ─────────────────────────────── */
       const termContainer = document.getElementById('terminal-container');
+      const termTabsEl = document.getElementById('term-tabs');
+      const addTermBtn = document.getElementById('add-term-btn');
       const statusDot = document.getElementById('status-dot');
       const statusText = document.getElementById('status-text');
 
-      const term = new Terminal({
-        cursorBlink: true,
-        fontSize: 14,
-        fontFamily: '"Cascadia Code", "Fira Code", "JetBrains Mono", Menlo, Monaco, monospace',
-        theme: {
-          background: '#0d0d1a',
-          foreground: '#c8d0e0',
-          cursor: '#e94560',
-          selectionBackground: '#1e1e3f',
-          black: '#0d0d1a',
-          red: '#e94560',
-          green: '#4caf50',
-          yellow: '#f0db4f',
-          blue: '#3e84e0',
-          magenta: '#9b59b6',
-          cyan: '#1abc9c',
-          white: '#c8d0e0',
-          brightBlack: '#4a5068',
-          brightRed: '#ff6b81',
-          brightGreen: '#6bcb77',
-          brightYellow: '#ffd460',
-          brightBlue: '#74b9ff',
-          brightMagenta: '#c39bd3',
-          brightCyan: '#55efc4',
-          brightWhite: '#e0e6f0',
-        },
-        allowProposedApi: true,
-        scrollback: 5000,
-      });
-
-      const fitAddon = new FitAddon.FitAddon();
-      const webLinksAddon = new WebLinksAddon.WebLinksAddon();
-
-      term.loadAddon(fitAddon);
-      term.loadAddon(webLinksAddon);
-      term.open(termContainer);
-
-      function fitTerminal() {
-        // Small delay lets layout reflow before measuring
-        requestAnimationFrame(() => fitAddon.fit());
-      }
-      fitTerminal();
-
-      /* ── WebSocket connection ────────────────────────────── */
       const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
       const wsUrl = protocol + '//' + location.host;
-      let ws;
+
+      const TERM_THEME = {
+        background: '#0d0d1a',
+        foreground: '#c8d0e0',
+        cursor: '#e94560',
+        selectionBackground: '#1e1e3f',
+        black: '#0d0d1a',
+        red: '#e94560',
+        green: '#4caf50',
+        yellow: '#f0db4f',
+        blue: '#3e84e0',
+        magenta: '#9b59b6',
+        cyan: '#1abc9c',
+        white: '#c8d0e0',
+        brightBlack: '#4a5068',
+        brightRed: '#ff6b81',
+        brightGreen: '#6bcb77',
+        brightYellow: '#ffd460',
+        brightBlue: '#74b9ff',
+        brightMagenta: '#c39bd3',
+        brightCyan: '#55efc4',
+        brightWhite: '#e0e6f0',
+      };
+
+      const terminals = [];   // { id, term, fitAddon, ws, el, tabEl, alive }
+      let nextId = 1;
+      let activeId = null;
 
       function setStatus(connected) {
         statusDot.className = 'dot ' + (connected ? 'connected' : 'disconnected');
         statusText.textContent = connected ? 'Connected' : 'Disconnected';
       }
 
-      function connect() {
-        ws = new WebSocket(wsUrl);
+      function updateStatus() {
+        const anyAlive = terminals.some(t => t.ws && t.ws.readyState === WebSocket.OPEN);
+        setStatus(anyAlive);
+      }
 
-        ws.onopen = function () {
-          setStatus(true);
-          ws.send(JSON.stringify({ type: 'resize', cols: term.cols, rows: term.rows }));
+      function fitTerminal() {
+        const t = terminals.find(t => t.id === activeId);
+        if (t) requestAnimationFrame(() => t.fitAddon.fit());
+      }
+
+      function renderTabs() {
+        termTabsEl.innerHTML = '';
+        terminals.forEach(t => {
+          const tab = document.createElement('div');
+          tab.className = 'term-tab' + (t.id === activeId ? ' active' : '');
+          tab.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zm-1 16H5V5h14v14zM7.293 15.293l1.414 1.414L13.414 12l-4.707-4.707-1.414 1.414L10.586 12l-3.293 3.293z"/></svg>'
+            + '<span>Terminal ' + t.id + '</span>';
+
+          if (terminals.length > 1) {
+            const closeBtn = document.createElement('span');
+            closeBtn.className = 'close-btn';
+            closeBtn.textContent = '\u00d7';
+            closeBtn.title = 'Close terminal';
+            closeBtn.addEventListener('click', e => { e.stopPropagation(); closeTerminal(t.id); });
+            tab.appendChild(closeBtn);
+          }
+
+          tab.addEventListener('click', () => activateTerminal(t.id));
+          termTabsEl.appendChild(tab);
+          t.tabEl = tab;
+        });
+      }
+
+      function activateTerminal(id) {
+        activeId = id;
+        terminals.forEach(t => {
+          t.el.classList.toggle('active', t.id === id);
+        });
+        renderTabs();
+        fitTerminal();
+        const t = terminals.find(t => t.id === id);
+        if (t) t.term.focus();
+      }
+
+      function connectTerminal(t) {
+        const ws = new WebSocket(wsUrl);
+        t.ws = ws;
+
+        ws.onopen = () => {
+          updateStatus();
+          ws.send(JSON.stringify({ type: 'resize', cols: t.term.cols, rows: t.term.rows }));
         };
 
-        ws.onmessage = function (event) {
+        ws.onmessage = (event) => {
           try {
             const msg = JSON.parse(event.data);
-            if (msg.type === 'output') term.write(msg.data);
-            if (msg.type === 'exit') { term.writeln('\r\n\x1b[31m[Session ended]\x1b[0m'); setStatus(false); }
+            if (msg.type === 'output') { t.term.write(msg.data); detectRoom(msg.data); }
+            if (msg.type === 'exit') {
+              t.term.writeln('\r\n\x1b[31m[Session ended]\x1b[0m');
+              t.alive = false;
+              updateStatus();
+            }
           } catch (e) { /* ignore */ }
         };
 
-        ws.onclose = function () {
-          setStatus(false);
-          term.writeln('\r\n\x1b[33m[Connection lost -reconnecting in 3s…]\x1b[0m');
-          setTimeout(connect, 3000);
+        ws.onclose = () => {
+          t.alive = false;
+          updateStatus();
+          t.term.writeln('\r\n\x1b[33m[Connection lost - reconnecting in 3s…]\x1b[0m');
+          setTimeout(() => { if (terminals.includes(t)) connectTerminal(t); }, 3000);
         };
 
-        ws.onerror = function () { setStatus(false); };
+        ws.onerror = () => { updateStatus(); };
       }
 
-      term.onData(data => {
-        if (ws && ws.readyState === WebSocket.OPEN)
-          ws.send(JSON.stringify({ type: 'input', data }));
-      });
+      function createTerminal() {
+        const id = nextId++;
+        const el = document.createElement('div');
+        el.className = 'term-instance';
+        termContainer.appendChild(el);
 
-      term.onResize(size => {
-        if (ws && ws.readyState === WebSocket.OPEN)
-          ws.send(JSON.stringify({ type: 'resize', cols: size.cols, rows: size.rows }));
-      });
+        const term = new Terminal({
+          cursorBlink: true,
+          fontSize: 14,
+          fontFamily: '"Cascadia Code", "Fira Code", "JetBrains Mono", Menlo, Monaco, monospace',
+          theme: TERM_THEME,
+          allowProposedApi: true,
+          scrollback: 5000,
+        });
 
+        const fitAddon = new FitAddon.FitAddon();
+        const webLinksAddon = new WebLinksAddon.WebLinksAddon();
+        term.loadAddon(fitAddon);
+        term.loadAddon(webLinksAddon);
+        term.open(el);
+
+        const t = { id, term, fitAddon, ws: null, el, tabEl: null, alive: true };
+
+        term.onData(data => {
+          if (t.ws && t.ws.readyState === WebSocket.OPEN)
+            t.ws.send(JSON.stringify({ type: 'input', data }));
+        });
+
+        term.onResize(size => {
+          if (t.ws && t.ws.readyState === WebSocket.OPEN)
+            t.ws.send(JSON.stringify({ type: 'resize', cols: size.cols, rows: size.rows }));
+        });
+
+        terminals.push(t);
+        connectTerminal(t);
+        activateTerminal(id);
+        return t;
+      }
+
+      function closeTerminal(id) {
+        const idx = terminals.findIndex(t => t.id === id);
+        if (idx === -1 || terminals.length <= 1) return;
+        const t = terminals[idx];
+        if (t.ws) t.ws.close();
+        t.term.dispose();
+        t.el.remove();
+        terminals.splice(idx, 1);
+        if (activeId === id) {
+          const newIdx = Math.min(idx, terminals.length - 1);
+          activateTerminal(terminals[newIdx].id);
+        } else {
+          renderTabs();
+        }
+        updateStatus();
+      }
+
+      addTermBtn.addEventListener('click', () => createTerminal());
       window.addEventListener('resize', fitTerminal);
-      connect();
+
+      // Create the first terminal
+      createTerminal();
 
     })();
   </script>

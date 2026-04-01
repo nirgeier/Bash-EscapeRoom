@@ -1,0 +1,21 @@
+=== SYSTEM SNAPSHOT (captured 2025-03-16 12:00:00 UTC) ===
+
+--- uptime ---
+ 12:00:00 up 4 days,  3:22,  1 user,  load average: 0.42, 0.38, 0.31
+
+--- free -m ---
+              total        used        free      shared  buff/cache   available
+Mem:           2048         512         892          64         643        1344
+Swap:          1024           0        1024
+
+--- top snapshot ---
+Tasks: 142 total,   2 running, 140 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  5.2 us,  1.4 sy,  0.0 ni, 92.1 id,  0.9 wa,  0.0 hi,  0.4 si
+MiB Mem :   2048.0 total,    892.4 free,    512.2 used,    643.4 buff/cache
+MiB Swap:   1024.0 total,   1024.0 free,      0.0 used.   1344.0 avail Mem
+
+--- vmstat ---
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 2  0      0 913792  65536 658432    0    0     8    12  420  830  5  1 92  1  0
+

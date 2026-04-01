@@ -24,7 +24,6 @@ To pass this room:
 SHORTCUT (if you prefer not to use vim):
    >> hint: `sed -n '777p' ancient_tome.txt`
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_47/README -out ../room_47/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

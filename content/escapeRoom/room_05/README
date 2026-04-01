@@ -29,7 +29,6 @@ To decode, you need to UNDO the layers in reverse order:
 
 5. The decoded output is the password for the next room.
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_06/README -out ../room_06/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

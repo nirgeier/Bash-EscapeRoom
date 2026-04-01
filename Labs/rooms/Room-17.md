@@ -4,6 +4,9 @@ title_prefix: "⏰ "
 summary: "Decode cron expressions to determine how many times a job runs per day."
 ---
 
+[![Room-17](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-17.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-17.yml)
+
+
 **CRACK THE CLOCKWORK CODE!**
 
 ---

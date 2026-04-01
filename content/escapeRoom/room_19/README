@@ -22,7 +22,6 @@ To pass this room:
 
 4. Read the matching document - its content is the password.
 
->> Decrypt tip for next room:
-   openssl enc -aes-256-cbc -d -a -pbkdf2 -in ../room_20/README -out ../room_20/README.txt -pass pass:PASSWORD
+>> To move to the next room: next PASSWORD
 
 Good Luck !!!

@@ -4,6 +4,9 @@ title_prefix: "🔄 "
 summary: "Use rsync to synchronize files between two directories and verify the transfer."
 ---
 
+[![Room-44](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-44.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-44.yml)
+
+
 **SYNC THE MIRROR ARCHIVE!**
 
 ---

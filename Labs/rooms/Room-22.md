@@ -4,6 +4,9 @@ title_prefix: "🧮 "
 summary: "Use bc and expr to perform mathematical calculations and crack the code."
 ---
 
+[![Room-22](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-22.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-22.yml)
+
+
 **SOLVE THE EQUATION!**
 
 ---
