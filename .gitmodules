@@ -1,3 +1,6 @@
 [submodule ".mkdocs-shared"]
 	path = .mkdocs-shared
 	url = https://github.com/nirgeier/mkdocs.git
+[submodule ".escaperoom-framework"]
+	path = .escaperoom-framework
+	url = https://github.com/nirgeier/escaperoom-framework.git

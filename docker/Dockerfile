@@ -1,11 +1,11 @@
-# ── Stage 1: build node-pty native addon ─────────────────────────────────────
+# ── Stage 1: build node-pty (shared framework builder) ───────────────────────
 FROM node:20-alpine AS builder
 
 # hadolint ignore=DL3018
 RUN apk add --no-cache python3 make g++
 
 WORKDIR /app
-COPY docker/package.json ./
+COPY .escaperoom-framework/package.json ./
 RUN npm install --omit=dev
 
 # ── Stage 2: runtime image ────────────────────────────────────────────────────
@@ -30,12 +30,23 @@ RUN apk add --no-cache \
 
 WORKDIR /app
 
-# Copy pre-built node_modules from builder (no python/make/g++ in final image)
-COPY --from=builder /app/node_modules ./node_modules
-COPY docker/package.json ./
+# ── Copy shared framework (server, UI, node_modules) ─────────────────────────
+COPY --from=builder /app/node_modules           ./node_modules
+COPY .escaperoom-framework/package.json         ./
+COPY .escaperoom-framework/server.js            ./
+COPY .escaperoom-framework/public/              ./public/
 
-COPY docker/server.js  ./
-COPY docker/public/    ./public/
+# ── Room-specific ENV vars for the framework server ──────────────────────────
+ENV ROOM_NAME="Bash Escape Room" \
+    ROOM_TITLE="Bash Escape Room" \
+    TOTAL_ROOMS="56" \
+    ACCENT_COLOR="#e94560" \
+    ACCENT2_COLOR="#1abc9c" \
+    BG_DEEP="#0d0d1a" \
+    BG_PANEL="#12122a" \
+    BG_HEADER="#0a0a1f" \
+    BORDER_COLOR="#1e1e3f" \
+    FALLBACK_DOCS_URL="https://nirgeier.github.io/Bash-EscapeRoom/"
 
 # ── Escape room content ───────────────────────────────────────────────────────
 COPY content/escapeRoom/ ./rooms/
