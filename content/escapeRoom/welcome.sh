@@ -11,11 +11,19 @@ if [ -x "${SCRIPT_PATH}/_utils.sh" ]; then
    source "${SCRIPT_PATH}/_utils.sh"
 fi
 
-echo -e "${YELLOW}"
-echo -e "--------------------------------------------"
-echo -e "           Linux Bash Escape Room           "
-echo -e "--------------------------------------------"
-echo -e ""
+echo -e "${CYAN}"
+echo -e '  ____            _       _____                            '
+echo -e ' | __ )  __ _ ___| |__   | ____|___  ___ __ _ _ __   ___  '
+echo -e ' |  _ \ / _` / __| |_ \  |  _| / __|/ __/ _` | |_ \ / _ \ '
+echo -e ' | |_) | (_| \__ \ | | | | |___\__ \ (_| (_| | |_) |  __/ '
+echo -e ' |____/ \__,_|___/_| |_| |_____|___/\___\__,_| .__/ \___| '
+echo -e '                                              |_|           '
+echo -e '                   ____                       '
+echo -e '                  |  _ \ ___   ___  _ __ ___  '
+echo -e '                  | |_) / _ \ / _ \|  _  _  \ '
+echo -e '                  |  _ < (_) | (_) | | | | | |'
+echo -e '                  |_| \_\___/ \___/|_| |_| |_|'
+echo -e "${NO_COLOR}"
 
 slow_typing "- Welcome to the Linux Bash Escape Room." ${PURPLE}
 slow_typing "- This place is full of secrets and only the chosen ones can escape ... " ${GREEN}

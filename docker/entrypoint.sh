@@ -114,6 +114,12 @@ next() {
         b64pass=$(printf '%s' "$1" | base64)
         printf '\033]52;c;%s\007' "$b64pass"
         echo -e "\033[0;36m[Password copied to clipboard]\033[0m"
+        # Save progress
+        local save_file="/home/escape/.escape_progress"
+        echo "LAST_ROOM=${next_num}" > "$save_file"
+        echo "LAST_PASSWORD=$1" >> "$save_file"
+        echo "SAVED_AT=$(date '+%Y-%m-%d %H:%M:%S')" >> "$save_file"
+        echo -e "\033[0;35m[Progress saved — run 'progress' to view]\033[0m"
         clear
     fi
 }
@@ -158,10 +164,50 @@ room() {
     fi
 }
 
+# Show saved progress summary
+# Usage: progress
+progress() {
+    local save_file="/home/escape/.escape_progress"
+    if [ ! -f "$save_file" ]; then
+        echo -e "\033[0;33mNo progress saved yet. Complete a room with: next <password>\033[0m"
+        return 0
+    fi
+    source "$save_file"
+    echo -e "\033[0;36m╔══════════════════════════════════╗\033[0m"
+    echo -e "\033[0;36m║       Escape Room Progress       ║\033[0m"
+    echo -e "\033[0;36m╚══════════════════════════════════╝\033[0m"
+    echo -e "  Last room  : \033[0;32mRoom ${LAST_ROOM}\033[0m"
+    echo -e "  Password   : \033[0;33m${LAST_PASSWORD}\033[0m"
+    echo -e "  Saved at   : ${SAVED_AT}"
+    echo -e "\n  Run \033[0;32mresume\033[0m to jump back to room ${LAST_ROOM}"
+}
+
+# Resume from last saved room
+# Usage: resume
+resume() {
+    local save_file="/home/escape/.escape_progress"
+    if [ ! -f "$save_file" ]; then
+        echo -e "\033[0;31mNo saved progress found. Start from room 01!\033[0m"
+        return 1
+    fi
+    source "$save_file"
+    echo -e "\033[0;32mResuming from Room ${LAST_ROOM}...\033[0m"
+    room "$((10#${LAST_ROOM}))"
+}
+
 # Show welcome + room 01 instructions on first interactive login
 if [ -z "${ESCAPE_ROOM_WELCOMED:-}" ]; then
     export ESCAPE_ROOM_WELCOMED=1
     bash /home/escape/escapeRooms/welcome.sh
+fi
+
+# Resume prompt if saved progress exists
+if [ -f "/home/escape/.escape_progress" ]; then
+    source /home/escape/.escape_progress
+    echo -e "\033[0;35m┌─ Saved progress found ─────────────────────────────┐\033[0m"
+    echo -e "\033[0;35m│  Last room: Room ${LAST_ROOM}   Saved: ${SAVED_AT}  │\033[0m"
+    echo -e "\033[0;35m│  Run \033[0;32mresume\033[0;35m to continue from where you left off  │\033[0m"
+    echo -e "\033[0;35m└────────────────────────────────────────────────────┘\033[0m"
 fi
 BASHRC
 
