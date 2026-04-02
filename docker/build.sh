@@ -16,7 +16,9 @@ What this script does (high level):
 		 build and push the image(s) defined in that file.
 
 Usage:
-	./build.sh
+	./build.sh              # build + push all platforms (default)
+	./build.sh --local      # build for local arch only (no push, loads into docker)
+	./build.sh --push       # explicitly build + push all platforms
 
 Requirements / Preconditions:
 	- Docker (Engine) installed and running on the host
@@ -55,64 +57,85 @@ DOC
 
 set -euo pipefail
 
-# Resolve the root of the Git project so we can refer to files by absolute
-# path. If this fails this script will exit (not a git repo).
-ROOT_DIR=$(git rev-parse --show-toplevel)
+# ── Parse arguments ───────────────────────────────────────────────────────────
+LOCAL=false
+for arg in "$@"; do
+  case $arg in
+    --local) LOCAL=true ;;
+    --push)  LOCAL=false ;;
+    *) echo "Unknown argument: $arg"; exit 1 ;;
+  esac
+done
 
-# Change into the repository root. This makes relative paths in the
-# docker-compose bake file consistent regardless of where the script is
-# invoked from.
+# ── Resolve repo root ─────────────────────────────────────────────────────────
+ROOT_DIR=$(git rev-parse --show-toplevel)
 cd "$ROOT_DIR"
 
-# Allow the user to override the image name and tag via environment
-# variables. These defaults match the repository's historical values.
+# ── Variables ─────────────────────────────────────────────────────────────────
 IMAGE=${IMAGE:-ghcr.io/nirgeier/bash-escaperoom}
 IMAGE_TAG=${IMAGE_TAG:-latest}
 DOCKERHUB_IMAGE=${DOCKERHUB_IMAGE:-nirgeier/bash-escaperoom}
-
-# Compute BUILD_TIME in UTC ISO8601 (compatible on Linux and macOS)
 BUILD_TIME=$(date +"%Y-%m-%dT%H:%M:%SZ")
-# Get the git remote origin URL (if available)
-# Named SourceRepository to match the variable expected by docker-compose.yml
 SourceRepository=$(git config --local --get remote.origin.url)
 
-echo "Building image: ${IMAGE}:${IMAGE_TAG} (root: ${ROOT_DIR})"
+echo ""
+echo "  Image  : ${IMAGE}:${IMAGE_TAG}"
+echo "  Mode   : $([ "$LOCAL" = true ] && echo 'local (current arch only)' || echo 'multi-platform push')"
+echo "  Root   : ${ROOT_DIR}"
+echo ""
 
-# Step 1: Build the mkdocs site so it can be copied into the Docker image.
-echo "Building mkdocs site..."
+# ── Step 1: Build mkdocs site ─────────────────────────────────────────────────
+echo "[1/4] Building mkdocs site..."
 bash "$ROOT_DIR/mkdocs/scripts/init_site.sh" --no-serve
 
-# Step 2: Register binfmt handlers for multi-architecture emulation.
-# The `tonistiigi/binfmt` image provides an easy way to install the
-# kernel helpers that allow qemu to run foreign-architecture binaries.
-# We run it as a temporary privileged container.
-echo "Registering binfmt emulation handlers (required for cross-arch builds)..."
-docker run --privileged --rm tonistiigi/binfmt --install all
-
-# Step 3: Create / select a docker buildx builder and switch to it.
-# `--use` makes the new builder the current default for buildx operations.
-# If the builder already exists, just switch to it.
-echo "Creating and switching to buildx builder 'multiarch-builder'..."
-if ! docker buildx inspect multiarch-builder >/dev/null 2>&1; then
-	docker buildx create --name multiarch-builder --use
+# ── Step 2: Register binfmt (skip for local builds) ──────────────────────────
+if [ "$LOCAL" = false ]; then
+  echo "[2/4] Registering binfmt emulation handlers..."
+  docker run --privileged --rm tonistiigi/binfmt --install all
 else
-	docker buildx use multiarch-builder
+  echo "[2/4] Skipping binfmt registration (local build)"
 fi
 
-# Step 3: Bootstrap the builder. This starts the builder container
-# and registers its capabilities (including the registered binfmt
-# handlers) so the builder is ready to run multi-platform builds.
-echo "Bootstrapping buildx builder..."
-docker buildx inspect --bootstrap
+# ── Step 3: Create / select buildx builder ────────────────────────────────────
+if [ "$LOCAL" = false ]; then
+  echo "[3/4] Setting up multiarch-builder..."
+  if ! docker buildx inspect multiarch-builder >/dev/null 2>&1; then
+    docker buildx create --name multiarch-builder --use
+  else
+    docker buildx use multiarch-builder
+  fi
+  docker buildx inspect --bootstrap
+else
+  echo "[3/4] Using default builder (local arch only)"
+fi
 
-# Step 4: Build and push using `docker buildx bake`.
-# Run from docker/ so that context: .. in the compose file resolves to the repo root.
-echo "Running buildx bake for production (build + push)..."
+# ── Step 4: Build ─────────────────────────────────────────────────────────────
 cd "$ROOT_DIR/docker"
-docker buildx bake \
-	--allow=fs.read=.. \
-	-f docker-compose.yml \
-	--push \
-	escape-room-bash
 
-echo "Done."
+if [ "$LOCAL" = true ]; then
+  echo "[4/4] Building for local arch (no push)..."
+  docker buildx bake \
+    --allow=fs.read=.. \
+    -f docker-compose.yml \
+    --set "escape-room-bash.platforms=linux/$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')" \
+    --load \
+    escape-room-bash
+else
+  echo "[4/4] Building all platforms and pushing..."
+  # Verify registry logins before attempting push
+  if ! docker login ghcr.io --password-stdin <<< "" 2>/dev/null; then
+    echo ""
+    echo "  WARNING: Not logged in to ghcr.io"
+    echo "  Run: echo \$CR_PAT | docker login ghcr.io -u USERNAME --password-stdin"
+    echo ""
+  fi
+  docker buildx bake \
+    --allow=fs.read=.. \
+    -f docker-compose.yml \
+    --push \
+    escape-room-bash
+fi
+
+echo ""
+echo "  Done! Image: ${IMAGE}:${IMAGE_TAG}"
+echo ""
