@@ -84,9 +84,13 @@ echo "  Mode   : $([ "$LOCAL" = true ] && echo 'local (current arch only)' || ec
 echo "  Root   : ${ROOT_DIR}"
 echo ""
 
-# ── Step 1: Build mkdocs site ─────────────────────────────────────────────────
-echo "[1/4] Building mkdocs site..."
-bash "$ROOT_DIR/mkdocs/scripts/init_site.sh" --no-serve
+# ── Step 1: Check mkdocs site ─────────────────────────────────────────────────
+echo "[1/4] Checking mkdocs site..."
+if [ ! -d "$ROOT_DIR/mkdocs-site" ]; then
+  echo "  ERROR: mkdocs-site/ not found. Run 'mkdocs build' first."
+  exit 1
+fi
+echo "  mkdocs-site/ found, skipping build."
 
 # ── Step 2: Register binfmt (skip for local builds) ──────────────────────────
 if [ "$LOCAL" = false ]; then
