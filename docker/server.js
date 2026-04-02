@@ -17,6 +17,17 @@ app.use(express.static(path.join(__dirname, "public")));
 const docsDir = process.env.DOCS_DIR || path.join(__dirname, "docs");
 app.use("/docs", express.static(docsDir));
 
+// Health check — returns 200 only when escape user setup is complete
+const fs = require("fs");
+const READY_FILE = "/tmp/escape-room-ready";
+app.get("/health", (req, res) => {
+  if (fs.existsSync(READY_FILE)) {
+    res.json({ status: "ready" });
+  } else {
+    res.status(503).json({ status: "starting" });
+  }
+});
+
 // WebSocket connection handling
 wss.on("connection", (ws) => {
   // Spawn a login shell as the 'escape' user so .bash_profile is sourced

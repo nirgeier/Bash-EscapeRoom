@@ -222,5 +222,8 @@ chown escape:escape /home/escape/.bashrc /home/escape/.bash_profile
 # ── 6. Start room 14 web server (port 3456) ───────────────────────────────────
 su -s /bin/sh escape -c "python3 $BASE/room_14/server.py" &
 
-# ── 7. Start web-terminal server ─────────────────────────────────────────────
+# ── 7. Signal that setup is complete ─────────────────────────────────────────
+touch /tmp/escape-room-ready
+
+# ── 8. Start web-terminal server ─────────────────────────────────────────────
 exec node /app/server.js

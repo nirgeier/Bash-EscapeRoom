@@ -315,10 +315,73 @@
     #terminal-container .term-instance .xterm {
       height: 100%;
     }
+
+    /* ── Loading overlay ─────────────────────────────────── */
+    #loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-deep);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      gap: 24px;
+    }
+
+    #loading-overlay.hidden {
+      display: none;
+    }
+
+    #loading-overlay pre {
+      color: #1abc9c;
+      font-family: monospace;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    #loading-status {
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--border);
+      border-top-color: #1abc9c;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- ── Loading overlay ───────────────────────────────── -->
+  <div id="loading-overlay">
+    <pre>
+  ____            _       _____
+ | __ )  __ _ ___| |__   | ____|___  ___ __ _ _ __   ___
+ |  _ \ / _` / __| '_ \  |  _| / __|/ __/ _` | '_ \ / _ \
+ | |_) | (_| \__ \ | | | | |__\__ \ (_| (_| | |_) |  __/
+ |____/ \__,_|___/_| |_| |_____|___/\___\__,_| .__/ \___|
+                                              |_|
+                   ____
+                  |  _ \ ___   ___  _ __ ___
+                  | |_) / _ \ / _ \| '_ ` _ \
+                  |  _ < (_) | (_) | | | | | |
+                  |_| \_\___/ \___/|_| |_| |_|
+    </pre>
+    <div class="spinner"></div>
+    <div id="loading-status">Starting escape room...</div>
+  </div>
 
   <!-- ── Header ─────────────────────────────────────────── -->
   <div id="header">
@@ -649,8 +712,29 @@
       addTermBtn.addEventListener('click', () => createTerminal());
       window.addEventListener('resize', fitTerminal);
 
-      // Create the first terminal
-      createTerminal();
+      // ── Loading overlay: poll /health until ready ──────────
+      const overlay = document.getElementById('loading-overlay');
+      const loadingStatus = document.getElementById('loading-status');
+
+      function pollReady() {
+        fetch('/health')
+          .then(r => {
+            if (r.ok) {
+              loadingStatus.textContent = 'Ready! Loading terminal...';
+              setTimeout(() => overlay.classList.add('hidden'), 400);
+              createTerminal();
+            } else {
+              loadingStatus.textContent = 'Starting escape room...';
+              setTimeout(pollReady, 2000);
+            }
+          })
+          .catch(() => {
+            loadingStatus.textContent = 'Waiting for server...';
+            setTimeout(pollReady, 2000);
+          });
+      }
+
+      pollReady();
 
     })();
   </script>
