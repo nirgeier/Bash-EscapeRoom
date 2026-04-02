@@ -4,7 +4,7 @@ title_prefix: "🔧 "
 summary: "Use xargs to build and execute commands from standard input, processing files in bulk."
 ---
 
-[![Room-51](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-51.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-51.yml)
+[![Room-51](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-51.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-51.yml)
 
 
 **ASSEMBLE THE COMMANDS!**

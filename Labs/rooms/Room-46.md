@@ -4,7 +4,7 @@ title_prefix: "📝 "
 summary: "Navigate vim to find and decode a password hidden in a large text file."
 ---
 
-[![Room-46](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-46.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-46.yml)
+[![Room-46](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-46.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-46.yml)
 
 
 **ENTER THE VI VORTEX!**

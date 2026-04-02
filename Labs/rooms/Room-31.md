@@ -4,7 +4,7 @@ title_prefix: "🎭 "
 summary: "Use case statements to route inputs through a pattern-matching decision engine."
 ---
 
-[![Room-31](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-31.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-31.yml)
+[![Room-31](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-31.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-31.yml)
 
 
 **CHOOSE YOUR DESTINY!**

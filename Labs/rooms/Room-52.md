@@ -4,7 +4,7 @@ title_prefix: "🏛️ "
 summary: "Fix file ownership with chown and chgrp, and control default permissions with umask."
 ---
 
-[![Room-52](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-52.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-52.yml)
+[![Room-52](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-52.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-52.yml)
 
 
 **RECLAIM THE VAULT!**

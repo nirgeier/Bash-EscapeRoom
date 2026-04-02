@@ -4,7 +4,7 @@ title_prefix: "🏆 "
 summary: "Answer 5 random Linux command questions to escape the final room."
 ---
 
-[![Room-99](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-99.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-99.yml)
+[![Room-99](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-99.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-99.yml)
 
 
 **THE EXIT EXAM!**

@@ -4,7 +4,7 @@ title_prefix: "🎛️ "
 summary: "Use getopts to parse command-line arguments and unlock a protected script."
 ---
 
-[![Room-33](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-33.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-33.yml)
+[![Room-33](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-33.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-33.yml)
 
 
 **CRACK THE ARGUMENT DECODER!**

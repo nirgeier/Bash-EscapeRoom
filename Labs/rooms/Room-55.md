@@ -4,7 +4,7 @@ title_prefix: "🔍 "
 summary: "Inspect system identity: kernel version, hostname, user info, and logged-in sessions."
 ---
 
-[![Room-55](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-55.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-55.yml)
+[![Room-55](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-55.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-55.yml)
 
 
 **IDENTIFY THE SYSTEM!**

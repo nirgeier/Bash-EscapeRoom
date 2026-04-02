@@ -4,7 +4,7 @@ title_prefix: "🕰️ "
 summary: "Use the date command to calculate time differences and decode timestamps."
 ---
 
-[![Room-23](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-23.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-23.yml)
+[![Room-23](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-23.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-23.yml)
 
 
 **DECODE THE TIMESTAMPS!**

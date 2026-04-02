@@ -3,7 +3,7 @@ title_prefix: "🧭 "
 summary: "Use `find` to locate hidden map fragments in a deep directory tree."
 ---
 
-[![Room-01](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-01.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-01.yml)
+[![Room-01](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-01.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-01.yml)
 
 
 FIND THE MAP FRAGMENTS!

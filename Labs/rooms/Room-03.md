@@ -4,7 +4,7 @@ title_prefix: "⏳ "
 summary: "Use tac, rev, head, tail, and wc to decode a time capsule journal."
 ---
 
-[![Room-03](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-03.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-03.yml)
+[![Room-03](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-03.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-03.yml)
 
 
 **DECODE THE TIME CAPSULE!**

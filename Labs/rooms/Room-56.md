@@ -4,7 +4,7 @@ title_prefix: "⚙️ "
 summary: "Control processes with pgrep, pkill, nohup, nice, and renice - advanced process management."
 ---
 
-[![Room-56](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-56.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-56.yml)
+[![Room-56](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-56.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-56.yml)
 
 
 **CONTROL THE CHAOS!**

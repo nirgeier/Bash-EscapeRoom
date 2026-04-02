@@ -4,7 +4,7 @@ title_prefix: "🌍 "
 summary: "Use command substitution and process substitution to combine command outputs."
 ---
 
-[![Room-35](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-35.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-35.yml)
+[![Room-35](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-35.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-35.yml)
 
 
 **ENTER THE NESTED WORLDS!**

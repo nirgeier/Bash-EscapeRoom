@@ -4,7 +4,7 @@ title_prefix: "🔐 "
 summary: "Fix file permissions using chmod to unlock the gates."
 ---
 
-[![Room-07](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-07.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-07.yml)
+[![Room-07](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-07.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-07.yml)
 
 
 **FIX THE PERMISSIONS!**

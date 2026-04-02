@@ -4,7 +4,7 @@ title_prefix: "💍 "
 summary: "Chain base64, tr (ROT13), and rev to decode a triple-encoded message."
 ---
 
-[![Room-05](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-05.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-05.yml)
+[![Room-05](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-05.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-05.yml)
 
 
 **DECODE THE TRIPLE-ENCODED MESSAGE!**

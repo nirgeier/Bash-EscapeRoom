@@ -4,7 +4,7 @@ title_prefix: "🚀 "
 summary: "Use df and du to investigate disk usage and find the heaviest directory."
 ---
 
-[![Room-16](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-16.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-16.yml)
+[![Room-16](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-16.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-16.yml)
 
 
 **MAP THE SPACE STATION!**

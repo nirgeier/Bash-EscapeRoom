@@ -4,7 +4,7 @@ title_prefix: "🔢 "
 summary: "Decode a hex dump using xxd to reveal the hidden message."
 ---
 
-[![Room-20](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-20.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-20.yml)
+[![Room-20](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-20.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-20.yml)
 
 
 **DECODE THE HEX DUNGEON!**

@@ -4,7 +4,7 @@ title_prefix: "🖨️ "
 summary: "Use printf to format a template precisely and assemble the password."
 ---
 
-[![Room-24](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-24.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-24.yml)
+[![Room-24](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-24.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-24.yml)
 
 
 **FORMAT THE TRANSMISSION!**

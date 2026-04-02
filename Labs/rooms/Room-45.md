@@ -4,7 +4,7 @@ title_prefix: "🔑 "
 summary: "Use openssl to decrypt a message encrypted with a symmetric cipher."
 ---
 
-[![Room-45](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-45.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-45.yml)
+[![Room-45](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-45.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-45.yml)
 
 
 **CRACK THE CRYPTOGRAPHER'S DEN!**

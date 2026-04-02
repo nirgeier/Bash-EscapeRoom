@@ -4,7 +4,7 @@ title_prefix: "🔮 "
 summary: "Use dig and host to resolve DNS records and trace a domain to its secret."
 ---
 
-[![Room-40](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-40.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-40.yml)
+[![Room-40](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-40.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-40.yml)
 
 
 **CONSULT THE DNS ORACLE!**

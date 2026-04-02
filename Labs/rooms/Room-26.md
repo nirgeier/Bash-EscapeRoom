@@ -4,7 +4,7 @@ title_prefix: "🧩 "
 summary: "Master bash parameter expansion to extract and transform variable values."
 ---
 
-[![Room-26](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-26.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-26.yml)
+[![Room-26](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-26.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-26.yml)
 
 
 **EXPAND THE VARIABLES!**

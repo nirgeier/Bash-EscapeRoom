@@ -4,7 +4,7 @@ title_prefix: "📜 "
 summary: "Use here-documents to write a multi-line config and run embedded commands."
 ---
 
-[![Room-34](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-34.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-34.yml)
+[![Room-34](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-34.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-34.yml)
 
 
 **INSCRIBE THE ANCIENT SCROLL!**

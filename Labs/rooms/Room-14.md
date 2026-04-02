@@ -4,7 +4,7 @@ title_prefix: "🌐 "
 summary: "Use curl to fetch and process data from a local web server."
 ---
 
-[![Room-14](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-14.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-14.yml)
+[![Room-14](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-14.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-14.yml)
 
 
 **SURF THE WEB!**

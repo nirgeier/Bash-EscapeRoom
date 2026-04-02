@@ -4,7 +4,7 @@ title_prefix: "🔌 "
 summary: "Use netcat (nc) to communicate with a local service and retrieve the key."
 ---
 
-[![Room-41](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-41.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-41.yml)
+[![Room-41](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-41.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-41.yml)
 
 
 **OPEN THE NETCAT TUNNEL!**

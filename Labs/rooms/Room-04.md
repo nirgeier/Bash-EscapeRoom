@@ -4,7 +4,7 @@ title_prefix: "🕵️ "
 summary: "Use sed substitutions to decode an encrypted spy message."
 ---
 
-[![Room-04](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-04.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-04.yml)
+[![Room-04](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-04.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-04.yml)
 
 
 **CRACK THE SPY CODE!**

@@ -4,7 +4,7 @@ title_prefix: "🚪 "
 summary: "Use the read command to interactively respond to a prompt-driven challenge."
 ---
 
-[![Room-37](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-37.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-37.yml)
+[![Room-37](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-37.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-37.yml)
 
 
 **ANSWER THE GUARDIAN!**

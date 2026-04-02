@@ -4,7 +4,7 @@ title_prefix: "🗂️ "
 summary: "Use lsof to list open files and identify which process holds the secret."
 ---
 
-[![Room-42](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-42.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-42.yml)
+[![Room-42](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-42.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-42.yml)
 
 
 **OPEN THE FILE ARCHIVE!**

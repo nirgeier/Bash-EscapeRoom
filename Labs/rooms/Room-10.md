@@ -4,7 +4,7 @@ title_prefix: "⛏️ "
 summary: "Use awk to filter CSV data and calculate sums based on conditions."
 ---
 
-[![Room-10](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-10.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-10.yml)
+[![Room-10](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-10.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-10.yml)
 
 
 **MINE THE DATA!**

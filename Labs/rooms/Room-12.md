@@ -4,7 +4,7 @@ title_prefix: "🎼 "
 summary: "Build a multi-stage pipeline using cut, tr, and pipes."
 ---
 
-[![Room-12](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-12.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-12.yml)
+[![Room-12](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-12.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-12.yml)
 
 
 **CONDUCT THE PIPELINE!**

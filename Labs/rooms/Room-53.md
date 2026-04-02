@@ -4,7 +4,7 @@ title_prefix: "📡 "
 summary: "Probe the network with ping and traceroute, then retrieve a remote resource using wget."
 ---
 
-[![Room-53](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-53.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-53.yml)
+[![Room-53](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-53.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-53.yml)
 
 
 **TRACE THE SIGNAL!**

@@ -4,7 +4,7 @@ title_prefix: "⚙️ "
 summary: "Write and call bash functions to process a complex multi-step task."
 ---
 
-[![Room-32](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-32.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-32.yml)
+[![Room-32](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-32.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-32.yml)
 
 
 **POWER UP THE FACTORY!**

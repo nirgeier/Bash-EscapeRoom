@@ -4,7 +4,7 @@ title_prefix: "🔒 "
 summary: "Use md5sum and sha256sum to verify file integrity and find the authentic document."
 ---
 
-[![Room-19](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-19.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-19.yml)
+[![Room-19](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-19.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-19.yml)
 
 
 **FIND THE AUTHENTIC DOCUMENT!**

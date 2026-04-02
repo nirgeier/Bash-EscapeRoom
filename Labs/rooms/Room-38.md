@@ -4,7 +4,7 @@ title_prefix: "💣 "
 summary: "Use timeout and watch to manage time-limited and repeated commands."
 ---
 
-[![Room-38](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-38.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-38.yml)
+[![Room-38](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-38.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-38.yml)
 
 
 **DEFUSE THE TIME BOMB!**

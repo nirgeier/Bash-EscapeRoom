@@ -4,7 +4,7 @@ title_prefix: "🪆 "
 summary: "Unwrap a multi-layered archive using base64, gzip, and tar."
 ---
 
-[![Room-11](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-11.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/rooms/room-11.yml)
+[![Room-11](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-11.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-11.yml)
 
 
 **UNWRAP THE MATRYOSHKA!**
