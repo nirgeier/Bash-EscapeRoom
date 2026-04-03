@@ -1,8 +1,17 @@
 ---
+title: "(Room 05) 💍 The Decoder Ring"
 password: "sedmaster"
 title_prefix: "💍 "
 summary: "Chain base64, tr (ROT13), and rev to decode a triple-encoded message."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 05</span>
+  <div class="room-title">
+    <span class="room-title-accent">💍 The</span>
+    <span class="room-title-main">Decoder Ring</span>
+  </div>
+</div>
 
 [![Room-05](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-05.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-05.yml)
 
@@ -11,26 +20,27 @@ summary: "Chain base64, tr (ROT13), and rev to decode a triple-encoded message."
 
 ---
 
-## 💍 The Decoder Ring
 
 - A message was encoded with **3 layers** of transformation.
 - Peel them off in reverse order using pipes.
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-        The file `encoded_message.txt` has been encoded in **3 layers** (applied in this order):
+The file `encoded_message.txt` has been encoded in **3 layers** (applied in this order):
 
-        1. Characters were **reversed** (`rev`)
-        2. **ROT13** was applied (each letter shifted 13 positions)
-        3. Result was **Base64-encoded**
+    1. Characters were **reversed** (`rev`)
+    2. **ROT13** was applied (each letter shifted 13 positions)
+    3. Result was **Base64-encoded**
 
-        To decode, undo the layers in **reverse order**:
+    To decode, undo the layers in **reverse order**:
 
-        1. Decode Base64 → `base64 -d`
-        2. Undo ROT13 → `tr 'a-zA-Z' 'n-za-mN-ZA-M'`
-        3. Reverse characters → `rev`
-        4. Chain all three with pipes in one command.
-        5. The decoded output **is** the password.
+    1. Decode Base64 → `base64 -d`
+    2. Undo ROT13 → `tr 'a-zA-Z' 'n-za-mN-ZA-M'`
+    3. Reverse characters → `rev`
+    4. Chain all three with pipes in one command.
+    5. The decoded output **is** the password.
+
+</div>
 
 ---
 
@@ -80,16 +90,14 @@ echo "racecar" | rev              # outputs: racecar (palindrome)
 
 ---
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    ROT13 is its own inverse -applying it twice gets you back to the original.
+> ROT13 is its own inverse -applying it twice gets you back to the original.
 
-!!! tip "Hint 2"
+> The decoded output IS the password -one single word.
 
-    The decoded output IS the password -one single word.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 06"

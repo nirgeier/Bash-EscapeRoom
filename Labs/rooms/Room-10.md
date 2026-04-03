@@ -1,8 +1,17 @@
 ---
+title: "(Room 10) ⛏️ The Data Mine"
 password: "daemon77"
 title_prefix: "⛏️ "
 summary: "Use awk to filter CSV data and calculate sums based on conditions."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 10</span>
+  <div class="room-title">
+    <span class="room-title-accent">⛏️ The</span>
+    <span class="room-title-main">Data Mine</span>
+  </div>
+</div>
 
 [![Room-10](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-10.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-10.yml)
 
@@ -11,23 +20,24 @@ summary: "Use awk to filter CSV data and calculate sums based on conditions."
 
 ---
 
-## ⛏️ The Data Mine
 
 - A CSV file contains 100 mineral survey records.
 - Use `awk` to filter rows by depth and sum the weight values.
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `mine_data.csv` contains 100 mineral survey records.
-    Format: `mineral,depth,weight,sector`
+The file `mine_data.csv` contains 100 mineral survey records.
+Format: `mineral,depth,weight,sector`
 
-    1. Use `awk` to process `mine_data.csv`:
-       - Skip the header line (line 1)
-       - Filter rows where `depth` (field 2) is **greater than 50**
-       - Sum the `weight` values (field 3) of those filtered rows
-    2. The password is `awk` followed by the calculated sum *(no space)*.
-       > Example: if the sum is 1234 → `awk1234`
-       > hint: `awk -F',' 'NR>1 && $2>50 {sum+=$3} ..'
+1. Use `awk` to process `mine_data.csv`:
+   - Skip the header line (line 1)
+   - Filter rows where `depth` (field 2) is **greater than 50**
+   - Sum the `weight` values (field 3) of those filtered rows
+2. The password is `awk` followed by the calculated sum *(no space)*.
+   > Example: if the sum is 1234 → `awk1234`
+   > `awk -F',' 'NR>1 && $2>50 {sum+=$3} ..'
+
+</div>
 
 ### Key Commands
 
@@ -92,20 +102,16 @@ silver,30,22,B2
 ...
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `NR>1` skips the header line.
+> `NR>1` skips the header line.
 
-!!! tip "Hint 2"
+> `$2>50` filters for depth greater than 50.
 
-    `$2>50` filters for depth greater than 50.
+> The password format is: `awk` + the calculated sum (e.g., `awk1234`).
 
-!!! tip "Hint 3"
-
-    The password format is: `awk` + the calculated sum (e.g., `awk1234`).
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 11"

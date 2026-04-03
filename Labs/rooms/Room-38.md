@@ -1,8 +1,17 @@
 ---
+title: "(Room 38) 💣 The Time Bomb"
 password: "readline"
 title_prefix: "💣 "
 summary: "Use timeout and watch to manage time-limited and repeated commands."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 38</span>
+  <div class="room-title">
+    <span class="room-title-accent">💣 The</span>
+    <span class="room-title-main">Time Bomb</span>
+  </div>
+</div>
 
 [![Room-38](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-38.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-38.yml)
 
@@ -11,25 +20,26 @@ summary: "Use timeout and watch to manage time-limited and repeated commands."
 
 ---
 
-## 💣 The Time Bomb
 
 - A countdown timer is ticking.
 - Use `timeout` to run a command safely and `watch` to monitor the clock.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The script `countdown.sh` takes a long time to complete naturally, but the answer
-    is available after just a few seconds.
+The script `countdown.sh` takes a long time to complete naturally, but the answer
+is available after just a few seconds.
 
-    1. Run `countdown.sh` with a `timeout` of **5 seconds**.
-       > hint: `timeout 5 ./countdown.sh`
-    2. The script writes partial output to `progress.log` as it runs.
-    3. After the timeout, read `progress.log` to find the password fragment.
-       > hint: `cat progress.log`
-    4. The last non-empty line of `progress.log` contains `BOMB_CODE=<value>`.
-    5. Extract the value - it **is** the password.
+1. Run `countdown.sh` with a `timeout` of **5 seconds**.
+   > `timeout 5 ./countdown.sh`
+2. The script writes partial output to `progress.log` as it runs.
+3. After the timeout, read `progress.log` to find the password fragment.
+   > `cat progress.log`
+4. The last non-empty line of `progress.log` contains `BOMB_CODE=<value>`.
+5. Extract the value - it **is** the password.
+
+</div>
 
 ### Key Commands
 
@@ -80,16 +90,14 @@ sleep 2h                               # 2 hours
 timeout 10 bash -c 'while true; do echo tick; sleep 1; done'
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `timeout 5 ./countdown.sh` will kill the script after 5 seconds, but `progress.log` already has data.
+> `timeout 5 ./countdown.sh` will kill the script after 5 seconds, but `progress.log` already has data.
 
-!!! tip "Hint 2"
+> `grep "BOMB_CODE" progress.log | tail -1 | cut -d'=' -f2` extracts the value.
 
-    `grep "BOMB_CODE" progress.log | tail -1 | cut -d'=' -f2` extracts the value.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 39"

@@ -1,8 +1,17 @@
 ---
+title: "(Room 02) 📻 The Broken Radio"
 password: "northstar"
 title_prefix: "📻 "
 summary: "Count SOS signals in intercepted radio transmissions using grep."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 02</span>
+  <div class="room-title">
+    <span class="room-title-accent">📻 The</span>
+    <span class="room-title-main">Broken Radio</span>
+  </div>
+</div>
 
 [![Room-02](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-02.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-02.yml)
 
@@ -11,7 +20,6 @@ summary: "Count SOS signals in intercepted radio transmissions using grep."
 
 ---
 
-## 📻 The Broken Radio
 
 - You intercepted **200 enemy radio transmissions**.
 - Each message has a status tag - `OK`, `SOS`, `LOST`, or `NOISE`.
@@ -19,14 +27,16 @@ summary: "Count SOS signals in intercepted radio transmissions using grep."
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    * The file `radio_intercepts.txt` contains **200** intercepted messages tagged with: `OK`, `SOS`, `LOST`, or `NOISE`.
+* The file `radio_intercepts.txt` contains **200** intercepted messages tagged with: `OK`, `SOS`, `LOST`, or `NOISE`.
 
-    1. Count the number of lines containing `"SOS"` in `radio_intercepts.txt`.
-       > hint: `grep -c` counts matching lines
-    2. The password is the word `signal` followed by that count *(no space)*.
-       > Example: if there are 23 SOS lines → password is `signal23`
+1. Count the number of lines containing `"SOS"` in `radio_intercepts.txt`.
+   > `grep -c` counts matching lines
+2. The password is the word `signal` followed by that count *(no space)*.
+   > Example: if there are 23 SOS lines → password is `signal23`
+
+</div>
 
 ### Key Commands
 
@@ -90,15 +100,15 @@ grep "pattern" file.txt | sort | uniq # unique matching lines
 
 ---
 
-### Hints
 
-!!! tip "Hint: Counting with `grep`"
+<div class="hints" markdown="1">
 
-    To count lines containing "SOS", use:
-    ```bash
-    grep -c "<text>" <file>
-    ```
+> To count lines containing "SOS", use:
 
+</div>
+```bash
+grep -c "<text>" <file>
+```
     * This will return a single number - the count of lines that contain "S<text>".
     * `grep -c` gives you a single number -the count of matching lines.
 

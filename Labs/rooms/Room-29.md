@@ -1,8 +1,17 @@
 ---
+title: "(Room 29) 🌀 The Endless Corridor"
 password: "loop50"
 title_prefix: "🌀 "
 summary: "Use a while loop to read and process a file line by line."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 29</span>
+  <div class="room-title">
+    <span class="room-title-accent">🌀 The</span>
+    <span class="room-title-main">Endless Corridor</span>
+  </div>
+</div>
 
 [![Room-29](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-29.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-29.yml)
 
@@ -11,22 +20,23 @@ summary: "Use a while loop to read and process a file line by line."
 
 ---
 
-## 🌀 The Endless Corridor
 
 - A long corridor has doors on both sides.
 - Read the door log line by line and count how many doors were left **open**.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `door_log.txt` contains door status records, one per line.
-    Each line has the format: `DOOR_ID STATUS` (e.g., `door_042 OPEN`).
+The file `door_log.txt` contains door status records, one per line.
+Each line has the format: `DOOR_ID STATUS` (e.g., `door_042 OPEN`).
 
-    1. Use a `while read` loop to process each line of `door_log.txt`.
-    2. Count lines where the status field is `OPEN`.
-    3. The password is `while` followed by the count of open doors *(no space)*.
-       > Example: if 73 doors are OPEN → `while73`
+1. Use a `while read` loop to process each line of `door_log.txt`.
+2. Count lines where the status field is `OPEN`.
+3. The password is `while` followed by the count of open doors *(no space)*.
+   > Example: if 73 doors are OPEN → `while73`
+
+</div>
 
 ### Key Commands
 
@@ -86,16 +96,14 @@ while true; do
 done
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `while read -r id status; do` splits each line into two variables automatically.
+> `while read -r id status; do` splits each line into two variables automatically.
 
-!!! tip "Hint 2"
+> `[[ "$status" == "OPEN" ]]` tests for exact equality.
 
-    `[[ "$status" == "OPEN" ]]` tests for exact equality.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 30"

@@ -1,8 +1,17 @@
 ---
+title: "(Room 22) 🧮 The Calculator Cave"
 password: "hidden42"
 title_prefix: "🧮 "
 summary: "Use bc and expr to perform mathematical calculations and crack the code."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 22</span>
+  <div class="room-title">
+    <span class="room-title-accent">🧮 The</span>
+    <span class="room-title-main">Calculator Cave</span>
+  </div>
+</div>
 
 [![Room-22](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-22.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-22.yml)
 
@@ -11,22 +20,23 @@ summary: "Use bc and expr to perform mathematical calculations and crack the cod
 
 ---
 
-## 🧮 The Calculator Cave
 
 - The door lock requires solving a series of mathematical equations.
 - Linux has built-in calculators - use them!
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `equations.txt` contains 3 math problems. Solve them all.
+The file `equations.txt` contains 3 math problems. Solve them all.
 
-    1. Read `equations.txt` to see the problems.
-    2. Solve each equation using `bc` (supports floating point and complex math).
-       > hint: `echo "2^10 + 15 * 3" | bc`
-    3. The password is the word `calc` followed by the **sum of all three answers** *(no space)*.
-       > Example: if answers are 5, 10, and 20 → `calc35`
+1. Read `equations.txt` to see the problems.
+2. Solve each equation using `bc` (supports floating point and complex math).
+   > `echo "2^10 + 15 * 3" | bc`
+3. The password is the word `calc` followed by the **sum of all three answers** *(no space)*.
+   > Example: if answers are 5, 10, and 20 → `calc35`
+
+</div>
 
 ### Key Commands
 
@@ -73,16 +83,14 @@ echo $(( 100 % 7 ))                     # 2 (modulo)
 result=$(( 5 * 8 ))                     # assign to variable
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    Use `echo "expression" | bc` for each equation, then add all results together.
+> Use `echo "expression" | bc` for each equation, then add all results together.
 
-!!! tip "Hint 2"
+> For floating point results, use `echo "scale=0; expression" | bc` to get integers.
 
-    For floating point results, use `echo "scale=0; expression" | bc` to get integers.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 23"

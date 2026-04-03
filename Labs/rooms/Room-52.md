@@ -1,8 +1,17 @@
 ---
+title: "(Room 52) 🏛️ The Ownership Vault"
 password: "chownit"
 title_prefix: "🏛️ "
 summary: "Fix file ownership with chown and chgrp, and control default permissions with umask."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 52</span>
+  <div class="room-title">
+    <span class="room-title-accent">🏛️ The</span>
+    <span class="room-title-main">Ownership Vault</span>
+  </div>
+</div>
 
 [![Room-52](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-52.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-52.yml)
 
@@ -11,30 +20,31 @@ summary: "Fix file ownership with chown and chgrp, and control default permissio
 
 ---
 
-## 🏛️ The Ownership Vault
 
 - Files in the Ownership Vault have been scrambled - wrong owners, wrong groups.
 - The vault's locking mechanism checks ownership before granting access.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    Every file in the `vault/` directory has been reassigned to the wrong owner or group.
-    The `requirements.txt` file describes the correct ownership for each file.
+Every file in the `vault/` directory has been reassigned to the wrong owner or group.
+The `requirements.txt` file describes the correct ownership for each file.
 
-    1. Inspect the current ownership of all files in `vault/`.
-       > hint: `ls -la vault/`
-    2. Check your own user and group identity.
-       > hint: `id`
-    3. Read `requirements.txt` to see what each file's owner and group should be.
-       > hint: `cat requirements.txt`
-    4. Fix ownership of each file using `chown` or `chgrp` as required.
-       > hint: `chown user:group vault/filename`
-    5. Set the correct default permission mask using `umask`.
-       > hint: `umask 022`
-    6. Run `./getKey.sh` to validate all ownership and retrieve the password.
-       > hint: `./getKey.sh`
+1. Inspect the current ownership of all files in `vault/`.
+   > `ls -la vault/`
+2. Check your own user and group identity.
+   > `id`
+3. Read `requirements.txt` to see what each file's owner and group should be.
+   > `cat requirements.txt`
+4. Fix ownership of each file using `chown` or `chgrp` as required.
+   > `chown user:group vault/filename`
+5. Set the correct default permission mask using `umask`.
+   > `umask 022`
+6. Run `./getKey.sh` to validate all ownership and retrieve the password.
+   > `./getKey.sh`
+
+</div>
 
 ### Key Commands
 
@@ -96,18 +106,15 @@ id -un                             # username only (same as whoami)
 groups                             # alice adm sudo docker
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `chown user:group file` sets both owner and group in a single command.
-    `chown :group file` sets only the group - useful when you don't want to change the owner.
-    `chgrp group file` is equivalent to `chown :group file`.
+> `chown user:group file` sets both owner and group in a single command.
 
-!!! tip "Hint 2"
-
-    Use `stat -c "%U %G %a" <file>` to quickly verify the owner, group, and octal permissions of a file after you make changes - much faster than reading `ls -la` output manually.
-
+</div>
+`chown :group file` sets only the group - useful when you don't want to change the owner.
+`chgrp group file` is equivalent to `chown :group file`.
+> Use `stat -c "%U %G %a" <file>` to quickly verify the owner, group, and octal permissions of a file after you make changes - much faster than reading `ls -la` output manually.
 ---
 
 !!! info "🔓 Unlock Room 53"

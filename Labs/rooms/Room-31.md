@@ -1,8 +1,17 @@
 ---
+title: "(Room 31) 🎭 The Decision Chamber"
 password: "branch3"
 title_prefix: "🎭 "
 summary: "Use case statements to route inputs through a pattern-matching decision engine."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 31</span>
+  <div class="room-title">
+    <span class="room-title-accent">🎭 The</span>
+    <span class="room-title-main">Decision Chamber</span>
+  </div>
+</div>
 
 [![Room-31](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-31.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-31.yml)
 
@@ -11,22 +20,23 @@ summary: "Use case statements to route inputs through a pattern-matching decisio
 
 ---
 
-## 🎭 The Decision Chamber
 
 - The chamber has five doors, each labeled with a symbol.
 - Only the `case` statement can correctly route each symbol to the right door.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `symbols.txt` contains 20 lines, each with a single symbol: `@`, `#`, `$`, `%`, or `&`.
+The file `symbols.txt` contains 20 lines, each with a single symbol: `@`, `#`, `$`, `%`, or `&`.
 
-    1. Write a script or one-liner using a `case` statement to categorize each symbol.
-    2. Count how many lines contain `$` (the dollar sign).
-       > hint: loop + case, or simply `grep -c '\$' symbols.txt`
-    3. The password is `matched` followed by that count *(no space)*.
-       > Example: if 7 lines contain `$` → `matched7`
+1. Write a script or one-liner using a `case` statement to categorize each symbol.
+2. Count how many lines contain `$` (the dollar sign).
+   > loop + case, or simply `grep -c '\$' symbols.txt`
+3. The password is `matched` followed by that count *(no space)*.
+   > Example: if 7 lines contain `$` → `matched7`
+
+</div>
 
 ### Key Commands
 
@@ -82,16 +92,14 @@ case $filename in
 esac
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    In a `case` pattern, `$` must be escaped as `\$` to avoid variable expansion.
+> In a `case` pattern, `$` must be escaped as `\$` to avoid variable expansion.
 
-!!! tip "Hint 2"
+> You can also just use `grep -c '\$' symbols.txt` directly without a case statement.
 
-    You can also just use `grep -c '\$' symbols.txt` directly without a case statement.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 32"

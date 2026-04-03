@@ -1,8 +1,17 @@
 ---
+title: "(Room 13) 🪞 The Mirror Maze"
 password: "pipeline"
 title_prefix: "🪞 "
 summary: "Follow a chain of symbolic links to find the hidden treasure."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 13</span>
+  <div class="room-title">
+    <span class="room-title-accent">🪞 The</span>
+    <span class="room-title-main">Mirror Maze</span>
+  </div>
+</div>
 
 [![Room-13](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-13.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-13.yml)
 
@@ -11,23 +20,24 @@ summary: "Follow a chain of symbolic links to find the hidden treasure."
 
 ---
 
-## 🪞 The Mirror Maze
 
 - Someone has created a labyrinth of symbolic links, each mirror pointing to the next.
 - Follow the chain from start to finish to reach the treasure.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The directory `mirrors/` contains a chain of symbolic links.
+The directory `mirrors/` contains a chain of symbolic links.
 
-    1. List all files in `mirrors/` including symlinks.
-       > hint: `ls -la mirrors/`
-    2. Start from `start.link` and follow the chain - each symlink points to the next.
-       > hint: `readlink filename` shows what a symlink points to
-    3. Reach the final file and read its contents to get the password.
-       > hint: `cat` follows symlinks automatically
+1. List all files in `mirrors/` including symlinks.
+   > `ls -la mirrors/`
+2. Start from `start.link` and follow the chain - each symlink points to the next.
+   > `readlink filename` shows what a symlink points to
+3. Reach the final file and read its contents to get the password.
+   > `cat` follows symlinks automatically
+
+</div>
 
 ### Key Commands
 
@@ -65,16 +75,14 @@ unlink linkname
 rm linkname
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `readlink -f start.link` will resolve the entire chain at once.
+> `readlink -f start.link` will resolve the entire chain at once.
 
-!!! tip "Hint 2"
+> `cat` automatically follows symlink chains - try `cat start.link`.
 
-    `cat` automatically follows symlink chains - try `cat start.link`.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 14"

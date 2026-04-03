@@ -1,8 +1,17 @@
 ---
+title: "(Room 51) 🔧 The Command Assembler"
 password: "masterkey"
 title_prefix: "🔧 "
 summary: "Use xargs to build and execute commands from standard input, processing files in bulk."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 51</span>
+  <div class="room-title">
+    <span class="room-title-accent">🔧 The</span>
+    <span class="room-title-main">Command Assembler</span>
+  </div>
+</div>
 
 [![Room-51](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-51.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-51.yml)
 
@@ -11,22 +20,23 @@ summary: "Use xargs to build and execute commands from standard input, processin
 
 ---
 
-## 🔧 The Command Assembler
 
 - The Command Assembler's workshop is full of orphaned parts scattered across directories.
 - Each part file contains a numeric VALUE. You must assemble them all using xargs to find the total.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The `parts/` directory contains multiple `.part` files, each holding a line like `VALUE=N`.
+The `parts/` directory contains multiple `.part` files, each holding a line like `VALUE=N`.
 
-    1. Find all `.part` files recursively using `find`.
-    2. Use `xargs` to pass each file to `grep` and extract the `VALUE=` lines.
-    3. Use `cut` to extract just the number after the `=` sign.
-    4. Sum all numbers using `paste` to build an expression and `bc` to evaluate it.
-    5. Pass the total to `./getKey.sh` to retrieve the password.
+1. Find all `.part` files recursively using `find`.
+2. Use `xargs` to pass each file to `grep` and extract the `VALUE=` lines.
+3. Use `cut` to extract just the number after the `=` sign.
+4. Sum all numbers using `paste` to build an expression and `bc` to evaluate it.
+5. Pass the total to `./getKey.sh` to retrieve the password.
+
+</div>
 
 ### Key Commands
 
@@ -83,17 +93,14 @@ find data/ -name "*.enc" | xargs -I{} sh -c 'base64 -d < {} | gzip -d > ${1%.enc
 find dir/ -name "*.ext" | xargs grep -h "KEY=" | cut -d= -f2 | paste -sd+ | bc
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    For complex per-file processing, use `xargs -I{} sh -c '...'` to invoke a subshell.
-    Example: `find . -name "*.b64" | xargs -I{} sh -c 'base64 -d < {} | grep KEY'`
+> For complex per-file processing, use `xargs -I{} sh -c '...'` to invoke a subshell.
 
-!!! tip "Hint 2"
-
-    Add the `-t` flag to debug your pipeline - it prints every command to stderr before running it so you can see exactly what `xargs` is doing.
-
+</div>
+Example: `find . -name "*.b64" | xargs -I{} sh -c 'base64 -d < {} | grep KEY'`
+> Add the `-t` flag to debug your pipeline - it prints every command to stderr before running it so you can see exactly what `xargs` is doing.
 ---
 
 !!! info "🔓 Unlock Room 52"

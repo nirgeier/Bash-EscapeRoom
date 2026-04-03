@@ -1,8 +1,17 @@
 ---
+title: "(Room 04) 🕵️ The Spy Cipher"
 password: "rewind99"
 title_prefix: "🕵️ "
 summary: "Use sed substitutions to decode an encrypted spy message."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 04</span>
+  <div class="room-title">
+    <span class="room-title-accent">🕵️ The</span>
+    <span class="room-title-main">Spy Cipher</span>
+  </div>
+</div>
 
 [![Room-04](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-04.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-04.yml)
 
@@ -11,7 +20,6 @@ summary: "Use sed substitutions to decode an encrypted spy message."
 
 ---
 
-## 🕵️ The Spy Cipher
 
 - A spy left an encoded message.
 - Certain letters were replaced with codes.
@@ -19,24 +27,26 @@ summary: "Use sed substitutions to decode an encrypted spy message."
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    A spy left an encoded message in `cipher.txt`. Certain letters were
-    replaced with codes using this substitution table:
+A spy left an encoded message in `cipher.txt`. Certain letters were
+replaced with codes using this substitution table:
 
-    | Original | Encoded |
-    |----------|---------|
-    | s        | Z7      |
-    | e        | Q3      |
-    | d        | X9      |
-    | m        | K1      |
-    | a        | J2      |
-    | t        | W8      |
-    | r        | P6      |
+| Original | Encoded |
+|----------|---------|
+| s        | Z7      |
+| e        | Q3      |
+| d        | X9      |
+| m        | K1      |
+| a        | J2      |
+| t        | W8      |
+| r        | P6      |
 
-    1. Use `sed` to reverse **all** substitutions on `cipher.txt`.
-       > hint: `sed 's/ENCODED/ORIGINAL/g; s/ENCODED2/ORIGINAL2/g' cipher.txt`
-    2. Read the decoded output -the password is in the decoded text.
+1. Use `sed` to reverse **all** substitutions on `cipher.txt`.
+   > `sed 's/ENCODED/ORIGINAL/g; s/ENCODED2/ORIGINAL2/g' cipher.txt`
+2. Read the decoded output -the password is in the decoded text.
+
+</div>
 
 ### Key Commands
 
@@ -106,12 +116,12 @@ sed -i.bak 's/old/new/g' file.txt  # keep .bak backup
 
 ---
 
-### Hints
 
-!!! tip "Hint"
+<div class="hints" markdown="1">
 
-    The decoded text contains the password in its final line.
+> The decoded text contains the password in its final line.
 
+</div>
 ---
 
 !!! info "🔓 Unlock Room 05"

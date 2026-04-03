@@ -1,8 +1,17 @@
 ---
+title: "(Room 17) ⏰ The Clockwork Fortress"
 password: "modulereactor"
 title_prefix: "⏰ "
 summary: "Decode cron expressions to determine how many times a job runs per day."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 17</span>
+  <div class="room-title">
+    <span class="room-title-accent">⏰ The</span>
+    <span class="room-title-main">Clockwork Fortress</span>
+  </div>
+</div>
 
 [![Room-17](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-17.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-17.yml)
 
@@ -11,22 +20,23 @@ summary: "Decode cron expressions to determine how many times a job runs per day
 
 ---
 
-## ⏰ The Clockwork Fortress
 
 - An ancient fortress runs on a clockwork schedule.
 - Decode the cron expressions to find how many times the alarm fires per day.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `schedule.cron` contains several cron job definitions.
+The file `schedule.cron` contains several cron job definitions.
 
-    1. Read `schedule.cron` to see all the scheduled jobs.
-    2. Count how many times **per day** the job labelled `# ALARM` would execute.
-       > hint: Analyze the cron expression - `minute hour day-of-month month day-of-week`
-    3. The password is `cron` followed by the total number of daily executions *(no space)*.
-       > Example: if the alarm fires 12 times per day → `cron12`
+1. Read `schedule.cron` to see all the scheduled jobs.
+2. Count how many times **per day** the job labelled `# ALARM` would execute.
+   > Analyze the cron expression - `minute hour day-of-month month day-of-week`
+3. The password is `cron` followed by the total number of daily executions *(no space)*.
+   > Example: if the alarm fires 12 times per day → `cron12`
+
+</div>
 
 ### Key Commands
 
@@ -99,16 +109,14 @@ ls /etc/cron.hourly/                # scripts run once hourly
 | `0 9 * * 1-5`  | 9am weekdays     |
 | `0 0 * * *`    | Midnight daily   |
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    Count each valid time combination in a 24-hour day (00:00 to 23:59).
+> Count each valid time combination in a 24-hour day (00:00 to 23:59).
 
-!!! tip "Hint 2"
+> `*/N` means "every N units" - e.g., `*/4` in hours = 6 times per day (0,4,8,12,16,20).
 
-    `*/N` means "every N units" - e.g., `*/4` in hours = 6 times per day (0,4,8,12,16,20).
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 18"

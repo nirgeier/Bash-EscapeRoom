@@ -1,8 +1,17 @@
 ---
+title: "(Room 23) 🕰️ The Time Machine"
 password: "calc1337"
 title_prefix: "🕰️ "
 summary: "Use the date command to calculate time differences and decode timestamps."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 23</span>
+  <div class="room-title">
+    <span class="room-title-accent">🕰️ The</span>
+    <span class="room-title-main">Time Machine</span>
+  </div>
+</div>
 
 [![Room-23](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-23.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-23.yml)
 
@@ -11,24 +20,25 @@ summary: "Use the date command to calculate time differences and decode timestam
 
 ---
 
-## 🕰️ The Time Machine
 
 - A time traveler left encrypted coordinates encoded as UNIX timestamps.
 - Decode them using the `date` command.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `timestamps.txt` contains three UNIX timestamps (seconds since 1970-01-01).
+The file `timestamps.txt` contains three UNIX timestamps (seconds since 1970-01-01).
 
-    1. Read `timestamps.txt` to get the three timestamps.
-    2. Convert each timestamp to a human-readable date.
-       > hint: `date -d @TIMESTAMP` (Linux) or `date -r TIMESTAMP` (macOS)
-    3. Extract just the **year** from each converted date.
-       > hint: `date -d @TIMESTAMP +%Y`
-    4. The password is the word `epoch` followed by the **sum of the three years** *(no space)*.
-       > Example: if the years are 2001, 2010, 2015 → `epoch6026`
+1. Read `timestamps.txt` to get the three timestamps.
+2. Convert each timestamp to a human-readable date.
+   > `date -d @TIMESTAMP` (Linux) or `date -r TIMESTAMP` (macOS)
+3. Extract just the **year** from each converted date.
+   > `date -d @TIMESTAMP +%Y`
+4. The password is the word `epoch` followed by the **sum of the three years** *(no space)*.
+   > Example: if the years are 2001, 2010, 2015 → `epoch6026`
+
+</div>
 
 ### Key Commands
 
@@ -79,16 +89,14 @@ end=$(date -d "2024-12-31" +%s)
 echo $(( (end - start) / 86400 )) days
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `date -d @TIMESTAMP +%Y` extracts just the year from a UNIX timestamp (Linux).
+> `date -d @TIMESTAMP +%Y` extracts just the year from a UNIX timestamp (Linux).
 
-!!! tip "Hint 2"
+> On macOS, use `date -r TIMESTAMP +%Y` instead of `date -d @TIMESTAMP`.
 
-    On macOS, use `date -r TIMESTAMP +%Y` instead of `date -d @TIMESTAMP`.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 24"

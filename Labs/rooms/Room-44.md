@@ -1,8 +1,17 @@
 ---
+title: "(Room 44) 🔄 The Mirror Sync"
 password: "syscall"
 title_prefix: "🔄 "
 summary: "Use rsync to synchronize files between two directories and verify the transfer."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 44</span>
+  <div class="room-title">
+    <span class="room-title-accent">🔄 The</span>
+    <span class="room-title-main">Mirror Sync</span>
+  </div>
+</div>
 
 [![Room-44](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-44.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-44.yml)
 
@@ -11,24 +20,25 @@ summary: "Use rsync to synchronize files between two directories and verify the 
 
 ---
 
-## 🔄 The Mirror Sync
 
 - Two archives must be kept in sync, but something has drifted.
 - Use `rsync` to synchronize them and then verify the result.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The directory `source_archive/` is the master copy.
-    The directory `mirror_archive/` is supposed to be identical but has drifted.
+The directory `source_archive/` is the master copy.
+The directory `mirror_archive/` is supposed to be identical but has drifted.
 
-    1. Sync `source_archive/` to `mirror_archive/` using rsync.
-       > hint: `rsync -av source_archive/ mirror_archive/`
-    2. After syncing, count the total number of files in `mirror_archive/`.
-       > hint: `find mirror_archive/ -type f | wc -l`
-    3. The password is `sync` followed by the file count *(no space)*.
-       > Example: if there are 28 files → `sync28`
+1. Sync `source_archive/` to `mirror_archive/` using rsync.
+   > `rsync -av source_archive/ mirror_archive/`
+2. After syncing, count the total number of files in `mirror_archive/`.
+   > `find mirror_archive/ -type f | wc -l`
+3. The password is `sync` followed by the file count *(no space)*.
+   > Example: if there are 28 files → `sync28`
+
+</div>
 
 ### Key Commands
 
@@ -90,16 +100,14 @@ rsync -avc source/ destination/          # compare by checksum not timestamp
 # --delete = remove extra files in destination
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `rsync -av source_archive/ mirror_archive/` - note the trailing slash on source is important!
+> `rsync -av source_archive/ mirror_archive/` - note the trailing slash on source is important!
 
-!!! tip "Hint 2"
+> `find mirror_archive/ -type f | wc -l` counts only regular files, not directories.
 
-    `find mirror_archive/ -type f | wc -l` counts only regular files, not directories.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 45"

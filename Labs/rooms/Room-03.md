@@ -1,8 +1,17 @@
 ---
+title: "(Room 03) ⏳ The Time Capsule"
 password: "signal59"
 title_prefix: "⏳ "
 summary: "Use tac, rev, head, tail, and wc to decode a time capsule journal."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 03</span>
+  <div class="room-title">
+    <span class="room-title-accent">⏳ The</span>
+    <span class="room-title-main">Time Capsule</span>
+  </div>
+</div>
 
 [![Room-03](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-03.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-03.yml)
 
@@ -11,29 +20,30 @@ summary: "Use tac, rev, head, tail, and wc to decode a time capsule journal."
 
 ---
 
-## ⏳ The Time Capsule
 
 - An ancient journal was found buried underground.
 - Its last entry holds a secret - but the characters are written **backwards**.
 - Use line and character reversal tools to decode it.
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    - The file `time_capsule.txt` contains journal entries.
-    - The last entry holds a secret, but it is written **backwards**.
+- The file `time_capsule.txt` contains journal entries.
+- The last entry holds a secret, but it is written **backwards**.
 
-    1. Count how many lines the file has.
-       > hint: `wc -l` counts lines
-    2. Reverse the **line order** so the last line becomes the first.
-       > hint: `tac` reverses line order (it is `cat` spelled backwards!)
-    3. Take the first line of the reversed output.
-       > hint: pipe `tac` output to `head -1`
-    4. That line has its **characters** reversed -unreverse it!
-       > hint: `rev` reverses character order within each line
-    5. The decoded line reveals a secret word.
-    6. The password is that word
-       followed by the total line count *(no space)*.
-       > Example: if the word is "hello" and there are 50 lines → `hello50`
+1. Count how many lines the file has.
+   > `wc -l` counts lines
+2. Reverse the **line order** so the last line becomes the first.
+   > `tac` reverses line order (it is `cat` spelled backwards!)
+3. Take the first line of the reversed output.
+   > pipe `tac` output to `head -1`
+4. That line has its **characters** reversed -unreverse it!
+   > `rev` reverses character order within each line
+5. The decoded line reveals a secret word.
+6. The password is that word
+   followed by the total line count *(no space)*.
+   > Example: if the word is "hello" and there are 50 lines → `hello50`
+
+</div>
 
 ### Key Commands
 
@@ -92,20 +102,16 @@ wc -l *.txt                           # count lines across multiple files
 
 ---
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `tac` is `cat` spelled backwards -and it reverses **line order**.
+> `tac` is `cat` spelled backwards -and it reverses **line order**.
 
-!!! tip "Hint 2"
+> `rev` reverses the **characters** within each line.
 
-    `rev` reverses the **characters** within each line.
+> The password format is: the secret word + the line count (e.g., `word50`).
 
-!!! tip "Hint 3"
-
-    The password format is: the secret word + the line count (e.g., `word50`).
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 04"

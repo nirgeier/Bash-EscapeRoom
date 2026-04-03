@@ -182,14 +182,14 @@ body {
 .log-box {
   font-family: var(--mono);
   font-size: 11px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--fg-muted);
   background: var(--bg-alt);
-  margin: 0 12px;
+  margin: 0 12px 12px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 8px;
-  height: 180px;
+  height: 260px;
   overflow-y: auto;
   white-space: pre-wrap;
   word-break: break-all;

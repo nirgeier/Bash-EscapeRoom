@@ -1,8 +1,17 @@
 ---
+title: "(Room 36) 📡 The Signal Tower"
 password: "nested42"
 title_prefix: "📡 "
 summary: "Use trap to catch signals and ensure cleanup tasks always run."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 36</span>
+  <div class="room-title">
+    <span class="room-title-accent">📡 The</span>
+    <span class="room-title-main">Signal Tower</span>
+  </div>
+</div>
 
 [![Room-36](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-36.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-36.yml)
 
@@ -11,22 +20,23 @@ summary: "Use trap to catch signals and ensure cleanup tasks always run."
 
 ---
 
-## 📡 The Signal Tower
 
 - A process sends signals that must be caught and handled.
 - Set up signal traps to intercept the correct signal and extract the password.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The script `signal_sender.sh` sends a `SIGUSR1` signal to a process you start.
+The script `signal_sender.sh` sends a `SIGUSR1` signal to a process you start.
 
-    1. Write a script that sets a `trap` for `SIGUSR1` that writes `caught` to a file.
-    2. Run the script in the background.
-    3. Run `./signal_sender.sh <PID>` with your script's PID.
-    4. Check the file your trap wrote to - it contains the password.
-       > hint: your trap handler should: `echo "sigcatch" > trap_result.txt`
+1. Write a script that sets a `trap` for `SIGUSR1` that writes `caught` to a file.
+2. Run the script in the background.
+3. Run `./signal_sender.sh <PID>` with your script's PID.
+4. Check the file your trap wrote to - it contains the password.
+   > your trap handler should: `echo "sigcatch" > trap_result.txt`
+
+</div>
 
 ### Key Commands
 
@@ -80,16 +90,14 @@ echo "My PID is $$"
 while true; do sleep 1; done           # wait for signal
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    Use `$$` to get your script's own PID and pass it to the signal sender.
+> Use `$$` to get your script's own PID and pass it to the signal sender.
 
-!!! tip "Hint 2"
+> `trap 'handler' SIGUSR1` sets up the handler before entering the wait loop.
 
-    `trap 'handler' SIGUSR1` sets up the handler before entering the wait loop.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 37"

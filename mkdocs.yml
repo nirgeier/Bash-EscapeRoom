@@ -117,9 +117,9 @@ extra:
       class: social-class__email
 
 extra_css:
-  - ./assets/stylesheets/codewizard.css?v=1774947824
+  - ./assets/stylesheets/codewizard.css?v=1775173736
 extra_javascript:
-  - https://buttons.github.io/buttons.js?v=1774947824
+  - https://buttons.github.io/buttons.js?v=1775173736
 ###
 ### mkdocs-plugins.yml
 ###
@@ -217,73 +217,73 @@ markdown_extensions:
 ###
 
 nav:
-  - README.md
-  - "📁 Part 1 - File & Text Basics":
-      - "Room 01 - find, cat, sort, xargs": rooms/Room-01.md
-      - "Room 02 - grep, wc": rooms/Room-02.md
-      - "Room 03 - head, tail, tac, rev, wc": rooms/Room-03.md
-      - "Room 04 - sed": rooms/Room-04.md
-      - "Room 05 - base64, tr, rev": rooms/Room-05.md
-      - "Room 06 - sort, uniq, comm, diff": rooms/Room-06.md
-  - "🔐 Part 2 - System & Permissions":
-      - "Room 07 - chmod, stat, ls": rooms/Room-07.md
-      - "Room 08 - export, env, source, alias": rooms/Room-08.md
-      - "Room 09 - ps, kill, bg, fg, jobs": rooms/Room-09.md
-  - "⚙️ Part 3 - Data Processing":
-      - "Room 10 - awk": rooms/Room-10.md
-      - "Room 11 - tar, gzip, base64": rooms/Room-11.md
-      - "Room 12 - cut, tr, pipes": rooms/Room-12.md
-      - "Room 13 - ln, readlink": rooms/Room-13.md
-  - "🌐 Part 4 - Web & Storage":
-      - "Room 14 - curl, wget": rooms/Room-14.md
-      - "Room 15 - jq": rooms/Room-15.md
-      - "Room 16 - df, du": rooms/Room-16.md
-  - "🕐 Part 5 - System Operations":
-      - "Room 17 - crontab": rooms/Room-17.md
-      - "Room 18 - diff, patch": rooms/Room-18.md
-      - "Room 19 - sha256sum, md5sum": rooms/Room-19.md
-      - "Room 20 - xxd, od, hexdump": rooms/Room-20.md
-  - "🛠️ Part 6 - Tools & Utilities":
-      - "Room 21 - strings": rooms/Room-21.md
-      - "Room 22 - bc, expr": rooms/Room-22.md
-      - "Room 23 - date": rooms/Room-23.md
-      - "Room 24 - printf, echo": rooms/Room-24.md
-      - "Room 25 - tee, paste": rooms/Room-25.md
-  - "📝 Part 7 - Bash Scripting":
-      - "Room 26 - Parameter Expansion": rooms/Room-26.md
-      - "Room 27 - Arrays, mapfile": rooms/Room-27.md
-      - "Room 28 - for loops": rooms/Room-28.md
-      - "Room 29 - while loops": rooms/Room-29.md
-      - "Room 30 - if/else, test, [[": rooms/Room-30.md
-      - "Room 31 - case statements": rooms/Room-31.md
-      - "Room 32 - Functions, return": rooms/Room-32.md
-  - "⚡ Part 8 - Advanced Scripting":
-      - "Room 33 - getopts": rooms/Room-33.md
-      - "Room 34 - Heredocs": rooms/Room-34.md
-      - "Room 35 - Command & Process Substitution": rooms/Room-35.md
-      - "Room 36 - trap, signals": rooms/Room-36.md
-      - "Room 37 - read": rooms/Room-37.md
-      - "Room 38 - timeout, watch, sleep": rooms/Room-38.md
-  - "🔌 Part 9 - Networking & Debugging":
-      - "Room 39 - ss, netstat": rooms/Room-39.md
-      - "Room 40 - dig, host, nslookup": rooms/Room-40.md
-      - "Room 41 - nc (netcat)": rooms/Room-41.md
-      - "Room 42 - lsof": rooms/Room-42.md
-      - "Room 43 - strace, ltrace": rooms/Room-43.md
-  - "🔑 Part 10 - Security & Version Control":
-      - "Room 44 - rsync": rooms/Room-44.md
-      - "Room 45 - openssl": rooms/Room-45.md
-      - "Room 46 - vim": rooms/Room-46.md
-      - "Room 47 - ssh, ssh-keygen, scp": rooms/Room-47.md
-      - "Room 48 - git": rooms/Room-48.md
-  - "🏭 Part 11 - Advanced Challenges":
-      - "Room 49 - Advanced Pipeline": rooms/Room-49.md
-      - "Room 50 - Master Terminal": rooms/Room-50.md
-  - "⭐ Bonus Track - Complete the 100":
-      - "Room 51 - xargs": rooms/Room-51.md
-      - "Room 52 - chown, chgrp, umask": rooms/Room-52.md
-      - "Room 53 - ping, traceroute, wget": rooms/Room-53.md
-      - "Room 54 - top, free, uptime, vmstat": rooms/Room-54.md
-      - "Room 55 - uname, hostname, id, who": rooms/Room-55.md
-      - "Room 56 - pgrep, pkill, nohup, nice": rooms/Room-56.md
-  - "🏆 Exit Exam": rooms/Room-99.md
+    - README.md
+    - "📁 Part 1 - File & Text Basics":
+          - "(Room 01) The Lost Expedition": rooms/Room-01.md
+          - "(Room 02) 📻 The Broken Radio": rooms/Room-02.md
+          - "(Room 03) ⏳ The Time Capsule": rooms/Room-03.md
+          - "(Room 04) 🕵️ The Spy Cipher": rooms/Room-04.md
+          - "(Room 05) 💍 The Decoder Ring": rooms/Room-05.md
+          - "(Room 06) 🔍 The Duplicate Detective": rooms/Room-06.md
+    - "🔐 Part 2 - System & Permissions":
+          - "(Room 07) 🔐 The Permission Maze": rooms/Room-07.md
+          - "(Room 08) 🧪 The Environment Lab": rooms/Room-08.md
+          - "(Room 09) 👻 The Ghost Process": rooms/Room-09.md
+    - "⚙️ Part 3 - Data Processing":
+          - "(Room 10) ⛏️ The Data Mine": rooms/Room-10.md
+          - "(Room 11) 🪆 The Nested Archive": rooms/Room-11.md
+          - "(Room 12) 🎼 The Grand Pipeline": rooms/Room-12.md
+          - "(Room 13) 🪞 The Mirror Maze": rooms/Room-13.md
+    - "🌐 Part 4 - Web & Storage":
+          - "(Room 14) 🌐 The Web Crawler": rooms/Room-14.md
+          - "(Room 15) 📦 The JSON Vault": rooms/Room-15.md
+          - "(Room 16) 🚀 The Space Station": rooms/Room-16.md
+    - "🕐 Part 5 - System Operations":
+          - "(Room 17) ⏰ The Clockwork Fortress": rooms/Room-17.md
+          - "(Room 18) 🏗️ The Twin Blueprints": rooms/Room-18.md
+          - "(Room 19) 🔒 The Integrity Check": rooms/Room-19.md
+          - "(Room 20) 🔢 The Hex Dungeon": rooms/Room-20.md
+    - "🛠️ Part 6 - Tools & Utilities":
+          - "(Room 21) 📚 The Binary Library": rooms/Room-21.md
+          - "(Room 22) 🧮 The Calculator Cave": rooms/Room-22.md
+          - "(Room 23) 🕰️ The Time Machine": rooms/Room-23.md
+          - "(Room 24) 🖨️ The Formatter's Workshop": rooms/Room-24.md
+          - "(Room 25) 🔀 The Signal Crossroads": rooms/Room-25.md
+    - "📝 Part 7 - Bash Scripting":
+          - "(Room 26) 🧩 The Variable Vault": rooms/Room-26.md
+          - "(Room 27) 🗃️ The Array Arsenal": rooms/Room-27.md
+          - "(Room 28) 🔁 The Loop Labyrinth": rooms/Room-28.md
+          - "(Room 29) 🌀 The Endless Corridor": rooms/Room-29.md
+          - "(Room 30) 🍃 The Fork in the Road": rooms/Room-30.md
+          - "(Room 31) 🎭 The Decision Chamber": rooms/Room-31.md
+          - "(Room 32) ⚙️ The Function Factory": rooms/Room-32.md
+    - "⚡ Part 8 - Advanced Scripting":
+          - "(Room 33) 🎛️ The Argument Decoder": rooms/Room-33.md
+          - "(Room 34) 📜 The Ancient Scroll": rooms/Room-34.md
+          - "(Room 35) 🌍 The Nested Worlds": rooms/Room-35.md
+          - "(Room 36) 📡 The Signal Tower": rooms/Room-36.md
+          - "(Room 37) 🚪 The Interactive Gateway": rooms/Room-37.md
+          - "(Room 38) 💣 The Time Bomb": rooms/Room-38.md
+    - "🔌 Part 9 - Networking & Debugging":
+          - "(Room 39) 🕸️ The Network Hub": rooms/Room-39.md
+          - "(Room 40) 🔮 The DNS Oracle": rooms/Room-40.md
+          - "(Room 41) 🔌 The Netcat Tunnel": rooms/Room-41.md
+          - "(Room 42) 🗂️ The Open Files Archive": rooms/Room-42.md
+          - "(Room 43) 🔭 The System Call Observatory": rooms/Room-43.md
+    - "🔑 Part 10 - Security & Version Control":
+          - "(Room 44) 🔄 The Mirror Sync": rooms/Room-44.md
+          - "(Room 45) 🔑 The Cryptographer's Den": rooms/Room-45.md
+          - "(Room 46) 📝 The Vi Vortex": rooms/Room-46.md
+          - "(Room 47) 🛰️ The Remote Gateway": rooms/Room-47.md
+          - "(Room 48) 🌿 The Version Vault": rooms/Room-48.md
+    - "🏭 Part 11 - Advanced Challenges":
+          - "(Room 49) 🏭 The Grand Pipeline II": rooms/Room-49.md
+          - "(Room 50) 👑 The Master Terminal": rooms/Room-50.md
+    - "⭐ Bonus Track - Complete the 100":
+          - "(Room 51) 🔧 The Command Assembler": rooms/Room-51.md
+          - "(Room 52) 🏛️ The Ownership Vault": rooms/Room-52.md
+          - "(Room 53) 📡 The Network Probe": rooms/Room-53.md
+          - "(Room 54) 📊 The System Monitor": rooms/Room-54.md
+          - "(Room 55) 🔍 The System Inspector": rooms/Room-55.md
+          - "(Room 56) ⚙️ The Process Controller": rooms/Room-56.md
+    - "🏆 Exit Exam": rooms/Room-99.md

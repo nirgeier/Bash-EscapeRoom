@@ -1,8 +1,17 @@
 ---
+title: "(Room 99) 🏆 The Exit Exam"
 password: "pipeline"
 title_prefix: "🏆 "
 summary: "Answer 5 random Linux command questions to escape the final room."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 99</span>
+  <div class="room-title">
+    <span class="room-title-accent">🏆 The</span>
+    <span class="room-title-main">Exit Exam</span>
+  </div>
+</div>
 
 [![Room-99](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-99.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-99.yml)
 
@@ -11,12 +20,13 @@ summary: "Answer 5 random Linux command questions to escape the final room."
 
 ---
 
-## 🏆 The Exit Exam
 
 You've made it to the final room! Prove your Linux mastery by answering
 **5 random questions** about commands, symbols, and operators.
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
+
+</div>
 This room tests your knowledge of the Linux commands you've used throughout
 the escape rooms.
 
@@ -42,7 +52,6 @@ the escape rooms.
 ./getKey.sh
 ```
 
-### Hints
 
 !!! tip "Hint 1"
 Each answer is the **exact command name** (or symbol) -case-sensitive,

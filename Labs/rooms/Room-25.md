@@ -1,8 +1,17 @@
 ---
+title: "(Room 25) 🔀 The Signal Crossroads"
 password: "format77"
 title_prefix: "🔀 "
 summary: "Use tee to split output to both a file and the screen simultaneously."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 25</span>
+  <div class="room-title">
+    <span class="room-title-accent">🔀 The</span>
+    <span class="room-title-main">Signal Crossroads</span>
+  </div>
+</div>
 
 [![Room-25](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-25.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-25.yml)
 
@@ -11,25 +20,26 @@ summary: "Use tee to split output to both a file and the screen simultaneously."
 
 ---
 
-## 🔀 The Signal Crossroads
 
 - Incoming data must be routed simultaneously to two destinations.
 - Use `tee` to split the stream and write a log while still processing the data.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The script `generate_signal.sh` outputs a stream of data lines.
+The script `generate_signal.sh` outputs a stream of data lines.
 
-    1. Run `generate_signal.sh` and use `tee` to write the output to `signal.log` while also piping it onward.
-       > hint: `./generate_signal.sh | tee signal.log | grep "CODE"`
-    2. From the tee'd stream, filter lines containing `CODE:` and extract the code values.
-       > hint: `grep "CODE:" | cut -d':' -f2`
-    3. Sort the codes numerically and sum them.
-       > hint: `sort -n | paste -sd'+' | bc`
-    4. The password is `tee` followed by the total sum *(no space)*.
-       > Example: if the sum is 99 → `tee99`
+1. Run `generate_signal.sh` and use `tee` to write the output to `signal.log` while also piping it onward.
+   > `./generate_signal.sh | tee signal.log | grep "CODE"`
+2. From the tee'd stream, filter lines containing `CODE:` and extract the code values.
+   > `grep "CODE:" | cut -d':' -f2`
+3. Sort the codes numerically and sum them.
+   > `sort -n | paste -sd'+' | bc`
+4. The password is `tee` followed by the total sum *(no space)*.
+   > Example: if the sum is 99 → `tee99`
+
+</div>
 
 ### Key Commands
 
@@ -71,16 +81,14 @@ paste -d',' file1.txt file2.txt        # merge with comma delimiter
 echo -e "1\n2\n3" | paste -sd'+'      # join lines: "1+2+3" (for bc)
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `tee signal.log` writes to the file AND passes data along to the next pipe.
+> `tee signal.log` writes to the file AND passes data along to the next pipe.
 
-!!! tip "Hint 2"
+> `paste -sd'+'` turns a vertical list of numbers into `1+2+3+4` which `bc` can evaluate.
 
-    `paste -sd'+'` turns a vertical list of numbers into `1+2+3+4` which `bc` can evaluate.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 26"

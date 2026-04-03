@@ -1,8 +1,17 @@
 ---
+title: "(Room 56) ⚙️ The Process Controller"
 password: "procctrl"
 title_prefix: "⚙️ "
 summary: "Control processes with pgrep, pkill, nohup, nice, and renice - advanced process management."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 56</span>
+  <div class="room-title">
+    <span class="room-title-accent">⚙️ The</span>
+    <span class="room-title-main">Process Controller</span>
+  </div>
+</div>
 
 [![Room-56](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-56.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-56.yml)
 
@@ -11,24 +20,25 @@ summary: "Control processes with pgrep, pkill, nohup, nice, and renice - advance
 
 ---
 
-## ⚙️ The Process Controller
 
 - Rogue processes are multiplying in the background, consuming resources and hiding secrets.
 - The Process Controller must find them, read their secrets, and terminate them in the correct order.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    Rogue agent processes have been launched and are writing to log files in `/tmp/`.
-    Hunt them down, extract the key, and shut them all down.
+Rogue agent processes have been launched and are writing to log files in `/tmp/`.
+Hunt them down, extract the key, and shut them all down.
 
-    1. Launch the background agents.
-       > hint: `./launch_agents.sh`
-    2. Find all running agent processes with their full command lines.
-    3. The agents write output to log files - find and read the key log.
-    4. Stop the main keeper process to begin the shutdown sequence.
-    5. Run `./getKey.sh` after all agents are stopped to retrieve the final code.
+1. Launch the background agents.
+   > `./launch_agents.sh`
+2. Find all running agent processes with their full command lines.
+3. The agents write output to log files - find and read the key log.
+4. Stop the main keeper process to begin the shutdown sequence.
+5. Run `./getKey.sh` after all agents are stopped to retrieve the final code.
+
+</div>
 
 ### Key Commands
 
@@ -95,16 +105,14 @@ wait $BGPID                        # block until background job finishes
 echo "exit code: $?"
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `pgrep -af "agent"` shows full command lines alongside PIDs, making it easy to distinguish between multiple agent processes. Use the output to identify which PID belongs to `agent_keeper` before running `pkill`.
+> `pgrep -af "agent"` shows full command lines alongside PIDs, making it easy to distinguish between multiple agent processes. Use the output to identify which PID belongs to `agent_keeper` before running `pkill`.
 
-!!! tip "Hint 2"
+> `nohup` redirects stdout and stderr to `nohup.out` in the current directory by default if you don't redirect them yourself. Always redirect explicitly with `> logfile 2>&1 &` to know exactly where the output goes.
 
-    `nohup` redirects stdout and stderr to `nohup.out` in the current directory by default if you don't redirect them yourself. Always redirect explicitly with `> logfile 2>&1 &` to know exactly where the output goes.
-
+</div>
 ---
 
 !!! success "🎉 Bonus Track Complete!"

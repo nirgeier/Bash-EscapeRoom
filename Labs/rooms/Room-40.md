@@ -1,8 +1,17 @@
 ---
+title: "(Room 40) 🔮 The DNS Oracle"
 password: "port80"
 title_prefix: "🔮 "
 summary: "Use dig and host to resolve DNS records and trace a domain to its secret."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 40</span>
+  <div class="room-title">
+    <span class="room-title-accent">🔮 The</span>
+    <span class="room-title-main">DNS Oracle</span>
+  </div>
+</div>
 
 [![Room-40](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-40.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-40.yml)
 
@@ -11,22 +20,23 @@ summary: "Use dig and host to resolve DNS records and trace a domain to its secr
 
 ---
 
-## 🔮 The DNS Oracle
 
 - An ancient domain holds the password encoded in its DNS records.
 - Consult the oracle to reveal it.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The domain `secret.escape.local` has a special DNS TXT record containing the password.
+The domain `secret.escape.local` has a special DNS TXT record containing the password.
 
-    1. Query the TXT records for `secret.escape.local`.
-       > hint: `dig TXT secret.escape.local` or `host -t TXT secret.escape.local`
-    2. The TXT record value **is** the password.
-       > Note: In the Docker environment, this domain is configured in `/etc/hosts` or a local DNS server.
-    3. If DNS is not available, the password is stored in `/etc/escape/dns_secret.txt`.
+1. Query the TXT records for `secret.escape.local`.
+   > `dig TXT secret.escape.local` or `host -t TXT secret.escape.local`
+2. The TXT record value **is** the password.
+   > Note: In the Docker environment, this domain is configured in `/etc/hosts` or a local DNS server.
+3. If DNS is not available, the password is stored in `/etc/escape/dns_secret.txt`.
+
+</div>
 
 ### Key Commands
 
@@ -77,16 +87,14 @@ cat /etc/resolv.conf                   # see configured DNS servers
 cat /etc/hosts                         # local host overrides
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `dig TXT secret.escape.local +short` gives just the TXT record value.
+> `dig TXT secret.escape.local +short` gives just the TXT record value.
 
-!!! tip "Hint 2"
+> If `dig` isn't available, try `host -t TXT secret.escape.local` or check `/etc/escape/dns_secret.txt`.
 
-    If `dig` isn't available, try `host -t TXT secret.escape.local` or check `/etc/escape/dns_secret.txt`.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 41"

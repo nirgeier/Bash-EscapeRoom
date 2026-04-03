@@ -1,7 +1,16 @@
 ---
+title: "(Room 01) The Lost Expedition"
 title_prefix: "🧭 "
 summary: "Use `find` to locate hidden map fragments in a deep directory tree."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 01</span>
+  <div class="room-title">
+    <span class="room-title-accent">🧭 The</span>
+    <span class="room-title-main">Lost Expedition</span>
+  </div>
+</div>
 
 [![Room-01](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-01.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-01.yml)
 
@@ -19,22 +28,23 @@ FIND THE MAP FRAGMENTS!
 
 ---
 
-## The Lost Expedition
 
 - A famous explorer vanished deep in the jungle, leaving **9 map fragments** scattered across a maze of directories, mixed in with thousands of noise files, only the `.map` files contain the clues.
 
 ---
 
-!!! abstract "📜 Your mission"
+<div class="tasks" markdown="1">
 
-    1. Navigate into the `expedition/` directory.
-    2. The `expedition/` camp is littered with noise files (`.rock`, `.leaf`, `.twig`) everywhere.
-       **Ignore them all.**
-    3. The explorer left exactly **`9 map fragments`** (files ending in `.map`) hidden across the sub-directories.
-       **Find them all.**
-       > hint: the `find` command can search recursively for files by name pattern
-    5. Once you locate all `.map` files, **sort** their full paths alphabetically and **read** (`cat`) their contents in that order.
-    6. Concatenate the letters -they spell the **password for the next room**.
+1. Navigate into the `expedition/` directory.
+2. The `expedition/` camp is littered with noise files (`.rock`, `.leaf`, `.twig`) everywhere.
+   **Ignore them all.**
+3. The explorer left exactly **`9 map fragments`** (files ending in `.map`) hidden across the sub-directories.
+   **Find them all.**
+   > the `find` command can search recursively for files by name pattern
+5. Once you locate all `.map` files, **sort** their full paths alphabetically and **read** (`cat`) their contents in that order.
+6. Concatenate the letters -they spell the **password for the next room**.
+
+</div>
 
 ---
 
@@ -120,20 +130,16 @@ find . -print0 | xargs -0 ls -l                   # handle filenames with spaces
 
 ---
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    The `find` command searches through ALL subdirectories by default.
+> The `find` command searches through ALL subdirectories by default.
 
-!!! tip "Hint 2"
+> `sort` without flags sorts alphabetically -perfect for getting the right order.
 
-    `sort` without flags sorts alphabetically -perfect for getting the right order.
+> `xargs cat` reads each file found by `find` and displays its content.
 
-!!! tip "Hint 3"
-
-    `xargs cat` reads each file found by `find` and displays its content.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 02"

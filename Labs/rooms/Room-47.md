@@ -1,8 +1,17 @@
 ---
+title: "(Room 47) 🛰️ The Remote Gateway"
 password: "vimmode"
 title_prefix: "🛰️ "
 summary: "Generate an SSH key pair and use it to authenticate to a local service."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 47</span>
+  <div class="room-title">
+    <span class="room-title-accent">🛰️ The</span>
+    <span class="room-title-main">Remote Gateway</span>
+  </div>
+</div>
 
 [![Room-47](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-47.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-47.yml)
 
@@ -11,24 +20,25 @@ summary: "Generate an SSH key pair and use it to authenticate to a local service
 
 ---
 
-## 🛰️ The Remote Gateway
 
 - A remote vault only accepts SSH key authentication.
 - Generate a key pair and use it to retrieve the secret.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    A service running locally only allows key-based authentication.
+A service running locally only allows key-based authentication.
 
-    1. Generate an SSH key pair.
-       > hint: `ssh-keygen -t rsa -f /tmp/escape_key -N ""`
-    2. Add the public key to the authorized list.
-       > hint: `./setup_ssh_access.sh /tmp/escape_key.pub`
-    3. Connect using your new key.
-       > hint: `ssh -i /tmp/escape_key -o StrictHostKeyChecking=no escape@localhost`
-    4. The SSH session will show the password immediately upon login.
+1. Generate an SSH key pair.
+   > `ssh-keygen -t rsa -f /tmp/escape_key -N ""`
+2. Add the public key to the authorized list.
+   > `./setup_ssh_access.sh /tmp/escape_key.pub`
+3. Connect using your new key.
+   > `ssh -i /tmp/escape_key -o StrictHostKeyChecking=no escape@localhost`
+4. The SSH session will show the password immediately upon login.
+
+</div>
 
 ### Key Commands
 
@@ -93,16 +103,14 @@ scp -P 2222 file.txt user@host:/path/ # non-standard port
 # Then just: ssh myserver
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `ssh-keygen -t rsa -f /tmp/escape_key -N ""` creates the key without a passphrase.
+> `ssh-keygen -t rsa -f /tmp/escape_key -N ""` creates the key without a passphrase.
 
-!!! tip "Hint 2"
+> `-o StrictHostKeyChecking=no` prevents the "unknown host" prompt when connecting.
 
-    `-o StrictHostKeyChecking=no` prevents the "unknown host" prompt when connecting.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 48"

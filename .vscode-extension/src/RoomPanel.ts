@@ -1,110 +1,46 @@
-/**
- * RoomPanel — mirrors the Learn Vim UX:
- *   LEFT  → WebviewPanel with big styled lesson card (room title, visual, explanation, tasks)
- *   RIGHT → opens the room's README as a real editor tab
- *
- * Also manages the embedded server lifecycle and sidebar control view.
- */
 import * as vscode from 'vscode';
-import * as path   from 'path';
-import * as fs     from 'fs';
+import * as path from 'path';
+import * as fs from 'fs';
 import { EscapeRoomServer } from './server';
 
 // ── Room metadata (derived from README at runtime) ────────────────────────────
 interface RoomInfo {
-  number:   number;
-  title:    string;
-  section:  string;
-  tasks:    string[];
-  hints:    string[];
+  number: number;
+  title: string;
+  section: string;
+  tasks: string[];
+  hints: string[];
   commands: string[];
-  hint:     string; // legacy compat
-  raw:      string;
+  hint: string; // legacy compat
+  raw: string;
 }
 
-// Visual ASCII art per room section
-const SECTION_ART: Record<string, string> = {
-  'Navigation & Discovery': [
-    '         .',
-    '        /|\\',
-    '       / | \\',
-    '      /  |  \\',
-    '  ---/---+---\\---',
-    '    / EXPLORE \\',
-    '   /____________\\',
-    '',
-    '  find . -name "*.map"',
-  ].join('\n'),
-
-  'Text Processing': [
-    ' ┌─────────────────┐',
-    ' │  radio.txt      │',
-    ' │  ─────────────  │',
-    ' │  > grep "SOS"   │',
-    ' │  > wc -l        │',
-    ' │  > awk / sed    │',
-    ' └─────────────────┘',
-  ].join('\n'),
-
-  'File Permissions': [
-    ' rwx r-x r--',
-    '  │   │   └─ others',
-    '  │   └───── group',
-    '  └───────── owner',
-    '',
-    ' chmod / chown',
-  ].join('\n'),
-
-  'Archives & Compression': [
-    ' file.tar.gz',
-    '     │',
-    ' tar xzf ──► dir/',
-    ' gzip / gunzip',
-    ' base64 decode',
-  ].join('\n'),
-
-  'Processes & Signals': [
-    ' PID  CMD',
-    ' ───  ───────',
-    ' 123  server.py',
-    ' 124  └─ child',
-    '',
-    ' kill -9 / ps aux',
-  ].join('\n'),
-
-  default: [
-    ' ┌──────────────────┐',
-    ' │  $ bash          │',
-    ' │  $ ls -la        │',
-    ' │  $ cat README    │',
-    ' │  $ next PASSWORD │',
-    ' └──────────────────┘',
-  ].join('\n'),
-};
 
 export class RoomPanel {
   public static readonly sidebarViewType = 'bashEscapeRoom.controlPanel';
 
-  private _sidebarView?:  vscode.WebviewView;
-  private _lessonPanel?:  vscode.WebviewPanel;
-  private _currentRoom:   number = 1;
-  private _server:        EscapeRoomServer;
-  private _logs:          string[] = [];
-  private _roomsPath:     string;
-  private _docsPath:      string;
-  private _metadata:      Record<number, RoomInfo> = {};
-  private _publicPath:    string;
+  private _sidebarView?: vscode.WebviewView;
+  private _lessonPanel?: vscode.WebviewPanel;
+  private _currentRoom: number = 1;
+  private _server: EscapeRoomServer;
+  private _logs: string[] = [];
+  private _roomsPath: string;
+  private _docsPath: string;
+  private _metadata: Record<number, RoomInfo> = {};
+  private _publicPath: string;
   private readonly _extensionUri: vscode.Uri;
   private readonly _context: vscode.ExtensionContext;
+  private _stateFile: string;
 
   constructor(extensionUri: vscode.Uri, _workspaceFolders: string[], context: vscode.ExtensionContext) {
     this._extensionUri = extensionUri;
-    this._context      = context;
+    this._context = context;
 
     const ext = extensionUri.fsPath;
-    this._roomsPath  = path.join(ext, 'content', 'escapeRoom');
-    this._docsPath   = path.join(ext, 'docs');
+    this._roomsPath = path.join(ext, 'content', 'escapeRoom');
+    this._docsPath = path.join(ext, 'docs');
     this._publicPath = path.join(ext, 'public');
+    this._stateFile = path.join(require('os').homedir(), '.escape_room_state');
 
     // Load pre-built metadata JSON (README files are stripped from bundle)
     try {
@@ -118,6 +54,37 @@ export class RoomPanel {
     this._server = new EscapeRoomServer();
     this._server.onLog((l) => this._appendLog(l));
     this._server.onStatusChange(() => this._syncSidebar());
+
+    // Watch ~/.escape_room_state - written by _utils.sh on room/next
+    this._startFileWatcher();
+  }
+
+  private _startFileWatcher(): void {
+    // Touch the file so it exists before watching
+    try { if (!fs.existsSync(this._stateFile)) { fs.writeFileSync(this._stateFile, ''); } } catch { /* ok */ }
+
+    const handle = () => {
+      try {
+        const raw = fs.readFileSync(this._stateFile, 'utf8').trim();
+        const n = parseInt(raw, 10);
+        if (!isNaN(n) && n > 0 && n !== this._currentRoom) {
+          // Marshal back to extension host main thread
+          setImmediate(() => {
+            this._currentRoom = n;
+            this._context.globalState.update('bashEscapeRoom.currentRoom', n);
+            this._context.globalState.update('bashEscapeRoom.savedAt', new Date().toISOString());
+            const info = this._readRoom(n);
+            if (info) { this._openLessonPanel(info); }
+            this._syncSidebar();
+          });
+        }
+      } catch { /* ignore */ }
+    };
+
+    // Use watchFile (polling) - reliable on macOS unlike fs.watch
+    try {
+      fs.watchFile(this._stateFile, { interval: 500, persistent: false }, handle);
+    } catch { /* ignore if watch fails */ }
   }
 
 
@@ -136,13 +103,13 @@ export class RoomPanel {
     view.webview.html = this._sidebarHtml(view.webview);
     view.webview.onDidReceiveMessage(async (msg) => {
       switch (msg.command) {
-        case 'ready':      this._syncSidebar(); break;
-        case 'launch':     await this.launch(); break;
-        case 'stop':       await this.stop(); break;
-        case 'openRoom':      await this.openRoom(msg.room ?? this._currentRoom); break;
-        case 'openTerminal':  this.openTerminal(); break;
-        case 'prevRoom':      await this.openRoom(Math.max(1, this._currentRoom - 1)); break;
-        case 'nextRoom':      await this.openRoom(this._currentRoom + 1); break;
+        case 'ready': this._syncSidebar(); break;
+        case 'launch': await this.launch(); break;
+        case 'stop': await this.stop(); break;
+        case 'openRoom': await this.openRoom(msg.room ?? this._currentRoom); break;
+        case 'openTerminal': this.openTerminal(); break;
+        case 'prevRoom': await this.openRoom(Math.max(1, this._currentRoom - 1)); break;
+        case 'nextRoom': await this.openRoom(this._currentRoom + 1); break;
       }
     });
   }
@@ -154,7 +121,7 @@ export class RoomPanel {
       vscode.window.showInformationMessage('Escape Room server already running.');
       return;
     }
-    const cfg  = vscode.workspace.getConfiguration('bashEscapeRoom');
+    const cfg = vscode.workspace.getConfiguration('bashEscapeRoom');
     const port = cfg.get<number>('port', 3000);
 
     // Allow override via setting
@@ -164,8 +131,8 @@ export class RoomPanel {
     try {
       await this._server.start({
         port,
-        roomsPath:  this._roomsPath,
-        docsPath:   this._docsPath,
+        roomsPath: this._roomsPath,
+        docsPath: this._docsPath,
         publicPath: this._publicPath,
       });
     } catch (e: unknown) {
@@ -173,7 +140,7 @@ export class RoomPanel {
       return;
     }
 
-    // Try to open room 1 — if rooms not found, still show server-is-up notice
+    // Try to open room 1 - if rooms not found, still show server-is-up notice
     const info = this._readRoom(1);
     if (info) {
       this._openLessonPanel(info);
@@ -213,25 +180,25 @@ export class RoomPanel {
   openTerminal(): void {
     const roomNum = String(this._currentRoom).padStart(2, '0');
     const roomDir = path.join(this._roomsPath, `room_${roomNum}`);
-    const cwd     = fs.existsSync(roomDir) ? roomDir : this._roomsPath;
-    const utils   = path.join(this._roomsPath, '_utils.sh');
+    const cwd = fs.existsSync(roomDir) ? roomDir : this._roomsPath;
+    const utils = path.join(this._roomsPath, '_utils.sh');
 
     const existing = vscode.window.terminals.find(t => t.name === 'Escape Room');
 
     if (existing) {
       existing.show(false);
-      existing.sendText(`cd "${cwd}" && echo -e "\\033[0;36m[Room ${roomNum}]\\033[0m"`, true);
+      existing.sendText(`source "${utils}" && cd "${cwd}" && echo -e "\\033[0;36m[Room ${roomNum}]\\033[0m"`, true);
       return;
     }
 
     const term = vscode.window.createTerminal({
       name: 'Escape Room',
       cwd,
-      env: { ESCAPE_ROOMS: this._roomsPath },
+      env: { ESCAPE_ROOMS: this._roomsPath, ESCAPE_ROOM_PORT: String(this._server.port) },
     });
     term.show(false);
 
-    // sendText is queued — source _utils.sh as the very first command so
+    // sendText is queued - source _utils.sh as the very first command so
     // next/room/progress/resume are available immediately in any shell
     if (fs.existsSync(utils)) {
       term.sendText(`source "${utils}"`, true);
@@ -239,21 +206,21 @@ export class RoomPanel {
     term.sendText(`echo -e "\\033[0;32mWelcome to Bash Escape Room!\\033[0m \\033[0;36m[Room ${roomNum}]\\033[0m"`, true);
   }
 
-  // ── Room reader — uses pre-built JSON metadata (no README in bundle) ──────
+  // ── Room reader - uses pre-built JSON metadata (no README in bundle) ──────
 
   private _readRoom(n: number): RoomInfo | null {
     const entry = this._metadata[n];
     if (!entry) { return null; }
     return {
       ...entry,
-      hints:    entry.hints    ?? [],
+      hints: entry.hints ?? [],
       commands: entry.commands ?? [],
-      hint:     (entry.hints ?? [])[0] ?? '',
-      raw:      '',
+      hint: (entry.hints ?? [])[0] ?? '',
+      raw: '',
     };
   }
 
-  // ── Lesson WebviewPanel (LEFT — like Learn Vim) ───────────────────────────
+  // ── Lesson WebviewPanel (LEFT ) ───────────────────────────
 
   private _openLessonPanel(info: RoomInfo): void {
     if (this._lessonPanel) {
@@ -286,7 +253,7 @@ export class RoomPanel {
     this._lessonPanel.onDidDispose(() => { this._lessonPanel = undefined; });
   }
 
-  // ── Open README in real editor tab (RIGHT — like Learn Vim) ──────────────
+  // ── Open README in real editor tab (RIGHT ) ──────────────
 
   private async _openReadmeInEditor(n: number): Promise<void> {
     const readme = path.join(
@@ -297,8 +264,8 @@ export class RoomPanel {
     if (!fs.existsSync(readme)) { return; }
     const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(readme));
     await vscode.window.showTextDocument(doc, {
-      viewColumn:    vscode.ViewColumn.Two,
-      preview:       false,
+      viewColumn: vscode.ViewColumn.Two,
+      preview: false,
       preserveFocus: true,
     });
   }
@@ -306,18 +273,18 @@ export class RoomPanel {
   // ── Sync sidebar ──────────────────────────────────────────────────────────
 
   private _syncSidebar(): void {
-    const cfg      = vscode.workspace.getConfiguration('bashEscapeRoom');
+    const cfg = vscode.workspace.getConfiguration('bashEscapeRoom');
     const maxRooms = this._countRooms();
     // Build room list: [{num, title}]
     const rooms = Object.values(this._metadata).map((r: RoomInfo) => ({
-      num:   r.number,
+      num: r.number,
       title: String(r.number).padStart(2, '0') + ' - ' + r.title.replace(/^Room\s+\d+\s*[-–]\s*/i, '').trim(),
     })).sort((a, b) => a.num - b.num);
-    const savedAt  = this._context.globalState.get<string>('bashEscapeRoom.savedAt', '');
+    const savedAt = this._context.globalState.get<string>('bashEscapeRoom.savedAt', '');
     this._sidebarView?.webview.postMessage({
-      command:     'setState',
-      status:      this._server.status,
-      port:        cfg.get<number>('port', 3000),
+      command: 'setState',
+      status: this._server.status,
+      port: this._server.port,
       currentRoom: this._currentRoom,
       maxRooms,
       rooms,
@@ -336,11 +303,10 @@ export class RoomPanel {
     return count > 0 ? count : 56;
   }
 
-  // ── LESSON PANEL HTML (mirrors Learn Vim aesthetic) ───────────────────────
+  // ── LESSON PANEL HTML (mirrors ) ───────────────────────
 
   private _lessonHtml(info: RoomInfo): string {
     const nonce = getNonce();
-    const art   = SECTION_ART[info.section] ?? SECTION_ART['default'];
 
     // Build tasks HTML
     const tasksHtml = info.tasks
@@ -354,15 +320,15 @@ export class RoomPanel {
     const hintsHtml = (info.hints ?? []).length > 0
       ? `<div class="content-section-title">Hints</div>
          <div class="hints-list">${(info.hints ?? []).map(h =>
-           `<div class="hint-box"><span class="hint-label">hint</span> ${escHtml(h)}</div>`
-         ).join('')}</div>`
+        `<div class="hint-box"><span class="hint-label">hint</span> ${escHtml(h)}</div>`
+      ).join('')}</div>`
       : '';
 
     const commandsHtml = (info.commands ?? []).length > 0
       ? `<div class="content-section-title">Command Examples</div>
          <div class="commands-list">${(info.commands ?? []).map(c =>
-           `<div class="cmd-item"><code>${escHtml(c)}</code></div>`
-         ).join('')}</div>`
+        `<div class="cmd-item"><code>${escHtml(c)}</code></div>`
+      ).join('')}</div>`
       : '';
 
     // legacy
@@ -409,7 +375,7 @@ export class RoomPanel {
       height: 100vh;
     }
 
-    /* ── Top nav bar (like Learn Vim) ── */
+    /* ── Top nav bar ── */
     .topbar {
       display: flex;
       align-items: center;
@@ -473,7 +439,7 @@ export class RoomPanel {
       overflow: hidden;
     }
 
-    /* ── LEFT: big visual card (like the Learn Vim left panel) ── */
+    /* ── LEFT: big visual card () ── */
     .visual-col {
       width: 30%;
       min-width: 220px;
@@ -482,7 +448,7 @@ export class RoomPanel {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       padding: 32px 24px;
       gap: 20px;
       overflow-y: auto;
@@ -499,7 +465,7 @@ export class RoomPanel {
       padding: 3px 12px;
     }
 
-    /* Big room title — exactly like "MOVE AROUND USING THESE" in Learn Vim */
+    /* Big room title  */
     .room-title {
       font-size: clamp(22px, 3.5vw, 40px);
       font-weight: 900;
@@ -520,21 +486,7 @@ export class RoomPanel {
       font-weight: 600;
     }
 
-    /* ASCII art block — like the hjkl diagram in Learn Vim */
-    .art-block {
-      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
-      font-size: 13px;
-      color: var(--yellow);
-      text-align: center;
-      line-height: 1.6;
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px 20px;
-      white-space: pre;
-      width: 100%;
-    }
-
+    /* ASCII art block */
     .nav-prompt {
       font-family: monospace;
       font-size: 13px;
@@ -576,7 +528,7 @@ export class RoomPanel {
       border-bottom: 1px solid var(--border);
     }
 
-    /* Intro paragraph — like Learn Vim's explanation text */
+    /* Intro paragraph 's explanation text */
     .intro-text {
       font-size: 14px;
       line-height: 1.75;
@@ -718,10 +670,8 @@ export class RoomPanel {
 
       <div class="section-tag">📂 ${escHtml(info.section)}</div>
 
-      <div class="art-block">${escHtml(art.trim())}</div>
-
       <div class="nav-prompt">
-        To advance: <kbd>next PASSWORD</kbd><br/>
+        To advance: <kbd>next</kbd><br/>
         Jump to room: <kbd>room &lt;N&gt;</kbd>
       </div>
     </div>
@@ -760,13 +710,13 @@ export class RoomPanel {
 </html>`;
   }
 
-  // ── SIDEBAR HTML — fully self-contained (no external src/href) ──────────
+  // ── SIDEBAR HTML - fully self-contained (no external src/href) ──────────
   // External <script src> and <link href> are blocked by VS Code's webview
   // sandbox even when cspSource is listed. Inline everything so only the
   // nonce-tagged inline <script> is needed.
 
   private _sidebarHtml(_webview: vscode.Webview): string {
-    const nonce   = getNonce();
+    const nonce = getNonce();
     // Read version from package.json at runtime
     let version = '';
     try {
@@ -1023,10 +973,10 @@ function getNonce(): string {
 }
 
 function escHtml(s: string): string {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-/** Break the room title into styled spans — capitalise first word in accent color */
+/** Break the room title into styled spans - capitalise first word in accent color */
 function formatTitle(title: string): string {
   // Remove "Room NN - " prefix
   const clean = title.replace(/^Room\s+\d+\s*[-–]\s*/i, '').trim();

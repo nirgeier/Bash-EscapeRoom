@@ -1,8 +1,17 @@
 ---
+title: "(Room 34) 📜 The Ancient Scroll"
 password: "optparse"
 title_prefix: "📜 "
 summary: "Use here-documents to write a multi-line config and run embedded commands."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 34</span>
+  <div class="room-title">
+    <span class="room-title-accent">📜 The</span>
+    <span class="room-title-main">Ancient Scroll</span>
+  </div>
+</div>
 
 [![Room-34](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-34.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-34.yml)
 
@@ -11,27 +20,28 @@ summary: "Use here-documents to write a multi-line config and run embedded comma
 
 ---
 
-## 📜 The Ancient Scroll
 
 - The vault door requires a precisely formatted configuration scroll.
 - Use a here-document to write it without creating temp files.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    You must write a configuration block and pipe it directly to a verifier script.
+You must write a configuration block and pipe it directly to a verifier script.
 
-    1. Use a heredoc to pass multi-line input to `./verify_config.sh`:
-       ```bash
-       ./verify_config.sh << 'EOF'
-       MODE=escape
-       LEVEL=master
-       KEY=ancient
-       EOF
-       ```
-    2. The script checks the values and outputs the password if all fields are correct.
-    3. The output of that command **is** the password.
+1. Use a heredoc to pass multi-line input to `./verify_config.sh`:
+   ```bash
+   ./verify_config.sh << 'EOF'
+   MODE=escape
+   LEVEL=master
+   KEY=ancient
+   EOF
+   ```
+2. The script checks the values and outputs the password if all fields are correct.
+3. The output of that command **is** the password.
+
+</div>
 
 ### Key Commands
 
@@ -95,16 +105,14 @@ grep "pattern" <<< "this is a pattern string"
 wc -w <<< "count these words please"
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    Use `<< 'EOF'` (quoted marker) to prevent variable expansion inside the heredoc.
+> Use `<< 'EOF'` (quoted marker) to prevent variable expansion inside the heredoc.
 
-!!! tip "Hint 2"
+> The heredoc content ends when the marker (`EOF`) appears alone on a line.
 
-    The heredoc content ends when the marker (`EOF`) appears alone on a line.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 35"

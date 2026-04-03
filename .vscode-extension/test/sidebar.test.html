@@ -29,7 +29,7 @@
 
   function log(label, pass, detail = '') {
     const el = document.getElementById('log');
-    el.innerHTML += `<div class="entry ${pass ? 'pass' : 'fail'}">${pass ? '✅' : '❌'} ${label}${detail ? ' — ' + detail : ''}</div>`;
+    el.innerHTML += `<div class="entry ${pass ? 'pass' : 'fail'}">${pass ? '✅' : '❌'} ${label}${detail ? ' - ' + detail : ''}</div>`;
   }
 
   // Inject fake DOM matching sidebar HTML
@@ -63,8 +63,8 @@
       document.body.insertBefore(d, document.body.firstChild.nextSibling);
       return d;
     })();
-    existing.innerHTML += `<div class="${pass ? 'pass' : 'fail'}">${pass ? '✅' : '❌'} ${label}${detail ? ' — ' + detail : ''}</div>`;
-    console.log((pass ? 'PASS' : 'FAIL') + ': ' + label + (detail ? ' — ' + detail : ''));
+    existing.innerHTML += `<div class="${pass ? 'pass' : 'fail'}">${pass ? '✅' : '❌'} ${label}${detail ? ' - ' + detail : ''}</div>`;
+    console.log((pass ? 'PASS' : 'FAIL') + ': ' + label + (detail ? ' - ' + detail : ''));
   }
 
   const testLog = document.createElement('div');

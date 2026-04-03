@@ -1,8 +1,17 @@
 ---
+title: "(Room 41) 🔌 The Netcat Tunnel"
 password: "resolve9"
 title_prefix: "🔌 "
 summary: "Use netcat (nc) to communicate with a local service and retrieve the key."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 41</span>
+  <div class="room-title">
+    <span class="room-title-accent">🔌 The</span>
+    <span class="room-title-main">Netcat Tunnel</span>
+  </div>
+</div>
 
 [![Room-41](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-41.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-41.yml)
 
@@ -11,22 +20,23 @@ summary: "Use netcat (nc) to communicate with a local service and retrieve the k
 
 ---
 
-## 🔌 The Netcat Tunnel
 
 - A secret server is listening, waiting for the magic word.
 - Send it the right message using `nc` and receive the key.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    A server is listening on `localhost` port `4444`.
+A server is listening on `localhost` port `4444`.
 
-    1. Connect to the server using `nc`.
-       > hint: `nc localhost 4444`
-    2. The server will ask: `SEND THE MAGIC WORD:`
-    3. Type the magic word: `OPEN`
-    4. The server will respond with the password.
+1. Connect to the server using `nc`.
+   > `nc localhost 4444`
+2. The server will ask: `SEND THE MAGIC WORD:`
+3. Type the magic word: `OPEN`
+4. The server will respond with the password.
+
+</div>
 
 ### Key Commands
 
@@ -73,16 +83,14 @@ nc -u -l 514                          # UDP listener
 printf "OPEN\n" | nc localhost 4444   # send "OPEN" and close
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `echo "OPEN" | nc localhost 4444` sends the magic word and prints the response.
+> `echo "OPEN" | nc localhost 4444` sends the magic word and prints the response.
 
-!!! tip "Hint 2"
+> If the connection hangs, try `echo -e "OPEN\n" | nc -q 1 localhost 4444` to close after 1 second.
 
-    If the connection hangs, try `echo -e "OPEN\n" | nc -q 1 localhost 4444` to close after 1 second.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 42"

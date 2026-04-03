@@ -1,8 +1,17 @@
 ---
+title: "(Room 18) 🏗️ The Twin Blueprints"
 password: "cron5min"
 title_prefix: "🏗️ "
 summary: "Use diff and patch to identify changes between blueprint versions."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 18</span>
+  <div class="room-title">
+    <span class="room-title-accent">🏗️ The</span>
+    <span class="room-title-main">Twin Blueprints</span>
+  </div>
+</div>
 
 [![Room-18](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-18.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-18.yml)
 
@@ -11,7 +20,6 @@ summary: "Use diff and patch to identify changes between blueprint versions."
 
 ---
 
-## 🏗️ The Twin Blueprints
 
 - Two versions of a building blueprint exist.
 - A saboteur changed something between version 1 and version 2.
@@ -19,16 +27,18 @@ summary: "Use diff and patch to identify changes between blueprint versions."
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    Two blueprint files exist: `blueprint_v1.txt` and `blueprint_v2.txt`.
+Two blueprint files exist: `blueprint_v1.txt` and `blueprint_v2.txt`.
 
-    1. Compare the two files to see what changed.
-       > hint: `diff blueprint_v1.txt blueprint_v2.txt`
-    2. Lines starting with `<` are in v1 only; lines starting with `>` are in v2 only.
-    3. The saboteur inserted a line containing the password in v2.
-       Find the **added line** (starts with `>`).
-    4. The value on that line **is** the password.
+1. Compare the two files to see what changed.
+   > `diff blueprint_v1.txt blueprint_v2.txt`
+2. Lines starting with `<` are in v1 only; lines starting with `>` are in v2 only.
+3. The saboteur inserted a line containing the password in v2.
+   Find the **added line** (starts with `>`).
+4. The value on that line **is** the password.
+
+</div>
 
 ### Key Commands
 
@@ -66,16 +76,14 @@ patch --dry-run < changes.patch                     # test without applying
 patch -R file.txt < changes.patch                   # reverse: undo a patch
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    Lines prefixed with `>` in `diff` output are lines that exist in file2 (v2) but not file1.
+> Lines prefixed with `>` in `diff` output are lines that exist in file2 (v2) but not file1.
 
-!!! tip "Hint 2"
+> Use `diff blueprint_v1.txt blueprint_v2.txt | grep '^>'` to see only added lines.
 
-    Use `diff blueprint_v1.txt blueprint_v2.txt | grep '^>'` to see only added lines.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 19"

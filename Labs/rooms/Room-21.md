@@ -1,8 +1,17 @@
 ---
+title: "(Room 21) 📚 The Binary Library"
 password: "deadbeef"
 title_prefix: "📚 "
 summary: "Use the strings command to extract readable text from a compiled binary."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 21</span>
+  <div class="room-title">
+    <span class="room-title-accent">📚 The</span>
+    <span class="room-title-main">Binary Library</span>
+  </div>
+</div>
 
 [![Room-21](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-21.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-21.yml)
 
@@ -11,24 +20,25 @@ summary: "Use the strings command to extract readable text from a compiled binar
 
 ---
 
-## 📚 The Binary Library
 
 - A compiled program contains a hidden password in its binary data.
 - The `strings` command can extract human-readable text from any binary file.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `vault_binary` is a compiled program that contains the password somewhere in its data.
+The file `vault_binary` is a compiled program that contains the password somewhere in its data.
 
-    1. Run `strings` on the binary to extract all readable text.
-       > hint: `strings vault_binary`
-    2. The output will contain many strings - filter for lines that look like a password.
-       > hint: `strings vault_binary | grep "pass"`
-    3. The password line follows the format `PASSWORD=<value>`.
-    4. Extract just the value after `=`.
-       > hint: pipe to `cut -d'=' -f2`
+1. Run `strings` on the binary to extract all readable text.
+   > `strings vault_binary`
+2. The output will contain many strings - filter for lines that look like a password.
+   > `strings vault_binary | grep "pass"`
+3. The password line follows the format `PASSWORD=<value>`.
+4. Extract just the value after `=`.
+   > pipe to `cut -d'=' -f2`
+
+</div>
 
 ### Key Commands
 
@@ -63,16 +73,14 @@ strings core_dump | grep "error"      # error messages from a core dump
 xxd binary | grep "pass"              # search hex dump for "pass" in ASCII
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `strings vault_binary | grep "PASSWORD"` will narrow down the results.
+> `strings vault_binary | grep "PASSWORD"` will narrow down the results.
 
-!!! tip "Hint 2"
+> `cut -d'=' -f2` extracts everything after the `=` sign.
 
-    `cut -d'=' -f2` extracts everything after the `=` sign.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 22"

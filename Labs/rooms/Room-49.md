@@ -1,8 +1,17 @@
 ---
+title: "(Room 49) 🏭 The Grand Pipeline II"
 password: "commit42"
 title_prefix: "🏭 "
 summary: "Build an advanced multi-stage pipeline combining awk, sed, sort, and uniq."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 49</span>
+  <div class="room-title">
+    <span class="room-title-accent">🏭 The</span>
+    <span class="room-title-main">Grand Pipeline II</span>
+  </div>
+</div>
 
 [![Room-49](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-49.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-49.yml)
 
@@ -11,29 +20,30 @@ summary: "Build an advanced multi-stage pipeline combining awk, sed, sort, and u
 
 ---
 
-## 🏭 The Grand Pipeline II
 
 - The final lock requires you to build a sophisticated data processing pipeline.
 - Combine your knowledge of multiple tools to crack it.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `factory_log.txt` contains production records with the format:
-    `TIMESTAMP MACHINE_ID STATUS UNITS_PRODUCED`
+The file `factory_log.txt` contains production records with the format:
+`TIMESTAMP MACHINE_ID STATUS UNITS_PRODUCED`
 
-    Build a pipeline to derive the password:
+Build a pipeline to derive the password:
 
-    1. Filter lines where `STATUS` is `SUCCESS`.
-       > hint: `awk '$3 == "SUCCESS"'`
-    2. Extract the `MACHINE_ID` field (field 2).
-       > hint: `awk '{print $2}'`
-    3. Sort and count occurrences of each machine ID.
-       > hint: `sort | uniq -c | sort -rn`
-    4. Find the machine with the **most** successes - note the count.
-    5. The password is `pipeline` followed by that count *(no space)*.
-       > Example: if the top machine had 47 successes → `pipeline47`
+1. Filter lines where `STATUS` is `SUCCESS`.
+   > `awk '$3 == "SUCCESS"'`
+2. Extract the `MACHINE_ID` field (field 2).
+   > `awk '{print $2}'`
+3. Sort and count occurrences of each machine ID.
+   > `sort | uniq -c | sort -rn`
+4. Find the machine with the **most** successes - note the count.
+5. The password is `pipeline` followed by that count *(no space)*.
+   > Example: if the top machine had 47 successes → `pipeline47`
+
+</div>
 
 ### The Complete Pipeline
 
@@ -83,16 +93,14 @@ awk 'NR > 1 && $2 ~ /^M/' file.txt           # skip header, machine IDs starting
 join <(sort file1.txt) <(sort file2.txt)     # inner join on first field
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `uniq -c` prefixes each line with its count - the format is `COUNT VALUE`.
+> `uniq -c` prefixes each line with its count - the format is `COUNT VALUE`.
 
-!!! tip "Hint 2"
+> After `sort -rn`, the first line has the highest count. `head -1 | awk '{print $1}'` extracts just the number.
 
-    After `sort -rn`, the first line has the highest count. `head -1 | awk '{print $1}'` extracts just the number.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 50"

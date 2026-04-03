@@ -1,8 +1,17 @@
 ---
+title: "(Room 14) 🌐 The Web Crawler"
 password: "link42"
 title_prefix: "🌐 "
 summary: "Use curl to fetch and process data from a local web server."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 14</span>
+  <div class="room-title">
+    <span class="room-title-accent">🌐 The</span>
+    <span class="room-title-main">Web Crawler</span>
+  </div>
+</div>
 
 [![Room-14](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-14.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-14.yml)
 
@@ -11,24 +20,25 @@ summary: "Use curl to fetch and process data from a local web server."
 
 ---
 
-## 🌐 The Web Crawler
 
 - A local web server is hiding the password behind several endpoints.
 - Use `curl` to fetch the right URL and extract the clue.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    A local web server is running at `http://localhost:3456`.
+A local web server is running at `http://localhost:3000`.
 
-    1. Fetch the index page to see what endpoints are available.
-       > hint: `curl http://localhost:3456/`
-    2. The server has a `/secret` endpoint - but it requires a custom header `X-Access-Key: escape`.
-       > hint: `curl -H "X-Access-Key: escape" http://localhost:3456/secret`
-    3. The response contains a JSON body - extract the `password` field.
-       > hint: pipe to `grep` or `jq`
-    4. The value of `password` in the response **is** the password.
+1. Fetch the index page to see what endpoints are available.
+   > `curl http://localhost:3000/`
+2. The server has a `/secret` endpoint - but it requires a custom header `X-Access-Key: escape`.
+   > `curl -H "X-Access-Key: escape" http://localhost:3000/secret`
+3. The response contains a JSON body - extract the `password` field.
+   > pipe to `grep` or `jq`
+4. The value of `password` in the response **is** the password.
+
+</div>
 
 ### Key Commands
 
@@ -86,16 +96,14 @@ curl -v URL                                     # verbose: show headers + body
 curl --progress-bar -o file.zip URL             # show progress bar
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    Use `curl -s` to suppress the progress meter and get clean output.
+> Use `curl -s` to suppress the progress meter and get clean output.
 
-!!! tip "Hint 2"
+> Custom headers use the `-H` flag: `curl -H "Header-Name: value" URL`.
 
-    Custom headers use the `-H` flag: `curl -H "Header-Name: value" URL`.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 15"

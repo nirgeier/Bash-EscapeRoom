@@ -1,8 +1,17 @@
 ---
+title: "(Room 28) 🔁 The Loop Labyrinth"
 password: "array10"
 title_prefix: "🔁 "
 summary: "Use a for loop to process files and accumulate a result."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 28</span>
+  <div class="room-title">
+    <span class="room-title-accent">🔁 The</span>
+    <span class="room-title-main">Loop Labyrinth</span>
+  </div>
+</div>
 
 [![Room-28](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-28.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-28.yml)
 
@@ -11,25 +20,26 @@ summary: "Use a for loop to process files and accumulate a result."
 
 ---
 
-## 🔁 The Loop Labyrinth
 
 - 50 numbered chambers each contain a single digit.
 - Loop through them all and sum the digits to unlock the exit.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The directory `chambers/` contains 50 files: `chamber_01.txt` through `chamber_50.txt`.
-    Each file contains a single integer.
+The directory `chambers/` contains 50 files: `chamber_01.txt` through `chamber_50.txt`.
+Each file contains a single integer.
 
-    1. Write a `for` loop to iterate over all chamber files.
-       > hint: `for f in chambers/chamber_*.txt; do ...`
-    2. Read each file's value and add it to a running total.
-       > hint: `total=$(( total + $(cat "$f") ))`
-    3. After the loop, print the total.
-    4. The password is `loop` followed by the total *(no space)*.
-       > Example: if the sum is 250 → `loop250`
+1. Write a `for` loop to iterate over all chamber files.
+   > `for f in chambers/chamber_*.txt; do ...`
+2. Read each file's value and add it to a running total.
+   > `total=$(( total + $(cat "$f") ))`
+3. After the loop, print the total.
+4. The password is `loop` followed by the total *(no space)*.
+   > Example: if the sum is 250 → `loop250`
+
+</div>
 
 ### Key Commands
 
@@ -95,16 +105,14 @@ for i in {1..10}; do
 done
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    Initialize `total=0` before the loop and add each file's value inside.
+> Initialize `total=0` before the loop and add each file's value inside.
 
-!!! tip "Hint 2"
+> `$(cat "$f")` reads the content of a file and substitutes it inline.
 
-    `$(cat "$f")` reads the content of a file and substitutes it inline.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 29"

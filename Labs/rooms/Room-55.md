@@ -1,8 +1,17 @@
 ---
+title: "(Room 55) 🔍 The System Inspector"
 password: "sysinfo9"
 title_prefix: "🔍 "
 summary: "Inspect system identity: kernel version, hostname, user info, and logged-in sessions."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 55</span>
+  <div class="room-title">
+    <span class="room-title-accent">🔍 The</span>
+    <span class="room-title-main">System Inspector</span>
+  </div>
+</div>
 
 [![Room-55](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-55.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-55.yml)
 
@@ -11,27 +20,28 @@ summary: "Inspect system identity: kernel version, hostname, user info, and logg
 
 ---
 
-## 🔍 The System Inspector
 
 - You've entered an uncharted system with no documentation and no map.
 - Your mission: identify it completely using system inspection commands.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The system holds its own identity as the key. Interrogate it fully.
+The system holds its own identity as the key. Interrogate it fully.
 
-    1. Get the complete system information in one line.
-       > hint: `uname -a`
-    2. Find out the system's network name.
-       > hint: `hostname`
-    3. Confirm your user identity - uid, gid, and group memberships.
-       > hint: `id`
-    4. See who else is currently logged in.
-       > hint: `who`
-    5. Run `./getKey.sh` with your username and OS kernel name as arguments.
-       > hint: `./getKey.sh "$(whoami)" "$(uname -s)"`
+1. Get the complete system information in one line.
+   > `uname -a`
+2. Find out the system's network name.
+   > `hostname`
+3. Confirm your user identity - uid, gid, and group memberships.
+   > `id`
+4. See who else is currently logged in.
+   > `who`
+5. Run `./getKey.sh` with your username and OS kernel name as arguments.
+   > `./getKey.sh "$(whoami)" "$(uname -s)"`
+
+</div>
 
 ### Key Commands
 
@@ -109,16 +119,14 @@ cat /etc/os-release                # NAME="Ubuntu" VERSION="22.04.3 LTS" ...
 echo "Host: $(hostname) | OS: $(uname -s) $(uname -r) | Arch: $(uname -m) | User: $(id -un)"
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `uname -s` returns `Linux` on Linux systems and `Darwin` on macOS - the result is case-sensitive. Use it in scripts to write cross-platform code that branches based on the operating system.
+> `uname -s` returns `Linux` on Linux systems and `Darwin` on macOS - the result is case-sensitive. Use it in scripts to write cross-platform code that branches based on the operating system.
 
-!!! tip "Hint 2"
+> `id -u` returns just the numeric uid; `id -un` returns just the username string - both are more reliable in scripts than parsing the full `id` output. Either is equivalent to running `whoami`.
 
-    `id -u` returns just the numeric uid; `id -un` returns just the username string - both are more reliable in scripts than parsing the full `id` output. Either is equivalent to running `whoami`.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 56"

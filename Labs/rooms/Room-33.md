@@ -1,8 +1,17 @@
 ---
+title: "(Room 33) 🎛️ The Argument Decoder"
 password: "funcret"
 title_prefix: "🎛️ "
 summary: "Use getopts to parse command-line arguments and unlock a protected script."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 33</span>
+  <div class="room-title">
+    <span class="room-title-accent">🎛️ The</span>
+    <span class="room-title-main">Argument Decoder</span>
+  </div>
+</div>
 
 [![Room-33](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-33.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-33.yml)
 
@@ -11,23 +20,24 @@ summary: "Use getopts to parse command-line arguments and unlock a protected scr
 
 ---
 
-## 🎛️ The Argument Decoder
 
 - A protected script only responds to the correct combination of flags.
 - Use `getopts` to build a command that passes all validations.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The script `locked_program.sh` uses `getopts` to validate its arguments.
-    Study it, then call it with the right flags to unlock the password.
+The script `locked_program.sh` uses `getopts` to validate its arguments.
+Study it, then call it with the right flags to unlock the password.
 
-    1. Read `locked_program.sh` to understand what flags it expects.
-       > hint: `cat locked_program.sh`
-    2. The script expects flags `-u <username>` `-p <pin>` and optionally `-v` (verbose).
-    3. Call it with `-u agent -p 1337 -v`.
-    4. The output when all conditions pass **is** the password.
+1. Read `locked_program.sh` to understand what flags it expects.
+   > `cat locked_program.sh`
+2. The script expects flags `-u <username>` `-p <pin>` and optionally `-v` (verbose).
+3. Call it with `-u agent -p 1337 -v`.
+4. The output when all conditions pass **is** the password.
+
+</div>
 
 ### Key Commands
 
@@ -83,16 +93,14 @@ fi
 ./script.sh -u bob -p 22           # no verbose flag
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `getopts "u:p:v"` - the `:` after `u` and `p` means those flags take arguments.
+> `getopts "u:p:v"` - the `:` after `u` and `p` means those flags take arguments.
 
-!!! tip "Hint 2"
+> Run `bash locked_program.sh -u agent -p 1337 -v` and read the output.
 
-    Run `bash locked_program.sh -u agent -p 1337 -v` and read the output.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 34"

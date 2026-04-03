@@ -1,8 +1,17 @@
 ---
+title: "(Room 37) 🚪 The Interactive Gateway"
 password: "sigcatch"
 title_prefix: "🚪 "
 summary: "Use the read command to interactively respond to a prompt-driven challenge."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 37</span>
+  <div class="room-title">
+    <span class="room-title-accent">🚪 The</span>
+    <span class="room-title-main">Interactive Gateway</span>
+  </div>
+</div>
 
 [![Room-37](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-37.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-37.yml)
 
@@ -11,25 +20,26 @@ summary: "Use the read command to interactively respond to a prompt-driven chall
 
 ---
 
-## 🚪 The Interactive Gateway
 
 - A guardian blocks the gate and asks you a series of questions.
 - Answer correctly using a script with `read` to pass the challenge.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The script `guardian.sh` asks you 3 questions interactively.
-    But you can also pipe answers in!
+The script `guardian.sh` asks you 3 questions interactively.
+But you can also pipe answers in!
 
-    1. Run `guardian.sh` interactively and answer the questions.
-       > hint: `bash guardian.sh`
-    2. Alternatively, pipe all answers at once.
-       > hint: `printf "answer1\nanswer2\nanswer3\n" | bash guardian.sh`
-    3. The correct answers are: `bash`, `escape`, and the current year.
-       > hint: `$(date +%Y)` gives the current year
-    4. When all answers are correct, the script prints the password.
+1. Run `guardian.sh` interactively and answer the questions.
+   > `bash guardian.sh`
+2. Alternatively, pipe all answers at once.
+   > `printf "answer1\nanswer2\nanswer3\n" | bash guardian.sh`
+3. The correct answers are: `bash`, `escape`, and the current year.
+   > `$(date +%Y)` gives the current year
+4. When all answers are correct, the script prints the password.
+
+</div>
 
 ### Key Commands
 
@@ -90,16 +100,14 @@ while IFS= read -r line; do
 done
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `printf "bash\nescape\n$(date +%Y)\n" | bash guardian.sh` pipes all answers at once.
+> `printf "bash\nescape\n$(date +%Y)\n" | bash guardian.sh` pipes all answers at once.
 
-!!! tip "Hint 2"
+> For interactive mode, just run `bash guardian.sh` and type each answer when prompted.
 
-    For interactive mode, just run `bash guardian.sh` and type each answer when prompted.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 38"

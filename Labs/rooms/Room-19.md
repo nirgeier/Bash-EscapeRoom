@@ -1,8 +1,17 @@
 ---
+title: "(Room 19) 🔒 The Integrity Check"
 password: "patch13"
 title_prefix: "🔒 "
 summary: "Use md5sum and sha256sum to verify file integrity and find the authentic document."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 19</span>
+  <div class="room-title">
+    <span class="room-title-accent">🔒 The</span>
+    <span class="room-title-main">Integrity Check</span>
+  </div>
+</div>
 
 [![Room-19](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-19.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-19.yml)
 
@@ -11,24 +20,25 @@ summary: "Use md5sum and sha256sum to verify file integrity and find the authent
 
 ---
 
-## 🔒 The Integrity Check
 
 - Seven documents were delivered, but only one is authentic.
 - The authentic document matches a known checksum. Find it!
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The directory `documents/` contains 7 files: `doc_1.txt` through `doc_7.txt`.
-    A trusted checksum file `authentic.sha256` contains the SHA-256 hash of the authentic document.
+The directory `documents/` contains 7 files: `doc_1.txt` through `doc_7.txt`.
+A trusted checksum file `authentic.sha256` contains the SHA-256 hash of the authentic document.
 
-    1. Read `authentic.sha256` to see the expected hash.
-       > hint: `cat authentic.sha256`
-    2. Calculate the SHA-256 hash of each document.
-       > hint: `sha256sum documents/*.txt`
-    3. Find which document's hash matches the one in `authentic.sha256`.
-    4. Read that document - its contents **are** the password.
+1. Read `authentic.sha256` to see the expected hash.
+   > `cat authentic.sha256`
+2. Calculate the SHA-256 hash of each document.
+   > `sha256sum documents/*.txt`
+3. Find which document's hash matches the one in `authentic.sha256`.
+4. Read that document - its contents **are** the password.
+
+</div>
 
 ### Key Commands
 
@@ -78,16 +88,14 @@ echo "EXPECTEDHASH  filename" | sha256sum -c   # verify one file inline
 sha256sum file1.txt file2.txt           # same hash = identical content
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `sha256sum documents/*.txt` will show hashes for all documents at once.
+> `sha256sum documents/*.txt` will show hashes for all documents at once.
 
-!!! tip "Hint 2"
+> Use `grep` to match the hash from `authentic.sha256` against the computed hashes.
 
-    Use `grep` to match the hash from `authentic.sha256` against the computed hashes.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 20"

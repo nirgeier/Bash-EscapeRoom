@@ -1,8 +1,17 @@
 ---
+title: "(Room 27) 🗃️ The Array Arsenal"
 password: "expand99"
 title_prefix: "🗃️ "
 summary: "Use bash arrays to collect, sort, and process a list of items."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 27</span>
+  <div class="room-title">
+    <span class="room-title-accent">🗃️ The</span>
+    <span class="room-title-main">Array Arsenal</span>
+  </div>
+</div>
 
 [![Room-27](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-27.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-27.yml)
 
@@ -11,25 +20,26 @@ summary: "Use bash arrays to collect, sort, and process a list of items."
 
 ---
 
-## 🗃️ The Array Arsenal
 
 - The armory has been scrambled - weapons are unordered and some are duplicates.
 - Use Bash arrays to organize the inventory and count unique weapons.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `weapons.txt` contains a list of weapon names, one per line.
+The file `weapons.txt` contains a list of weapon names, one per line.
 
-    1. Write a small bash script (or one-liner) to read all weapon names into an array.
-       > hint: `mapfile -t weapons < weapons.txt`
-    2. Count the total number of items in the array.
-       > hint: `${#weapons[@]}`
-    3. Count how many **unique** weapon names there are.
-       > hint: pipe through `sort | uniq | wc -l`
-    4. The password is `array` followed by the count of unique weapons *(no space)*.
-       > Example: if there are 10 unique weapons → `array10`
+1. Write a small bash script (or one-liner) to read all weapon names into an array.
+   > `mapfile -t weapons < weapons.txt`
+2. Count the total number of items in the array.
+   > `${#weapons[@]}`
+3. Count how many **unique** weapon names there are.
+   > pipe through `sort | uniq | wc -l`
+4. The password is `array` followed by the count of unique weapons *(no space)*.
+   > Example: if there are 10 unique weapons → `array10`
+
+</div>
 
 ### Key Commands
 
@@ -86,16 +96,14 @@ echo ${colors[@]}                       # all values
 echo ${!fruits[@]}                      # 0 1 3 (note: gap from unset[2])
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `mapfile -t weapons < weapons.txt` reads all lines into the array.
+> `mapfile -t weapons < weapons.txt` reads all lines into the array.
 
-!!! tip "Hint 2"
+> `printf '%s\n' "${weapons[@]}" | sort | uniq | wc -l` counts unique elements.
 
-    `printf '%s\n' "${weapons[@]}" | sort | uniq | wc -l` counts unique elements.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 28"

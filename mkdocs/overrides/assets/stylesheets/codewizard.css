@@ -102,6 +102,62 @@ body {
   border-radius: 10px;
 }
 
+/* Hide the auto-generated page title on room pages that have a custom room-hero */
+.md-content__inner:has(.room-hero) > h1 {
+  display: none;
+}
+
+/* ── Room Hero Banner ─────────────────────────────────────────── */
+.room-hero {
+  background-color: #12132e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem 4rem;
+  margin: -0.8rem -0.8rem 2rem;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.room-badge {
+  display: inline-block;
+  border: 2px solid #e05565;
+  border-radius: 999px;
+  color: #e05565;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: 0.3rem 1rem;
+  text-transform: uppercase;
+}
+
+.room-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  gap: 0;
+}
+
+.room-title-accent {
+  color: #e05565;
+  font-size: clamp(1.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.room-title-main {
+  color: #b0bcd8;
+  font-size: clamp(1.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  word-break: break-word;
+}
+/* ─────────────────────────────────────────────────────────────── */
+
 .md-typeset h1 {
   font-size: 2em;
   line-height: 1.5;
@@ -658,4 +714,41 @@ body[data-path*="02"] .md-content {
     height: 1.8rem;
     width: 1.8rem;
   }
+}
+
+/*
+ * --------------------------------------------------
+ * Custom Hint Styles (task and hints blockquotes)
+ * --------------------------------------------------
+ */
+.md-typeset .tasks blockquote,
+.md-typeset .hints blockquote {
+  background-color: #161b22;
+  border: none;
+  border-left: 4px solid var(--color-yellow);
+  border-radius: 0 6px 6px 0;
+  padding: 10px 14px 10px 16px;
+  margin: 6px 0;
+  box-shadow: none;
+  color: inherit;
+}
+
+.md-typeset .tasks blockquote p,
+.md-typeset .hints blockquote p {
+  margin: 0;
+}
+
+.md-typeset .tasks blockquote p::before,
+.md-typeset .hints blockquote p::before {
+  content: "HINT";
+  display: inline-block;
+  background-color: var(--color-yellow);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.65rem;
+  padding: 1px 7px;
+  border-radius: 3px;
+  margin-right: 8px;
+  vertical-align: middle;
+  letter-spacing: 0.05em;
 }

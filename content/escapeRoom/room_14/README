@@ -10,6 +10,9 @@ To pass this room:
 
 ## Tasks:
 
+0. If the server is not already running, start it:
+   >> hint: `node ~/.vscode-insiders/extensions/nirgeier.*/scripts/room14_server.js &`
+
 1. A web server is running at http://localhost:3456
    >> hint: `curl http://localhost:3456/`
 

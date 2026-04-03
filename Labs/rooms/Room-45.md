@@ -1,8 +1,17 @@
 ---
+title: "(Room 45) 🔑 The Cryptographer's Den"
 password: "synced"
 title_prefix: "🔑 "
 summary: "Use openssl to decrypt a message encrypted with a symmetric cipher."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 45</span>
+  <div class="room-title">
+    <span class="room-title-accent">🔑 The</span>
+    <span class="room-title-main">Cryptographer's Den</span>
+  </div>
+</div>
 
 [![Room-45](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-45.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-45.yml)
 
@@ -11,23 +20,24 @@ summary: "Use openssl to decrypt a message encrypted with a symmetric cipher."
 
 ---
 
-## 🔑 The Cryptographer's Den
 
 - A message was encrypted with `openssl` using a known algorithm and key.
 - Decrypt it to reveal the secret.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `encrypted_message.enc` was encrypted using AES-256-CBC.
-    The encryption password is hidden in a file called `keyfile.txt` in the same directory.
+The file `encrypted_message.enc` was encrypted using AES-256-CBC.
+The encryption password is hidden in a file called `keyfile.txt` in the same directory.
 
-    1. Find and read the encryption password.
-       > hint: `cat keyfile.txt`
-    2. Decrypt the file using `openssl` with the password you found.
-       > hint: `openssl enc -aes-256-cbc -d -a -pbkdf2 -in encrypted_message.enc -pass pass:PASSWORD`
-    3. The decrypted output **is** the password for Room 46.
+1. Find and read the encryption password.
+   > `cat keyfile.txt`
+2. Decrypt the file using `openssl` with the password you found.
+   > `openssl enc -aes-256-cbc -d -a -pbkdf2 -in encrypted_message.enc -pass pass:PASSWORD`
+3. The decrypted output **is** the password for Room 46.
+
+</div>
 
 ### Key Commands
 
@@ -85,16 +95,14 @@ openssl version                        # version info
 openssl help                           # list all commands
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    Copy the exact decrypt command from the Mission Briefing - the password is `cryptokey2024`.
+> Copy the exact decrypt command from the Mission Briefing - the password is `cryptokey2024`.
 
-!!! tip "Hint 2"
+> `-a` flag is needed if the encrypted file was base64-encoded. `-pbkdf2` should match what was used to encrypt.
 
-    `-a` flag is needed if the encrypted file was base64-encoded. `-pbkdf2` should match what was used to encrypt.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 46"

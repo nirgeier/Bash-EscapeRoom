@@ -1,8 +1,17 @@
 ---
+title: "(Room 35) 🌍 The Nested Worlds"
 password: "heredoc5"
 title_prefix: "🌍 "
 summary: "Use command substitution and process substitution to combine command outputs."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 35</span>
+  <div class="room-title">
+    <span class="room-title-accent">🌍 The</span>
+    <span class="room-title-main">Nested Worlds</span>
+  </div>
+</div>
 
 [![Room-35](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-35.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-35.yml)
 
@@ -11,23 +20,24 @@ summary: "Use command substitution and process substitution to combine command o
 
 ---
 
-## 🌍 The Nested Worlds
 
 - Some commands can only run inside other commands.
 - Master the art of nesting commands within commands.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The files `world_a.txt` and `world_b.txt` each contain a list of words.
+The files `world_a.txt` and `world_b.txt` each contain a list of words.
 
-    1. Use process substitution to diff the sorted contents without creating temp files.
-       > hint: `diff <(sort world_a.txt) <(sort world_b.txt)`
-    2. Count words that appear in BOTH files (the intersection).
-       > hint: `comm -12 <(sort world_a.txt) <(sort world_b.txt) | wc -l`
-    3. The password is `nested` followed by the intersection count *(no space)*.
-       > Example: if 42 words are in both → `nested42`
+1. Use process substitution to diff the sorted contents without creating temp files.
+   > `diff <(sort world_a.txt) <(sort world_b.txt)`
+2. Count words that appear in BOTH files (the intersection).
+   > `comm -12 <(sort world_a.txt) <(sort world_b.txt) | wc -l`
+3. The password is `nested` followed by the intersection count *(no space)*.
+   > Example: if 42 words are in both → `nested42`
+
+</div>
 
 ### Key Commands
 
@@ -69,16 +79,14 @@ size=$(du -sb dir/ | cut -f1)
 echo "Size in MB: $(( size / 1048576 ))"
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `<(command)` creates a virtual file from a command's output - no temp file needed.
+> `<(command)` creates a virtual file from a command's output - no temp file needed.
 
-!!! tip "Hint 2"
+> `comm -12` shows only lines common to BOTH files (both must be sorted).
 
-    `comm -12` shows only lines common to BOTH files (both must be sorted).
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 36"

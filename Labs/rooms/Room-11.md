@@ -1,8 +1,17 @@
 ---
+title: "(Room 11) 🪆 The Nested Archive"
 password: "awk2025"
 title_prefix: "🪆 "
 summary: "Unwrap a multi-layered archive using base64, gzip, and tar."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 11</span>
+  <div class="room-title">
+    <span class="room-title-accent">🪆 The</span>
+    <span class="room-title-main">Nested Archive</span>
+  </div>
+</div>
 
 [![Room-11](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-11.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-11.yml)
 
@@ -11,25 +20,26 @@ summary: "Unwrap a multi-layered archive using base64, gzip, and tar."
 
 ---
 
-## 🪆 The Nested Archive
 
 A mysterious artifact has been encoded in **3 layers** -like a Russian nesting doll.
 Peel each layer to reveal the secret.
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `artifact.b64` has been wrapped in **3 layers** of encoding:
+The file `artifact.b64` has been wrapped in **3 layers** of encoding:
 
-    - Layer 3 (outermost): **Base64**
-    - Layer 2: **Gzip** compression
-    - Layer 1 (innermost): **Tar** archive
+- Layer 3 (outermost): **Base64**
+- Layer 2: **Gzip** compression
+- Layer 1 (innermost): **Tar** archive
 
-    Unwrap in reverse order:
+Unwrap in reverse order:
 
-    1. Decode Base64 → `base64 -d artifact.b64 > artifact.tar.gz`
-    2. Decompress gzip → `gunzip artifact.tar.gz`
-    3. Extract tar → `tar xf artifact.tar`
-    4. Read the extracted file -it contains the password!
+1. Decode Base64 → `base64 -d artifact.b64 > artifact.tar.gz`
+2. Decompress gzip → `gunzip artifact.tar.gz`
+3. Extract tar → `tar xf artifact.tar`
+4. Read the extracted file -it contains the password!
+
+</div>
 
 ### The 3 Layers (outermost to innermost)
 
@@ -84,12 +94,12 @@ file artifact.tar.gz        # "gzip compressed data"
 file artifact.tar           # "POSIX tar archive"
 ```
 
-### Hints
 
-!!! tip "Hint"
+<div class="hints" markdown="1">
 
-    After each step, use `ls` to see what appeared and `file` to identify it.
+> After each step, use `ls` to see what appeared and `file` to identify it.
 
+</div>
 ---
 
 !!! info "🔓 Unlock Room 12"

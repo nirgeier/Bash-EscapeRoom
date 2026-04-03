@@ -1,8 +1,17 @@
 ---
+title: "(Room 48) 🌿 The Version Vault"
 password: "sshkey"
 title_prefix: "🌿 "
 summary: "Use git to explore a repository's history and recover a deleted secret."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 48</span>
+  <div class="room-title">
+    <span class="room-title-accent">🌿 The</span>
+    <span class="room-title-main">Version Vault</span>
+  </div>
+</div>
 
 [![Room-48](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-48.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-48.yml)
 
@@ -11,25 +20,26 @@ summary: "Use git to explore a repository's history and recover a deleted secret
 
 ---
 
-## 🌿 The Version Vault
 
 - A secret was committed to a git repository, then immediately deleted.
 - Nothing is truly gone from git history - find the lost commit!
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The directory `vault_repo/` is a git repository.
+The directory `vault_repo/` is a git repository.
 
-    1. Navigate into the repository.
-       > hint: `cd vault_repo`
-    2. View the commit history.
-       > hint: `git log --oneline`
-    3. Find the commit where `secret.txt` was added (then later deleted).
-    4. Check out or show that specific commit's content.
-       > hint: `git show <COMMIT_HASH>:secret.txt`
-    5. The content of `secret.txt` from that commit **is** the password.
+1. Navigate into the repository.
+   > `cd vault_repo`
+2. View the commit history.
+   > `git log --oneline`
+3. Find the commit where `secret.txt` was added (then later deleted).
+4. Check out or show that specific commit's content.
+   > `git show <COMMIT_HASH>:secret.txt`
+5. The content of `secret.txt` from that commit **is** the password.
+
+</div>
 
 ### Key Commands
 
@@ -87,16 +97,14 @@ git checkout abc1234 -- file.txt       # restore file from a commit
 git show abc1234:file.txt > recovered.txt  # save to new file
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `git log --oneline` shows a concise list - look for a commit message mentioning "secret".
+> `git log --oneline` shows a concise list - look for a commit message mentioning "secret".
 
-!!! tip "Hint 2"
+> `git show <HASH>:secret.txt` shows the file content without checking out anything.
 
-    `git show <HASH>:secret.txt` shows the file content without checking out anything.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 49"

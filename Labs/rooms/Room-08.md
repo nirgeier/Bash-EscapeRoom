@@ -1,8 +1,17 @@
 ---
+title: "(Room 08) 🧪 The Environment Lab"
 password: "access42"
 title_prefix: "🧪 "
 summary: "Configure environment variables, aliases, and source config files."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 08</span>
+  <div class="room-title">
+    <span class="room-title-accent">🧪 The</span>
+    <span class="room-title-main">Environment Lab</span>
+  </div>
+</div>
 
 [![Room-08](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-08.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-08.yml)
 
@@ -11,22 +20,23 @@ summary: "Configure environment variables, aliases, and source config files."
 
 ---
 
-## 🧪 The Environment Lab
 
 Your shell environment must be configured precisely to unlock the lab door.
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    Configure your shell environment precisely to unlock the lab door.
+Configure your shell environment precisely to unlock the lab door.
 
-    1. Find the hidden configuration file in this room.
-       > hint: hidden files start with `.` -use `ls -a`
-    2. Source the hidden config file to load its settings.
-       > hint: `source .filename` or `. .filename`
-    3. The config tells you what environment variables to set. Set them with `export`.
-    4. Create an alias named `labstatus` that prints `ready`.
-       > hint: `alias labstatus='echo ready'`
-    5. Once everything is set, run `./getKey.sh` to verify and get the password.
+1. Find the hidden configuration file in this room.
+   > hidden files start with `.` -use `ls -a`
+2. Source the hidden config file to load its settings.
+   > `source .filename` or `. .filename`
+3. The config tells you what environment variables to set. Set them with `export`.
+4. Create an alias named `labstatus` that prints `ready`.
+   > `alias labstatus='echo ready'`
+5. Once everything is set, run `./getKey.sh` to verify and get the password.
+
+</div>
 
 ### Key Commands
 
@@ -71,20 +81,16 @@ MY_VAR=hello ./script.sh
 
 ---
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    Hidden files start with a dot (`.`) -use `ls -a` to find them.
+> Hidden files start with a dot (`.`) -use `ls -a` to find them.
 
-!!! tip "Hint 2"
+> Source the hidden config file first -it tells you what to set.
 
-    Source the hidden config file first -it tells you what to set.
+> All commands (`export`, `alias`) must be run in the same shell session.
 
-!!! tip "Hint 3"
-
-    All commands (`export`, `alias`) must be run in the same shell session.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 09"

@@ -1,8 +1,17 @@
 ---
+title: "(Room 16) 🚀 The Space Station"
 password: "json64"
 title_prefix: "🚀 "
 summary: "Use df and du to investigate disk usage and find the heaviest directory."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 16</span>
+  <div class="room-title">
+    <span class="room-title-accent">🚀 The</span>
+    <span class="room-title-main">Space Station</span>
+  </div>
+</div>
 
 [![Room-16](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-16.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-16.yml)
 
@@ -11,23 +20,24 @@ summary: "Use df and du to investigate disk usage and find the heaviest director
 
 ---
 
-## 🚀 The Space Station
 
 - The space station's storage system is overloaded.
 - Find which module is consuming the most disk space to unlock the next door.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The directory `station/` contains multiple module directories.
+The directory `station/` contains multiple module directories.
 
-    1. Check available disk space on the filesystem.
-       > hint: `df -h` shows disk usage in human-readable format
-    2. Find which **direct subdirectory** of `station/` uses the most space.
-       > hint: `du -sh station/*/` shows sizes of each subdirectory
-    3. The password is the word `module` followed by the **name** of the largest subdirectory *(no space)*.
-       > Example: if `station/reactor/` is largest → password is `modulereactor`
+1. Check available disk space on the filesystem.
+   > `df -h` shows disk usage in human-readable format
+2. Find which **direct subdirectory** of `station/` uses the most space.
+   > `du -sh station/*/` shows sizes of each subdirectory
+3. The password is the word `module` followed by the **name** of the largest subdirectory *(no space)*.
+   > Example: if `station/reactor/` is largest → password is `modulereactor`
+
+</div>
 
 ### Key Commands
 
@@ -64,16 +74,14 @@ du -sh /var/* | sort -rh | head -10 # top 10 largest in /var
 find . -size +10M -exec du -sh {} \; # files larger than 10MB
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `du -sh station/*/` lists sizes for each direct subdirectory.
+> `du -sh station/*/` lists sizes for each direct subdirectory.
 
-!!! tip "Hint 2"
+> Pipe through `sort -rh` to sort by size (largest first) - the first line is your answer.
 
-    Pipe through `sort -rh` to sort by size (largest first) - the first line is your answer.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 17"

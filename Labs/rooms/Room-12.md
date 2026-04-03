@@ -1,8 +1,17 @@
 ---
+title: "(Room 12) 🎼 The Grand Pipeline"
 password: "layered7"
 title_prefix: "🎼 "
 summary: "Build a multi-stage pipeline using cut, tr, and pipes."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 12</span>
+  <div class="room-title">
+    <span class="room-title-accent">🎼 The</span>
+    <span class="room-title-main">Grand Pipeline</span>
+  </div>
+</div>
 
 [![Room-12](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-12.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-12.yml)
 
@@ -11,27 +20,28 @@ summary: "Build a multi-stage pipeline using cut, tr, and pipes."
 
 ---
 
-## 🎼 The Grand Pipeline
 
 Master the art of chaining commands with pipes. Extract data from a structured
 file, transform it step by step, and reveal the password.
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `stations.txt` contains 8 city records.
-    Format: `CityName|Population|Area|Code`
+The file `stations.txt` contains 8 city records.
+Format: `CityName|Population|Area|Code`
 
-    Build a **single pipeline** to derive the password:
+Build a **single pipeline** to derive the password:
 
-    1. Extract city names (first field, `|` delimiter).
-       > hint: `cut -d'|' -f1 stations.txt`
-    2. Take the **first letter** of each city name.
-       > hint: `cut -c1`
-    3. Combine all letters into one line (remove newlines).
-       > hint: `tr -d '\n'`
-    4. Convert to **lowercase**.
-       > hint: `tr 'A-Z' 'a-z'`
-    5. The result is the password!
+1. Extract city names (first field, `|` delimiter).
+   > `cut -d'|' -f1 stations.txt`
+2. Take the **first letter** of each city name.
+   > `cut -c1`
+3. Combine all letters into one line (remove newlines).
+   > `tr -d '\n'`
+4. Convert to **lowercase**.
+   > `tr 'A-Z' 'a-z'`
+5. The result is the password!
+
+</div>
 
 ### Key Commands
 
@@ -81,12 +91,12 @@ cmd1 | wc -l                        # count lines of output
 cmd1 | sort | uniq -c | sort -rn    # frequency count pattern
 ```
 
-### Hints
 
-!!! tip "Hint"
+<div class="hints" markdown="1">
 
-    The first letters of the city names spell the password!
+> The first letters of the city names spell the password!
 
+</div>
 ---
 
 !!! info "🔓 Unlock Room 13"

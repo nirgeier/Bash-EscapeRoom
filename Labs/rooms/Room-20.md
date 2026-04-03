@@ -1,8 +1,17 @@
 ---
+title: "(Room 20) 🔢 The Hex Dungeon"
 password: "hash256"
 title_prefix: "🔢 "
 summary: "Decode a hex dump using xxd to reveal the hidden message."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 20</span>
+  <div class="room-title">
+    <span class="room-title-accent">🔢 The</span>
+    <span class="room-title-main">Hex Dungeon</span>
+  </div>
+</div>
 
 [![Room-20](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-20.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-20.yml)
 
@@ -11,22 +20,23 @@ summary: "Decode a hex dump using xxd to reveal the hidden message."
 
 ---
 
-## 🔢 The Hex Dungeon
 
 - An ancient computer left a message encoded in hexadecimal.
 - Reverse the hex dump to read the original text.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `hex_message.hex` contains a hex dump created with `xxd`.
+The file `hex_message.hex` contains a hex dump created with `xxd`.
 
-    1. View the hex dump file.
-       > hint: `cat hex_message.hex`
-    2. Reverse the hex dump back to its original text.
-       > hint: `xxd -r hex_message.hex`
-    3. The decoded text **is** the password.
+1. View the hex dump file.
+   > `cat hex_message.hex`
+2. Reverse the hex dump back to its original text.
+   > `xxd -r hex_message.hex`
+3. The decoded text **is** the password.
+
+</div>
 
 ### Key Commands
 
@@ -68,16 +78,14 @@ hexdump -C file.txt                     # canonical: offset | hex | ASCII
 hexdump -e '"%08.8_ax  " 16/1 "%02x " "\n"' file.txt  # custom format
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `xxd -r hex_message.hex` converts the hex dump back to the original text.
+> `xxd -r hex_message.hex` converts the hex dump back to the original text.
 
-!!! tip "Hint 2"
+> If the output has binary noise, redirect to a file and use `cat` or `strings` on it.
 
-    If the output has binary noise, redirect to a file and use `cat` or `strings` on it.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 21"

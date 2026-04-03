@@ -1,8 +1,17 @@
 ---
+title: "(Room 26) 🧩 The Variable Vault"
 password: "teeoff"
 title_prefix: "🧩 "
 summary: "Master bash parameter expansion to extract and transform variable values."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 26</span>
+  <div class="room-title">
+    <span class="room-title-accent">🧩 The</span>
+    <span class="room-title-main">Variable Vault</span>
+  </div>
+</div>
 
 [![Room-26](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-26.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-26.yml)
 
@@ -11,26 +20,27 @@ summary: "Master bash parameter expansion to extract and transform variable valu
 
 ---
 
-## 🧩 The Variable Vault
 
 - The combination to the vault is hidden inside shell variable values.
 - Use Bash parameter expansion to extract and transform the pieces.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `vault_env.sh` sets several environment variables. Source it and then use parameter expansion.
+The file `vault_env.sh` sets several environment variables. Source it and then use parameter expansion.
 
-    1. Source the file to load the variables.
-       > hint: `source vault_env.sh`
-    2. The variable `TREASURE_PATH` contains something like `/deep/in/the/vault/jewel`.
-       Extract just the **filename** part (after the last `/`).
-       > hint: `${TREASURE_PATH##*/}`
-    3. The variable `GEMCODE` contains something like `gem-SECRETWORD-2024`.
-       Extract the **middle part** between the two dashes.
-       > hint: Use `${GEMCODE#*-}` then `${result%-*}`
-    4. Combine the extracted filename and middle part (separated by a `-`) - that **is** the password.
+1. Source the file to load the variables.
+   > `source vault_env.sh`
+2. The variable `TREASURE_PATH` contains something like `/deep/in/the/vault/jewel`.
+   Extract just the **filename** part (after the last `/`).
+   > `${TREASURE_PATH##*/}`
+3. The variable `GEMCODE` contains something like `gem-SECRETWORD-2024`.
+   Extract the **middle part** between the two dashes.
+   > Use `${GEMCODE#*-}` then `${result%-*}`
+4. Combine the extracted filename and middle part (separated by a `-`) - that **is** the password.
+
+</div>
 
 ### Key Commands
 
@@ -89,16 +99,14 @@ echo ${str:7:5}                         # World (start at 7, length 5)
 echo ${str: -6}                         # orld!  (from 6 chars from end)
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `${TREASURE_PATH##*/}` removes everything up to and including the last `/`.
+> `${TREASURE_PATH##*/}` removes everything up to and including the last `/`.
 
-!!! tip "Hint 2"
+> To extract the middle of `gem-WORD-2024`: first do `${GEMCODE#*-}` to get `WORD-2024`, then `${result%-*}` to get `WORD`.
 
-    To extract the middle of `gem-WORD-2024`: first do `${GEMCODE#*-}` to get `WORD-2024`, then `${result%-*}` to get `WORD`.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 27"

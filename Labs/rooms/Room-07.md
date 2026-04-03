@@ -1,8 +1,17 @@
 ---
+title: "(Room 07) 🔐 The Permission Maze"
 password: "unique37"
 title_prefix: "🔐 "
 summary: "Fix file permissions using chmod to unlock the gates."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 07</span>
+  <div class="room-title">
+    <span class="room-title-accent">🔐 The</span>
+    <span class="room-title-main">Permission Maze</span>
+  </div>
+</div>
 
 [![Room-07](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-07.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-07.yml)
 
@@ -11,29 +20,30 @@ summary: "Fix file permissions using chmod to unlock the gates."
 
 ---
 
-## 🔐 The Permission Maze
 
 - Seven gates block your path, each with wrong permissions.
 - Set them correctly to proceed.
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    Seven locked gates block your path. Each gate is a file with **wrong**
-    permissions. Fix them all to proceed!
+Seven locked gates block your path. Each gate is a file with **wrong**
+permissions. Fix them all to proceed!
 
-    | File   | Required Permission | Numeric |
-    |--------|---------------------|---------|
-    | gate_1 | rwxr-xr-x           | 755     |
-    | gate_2 | rw-r--r--           | 644     |
-    | gate_3 | rwx------           | 700     |
-    | gate_4 | r--r--r--           | 444     |
-    | gate_5 | rwxrwxr-x           | 775     |
-    | gate_6 | rw-rw----           | 660     |
-    | gate_7 | r-x--x--x           | 511     |
+| File   | Required Permission | Numeric |
+|--------|---------------------|---------|
+| gate_1 | rwxr-xr-x           | 755     |
+| gate_2 | rw-r--r--           | 644     |
+| gate_3 | rwx------           | 700     |
+| gate_4 | r--r--r--           | 444     |
+| gate_5 | rwxrwxr-x           | 775     |
+| gate_6 | rw-rw----           | 660     |
+| gate_7 | r-x--x--x           | 511     |
 
-    1. Check current permissions: `ls -l gate_*`
-    2. Fix each gate using `chmod`.
-    3. Once **all** gates are correct, run `./getKey.sh` to get the password.
+1. Check current permissions: `ls -l gate_*`
+2. Fix each gate using `chmod`.
+3. Once **all** gates are correct, run `./getKey.sh` to get the password.
+
+</div>
 
 ---
 

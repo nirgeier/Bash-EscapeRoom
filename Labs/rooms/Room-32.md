@@ -1,8 +1,17 @@
 ---
+title: "(Room 32) ⚙️ The Function Factory"
 password: "matched7"
 title_prefix: "⚙️ "
 summary: "Write and call bash functions to process a complex multi-step task."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 32</span>
+  <div class="room-title">
+    <span class="room-title-accent">⚙️ The</span>
+    <span class="room-title-main">Function Factory</span>
+  </div>
+</div>
 
 [![Room-32](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-32.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-32.yml)
 
@@ -11,23 +20,24 @@ summary: "Write and call bash functions to process a complex multi-step task."
 
 ---
 
-## ⚙️ The Function Factory
 
 - The factory machines only work when the right functions are called in the right order.
 - Write bash functions to process the assembly line.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `assembly.txt` contains 10 product codes, one per line.
-    Write a bash script using functions to process them.
+The file `assembly.txt` contains 10 product codes, one per line.
+Write a bash script using functions to process them.
 
-    1. Write a function `validate` that checks if a code starts with `PROD-`.
-    2. Write a function `extract_id` that returns the numeric part after `PROD-`.
-    3. For each valid code, extract its ID and sum all IDs.
-    4. The password is `func` followed by the total sum *(no space)*.
-       > Example: if the sum is 550 → `func550`
+1. Write a function `validate` that checks if a code starts with `PROD-`.
+2. Write a function `extract_id` that returns the numeric part after `PROD-`.
+3. For each valid code, extract its ID and sum all IDs.
+4. The password is `func` followed by the total sum *(no space)*.
+   > Example: if the sum is 550 → `func550`
+
+</div>
 
 ### Key Commands
 
@@ -94,16 +104,14 @@ done < assembly.txt
 echo "Total: $total"
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    Use `[[ "$1" == PROD-* ]]` in the validate function - it returns exit code 0 (true) if matched.
+> Use `[[ "$1" == PROD-* ]]` in the validate function - it returns exit code 0 (true) if matched.
 
-!!! tip "Hint 2"
+> `echo "${1#PROD-}"` strips the `PROD-` prefix, leaving just the number.
 
-    `echo "${1#PROD-}"` strips the `PROD-` prefix, leaving just the number.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 33"

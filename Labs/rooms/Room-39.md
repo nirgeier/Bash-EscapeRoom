@@ -1,8 +1,17 @@
 ---
+title: "(Room 39) 🕸️ The Network Hub"
 password: "timeout3"
 title_prefix: "🕸️ "
 summary: "Use ss and netstat to inspect network connections and find the listening port."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 39</span>
+  <div class="room-title">
+    <span class="room-title-accent">🕸️ The</span>
+    <span class="room-title-main">Network Hub</span>
+  </div>
+</div>
 
 [![Room-39](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-39.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-39.yml)
 
@@ -11,23 +20,24 @@ summary: "Use ss and netstat to inspect network connections and find the listeni
 
 ---
 
-## 🕸️ The Network Hub
 
 - Hidden services are running on this machine.
 - Use network inspection tools to find which port holds the secret.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    A secret service is listening on one of the ports in the range 8000-9000.
+A secret service is listening on one of the ports in the range 8000-9000.
 
-    1. List all listening TCP ports.
-       > hint: `ss -tlnp` or `netstat -tlnp`
-    2. Find which port in the range 8000-9000 has a listener.
-    3. Connect to it and read what it says.
-       > hint: `curl http://localhost:<PORT>` or `nc localhost <PORT>`
-    4. The response **is** the password.
+1. List all listening TCP ports.
+   > `ss -tlnp` or `netstat -tlnp`
+2. Find which port in the range 8000-9000 has a listener.
+3. Connect to it and read what it says.
+   > `curl http://localhost:<PORT>` or `nc localhost <PORT>`
+4. The response **is** the password.
+
+</div>
 
 ### Key Commands
 
@@ -77,16 +87,14 @@ for port in {8000..9000}; do
 done
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `ss -tlnp | awk '/808[0-9]/ {print $5}'` helps filter for ports in the 8080s.
+> `ss -tlnp | awk '/808[0-9]/ {print $5}'` helps filter for ports in the 8080s.
 
-!!! tip "Hint 2"
+> Once you find the port, `curl http://localhost:<PORT>` or `nc localhost <PORT>` connects to it.
 
-    Once you find the port, `curl http://localhost:<PORT>` or `nc localhost <PORT>` connects to it.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 40"

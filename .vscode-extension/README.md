@@ -1,4 +1,4 @@
-# Bash Escape Room — VS Code Extension
+# Bash Escape Room - VS Code Extension
 
 > Learn Bash by solving **57 escape-room puzzles** right inside VS Code.
 > No Docker. No browser. No workspace setup. Just install and start hacking.
@@ -11,10 +11,10 @@
 
 ## What You Get
 
-- **Sidebar panel** — room list with titles, progress bar, navigation controls, auto-save
-- **Lesson panel** — styled room card with tasks, hints, and command examples
-- **Integrated terminal** — bash shell pre-loaded with `next`, `room`, `progress` commands
-- **57 rooms** — fully bundled, no repo clone needed
+- **Sidebar panel** - room list with titles, progress bar, navigation controls, auto-save
+- **Lesson panel** - styled room card with tasks, hints, and command examples
+- **Integrated terminal** - bash shell pre-loaded with `next`, `room`, `progress` commands
+- **57 rooms** - fully bundled, no repo clone needed
 
 ---
 
@@ -44,11 +44,12 @@ Click the **🏃 icon** in the Activity Bar (left edge of VS Code).
 ![Sidebar](https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/sidebar.png)
 
 The sidebar shows:
+
 - Status dot (stopped / starting / running)
 - **▶ Launch** and **■ Stop** buttons
 - **⬛ Terminal** and **📖 Open Room** quick links
 - Room navigator `‹ 01 / 57 ›` with a progress bar
-- Full room list — click any room to jump directly
+- Full room list - click any room to jump directly
 
 ---
 
@@ -68,8 +69,8 @@ The lesson panel shows everything you need to solve the room.
 
 ![Lesson panel](https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/lesson-panel.png)
 
-- **Left column** — room title, section tag, ASCII art visual
-- **Right column** — mission brief, numbered tasks, hints, command examples
+- **Left column** - room title, section tag, ASCII art visual
+- **Right column** - mission brief, numbered tasks, hints, command examples
 
 ---
 
@@ -81,12 +82,12 @@ Click **⬛ Terminal** in the sidebar.
 
 A bash shell opens **inside the current room's directory**, with these commands available immediately:
 
-| Command | Description |
-|---------|-------------|
-| `next` | Move to the next room |
-| `room <N>` | Jump directly to room N |
-| `progress` | Show saved progress |
-| `resume` | Return to your last saved room |
+| Command    | Description                    |
+| ---------- | ------------------------------ |
+| `next`     | Move to the next room          |
+| `room <N>` | Jump directly to room N        |
+| `progress` | Show saved progress            |
+| `resume`   | Return to your last saved room |
 
 ![Terminal](https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/terminal.png)
 
@@ -127,17 +128,17 @@ The sidebar updates automatically and the next lesson opens.
 
 ## Room List
 
-| Rooms | Topic |
-|-------|-------|
-| 01–06 | find, grep, head/tail, sed, base64, sort/uniq |
-| 07–09 | chmod, env/export, ps/kill |
-| 10–13 | awk, tar/gzip, cut/pipes, ln |
-| 14–16 | curl/wget, jq, df/du |
-| 17–25 | crontab, diff/patch, hashing, xxd, strings, date |
+| Rooms | Topic                                                   |
+| ----- | ------------------------------------------------------- |
+| 01–06 | find, grep, head/tail, sed, base64, sort/uniq           |
+| 07–09 | chmod, env/export, ps/kill                              |
+| 10–13 | awk, tar/gzip, cut/pipes, ln                            |
+| 14–16 | curl/wget, jq, df/du                                    |
+| 17–25 | crontab, diff/patch, hashing, xxd, strings, date        |
 | 26–32 | Parameter expansion, arrays, for/while loops, functions |
-| 33–38 | getopts, heredocs, process substitution, trap, read |
-| 39–43 | ss/netstat, dig, netcat, lsof, strace |
-| 44–56 | rsync, openssl, vim, ssh, git, advanced pipelines |
+| 33–38 | getopts, heredocs, process substitution, trap, read     |
+| 39–43 | ss/netstat, dig, netcat, lsof, strace                   |
+| 44–56 | rsync, openssl, vim, ssh, git, advanced pipelines       |
 
 ---
 
@@ -145,12 +146,12 @@ The sidebar updates automatically and the next lesson opens.
 
 `Cmd+Shift+P`:
 
-| Command | Description |
-|---------|-------------|
-| `Bash Escape Room: Launch` | Start the server and open Room 1 |
-| `Bash Escape Room: Stop` | Stop the server |
-| `Bash Escape Room: Open Terminal Panel` | Open the bash terminal |
-| `Bash Escape Room: Open Current Room` | Re-open the current room panel |
+| Command                                 | Description                      |
+| --------------------------------------- | -------------------------------- |
+| `Bash Escape Room: Launch`              | Start the server and open Room 1 |
+| `Bash Escape Room: Stop`                | Stop the server                  |
+| `Bash Escape Room: Open Terminal Panel` | Open the bash terminal           |
+| `Bash Escape Room: Open Current Room`   | Re-open the current room panel   |
 
 ---
 
@@ -158,22 +159,22 @@ The sidebar updates automatically and the next lesson opens.
 
 `Settings → Extensions → Bash Escape Room`:
 
-| Setting | Default | Description |
-|---------|---------|-------------|
-| `bashEscapeRoom.port` | `3000` | Port the embedded server listens on |
-| `bashEscapeRoom.autoOpen` | `true` | Auto-open terminal when server is ready |
+| Setting                   | Default | Description                             |
+| ------------------------- | ------- | --------------------------------------- |
+| `bashEscapeRoom.port`     | `3000`  | Port the embedded server listens on     |
+| `bashEscapeRoom.autoOpen` | `true`  | Auto-open terminal when server is ready |
 
 ---
 
 ## Requirements
 
-| Requirement | Notes |
-|-------------|-------|
-| VS Code 1.85+ | Any platform |
-| Node.js 18+ | Must be in PATH |
-| `bash` | macOS/Linux built-in; Windows needs WSL or Git Bash |
+| Requirement   | Notes                                               |
+| ------------- | --------------------------------------------------- |
+| VS Code 1.85+ | Any platform                                        |
+| Node.js 18+   | Must be in PATH                                     |
+| `bash`        | macOS/Linux built-in; Windows needs WSL or Git Bash |
 
-> All 57 rooms are bundled inside the extension — no Docker, no repo clone needed.
+> All 57 rooms are bundled inside the extension - no Docker, no repo clone needed.
 
 ---
 

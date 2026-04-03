@@ -42,11 +42,11 @@ export class ControlPanel implements vscode.WebviewViewProvider {
     view.webview.html = this._getSidebarHtml(view.webview);
     view.webview.onDidReceiveMessage(async (msg) => {
       switch (msg.command) {
-        case 'ready':         this._syncSidebar(); break;
-        case 'launch':        await this.launch(); break;
-        case 'stop':          await this.stop(); break;
-        case 'openTerminal':  this.openTerminalPanel(); break;
-        case 'openDocs':      this.openDocsPanel(); break;
+        case 'ready': this._syncSidebar(); break;
+        case 'launch': await this.launch(); break;
+        case 'stop': await this.stop(); break;
+        case 'openTerminal': this.openTerminalPanel(); break;
+        case 'openDocs': this.openDocsPanel(); break;
       }
     });
   }
@@ -59,13 +59,13 @@ export class ControlPanel implements vscode.WebviewViewProvider {
       return;
     }
 
-    const config      = vscode.workspace.getConfiguration('bashEscapeRoom');
-    const port        = config.get<number>('port', 3000);
-    const autoOpen    = config.get<boolean>('autoOpen', true);
-    const roomsPath   = config.get<string>('roomsPath', '') ||
-                        path.join(this._workspaceRoot, 'content', 'escapeRoom');
-    const docsPath    = path.join(this._workspaceRoot, 'mkdocs-site');
-    const publicPath  = path.join(this._workspaceRoot, '.escaperoom-framework', 'public');
+    const config = vscode.workspace.getConfiguration('bashEscapeRoom');
+    const port = config.get<number>('port', 3000);
+    const autoOpen = config.get<boolean>('autoOpen', true);
+    const roomsPath = config.get<string>('roomsPath', '') ||
+      path.join(this._workspaceRoot, 'content', 'escapeRoom');
+    const docsPath = path.join(this._workspaceRoot, 'mkdocs-site');
+    const publicPath = path.join(this._workspaceRoot, '.escaperoom-framework', 'public');
 
     try {
       await this._server.start({ port, roomsPath, docsPath, publicPath });
@@ -86,8 +86,8 @@ export class ControlPanel implements vscode.WebviewViewProvider {
 
   openTerminalPanel(): void {
     const config = vscode.workspace.getConfiguration('bashEscapeRoom');
-    const port   = config.get<number>('port', 3000);
-    const url    = `http://localhost:${port}`;
+    const port = config.get<number>('port', 3000);
+    const url = `http://localhost:${port}`;
 
     if (this._terminalPanel) {
       this._terminalPanel.reveal(vscode.ViewColumn.One);
@@ -109,7 +109,7 @@ export class ControlPanel implements vscode.WebviewViewProvider {
     this._terminalPanel.webview.html = this._getFrameHtml(
       this._terminalPanel.webview,
       url,
-      '🏃 Bash Escape Room — Terminal'
+      '🏃 Bash Escape Room - Terminal'
     );
 
     this._terminalPanel.onDidDispose(() => {
@@ -119,8 +119,8 @@ export class ControlPanel implements vscode.WebviewViewProvider {
 
   openDocsPanel(): void {
     const config = vscode.workspace.getConfiguration('bashEscapeRoom');
-    const port   = config.get<number>('port', 3000);
-    const url    = `http://localhost:${port}/docs/`;
+    const port = config.get<number>('port', 3000);
+    const url = `http://localhost:${port}/docs/`;
 
     if (this._docsPanel) {
       this._docsPanel.reveal(vscode.ViewColumn.Two);
@@ -141,7 +141,7 @@ export class ControlPanel implements vscode.WebviewViewProvider {
     this._docsPanel.webview.html = this._getFrameHtml(
       this._docsPanel.webview,
       url,
-      '📖 Bash Escape Room — Documentation'
+      '📖 Bash Escape Room - Documentation'
     );
 
     this._docsPanel.onDidDispose(() => {
@@ -155,9 +155,9 @@ export class ControlPanel implements vscode.WebviewViewProvider {
     const config = vscode.workspace.getConfiguration('bashEscapeRoom');
     this._sidebarView?.webview.postMessage({
       command: 'setState',
-      status:  this._status,
-      port:    config.get<number>('port', 3000),
-      logs:    this._logs,
+      status: this._status,
+      port: config.get<number>('port', 3000),
+      logs: this._logs,
     });
   }
 
@@ -261,7 +261,7 @@ export class ControlPanel implements vscode.WebviewViewProvider {
   // ── Sidebar control panel HTML ────────────────────────────────────────────
 
   private _getSidebarHtml(webview: vscode.Webview): string {
-    const nonce  = getNonce();
+    const nonce = getNonce();
     const cssUri = webview.asWebviewUri(
       vscode.Uri.joinPath(this._extensionUri, 'media', 'style.css')
     );
@@ -308,15 +308,15 @@ export class ControlPanel implements vscode.WebviewViewProvider {
     </div>
     <div class="info-row">
       <span class="info-label">Port</span>
-      <span class="info-value" id="info-port">—</span>
+      <span class="info-value" id="info-port">-</span>
     </div>
     <div class="info-row">
       <span class="info-label">Terminal</span>
-      <span class="info-value info-url" id="info-terminal" onclick="openTerminal()">—</span>
+      <span class="info-value info-url" id="info-terminal" onclick="openTerminal()">-</span>
     </div>
     <div class="info-row">
       <span class="info-label">Docs</span>
-      <span class="info-value info-url" id="info-docs" onclick="openDocs()">—</span>
+      <span class="info-value info-url" id="info-docs" onclick="openDocs()">-</span>
     </div>
   </div>
 
@@ -345,5 +345,5 @@ function getNonce(): string {
 }
 
 function escHtml(s: string): string {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }

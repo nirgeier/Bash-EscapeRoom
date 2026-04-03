@@ -1,8 +1,17 @@
 ---
+title: "(Room 43) 🔭 The System Call Observatory"
 password: "openfd"
 title_prefix: "🔭 "
 summary: "Use strace to trace system calls and discover what a mystery program is doing."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 43</span>
+  <div class="room-title">
+    <span class="room-title-accent">🔭 The</span>
+    <span class="room-title-main">System Call Observatory</span>
+  </div>
+</div>
 
 [![Room-43](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-43.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-43.yml)
 
@@ -11,23 +20,24 @@ summary: "Use strace to trace system calls and discover what a mystery program i
 
 ---
 
-## 🔭 The System Call Observatory
 
 - A mystery program is doing something secret.
 - Use `strace` to observe its every system call and intercept the secret.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The program `mystery_program` writes the password to a file using system calls.
+The program `mystery_program` writes the password to a file using system calls.
 
-    1. Run `mystery_program` under `strace` and capture the output.
-       > hint: `strace ./mystery_program 2>&1`
-    2. Search the strace output for `write` system calls to find the password.
-       > hint: `strace ./mystery_program 2>&1 | grep 'write'`
-    3. The content of the write call contains the password.
-    4. Alternatively, just run `./mystery_program` and check the output file it creates.
+1. Run `mystery_program` under `strace` and capture the output.
+   > `strace ./mystery_program 2>&1`
+2. Search the strace output for `write` system calls to find the password.
+   > `strace ./mystery_program 2>&1 | grep 'write'`
+3. The content of the write call contains the password.
+4. Alternatively, just run `./mystery_program` and check the output file it creates.
+
+</div>
 
 ### Key Commands
 
@@ -75,16 +85,14 @@ ltrace ./program                        # show libc and other library calls
 ltrace -e malloc,free ./program        # only malloc and free calls
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `strace -e trace=write ./mystery_program 2>&1` shows only write system calls.
+> `strace -e trace=write ./mystery_program 2>&1` shows only write system calls.
 
-!!! tip "Hint 2"
+> Look for `write(1, "...", N)` or `write(fd, "PASSWORD", N)` in the output.
 
-    Look for `write(1, "...", N)` or `write(fd, "PASSWORD", N)` in the output.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 44"

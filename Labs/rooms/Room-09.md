@@ -1,8 +1,17 @@
 ---
+title: "(Room 09) 👻 The Ghost Process"
 password: "export99"
 title_prefix: "👻 "
 summary: "Create users, manage background processes, and find PIDs."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 09</span>
+  <div class="room-title">
+    <span class="room-title-accent">👻 The</span>
+    <span class="room-title-main">Ghost Process</span>
+  </div>
+</div>
 
 [![Room-09](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-09.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-09.yml)
 
@@ -11,24 +20,25 @@ summary: "Create users, manage background processes, and find PIDs."
 
 ---
 
-## 👻 The Ghost Process
 
 - A ghost process haunts this room.
 - Create it, send it to the background, find its PID, and capture it!
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    A ghost process must be summoned and captured!
+A ghost process must be summoned and captured!
 
-    1. Create a new user named `ghost_user`.
-       > hint: `sudo adduser -D ghost_user` (Alpine) or `sudo useradd ghost_user`
-    2. Create a bash script `ghost_loop.sh` that runs an infinite loop silently.
-       > Example: `while true; do sleep 1; done`
-    3. Run the script as `ghost_user` in the **background**.
-       > hint: `sudo -u ghost_user bash ./ghost_loop.sh &`
-    4. Find the process ID (PID) of the running ghost script.
-       > hint: `ps aux | grep ghost` or `ps -eo pid,user,comm | grep ghost`
-    5. Pass the PID to `./getKey.sh <PID>` to capture the ghost.
+1. Create a new user named `ghost_user`.
+   > `sudo adduser -D ghost_user` (Alpine) or `sudo useradd ghost_user`
+2. Create a bash script `ghost_loop.sh` that runs an infinite loop silently.
+   > Example: `while true; do sleep 1; done`
+3. Run the script as `ghost_user` in the **background**.
+   > `sudo -u ghost_user bash ./ghost_loop.sh &`
+4. Find the process ID (PID) of the running ghost script.
+   > `ps aux | grep ghost` or `ps -eo pid,user,comm | grep ghost`
+5. Pass the PID to `./getKey.sh <PID>` to capture the ghost.
+
+</div>
 
 ### Key Commands
 
@@ -92,20 +102,16 @@ killall processname                   # kill all processes by name
 pkill -u username                     # kill all processes by user
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    Create a simple infinite loop script: `while true; do sleep 1; done`
+> Create a simple infinite loop script: `while true; do sleep 1; done`
 
-!!! tip "Hint 2"
+> `grep -v grep` filters out the grep process itself from `ps` output.
 
-    `grep -v grep` filters out the grep process itself from `ps` output.
+> Pass the PID as argument to `getKey.sh`: `./getKey.sh 12345`
 
-!!! tip "Hint 3"
-
-    Pass the PID as argument to `getKey.sh`: `./getKey.sh 12345`
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 10"

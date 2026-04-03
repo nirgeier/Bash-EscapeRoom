@@ -1,8 +1,17 @@
 ---
+title: "(Room 53) 📡 The Network Probe"
 password: "netprobe"
 title_prefix: "📡 "
 summary: "Probe the network with ping and traceroute, then retrieve a remote resource using wget."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 53</span>
+  <div class="room-title">
+    <span class="room-title-accent">📡 The</span>
+    <span class="room-title-main">Network Probe</span>
+  </div>
+</div>
 
 [![Room-53](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-53.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-53.yml)
 
@@ -11,25 +20,26 @@ summary: "Probe the network with ping and traceroute, then retrieve a remote res
 
 ---
 
-## 📡 The Network Probe
 
 - A signal is being transmitted from a remote beacon somewhere on the network.
 - You must verify connectivity, trace the route, and retrieve the transmission.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    A local beacon is broadcasting a secret key. Probe your way to it.
+A local beacon is broadcasting a secret key. Probe your way to it.
 
-    1. Verify network connectivity by pinging the loopback address.
-       > hint: `ping -c 3 127.0.0.1`
-    2. Trace the network route to confirm the path.
-       > hint: `traceroute 127.0.0.1` or `tracepath 127.0.0.1`
-    3. Start the local beacon server.
-       > hint: `./start_server.sh`
-    4. Use `wget` to retrieve the secret key file from the beacon.
-    5. The content of `key.txt` **is** the next room's password.
+1. Verify network connectivity by pinging the loopback address.
+   > `ping -c 3 127.0.0.1`
+2. Trace the network route to confirm the path.
+   > `traceroute 127.0.0.1` or `tracepath 127.0.0.1`
+3. Start the local beacon server.
+   > `./start_server.sh`
+4. Use `wget` to retrieve the secret key file from the beacon.
+5. The content of `key.txt` **is** the next room's password.
+
+</div>
 
 ### Key Commands
 
@@ -86,16 +96,14 @@ wget -q -O - http://host/file.txt      # wget to stdout
 curl -s http://host/file.txt           # curl equivalent
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `wget -q -O - http://host/file` streams the file content directly to your terminal without saving a local copy and without any progress noise. Pipe it to `tr -d '\n'` if you need to strip the trailing newline.
+> `wget -q -O - http://host/file` streams the file content directly to your terminal without saving a local copy and without any progress noise. Pipe it to `tr -d '\n'` if you need to strip the trailing newline.
 
-!!! tip "Hint 2"
+> If `traceroute` is not available on your system, try `tracepath` (available without root on most Linux systems) or `mtr` for a real-time combined ping+trace view.
 
-    If `traceroute` is not available on your system, try `tracepath` (available without root on most Linux systems) or `mtr` for a real-time combined ping+trace view.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 54"

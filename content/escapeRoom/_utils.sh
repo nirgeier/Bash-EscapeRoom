@@ -86,3 +86,81 @@ handle_error() {
     echo "An error occurred with exit code $exit_code"
     exit $exit_code
 }
+
+# ── Escape Room navigation commands ─────────────────────────────────────────
+
+# Move to the next room. In the VS Code extension rooms are not encrypted,
+# so the password is only used to verify and navigate; no decryption needed.
+# Usage: next [password]
+next() {
+    local cur="$PWD"
+    local num
+    num=$(echo "$cur" | grep -oE 'room_[0-9]+' | tail -1 | sed 's/room_0*//')
+    if [ -z "$num" ]; then
+        echo -e "\033[0;31mCannot detect current room. Navigate to a room folder first.\033[0m"
+        return 1
+    fi
+    local next_num
+    next_num=$(printf "%02d" $((num + 1)))
+    local next_dir="${ESCAPE_ROOMS:-$(dirname "$PWD")}/room_${next_num}"
+    if [ ! -d "$next_dir" ]; then
+        echo -e "\033[0;31mNo room_${next_num} found. You may have reached the end!\033[0m"
+        return 1
+    fi
+    cd "$next_dir"
+    echo -e "\033[0;32m>> Moved to Room ${next_num}\033[0m"
+    # Save progress
+    local save_file="${HOME}/.escape_progress"
+    echo "LAST_ROOM=${next_num}" > "$save_file"
+    [ -n "${1:-}" ] && echo "LAST_PASSWORD=$1" >> "$save_file"
+    echo "SAVED_AT=$(date '+%Y-%m-%d %H:%M:%S')" >> "$save_file"
+    echo -e "\033[0;35m[Progress saved — run 'progress' to view]\033[0m"
+    # Notify VS Code sidebar via state file
+    echo "$((10#${next_num}))" > "${HOME}/.escape_room_state" 2>/dev/null || true
+}
+
+# Jump directly to any room by number.
+# Usage: room <number>
+room() {
+    local target_num
+    target_num=$(printf "%02d" "${1:-0}" 2>/dev/null) || {
+        echo -e "\033[0;31mUsage: room <number>\033[0m"; return 1
+    }
+    local target_dir="${ESCAPE_ROOMS:-$(dirname "$PWD")}/room_${target_num}"
+    if [ ! -d "$target_dir" ]; then
+        echo -e "\033[0;31mNo room_${target_num} found.\033[0m"
+        return 1
+    fi
+    cd "$target_dir"
+    echo -e "\033[0;32m>> Moved to Room ${target_num}\033[0m"
+    # Notify VS Code sidebar via state file
+    echo "$((10#${target_num}))" > "${HOME}/.escape_room_state" 2>/dev/null || true
+}
+
+# Show saved progress.
+progress() {
+    local save_file="${HOME}/.escape_progress"
+    if [ ! -f "$save_file" ]; then
+        echo -e "\033[0;33mNo progress saved yet. Complete a room with: next\033[0m"
+        return 0
+    fi
+    source "$save_file"
+    echo -e "\033[0;36m╔══════════════════════════════════╗\033[0m"
+    echo -e "\033[0;36m║       Escape Room Progress       ║\033[0m"
+    echo -e "\033[0;36m╚══════════════════════════════════╝\033[0m"
+    echo -e "  Last room : \033[0;32mRoom ${LAST_ROOM}\033[0m"
+    echo -e "  Saved at  : ${SAVED_AT}"
+    echo -e "\n  Run \033[0;32mresume\033[0m to jump back to room ${LAST_ROOM}"
+}
+
+# Resume from last saved room.
+resume() {
+    local save_file="${HOME}/.escape_progress"
+    if [ ! -f "$save_file" ]; then
+        echo -e "\033[0;31mNo saved progress found. Start from room 01!\033[0m"
+        return 1
+    fi
+    source "$save_file"
+    echo -e "\033[0;32mResuming from Room ${LAST_ROOM}...\033[0m"
+    room "$((10#${LAST_ROOM}))"
+}

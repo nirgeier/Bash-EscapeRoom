@@ -1,8 +1,17 @@
 ---
+title: "(Room 24) 🖨️ The Formatter's Workshop"
 password: "epoch6026"
 title_prefix: "🖨️ "
 summary: "Use printf to format a template precisely and assemble the password."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 24</span>
+  <div class="room-title">
+    <span class="room-title-accent">🖨️ The</span>
+    <span class="room-title-main">Formatter's Workshop</span>
+  </div>
+</div>
 
 [![Room-24](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-24.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-24.yml)
 
@@ -11,22 +20,23 @@ summary: "Use printf to format a template precisely and assemble the password."
 
 ---
 
-## 🖨️ The Formatter's Workshop
 
 - A broken printer is garbling messages.
 - Only precisely formatted output will unlock the next door.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    The file `template.txt` contains a format string and values to plug in.
+The file `template.txt` contains a format string and values to plug in.
 
-    1. Read `template.txt` to see the required format and the values.
-    2. Use `printf` to format the output exactly as specified.
-       > hint: `printf "%-10s %05d\n" "word" 42`
-    3. The formatted output contains the password on the last line.
-    4. The password is the last word on the last output line.
+1. Read `template.txt` to see the required format and the values.
+2. Use `printf` to format the output exactly as specified.
+   > `printf "%-10s %05d\n" "word" 42`
+3. The formatted output contains the password on the last line.
+4. The password is the last word on the last output line.
+
+</div>
 
 ### Key Commands
 
@@ -73,16 +83,14 @@ printf "Hello\n"                        # explicit newline needed
 printf "%s %s\n" "Hello" "World"       # formatted with args
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `printf` format codes: `%s` for strings, `%d` for integers, `%-10s` for left-aligned 10-wide.
+> `printf` format codes: `%s` for strings, `%d` for integers, `%-10s` for left-aligned 10-wide.
 
-!!! tip "Hint 2"
+> The last line of the formatted output contains the password as the final word.
 
-    The last line of the formatted output contains the password as the final word.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 25"

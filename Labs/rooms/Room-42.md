@@ -1,8 +1,17 @@
 ---
+title: "(Room 42) 🗂️ The Open Files Archive"
 password: "ncat7"
 title_prefix: "🗂️ "
 summary: "Use lsof to list open files and identify which process holds the secret."
 ---
+
+<div class="room-hero">
+  <span class="room-badge">ROOM 42</span>
+  <div class="room-title">
+    <span class="room-title-accent">🗂️ The</span>
+    <span class="room-title-main">Open Files Archive</span>
+  </div>
+</div>
 
 [![Room-42](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-42.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-42.yml)
 
@@ -11,24 +20,25 @@ summary: "Use lsof to list open files and identify which process holds the secre
 
 ---
 
-## 🗂️ The Open Files Archive
 
 - A process has opened a secret file but hasn't released it.
 - Use `lsof` to find which process is holding the key.
 
 ---
 
-!!! abstract "📜 Mission Briefing"
+<div class="tasks" markdown="1">
 
-    A process is keeping a file named `secret_key.txt` open.
+A process is keeping a file named `secret_key.txt` open.
 
-    1. Find which process has `secret_key.txt` open.
-       > hint: `lsof | grep secret_key.txt`
-    2. Note the PID of that process.
-    3. See what other files that process has open.
-       > hint: `lsof -p <PID>`
-    4. Among those files, find one named `password.txt` - read it.
-       > hint: use the path from `lsof` output, then `cat` it
+1. Find which process has `secret_key.txt` open.
+   > `lsof | grep secret_key.txt`
+2. Note the PID of that process.
+3. See what other files that process has open.
+   > `lsof -p <PID>`
+4. Among those files, find one named `password.txt` - read it.
+   > use the path from `lsof` output, then `cat` it
+
+</div>
 
 ### Key Commands
 
@@ -78,16 +88,14 @@ lsof | grep deleted                    # files deleted but still open
 # FD: cwd=current dir, txt=executable, mem=memory mapped, 0=stdin, 1=stdout, 2=stderr
 ```
 
-### Hints
 
-!!! tip "Hint 1"
+<div class="hints" markdown="1">
 
-    `lsof | grep secret_key` finds the process; note the PID in the second column.
+> `lsof | grep secret_key` finds the process; note the PID in the second column.
 
-!!! tip "Hint 2"
+> `lsof -p <PID> | grep REG` shows all regular files open by that process.
 
-    `lsof -p <PID> | grep REG` shows all regular files open by that process.
-
+</div>
 ---
 
 !!! info "🔓 Unlock Room 43"
