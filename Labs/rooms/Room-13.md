@@ -5,6 +5,8 @@ title_prefix: "🪞 "
 summary: "Follow a chain of symbolic links to find the hidden treasure."
 ---
 
+[![Room-13](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-13.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-13.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 13</span>
   <div class="room-title">
@@ -13,31 +15,29 @@ summary: "Follow a chain of symbolic links to find the hidden treasure."
   </div>
 </div>
 
-[![Room-13](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-13.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-13.yml)
-
-
-**FOLLOW THE MIRRORS!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Follow a chain of symbolic links to find the hidden treasure.
 
 - Someone has created a labyrinth of symbolic links, each mirror pointing to the next.
 - Follow the chain from start to finish to reach the treasure.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### FOLLOW THE MIRRORS!
 
-The directory `mirrors/` contains a chain of symbolic links.
+<ol class="tasks">
+  <li>List all files in <code>mirrors/</code> including symlinks. <code>ls -la mirrors/</code></li>
+  <li>Start from <code>start.link</code> and follow the chain - each symlink points to the next. <code>readlink filename</code> shows what a symlink points to</li>
+  <li>Reach the final file and read its contents to get the password. <code>cat</code> follows symlinks automatically</li>
+</ol>
 
-1. List all files in `mirrors/` including symlinks.
-   > `ls -la mirrors/`
-2. Start from `start.link` and follow the chain - each symlink points to the next.
-   > `readlink filename` shows what a symlink points to
-3. Reach the final file and read its contents to get the password.
-   > `cat` follows symlinks automatically
-
-</div>
+---
 
 ### Key Commands
 

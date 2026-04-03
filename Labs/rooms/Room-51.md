@@ -5,6 +5,8 @@ title_prefix: "🔧 "
 summary: "Use xargs to build and execute commands from standard input, processing files in bulk."
 ---
 
+[![Room-51](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-51.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-51.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 51</span>
   <div class="room-title">
@@ -13,30 +15,31 @@ summary: "Use xargs to build and execute commands from standard input, processin
   </div>
 </div>
 
-[![Room-51](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-51.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-51.yml)
-
-
-**ASSEMBLE THE COMMANDS!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use xargs to build and execute commands from standard input, processing files in bulk.
 
 - The Command Assembler's workshop is full of orphaned parts scattered across directories.
 - Each part file contains a numeric VALUE. You must assemble them all using xargs to find the total.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### ASSEMBLE THE COMMANDS!
 
-The `parts/` directory contains multiple `.part` files, each holding a line like `VALUE=N`.
+<ol class="tasks">
+  <li>Find all <code>.part</code> files recursively using <code>find</code>.</li>
+  <li>Use <code>xargs</code> to pass each file to <code>grep</code> and extract the <code>VALUE=</code> lines.</li>
+  <li>Use <code>cut</code> to extract just the number after the <code>=</code> sign.</li>
+  <li>Sum all numbers using <code>paste</code> to build an expression and <code>bc</code> to evaluate it.</li>
+  <li>Pass the total to <code>./getKey.sh</code> to retrieve the password.</li>
+</ol>
 
-1. Find all `.part` files recursively using `find`.
-2. Use `xargs` to pass each file to `grep` and extract the `VALUE=` lines.
-3. Use `cut` to extract just the number after the `=` sign.
-4. Sum all numbers using `paste` to build an expression and `bc` to evaluate it.
-5. Pass the total to `./getKey.sh` to retrieve the password.
-
-</div>
+---
 
 ### Key Commands
 
@@ -98,9 +101,10 @@ find dir/ -name "*.ext" | xargs grep -h "KEY=" | cut -d= -f2 | paste -sd+ | bc
 
 > For complex per-file processing, use `xargs -I{} sh -c '...'` to invoke a subshell.
 
-</div>
 Example: `find . -name "*.b64" | xargs -I{} sh -c 'base64 -d < {} | grep KEY'`
 > Add the `-t` flag to debug your pipeline - it prints every command to stderr before running it so you can see exactly what `xargs` is doing.
+
+</div>
 ---
 
 !!! info "🔓 Unlock Room 52"

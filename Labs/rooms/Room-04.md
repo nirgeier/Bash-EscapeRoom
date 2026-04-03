@@ -5,6 +5,8 @@ title_prefix: "🕵️ "
 summary: "Use sed substitutions to decode an encrypted spy message."
 ---
 
+[![Room-04](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-04.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-04.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 04</span>
   <div class="room-title">
@@ -13,40 +15,29 @@ summary: "Use sed substitutions to decode an encrypted spy message."
   </div>
 </div>
 
-[![Room-04](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-04.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-04.yml)
-
-
-**CRACK THE SPY CODE!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use sed substitutions to decode an encrypted spy message.
 
 - A spy left an encoded message.
 - Certain letters were replaced with codes.
 - Use `sed` to reverse the substitutions and reveal the hidden password.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### CRACK THE SPY CODE!
 
-A spy left an encoded message in `cipher.txt`. Certain letters were
-replaced with codes using this substitution table:
+<ol class="tasks">
+  <li>Use <code>sed</code> to reverse <strong>all</strong> substitutions on <code>cipher.txt</code>. <code>sed 's/ENCODED/ORIGINAL/g; s/ENCODED2/ORIGINAL2/g' cipher.txt</code></li>
+  <li>Read the decoded output -the password is in the decoded text.</li>
+</ol>
 
-| Original | Encoded |
-|----------|---------|
-| s        | Z7      |
-| e        | Q3      |
-| d        | X9      |
-| m        | K1      |
-| a        | J2      |
-| t        | W8      |
-| r        | P6      |
-
-1. Use `sed` to reverse **all** substitutions on `cipher.txt`.
-   > `sed 's/ENCODED/ORIGINAL/g; s/ENCODED2/ORIGINAL2/g' cipher.txt`
-2. Read the decoded output -the password is in the decoded text.
-
-</div>
+---
 
 ### Key Commands
 

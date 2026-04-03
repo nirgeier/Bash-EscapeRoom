@@ -5,6 +5,8 @@ title_prefix: "🛰️ "
 summary: "Generate an SSH key pair and use it to authenticate to a local service."
 ---
 
+[![Room-47](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-47.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-47.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 47</span>
   <div class="room-title">
@@ -13,32 +15,30 @@ summary: "Generate an SSH key pair and use it to authenticate to a local service
   </div>
 </div>
 
-[![Room-47](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-47.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-47.yml)
-
-
-**OPEN THE REMOTE GATEWAY!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Generate an SSH key pair and use it to authenticate to a local service.
 
 - A remote vault only accepts SSH key authentication.
 - Generate a key pair and use it to retrieve the secret.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### OPEN THE REMOTE GATEWAY!
 
-A service running locally only allows key-based authentication.
+<ol class="tasks">
+  <li>Generate an SSH key pair. <code>ssh-keygen -t rsa -f /tmp/escape_key -N ""</code></li>
+  <li>Add the public key to the authorized list. <code>./setup_ssh_access.sh /tmp/escape_key.pub</code></li>
+  <li>Connect using your new key. <code>ssh -i /tmp/escape_key -o StrictHostKeyChecking=no escape@localhost</code></li>
+  <li>The SSH session will show the password immediately upon login.</li>
+</ol>
 
-1. Generate an SSH key pair.
-   > `ssh-keygen -t rsa -f /tmp/escape_key -N ""`
-2. Add the public key to the authorized list.
-   > `./setup_ssh_access.sh /tmp/escape_key.pub`
-3. Connect using your new key.
-   > `ssh -i /tmp/escape_key -o StrictHostKeyChecking=no escape@localhost`
-4. The SSH session will show the password immediately upon login.
-
-</div>
+---
 
 ### Key Commands
 

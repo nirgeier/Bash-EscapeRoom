@@ -5,6 +5,8 @@ title_prefix: "🍃 "
 summary: "Use if/else conditions and test operators to navigate a decision tree."
 ---
 
+[![Room-30](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-30.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-30.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 30</span>
   <div class="room-title">
@@ -13,32 +15,31 @@ summary: "Use if/else conditions and test operators to navigate a decision tree.
   </div>
 </div>
 
-[![Room-30](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-30.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-30.yml)
-
-
-**CHOOSE YOUR PATH!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use if/else conditions and test operators to navigate a decision tree.
 
 - A decision tree guards the exit.
 - Evaluate conditions correctly to follow the right path.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### CHOOSE YOUR PATH!
 
-The script `decision_tree.sh` contains a series of conditions that must be satisfied.
-Read it, understand the logic, and run it with the right arguments.
+<ol class="tasks">
+  <li>Read <code>decision_tree.sh</code> to understand the conditions. <code>cat decision_tree.sh</code></li>
+  <li>The script expects two arguments: a number and a string.</li>
+  <li>Find the number and string that satisfy ALL the if/else branches to reach <code>echo $PASSWORD</code>.</li>
+  <li>Run: <code>bash decision_tree.sh <number> <string></code></li>
+  <li>The output <strong>is</strong> the password.</li>
+</ol>
 
-1. Read `decision_tree.sh` to understand the conditions.
-   > `cat decision_tree.sh`
-2. The script expects two arguments: a number and a string.
-3. Find the number and string that satisfy ALL the if/else branches to reach `echo $PASSWORD`.
-4. Run: `bash decision_tree.sh <number> <string>`
-5. The output **is** the password.
-
-</div>
+---
 
 ### Key Commands
 

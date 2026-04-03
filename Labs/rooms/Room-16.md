@@ -5,6 +5,8 @@ title_prefix: "🚀 "
 summary: "Use df and du to investigate disk usage and find the heaviest directory."
 ---
 
+[![Room-16](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-16.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-16.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 16</span>
   <div class="room-title">
@@ -13,31 +15,29 @@ summary: "Use df and du to investigate disk usage and find the heaviest director
   </div>
 </div>
 
-[![Room-16](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-16.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-16.yml)
-
-
-**MAP THE SPACE STATION!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use df and du to investigate disk usage and find the heaviest directory.
 
 - The space station's storage system is overloaded.
 - Find which module is consuming the most disk space to unlock the next door.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### MAP THE SPACE STATION!
 
-The directory `station/` contains multiple module directories.
+<ol class="tasks">
+  <li>Check available disk space on the filesystem. <code>df -h</code> shows disk usage in human-readable format</li>
+  <li>Find which <strong>direct subdirectory</strong> of <code>station/</code> uses the most space. <code>du -sh station/*/</code> shows sizes of each subdirectory</li>
+  <li>The password is the word <code>module</code> followed by the <strong>name</strong> of the largest subdirectory *(no space)*. Example: if <code>station/reactor/</code> is largest → password is <code>modulereactor</code></li>
+</ol>
 
-1. Check available disk space on the filesystem.
-   > `df -h` shows disk usage in human-readable format
-2. Find which **direct subdirectory** of `station/` uses the most space.
-   > `du -sh station/*/` shows sizes of each subdirectory
-3. The password is the word `module` followed by the **name** of the largest subdirectory *(no space)*.
-   > Example: if `station/reactor/` is largest → password is `modulereactor`
-
-</div>
+---
 
 ### Key Commands
 

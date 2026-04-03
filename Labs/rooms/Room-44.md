@@ -5,6 +5,8 @@ title_prefix: "🔄 "
 summary: "Use rsync to synchronize files between two directories and verify the transfer."
 ---
 
+[![Room-44](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-44.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-44.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 44</span>
   <div class="room-title">
@@ -13,32 +15,29 @@ summary: "Use rsync to synchronize files between two directories and verify the 
   </div>
 </div>
 
-[![Room-44](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-44.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-44.yml)
-
-
-**SYNC THE MIRROR ARCHIVE!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use rsync to synchronize files between two directories and verify the transfer.
 
 - Two archives must be kept in sync, but something has drifted.
 - Use `rsync` to synchronize them and then verify the result.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### SYNC THE MIRROR ARCHIVE!
 
-The directory `source_archive/` is the master copy.
-The directory `mirror_archive/` is supposed to be identical but has drifted.
+<ol class="tasks">
+  <li>Sync <code>source_archive/</code> to <code>mirror_archive/</code> using rsync. <code>rsync -av source_archive/ mirror_archive/</code></li>
+  <li>After syncing, count the total number of files in <code>mirror_archive/</code>. <code>find mirror_archive/ -type f | wc -l</code></li>
+  <li>The password is <code>sync</code> followed by the file count *(no space)*. Example: if there are 28 files → <code>sync28</code></li>
+</ol>
 
-1. Sync `source_archive/` to `mirror_archive/` using rsync.
-   > `rsync -av source_archive/ mirror_archive/`
-2. After syncing, count the total number of files in `mirror_archive/`.
-   > `find mirror_archive/ -type f | wc -l`
-3. The password is `sync` followed by the file count *(no space)*.
-   > Example: if there are 28 files → `sync28`
-
-</div>
+---
 
 ### Key Commands
 

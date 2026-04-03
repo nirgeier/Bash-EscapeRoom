@@ -5,6 +5,8 @@ title_prefix: "📦 "
 summary: "Parse a JSON data file using jq to extract the hidden password."
 ---
 
+[![Room-15](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-15.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-15.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 15</span>
   <div class="room-title">
@@ -13,34 +15,32 @@ summary: "Parse a JSON data file using jq to extract the hidden password."
   </div>
 </div>
 
-[![Room-15](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-15.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-15.yml)
-
-
-**CRACK THE JSON VAULT!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Parse a JSON data file using jq to extract the hidden password.
 
 - The database has been exported as a JSON file.
 - The password is buried inside nested fields - only `jq` can crack it open.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### CRACK THE JSON VAULT!
 
-The file `database.json` contains a JSON structure with nested objects and arrays.
+<ol class="tasks">
+  <li>First, explore the top-level keys. <code>jq 'keys' database.json</code></li>
+  <li>The password is stored at <code>.agents[] | select(.status == "active") | .code</code> - find all active agents' codes. <code>jq '.agents[] | select(.status == "active") | .code' database.json</code></li>
+  <li>Sort the codes alphabetically and concatenate them (no separator). pipe to <code>sort</code> and <code>tr -d '
+'</code></li>
+  <li>Remove the surrounding quotes from the <code>jq</code> output. use <code>jq -r</code> for raw output (no quotes)</li>
+  <li>The concatenated result <strong>is</strong> the password.</li>
+</ol>
 
-1. First, explore the top-level keys.
-   > `jq 'keys' database.json`
-2. The password is stored at `.agents[] | select(.status == "active") | .code` - find all active agents' codes.
-   > `jq '.agents[] | select(.status == "active") | .code' database.json`
-3. Sort the codes alphabetically and concatenate them (no separator).
-   > pipe to `sort` and `tr -d '\n'`
-4. Remove the surrounding quotes from the `jq` output.
-   > use `jq -r` for raw output (no quotes)
-5. The concatenated result **is** the password.
-
-</div>
+---
 
 ### Key Commands
 

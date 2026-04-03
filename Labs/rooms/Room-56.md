@@ -5,6 +5,8 @@ title_prefix: "⚙️ "
 summary: "Control processes with pgrep, pkill, nohup, nice, and renice - advanced process management."
 ---
 
+[![Room-56](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-56.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-56.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 56</span>
   <div class="room-title">
@@ -13,32 +15,31 @@ summary: "Control processes with pgrep, pkill, nohup, nice, and renice - advance
   </div>
 </div>
 
-[![Room-56](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-56.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-56.yml)
-
-
-**CONTROL THE CHAOS!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Control processes with pgrep, pkill, nohup, nice, and renice - advanced process management.
 
 - Rogue processes are multiplying in the background, consuming resources and hiding secrets.
 - The Process Controller must find them, read their secrets, and terminate them in the correct order.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### CONTROL THE CHAOS!
 
-Rogue agent processes have been launched and are writing to log files in `/tmp/`.
-Hunt them down, extract the key, and shut them all down.
+<ol class="tasks">
+  <li>Launch the background agents. <code>./launch_agents.sh</code></li>
+  <li>Find all running agent processes with their full command lines.</li>
+  <li>The agents write output to log files - find and read the key log.</li>
+  <li>Stop the main keeper process to begin the shutdown sequence.</li>
+  <li>Run <code>./getKey.sh</code> after all agents are stopped to retrieve the final code.</li>
+</ol>
 
-1. Launch the background agents.
-   > `./launch_agents.sh`
-2. Find all running agent processes with their full command lines.
-3. The agents write output to log files - find and read the key log.
-4. Stop the main keeper process to begin the shutdown sequence.
-5. Run `./getKey.sh` after all agents are stopped to retrieve the final code.
-
-</div>
+---
 
 ### Key Commands
 

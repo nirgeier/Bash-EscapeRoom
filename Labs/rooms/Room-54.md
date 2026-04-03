@@ -5,6 +5,8 @@ title_prefix: "📊 "
 summary: "Monitor system resources: memory, CPU load, and uptime using top, free, and vmstat."
 ---
 
+[![Room-54](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-54.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-54.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 54</span>
   <div class="room-title">
@@ -13,38 +15,31 @@ summary: "Monitor system resources: memory, CPU load, and uptime using top, free
   </div>
 </div>
 
-[![Room-54](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-54.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-54.yml)
-
-
-**WATCH THE SYSTEM!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Monitor system resources: memory, CPU load, and uptime using top, free, and vmstat.
 
 - The System Monitor room has a resource leak - a hidden process is consuming memory.
 - Parse the system snapshot to identify the culprit and report what you find.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### WATCH THE SYSTEM!
 
-A static snapshot of the system's resource state has been saved to `system_snapshot.txt`.
-Extract the key metrics from it to prove you know the system's condition.
+<ol class="tasks">
+  <li>Check live memory usage. <code>free -h</code></li>
+  <li>Check the system's current load averages and uptime. <code>uptime</code></li>
+  <li>Read the static snapshot file generated from monitoring tools. <code>cat system_snapshot.txt</code></li>
+  <li>Parse <code>system_snapshot.txt</code> to find: - Total RAM in megabytes (integer) - The 1-minute load average - Number of currently running processes</li>
+  <li>Pass all three values to <code>./getKey.sh</code> to validate and retrieve the password. <code>./getKey.sh <total_mem_mb> <load1> <running_procs></code></li>
+</ol>
 
-1. Check live memory usage.
-   > `free -h`
-2. Check the system's current load averages and uptime.
-   > `uptime`
-3. Read the static snapshot file generated from monitoring tools.
-   > `cat system_snapshot.txt`
-4. Parse `system_snapshot.txt` to find:
-   - Total RAM in megabytes (integer)
-   - The 1-minute load average
-   - Number of currently running processes
-5. Pass all three values to `./getKey.sh` to validate and retrieve the password.
-   > `./getKey.sh <total_mem_mb> <load1> <running_procs>`
-
-</div>
+---
 
 ### Key Commands
 
@@ -118,9 +113,10 @@ vmstat -s | grep "total memory"    # total memory in kB
 
 > Parse `free -m` output with `awk` to get a clean integer value:
 
-</div>
 `free -m | awk '/^Mem:/ {print $2}'` prints total RAM in MB with no units attached.
 > `top -bn1` runs `top` in batch mode for a single iteration - perfect for scripting. The header lines contain load averages, running process counts, and memory totals all in one shot without needing an interactive terminal.
+
+</div>
 ---
 
 !!! info "🔓 Unlock Room 55"

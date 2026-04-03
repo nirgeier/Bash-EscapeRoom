@@ -5,6 +5,8 @@ title_prefix: "🕰️ "
 summary: "Use the date command to calculate time differences and decode timestamps."
 ---
 
+[![Room-23](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-23.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-23.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 23</span>
   <div class="room-title">
@@ -13,32 +15,30 @@ summary: "Use the date command to calculate time differences and decode timestam
   </div>
 </div>
 
-[![Room-23](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-23.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-23.yml)
-
-
-**DECODE THE TIMESTAMPS!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use the date command to calculate time differences and decode timestamps.
 
 - A time traveler left encrypted coordinates encoded as UNIX timestamps.
 - Decode them using the `date` command.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### DECODE THE TIMESTAMPS!
 
-The file `timestamps.txt` contains three UNIX timestamps (seconds since 1970-01-01).
+<ol class="tasks">
+  <li>Read <code>timestamps.txt</code> to get the three timestamps.</li>
+  <li>Convert each timestamp to a human-readable date. <code>date -d @TIMESTAMP</code> (Linux) or <code>date -r TIMESTAMP</code> (macOS)</li>
+  <li>Extract just the <strong>year</strong> from each converted date. <code>date -d @TIMESTAMP +%Y</code></li>
+  <li>The password is the word <code>epoch</code> followed by the <strong>sum of the three years</strong> *(no space)*. Example: if the years are 2001, 2010, 2015 → <code>epoch6026</code></li>
+</ol>
 
-1. Read `timestamps.txt` to get the three timestamps.
-2. Convert each timestamp to a human-readable date.
-   > `date -d @TIMESTAMP` (Linux) or `date -r TIMESTAMP` (macOS)
-3. Extract just the **year** from each converted date.
-   > `date -d @TIMESTAMP +%Y`
-4. The password is the word `epoch` followed by the **sum of the three years** *(no space)*.
-   > Example: if the years are 2001, 2010, 2015 → `epoch6026`
-
-</div>
+---
 
 ### Key Commands
 

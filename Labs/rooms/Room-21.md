@@ -5,6 +5,8 @@ title_prefix: "📚 "
 summary: "Use the strings command to extract readable text from a compiled binary."
 ---
 
+[![Room-21](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-21.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-21.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 21</span>
   <div class="room-title">
@@ -13,32 +15,30 @@ summary: "Use the strings command to extract readable text from a compiled binar
   </div>
 </div>
 
-[![Room-21](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-21.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-21.yml)
-
-
-**RAID THE BINARY LIBRARY!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use the strings command to extract readable text from a compiled binary.
 
 - A compiled program contains a hidden password in its binary data.
 - The `strings` command can extract human-readable text from any binary file.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### RAID THE BINARY LIBRARY!
 
-The file `vault_binary` is a compiled program that contains the password somewhere in its data.
+<ol class="tasks">
+  <li>Run <code>strings</code> on the binary to extract all readable text. <code>strings vault_binary</code></li>
+  <li>The output will contain many strings - filter for lines that look like a password. <code>strings vault_binary | grep "pass"</code></li>
+  <li>The password line follows the format <code>PASSWORD=<value></code>.</li>
+  <li>Extract just the value after <code>=</code>. pipe to <code>cut -d'=' -f2</code></li>
+</ol>
 
-1. Run `strings` on the binary to extract all readable text.
-   > `strings vault_binary`
-2. The output will contain many strings - filter for lines that look like a password.
-   > `strings vault_binary | grep "pass"`
-3. The password line follows the format `PASSWORD=<value>`.
-4. Extract just the value after `=`.
-   > pipe to `cut -d'=' -f2`
-
-</div>
+---
 
 ### Key Commands
 

@@ -5,6 +5,8 @@ title_prefix: "📡 "
 summary: "Use trap to catch signals and ensure cleanup tasks always run."
 ---
 
+[![Room-36](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-36.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-36.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 36</span>
   <div class="room-title">
@@ -13,30 +15,30 @@ summary: "Use trap to catch signals and ensure cleanup tasks always run."
   </div>
 </div>
 
-[![Room-36](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-36.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-36.yml)
-
-
-**CATCH THE SIGNAL!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use trap to catch signals and ensure cleanup tasks always run.
 
 - A process sends signals that must be caught and handled.
 - Set up signal traps to intercept the correct signal and extract the password.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### CATCH THE SIGNAL!
 
-The script `signal_sender.sh` sends a `SIGUSR1` signal to a process you start.
+<ol class="tasks">
+  <li>Write a script that sets a <code>trap</code> for <code>SIGUSR1</code> that writes <code>caught</code> to a file.</li>
+  <li>Run the script in the background.</li>
+  <li>Run <code>./signal_sender.sh <PID></code> with your script's PID.</li>
+  <li>Check the file your trap wrote to - it contains the password. your trap handler should: <code>echo "sigcatch" > trap_result.txt</code></li>
+</ol>
 
-1. Write a script that sets a `trap` for `SIGUSR1` that writes `caught` to a file.
-2. Run the script in the background.
-3. Run `./signal_sender.sh <PID>` with your script's PID.
-4. Check the file your trap wrote to - it contains the password.
-   > your trap handler should: `echo "sigcatch" > trap_result.txt`
-
-</div>
+---
 
 ### Key Commands
 

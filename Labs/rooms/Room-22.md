@@ -5,6 +5,8 @@ title_prefix: "🧮 "
 summary: "Use bc and expr to perform mathematical calculations and crack the code."
 ---
 
+[![Room-22](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-22.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-22.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 22</span>
   <div class="room-title">
@@ -13,30 +15,29 @@ summary: "Use bc and expr to perform mathematical calculations and crack the cod
   </div>
 </div>
 
-[![Room-22](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-22.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-22.yml)
-
-
-**SOLVE THE EQUATION!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use bc and expr to perform mathematical calculations and crack the code.
 
 - The door lock requires solving a series of mathematical equations.
 - Linux has built-in calculators - use them!
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### SOLVE THE EQUATION!
 
-The file `equations.txt` contains 3 math problems. Solve them all.
+<ol class="tasks">
+  <li>Read <code>equations.txt</code> to see the problems.</li>
+  <li>Solve each equation using <code>bc</code> (supports floating point and complex math). <code>echo "2^10 + 15 * 3" | bc</code></li>
+  <li>The password is the word <code>calc</code> followed by the <strong>sum of all three answers</strong> *(no space)*. Example: if answers are 5, 10, and 20 → <code>calc35</code></li>
+</ol>
 
-1. Read `equations.txt` to see the problems.
-2. Solve each equation using `bc` (supports floating point and complex math).
-   > `echo "2^10 + 15 * 3" | bc`
-3. The password is the word `calc` followed by the **sum of all three answers** *(no space)*.
-   > Example: if answers are 5, 10, and 20 → `calc35`
-
-</div>
+---
 
 ### Key Commands
 

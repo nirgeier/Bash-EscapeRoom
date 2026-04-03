@@ -216,7 +216,7 @@ export class RoomPanel {
       hints: entry.hints ?? [],
       commands: entry.commands ?? [],
       hint: (entry.hints ?? [])[0] ?? '',
-      raw: '',
+      raw: entry.raw ?? '',
     };
   }
 
@@ -307,34 +307,8 @@ export class RoomPanel {
 
   private _lessonHtml(info: RoomInfo): string {
     const nonce = getNonce();
-
-    // Build tasks HTML
-    const tasksHtml = info.tasks
-      .map((t, i) => `
-        <div class="task">
-          <span class="task-num">${i + 1}</span>
-          <span class="task-text">${escHtml(t)}</span>
-        </div>`)
-      .join('');
-
-    const hintsHtml = (info.hints ?? []).length > 0
-      ? `<div class="content-section-title">Hints</div>
-         <div class="hints-list">${(info.hints ?? []).map(h =>
-        `<div class="hint-box"><span class="hint-label">hint</span> ${escHtml(h)}</div>`
-      ).join('')}</div>`
-      : '';
-
-    const commandsHtml = (info.commands ?? []).length > 0
-      ? `<div class="content-section-title">Command Examples</div>
-         <div class="commands-list">${(info.commands ?? []).map(c =>
-        `<div class="cmd-item"><code>${escHtml(c)}</code></div>`
-      ).join('')}</div>`
-      : '';
-
-    // legacy
-    const hintHtml = '';
-
     const roomNum = String(info.number).padStart(2, '0');
+    const readmeHtml = readmeToHtml(info.raw);
 
     return /* html */`<!DOCTYPE html>
 <html lang="en">
@@ -348,7 +322,7 @@ export class RoomPanel {
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:      #0d0d1a;
+      --bg:       #000000; /* Override with pure black for better contrast */
       --panel:   #12122a;
       --border:  #1e1e3f;
       --accent:  #e94560;
@@ -508,116 +482,112 @@ export class RoomPanel {
       font-size: 12px;
     }
 
-    /* ── RIGHT: tasks & content ── */
+    /* ── RIGHT: full README content ── */
     .content-col {
       flex: 1;
       overflow-y: auto;
-      padding: 32px 28px;
+      padding: 32px 36px;
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
-    .content-section-title {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding-bottom: 4px;
-      border-bottom: 1px solid var(--border);
-    }
+    /* Rendered README markdown */
+    .readme-body { display: flex; flex-direction: column; gap: 14px; flex: 1; }
 
-    /* Intro paragraph 's explanation text */
-    .intro-text {
-      font-size: 14px;
-      line-height: 1.75;
-      color: var(--text);
+    .readme-body h2 {
+      font-size: 13px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+      padding-bottom: 4px; border-bottom: 1px solid var(--border);
+      margin-top: 8px;
     }
-    .intro-text strong { color: var(--yellow); font-weight: 700; }
-    .intro-text code {
-      font-family: monospace;
+    .readme-body h3 { font-size: 13px; font-weight: 700; color: var(--green); margin-top: 4px; }
+
+    .readme-body p { font-size: 14px; line-height: 1.75; color: var(--text); }
+    .readme-body p strong { color: var(--yellow); }
+
+    .readme-body code {
+      font-family: 'Cascadia Code','Fira Code',monospace;
       font-size: 12px;
       background: rgba(137,180,250,.12);
       color: var(--blue);
       border-radius: 3px;
       padding: 1px 5px;
     }
-
-    /* Task list */
-    .tasks-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .task {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--border);
+    .readme-body pre {
+      background: rgba(137,180,250,.06);
+      border: 1px solid rgba(137,180,250,.15);
       border-radius: 6px;
-      padding: 10px 14px;
+      padding: 12px 16px;
+      overflow-x: auto;
+    }
+    .readme-body pre code {
+      background: none; padding: 0;
+      font-size: 13px; color: var(--green);
+    }
+
+    /* Numbered task items (## Tasks section) */
+    .readme-body ol { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; counter-reset: task-counter; }
+    .readme-body ol > li {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 10px 14px; counter-increment: task-counter;
       transition: border-color .2s;
     }
-    .task:hover { border-color: var(--accent); }
-    .task-num {
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      background: var(--accent);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
+    .readme-body ol > li:hover { border-color: var(--accent); }
+    .readme-body ol > li::before {
+      content: counter(task-counter);
+      width: 22px; height: 22px; min-width: 22px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      font-size: 11px; font-weight: 700;
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .task-text {
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--text);
-    }
-    .task-text code {
-      font-family: monospace;
-      font-size: 12px;
-      background: rgba(137,180,250,.12);
-      color: var(--blue);
-      border-radius: 3px;
-      padding: 1px 5px;
+      flex-shrink: 0; margin-top: 1px;
     }
 
-    /* Hint box */
-    .hints-list { display: flex; flex-direction: column; gap: 6px; }
-    .hint-box {
-      font-size: 12px;
-      line-height: 1.6;
-      color: var(--muted);
+    /* Unordered list (bullets) */
+    .readme-body ul { padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+    .readme-body ul li { font-size: 13px; line-height: 1.6; color: var(--text); }
+
+    /* Hint lines (>> prefix) */
+    .readme-hint {
+      font-size: 12px; line-height: 1.6; color: #fffafa;
       background: rgba(240,192,64,.05);
       border-left: 3px solid var(--yellow);
       border-radius: 0 6px 6px 0;
       padding: 8px 14px;
     }
-    .hint-label {
+    .readme-hint::before {
+      content: "HINT";
       display: inline-block;
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--yellow);
-      margin-right: 6px;
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .08em;
+      color: var(--yellow); margin-right: 6px;
     }
 
-    /* Command examples */
-    .commands-list { display: flex; flex-direction: column; gap: 6px; }
-    .cmd-item {
-      background: rgba(137,180,250,.06);
-      border: 1px solid rgba(137,180,250,.15);
-      border-radius: 6px;
-      padding: 8px 14px;
+    /* Markdown table */
+    .readme-body table { border-collapse: collapse; width: 100%; font-size: 13px; }
+    .readme-body th {
+      background: var(--panel); color: var(--accent);
+      font-weight: 700; padding: 6px 12px;
+      border: 1px solid var(--border); text-align: left;
     }
-    .cmd-item code {
-      font-family: 'Cascadia Code', 'Fira Code', monospace;
-      font-size: 13px;
-      color: var(--green);
+    .readme-body td {
+      padding: 6px 12px; border: 1px solid var(--border);
+      color: var(--text); font-family: monospace;
+    }
+    .readme-body tr:nth-child(even) td { background: rgba(255,255,255,.02); }
+
+    /* Horizontal rule */
+    .readme-body hr { border: none; border-top: 1px solid var(--border); margin: 4px 0; }
+
+    /* ">> To move..." nav hint - styled differently */
+    .readme-nav {
+      font-size: 13px; color: var(--green);
+      background: rgba(26,188,156,.06);
+      border: 1px solid rgba(26,188,156,.2);
+      border-radius: 6px; padding: 10px 16px;
+      font-family: monospace;
     }
 
     /* Next room CTA */
@@ -676,21 +646,9 @@ export class RoomPanel {
       </div>
     </div>
 
-    <!-- RIGHT: tasks -->
+    <!-- RIGHT: full README content -->
     <div class="content-col">
-      <div class="content-section-title">Mission Brief</div>
-
-      <p class="intro-text">
-        You have reached <strong>Room ${info.number}</strong> of the Bash Escape Room.
-        Read the tasks below carefully and solve them in the terminal.
-      </p>
-
-      <div class="content-section-title">Tasks</div>
-      <div class="tasks-list">${tasksHtml}</div>
-
-      ${hintsHtml}
-      ${commandsHtml}
-
+      <div class="readme-body">${readmeHtml}</div>
       <div class="next-room">
         <button class="nav-btn" id="btn-next-room">Next Room →</button>
       </div>
@@ -974,6 +932,108 @@ function getNonce(): string {
 
 function escHtml(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/**
+ * Convert a room README (plain-text markdown-like format) to HTML.
+ * Handles: ## headings, numbered lists, bullet lists, tables,
+ * backtick code, >> hint lines, >> To move nav lines, bold, hr.
+ */
+function readmeToHtml(raw: string): string {
+  if (!raw) { return '<p>No content available.</p>'; }
+
+  const inlineFormat = (s: string): string => {
+    s = s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+    return s;
+  };
+
+  // ── Pass 1: join continuation lines into their parent ────────────────────
+  // A continuation line is one that is indented (starts with spaces/tab)
+  // AND does not start a new block element. We join it onto the previous line.
+  const rawLines = raw.split('\n');
+  const joined: string[] = [];
+  for (const line of rawLines) {
+    const trimmed = line.trim();
+    const isIndented = line.length > 0 && (line[0] === ' ' || line[0] === '\t');
+    const isBlockStart = !trimmed ||
+      /^#+\s/.test(trimmed) ||
+      /^\d+\./.test(trimmed) ||
+      /^[-*]/.test(trimmed) ||
+      /^\|/.test(trimmed) ||
+      /^>\s*>/.test(trimmed) ||
+      /^-{3,}$/.test(trimmed);
+
+    if (isIndented && !isBlockStart && joined.length > 0) {
+      joined[joined.length - 1] += ' ' + trimmed;
+    } else {
+      joined.push(line);
+    }
+  }
+
+  // ── Pass 2: render ────────────────────────────────────────────────────────
+  const out: string[] = [];
+  let inOl = false;
+  let inUl = false;
+  let inTable = false;
+  let tableHeaderDone = false;
+
+  const closeOl = () => { if (inOl) { out.push('</ol>'); inOl = false; } };
+  const closeUl = () => { if (inUl) { out.push('</ul>'); inUl = false; } };
+  const closeTable = () => { if (inTable) { out.push('</tbody></table>'); inTable = false; tableHeaderDone = false; } };
+  const closeAll = () => { closeOl(); closeUl(); closeTable(); };
+
+  for (const line of joined) {
+    const trimmed = line.trim();
+
+    // Skip blank, top-level heading, bare dashes, congratulations, hint/nav lines
+    if (!trimmed) { closeTable(); continue; }
+    if (trimmed.startsWith('# ')) { continue; }
+    if (/^-{2,}$/.test(trimmed)) { continue; }
+    if (trimmed.startsWith('- Congratulations')) { continue; }
+    if (/^>\s*>/.test(trimmed)) { continue; }   // hints omitted from task view
+
+    // ## / ### headings - close everything including lists
+    if (trimmed.startsWith('### ')) { closeAll(); out.push(`<h3>${inlineFormat(trimmed.slice(4))}</h3>`); continue; }
+    if (trimmed.startsWith('## ')) { closeAll(); out.push(`<h2>${inlineFormat(trimmed.slice(3))}</h2>`); continue; }
+
+    // Table rows
+    if (/^\|/.test(trimmed)) {
+      if (!inTable) { closeOl(); closeUl(); out.push('<table>'); inTable = true; tableHeaderDone = false; }
+      if (/^\|[-| :]+\|$/.test(trimmed)) { if (!tableHeaderDone) { out.push('<tbody>'); tableHeaderDone = true; } continue; }
+      const cells = trimmed.split('|').slice(1, -1).map(c => c.trim());
+      if (!tableHeaderDone) {
+        out.push('<thead><tr>' + cells.map(c => `<th>${inlineFormat(c)}</th>`).join('') + '</tr></thead>');
+      } else {
+        out.push('<tr>' + cells.map(c => `<td>${inlineFormat(c)}</td>`).join('') + '</tr>');
+      }
+      continue;
+    } else if (inTable) { closeTable(); }
+
+    // Numbered list: "1. text" - keep <ol> open so counter stays continuous across blank lines
+    if (/^\d+\.\s/.test(trimmed)) {
+      closeUl(); closeTable();
+      if (!inOl) { out.push('<ol>'); inOl = true; }
+      out.push(`<li>${inlineFormat(trimmed.replace(/^\d+\.\s*/, ''))}</li>`);
+      continue;
+    }
+
+    // Bullet list: "- text" or "* text"
+    if (/^[-*]\s/.test(trimmed)) {
+      closeOl(); closeTable();
+      if (!inUl) { out.push('<ul>'); inUl = true; }
+      out.push(`<li>${inlineFormat(trimmed.replace(/^[-*]\s*/, ''))}</li>`);
+      continue;
+    }
+
+    // Paragraph - close lists only when we hit actual paragraph text (not blank lines)
+    closeOl(); closeUl(); closeTable();
+    out.push(`<p>${inlineFormat(trimmed)}</p>`);
+  }
+
+  closeAll();
+  return out.join('\n');
 }
 
 /** Break the room title into styled spans - capitalise first word in accent color */

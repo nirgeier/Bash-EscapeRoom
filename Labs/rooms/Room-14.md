@@ -5,6 +5,8 @@ title_prefix: "🌐 "
 summary: "Use curl to fetch and process data from a local web server."
 ---
 
+[![Room-14](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-14.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-14.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 14</span>
   <div class="room-title">
@@ -13,32 +15,30 @@ summary: "Use curl to fetch and process data from a local web server."
   </div>
 </div>
 
-[![Room-14](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-14.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-14.yml)
-
-
-**SURF THE WEB!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use curl to fetch and process data from a local web server.
 
 - A local web server is hiding the password behind several endpoints.
 - Use `curl` to fetch the right URL and extract the clue.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### SURF THE WEB!
 
-A local web server is running at `http://localhost:3000`.
+<ol class="tasks">
+  <li>Fetch the index page to see what endpoints are available. <code>curl http://localhost:3000/</code></li>
+  <li>The server has a <code>/secret</code> endpoint - but it requires a custom header <code>X-Access-Key: escape</code>.</li>
+  <li>The response contains a JSON body - extract the <code>password</code> field. pipe to <code>grep</code> or <code>jq</code></li>
+  <li>The value of <code>password</code> in the response <strong>is</strong> the password.</li>
+</ol>
 
-1. Fetch the index page to see what endpoints are available.
-   > `curl http://localhost:3000/`
-2. The server has a `/secret` endpoint - but it requires a custom header `X-Access-Key: escape`.
-   > `curl -H "X-Access-Key: escape" http://localhost:3000/secret`
-3. The response contains a JSON body - extract the `password` field.
-   > pipe to `grep` or `jq`
-4. The value of `password` in the response **is** the password.
-
-</div>
+---
 
 ### Key Commands
 

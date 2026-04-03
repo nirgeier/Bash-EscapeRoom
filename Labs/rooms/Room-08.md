@@ -5,6 +5,8 @@ title_prefix: "🧪 "
 summary: "Configure environment variables, aliases, and source config files."
 ---
 
+[![Room-08](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-08.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-08.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 08</span>
   <div class="room-title">
@@ -13,30 +15,30 @@ summary: "Configure environment variables, aliases, and source config files."
   </div>
 </div>
 
-[![Room-08](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-08.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-08.yml)
-
-
-**CONFIGURE THE ENVIRONMENT!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Configure environment variables, aliases, and source config files.
 
 Your shell environment must be configured precisely to unlock the lab door.
 
-<div class="tasks" markdown="1">
-
-Configure your shell environment precisely to unlock the lab door.
-
-1. Find the hidden configuration file in this room.
-   > hidden files start with `.` -use `ls -a`
-2. Source the hidden config file to load its settings.
-   > `source .filename` or `. .filename`
-3. The config tells you what environment variables to set. Set them with `export`.
-4. Create an alias named `labstatus` that prints `ready`.
-   > `alias labstatus='echo ready'`
-5. Once everything is set, run `./getKey.sh` to verify and get the password.
-
 </div>
+
+---
+
+### CONFIGURE THE ENVIRONMENT!
+
+<ol class="tasks">
+  <li>Find the hidden configuration file in this room. hidden files start with <code>.</code> -use <code>ls -a</code></li>
+  <li>Source the hidden config file to load its settings. <code>source .filename</code> or <code>. .filename</code></li>
+  <li>The config tells you what environment variables to set. Set them with <code>export</code>.</li>
+  <li>Create an alias named <code>labstatus</code> that prints <code>ready</code>. <code>alias labstatus='echo ready'</code></li>
+  <li>Once everything is set, run <code>./getKey.sh</code> to verify and get the password.</li>
+</ol>
+
+---
 
 ### Key Commands
 

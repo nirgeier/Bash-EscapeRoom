@@ -147,6 +147,7 @@ for (const dir of dirs) {
     tasks,
     hints,
     commands: uniqueCommands,
+    raw,
   };
 }
 

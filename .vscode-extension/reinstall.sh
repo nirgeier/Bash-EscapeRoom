@@ -14,9 +14,21 @@ cp -r "$REPO_ROOT/mkdocs-site/" docs/
 cp "$REPO_ROOT/.escaperoom-framework/public/index.html" public/index.html
 cp "$REPO_ROOT/mkdocs/passwords.yml" content/passwords.yml
 
-# Append custom CSS overrides on top of the built mkdocs CSS
-cat assets/escape-room-overrides.css >>docs/assets/stylesheets/codewizard.css
-echo "   CSS overrides appended"
+SCSS_SRC="$REPO_ROOT/.mkdocs-shared/mkdocs/overrides/assets/stylesheets"
+
+if command -v sass &>/dev/null; then
+  # Compile _escape-room-overrides.scss → append to docs codewizard.css
+  sass --no-source-map --style=compressed \
+    "$SCSS_SRC/_escape-room-overrides.scss" >>docs/assets/stylesheets/codewizard.css
+  echo "   CSS overrides compiled from SCSS and appended"
+  # Compile _vscode.scss → media/style.css
+  sass --no-source-map --style=expanded "$SCSS_SRC/_vscode.scss" media/style.css
+  echo "   media/style.css compiled from _vscode.scss"
+else
+  # Fallback: append pre-built CSS
+  cat assets/escape-room-overrides.css >>docs/assets/stylesheets/codewizard.css
+  echo "   CSS overrides appended (sass not found - using pre-built CSS)"
+fi
 
 # Extract room metadata into JSON (so README doesn't need to be bundled)
 node scripts/build-metadata.js
@@ -65,7 +77,7 @@ cd ../../..
 
 echo "   Docker room setup complete (permissions, archives, noise)"
 
-# Room 14 — obfuscate server.js via base64 loader, copy to scripts/ for extension, remove from room
+# Room 14 - obfuscate server.js via base64 loader, copy to scripts/ for extension, remove from room
 mkdir -p scripts
 if [ -f content/escapeRoom/room_14/server.js ]; then
   # Obfuscate: strip shebang, base64-encode, wrap in thin loader

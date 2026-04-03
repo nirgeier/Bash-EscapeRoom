@@ -5,6 +5,8 @@ title_prefix: "🏆 "
 summary: "Answer 5 random Linux command questions to escape the final room."
 ---
 
+[![Room-99](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-99.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-99.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 99</span>
   <div class="room-title">
@@ -13,20 +15,25 @@ summary: "Answer 5 random Linux command questions to escape the final room."
   </div>
 </div>
 
-[![Room-99](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-99.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-99.yml)
-
-
-**THE EXIT EXAM!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Answer 5 random Linux command questions to escape the final room.
 
 You've made it to the final room! Prove your Linux mastery by answering
 **5 random questions** about commands, symbols, and operators.
 
-<div class="tasks" markdown="1">
-
 </div>
+
+---
+
+### THE EXIT EXAM!
+
+<ol class="tasks">
+
+</ol>
 This room tests your knowledge of the Linux commands you've used throughout
 the escape rooms.
 

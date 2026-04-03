@@ -5,6 +5,8 @@ title_prefix: "🚪 "
 summary: "Use the read command to interactively respond to a prompt-driven challenge."
 ---
 
+[![Room-37](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-37.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-37.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 37</span>
   <div class="room-title">
@@ -13,33 +15,33 @@ summary: "Use the read command to interactively respond to a prompt-driven chall
   </div>
 </div>
 
-[![Room-37](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-37.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-37.yml)
-
-
-**ANSWER THE GUARDIAN!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use the read command to interactively respond to a prompt-driven challenge.
 
 - A guardian blocks the gate and asks you a series of questions.
 - Answer correctly using a script with `read` to pass the challenge.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### ANSWER THE GUARDIAN!
 
-The script `guardian.sh` asks you 3 questions interactively.
-But you can also pipe answers in!
+<ol class="tasks">
+  <li>Run <code>guardian.sh</code> interactively and answer the questions. <code>bash guardian.sh</code></li>
+  <li>Alternatively, pipe all answers at once. <code>printf "answer1
+answer2
+answer3
+" | bash guardian.sh</code></li>
+  <li>The correct answers are: <code>bash</code>, <code>escape</code>, and the current year. <code>$(date +%Y)</code> gives the current year</li>
+  <li>When all answers are correct, the script prints the password.</li>
+</ol>
 
-1. Run `guardian.sh` interactively and answer the questions.
-   > `bash guardian.sh`
-2. Alternatively, pipe all answers at once.
-   > `printf "answer1\nanswer2\nanswer3\n" | bash guardian.sh`
-3. The correct answers are: `bash`, `escape`, and the current year.
-   > `$(date +%Y)` gives the current year
-4. When all answers are correct, the script prints the password.
-
-</div>
+---
 
 ### Key Commands
 

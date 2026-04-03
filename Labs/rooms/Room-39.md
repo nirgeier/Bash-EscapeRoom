@@ -5,6 +5,8 @@ title_prefix: "🕸️ "
 summary: "Use ss and netstat to inspect network connections and find the listening port."
 ---
 
+[![Room-39](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-39.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-39.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 39</span>
   <div class="room-title">
@@ -13,31 +15,30 @@ summary: "Use ss and netstat to inspect network connections and find the listeni
   </div>
 </div>
 
-[![Room-39](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-39.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-39.yml)
-
-
-**MAP THE NETWORK HUB!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use ss and netstat to inspect network connections and find the listening port.
 
 - Hidden services are running on this machine.
 - Use network inspection tools to find which port holds the secret.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### MAP THE NETWORK HUB!
 
-A secret service is listening on one of the ports in the range 8000-9000.
+<ol class="tasks">
+  <li>List all listening TCP ports. <code>ss -tlnp</code> or <code>netstat -tlnp</code></li>
+  <li>Find which port in the range 8000-9000 has a listener.</li>
+  <li>Connect to it and read what it says. <code>curl http://localhost:<PORT></code> or <code>nc localhost <PORT></code></li>
+  <li>The response <strong>is</strong> the password.</li>
+</ol>
 
-1. List all listening TCP ports.
-   > `ss -tlnp` or `netstat -tlnp`
-2. Find which port in the range 8000-9000 has a listener.
-3. Connect to it and read what it says.
-   > `curl http://localhost:<PORT>` or `nc localhost <PORT>`
-4. The response **is** the password.
-
-</div>
+---
 
 ### Key Commands
 

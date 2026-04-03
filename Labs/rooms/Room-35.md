@@ -5,6 +5,8 @@ title_prefix: "🌍 "
 summary: "Use command substitution and process substitution to combine command outputs."
 ---
 
+[![Room-35](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-35.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-35.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 35</span>
   <div class="room-title">
@@ -13,31 +15,29 @@ summary: "Use command substitution and process substitution to combine command o
   </div>
 </div>
 
-[![Room-35](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-35.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-35.yml)
-
-
-**ENTER THE NESTED WORLDS!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use command substitution and process substitution to combine command outputs.
 
 - Some commands can only run inside other commands.
 - Master the art of nesting commands within commands.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### ENTER THE NESTED WORLDS!
 
-The files `world_a.txt` and `world_b.txt` each contain a list of words.
+<ol class="tasks">
+  <li>Use process substitution to diff the sorted contents without creating temp files. <code>diff <(sort world_a.txt) <(sort world_b.txt)</code></li>
+  <li>Count words that appear in BOTH files (the intersection). <code>comm -12 <(sort world_a.txt) <(sort world_b.txt) | wc -l</code></li>
+  <li>The password is <code>nested</code> followed by the intersection count *(no space)*. Example: if 42 words are in both → <code>nested42</code></li>
+</ol>
 
-1. Use process substitution to diff the sorted contents without creating temp files.
-   > `diff <(sort world_a.txt) <(sort world_b.txt)`
-2. Count words that appear in BOTH files (the intersection).
-   > `comm -12 <(sort world_a.txt) <(sort world_b.txt) | wc -l`
-3. The password is `nested` followed by the intersection count *(no space)*.
-   > Example: if 42 words are in both → `nested42`
-
-</div>
+---
 
 ### Key Commands
 

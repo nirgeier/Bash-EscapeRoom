@@ -5,6 +5,8 @@ title_prefix: "⏰ "
 summary: "Decode cron expressions to determine how many times a job runs per day."
 ---
 
+[![Room-17](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-17.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-17.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 17</span>
   <div class="room-title">
@@ -13,30 +15,29 @@ summary: "Decode cron expressions to determine how many times a job runs per day
   </div>
 </div>
 
-[![Room-17](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-17.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-17.yml)
-
-
-**CRACK THE CLOCKWORK CODE!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Decode cron expressions to determine how many times a job runs per day.
 
 - An ancient fortress runs on a clockwork schedule.
 - Decode the cron expressions to find how many times the alarm fires per day.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### CRACK THE CLOCKWORK CODE!
 
-The file `schedule.cron` contains several cron job definitions.
+<ol class="tasks">
+  <li>Read <code>schedule.cron</code> to see all the scheduled jobs.</li>
+  <li>Count how many times <strong>per day</strong> the job labelled <code># ALARM</code> would execute. Analyze the cron expression - <code>minute hour day-of-month month day-of-week</code></li>
+  <li>The password is <code>cron</code> followed by the total number of daily executions *(no space)*. Example: if the alarm fires 12 times per day → <code>cron12</code></li>
+</ol>
 
-1. Read `schedule.cron` to see all the scheduled jobs.
-2. Count how many times **per day** the job labelled `# ALARM` would execute.
-   > Analyze the cron expression - `minute hour day-of-month month day-of-week`
-3. The password is `cron` followed by the total number of daily executions *(no space)*.
-   > Example: if the alarm fires 12 times per day → `cron12`
-
-</div>
+---
 
 ### Key Commands
 

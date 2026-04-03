@@ -5,6 +5,8 @@ title_prefix: "🔭 "
 summary: "Use strace to trace system calls and discover what a mystery program is doing."
 ---
 
+[![Room-43](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-43.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-43.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 43</span>
   <div class="room-title">
@@ -13,31 +15,30 @@ summary: "Use strace to trace system calls and discover what a mystery program i
   </div>
 </div>
 
-[![Room-43](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-43.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-43.yml)
-
-
-**OBSERVE THE SYSTEM CALLS!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use strace to trace system calls and discover what a mystery program is doing.
 
 - A mystery program is doing something secret.
 - Use `strace` to observe its every system call and intercept the secret.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### OBSERVE THE SYSTEM CALLS!
 
-The program `mystery_program` writes the password to a file using system calls.
+<ol class="tasks">
+  <li>Run <code>mystery_program</code> under <code>strace</code> and capture the output. <code>strace ./mystery_program 2>&1</code></li>
+  <li>Search the strace output for <code>write</code> system calls to find the password. <code>strace ./mystery_program 2>&1 | grep 'write'</code></li>
+  <li>The content of the write call contains the password.</li>
+  <li>Alternatively, just run <code>./mystery_program</code> and check the output file it creates.</li>
+</ol>
 
-1. Run `mystery_program` under `strace` and capture the output.
-   > `strace ./mystery_program 2>&1`
-2. Search the strace output for `write` system calls to find the password.
-   > `strace ./mystery_program 2>&1 | grep 'write'`
-3. The content of the write call contains the password.
-4. Alternatively, just run `./mystery_program` and check the output file it creates.
-
-</div>
+---
 
 ### Key Commands
 

@@ -5,6 +5,8 @@ title_prefix: "📜 "
 summary: "Use here-documents to write a multi-line config and run embedded commands."
 ---
 
+[![Room-34](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-34.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-34.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 34</span>
   <div class="room-title">
@@ -13,35 +15,29 @@ summary: "Use here-documents to write a multi-line config and run embedded comma
   </div>
 </div>
 
-[![Room-34](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-34.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-34.yml)
-
-
-**INSCRIBE THE ANCIENT SCROLL!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use here-documents to write a multi-line config and run embedded commands.
 
 - The vault door requires a precisely formatted configuration scroll.
 - Use a here-document to write it without creating temp files.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### INSCRIBE THE ANCIENT SCROLL!
 
-You must write a configuration block and pipe it directly to a verifier script.
+<ol class="tasks">
+  <li>Use a heredoc to pass multi-line input to <code>./verify_config.sh</code>: ``<code>bash ./verify_config.sh << 'EOF' MODE=escape LEVEL=master KEY=ancient EOF </code>``</li>
+  <li>The script checks the values and outputs the password if all fields are correct.</li>
+  <li>The output of that command <strong>is</strong> the password.</li>
+</ol>
 
-1. Use a heredoc to pass multi-line input to `./verify_config.sh`:
-   ```bash
-   ./verify_config.sh << 'EOF'
-   MODE=escape
-   LEVEL=master
-   KEY=ancient
-   EOF
-   ```
-2. The script checks the values and outputs the password if all fields are correct.
-3. The output of that command **is** the password.
-
-</div>
+---
 
 ### Key Commands
 

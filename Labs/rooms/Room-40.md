@@ -5,6 +5,8 @@ title_prefix: "🔮 "
 summary: "Use dig and host to resolve DNS records and trace a domain to its secret."
 ---
 
+[![Room-40](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-40.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-40.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 40</span>
   <div class="room-title">
@@ -13,30 +15,29 @@ summary: "Use dig and host to resolve DNS records and trace a domain to its secr
   </div>
 </div>
 
-[![Room-40](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-40.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-40.yml)
-
-
-**CONSULT THE DNS ORACLE!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use dig and host to resolve DNS records and trace a domain to its secret.
 
 - An ancient domain holds the password encoded in its DNS records.
 - Consult the oracle to reveal it.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### CONSULT THE DNS ORACLE!
 
-The domain `secret.escape.local` has a special DNS TXT record containing the password.
+<ol class="tasks">
+  <li>Query the TXT records for <code>secret.escape.local</code>. <code>dig TXT secret.escape.local</code> or <code>host -t TXT secret.escape.local</code></li>
+  <li>The TXT record value <strong>is</strong> the password. Note: In the Docker environment, this domain is configured in <code>/etc/hosts</code> or a local DNS server.</li>
+  <li>If DNS is not available, the password is stored in <code>/etc/escape/dns_secret.txt</code>.</li>
+</ol>
 
-1. Query the TXT records for `secret.escape.local`.
-   > `dig TXT secret.escape.local` or `host -t TXT secret.escape.local`
-2. The TXT record value **is** the password.
-   > Note: In the Docker environment, this domain is configured in `/etc/hosts` or a local DNS server.
-3. If DNS is not available, the password is stored in `/etc/escape/dns_secret.txt`.
-
-</div>
+---
 
 ### Key Commands
 

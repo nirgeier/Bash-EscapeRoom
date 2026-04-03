@@ -16,14 +16,14 @@ import { test, expect, Page } from '@playwright/test';
 
 // ── Password chain (source: mkdocs/passwords.yml) ────────────────────────────
 const ROOM_PASSWORDS: Record<number, string> = {
-   2: 'northstar',
-   3: 'signal59',
-   4: 'rewind99',
-   5: 'sedmaster',
-   6: 'translate',
-   7: 'unique37',
-   8: 'access42',
-   9: 'export99',
+  2: 'northstar',
+  3: 'signal59',
+  4: 'rewind99',
+  5: 'sedmaster',
+  6: 'translate',
+  7: 'unique37',
+  8: 'access42',
+  9: 'export99',
   10: 'daemon77',
   11: 'awk2025',
   12: 'layered7',
@@ -104,7 +104,7 @@ async function sendCommand(page: Page, cmd: string) {
 }
 
 /** Wait for terminal to contain text.
- *  Polls continuously — necessary because `clear` can wipe text from the buffer. */
+ *  Polls continuously - necessary because `clear` can wipe text from the buffer. */
 async function waitForTerminalText(page: Page, text: string, timeout = 20_000) {
   const deadline = Date.now() + timeout;
   while (Date.now() < deadline) {
@@ -332,7 +332,7 @@ test.describe('Full walkthrough - rooms 1 through 10', () => {
       const paddedNum = pad(roomNum);
 
       await sendCommand(page, `next ${password}`);
-      // `clear` runs after successful decrypt — check prompt path
+      // `clear` runs after successful decrypt - check prompt path
       await waitForRoomPrompt(page, paddedNum, 20_000);
 
       // Verify docs iframe navigates to the correct room

@@ -5,6 +5,8 @@ title_prefix: "🗃️ "
 summary: "Use bash arrays to collect, sort, and process a list of items."
 ---
 
+[![Room-27](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-27.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-27.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 27</span>
   <div class="room-title">
@@ -13,33 +15,30 @@ summary: "Use bash arrays to collect, sort, and process a list of items."
   </div>
 </div>
 
-[![Room-27](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-27.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-27.yml)
-
-
-**INVENTORY THE ARSENAL!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use bash arrays to collect, sort, and process a list of items.
 
 - The armory has been scrambled - weapons are unordered and some are duplicates.
 - Use Bash arrays to organize the inventory and count unique weapons.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### INVENTORY THE ARSENAL!
 
-The file `weapons.txt` contains a list of weapon names, one per line.
+<ol class="tasks">
+  <li>Write a small bash script (or one-liner) to read all weapon names into an array. <code>mapfile -t weapons < weapons.txt</code></li>
+  <li>Count the total number of items in the array. <code>${#weapons[@]}</code></li>
+  <li>Count how many <strong>unique</strong> weapon names there are. pipe through <code>sort | uniq | wc -l</code></li>
+  <li>The password is <code>array</code> followed by the count of unique weapons *(no space)*. Example: if there are 10 unique weapons → <code>array10</code></li>
+</ol>
 
-1. Write a small bash script (or one-liner) to read all weapon names into an array.
-   > `mapfile -t weapons < weapons.txt`
-2. Count the total number of items in the array.
-   > `${#weapons[@]}`
-3. Count how many **unique** weapon names there are.
-   > pipe through `sort | uniq | wc -l`
-4. The password is `array` followed by the count of unique weapons *(no space)*.
-   > Example: if there are 10 unique weapons → `array10`
-
-</div>
+---
 
 ### Key Commands
 

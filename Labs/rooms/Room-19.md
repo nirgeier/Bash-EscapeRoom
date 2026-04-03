@@ -5,6 +5,8 @@ title_prefix: "🔒 "
 summary: "Use md5sum and sha256sum to verify file integrity and find the authentic document."
 ---
 
+[![Room-19](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-19.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-19.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 19</span>
   <div class="room-title">
@@ -13,32 +15,30 @@ summary: "Use md5sum and sha256sum to verify file integrity and find the authent
   </div>
 </div>
 
-[![Room-19](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-19.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-19.yml)
-
-
-**FIND THE AUTHENTIC DOCUMENT!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use md5sum and sha256sum to verify file integrity and find the authentic document.
 
 - Seven documents were delivered, but only one is authentic.
 - The authentic document matches a known checksum. Find it!
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### FIND THE AUTHENTIC DOCUMENT!
 
-The directory `documents/` contains 7 files: `doc_1.txt` through `doc_7.txt`.
-A trusted checksum file `authentic.sha256` contains the SHA-256 hash of the authentic document.
+<ol class="tasks">
+  <li>Read <code>authentic.sha256</code> to see the expected hash. <code>cat authentic.sha256</code></li>
+  <li>Calculate the SHA-256 hash of each document. <code>sha256sum documents/*.txt</code></li>
+  <li>Find which document's hash matches the one in <code>authentic.sha256</code>.</li>
+  <li>Read that document - its contents <strong>are</strong> the password.</li>
+</ol>
 
-1. Read `authentic.sha256` to see the expected hash.
-   > `cat authentic.sha256`
-2. Calculate the SHA-256 hash of each document.
-   > `sha256sum documents/*.txt`
-3. Find which document's hash matches the one in `authentic.sha256`.
-4. Read that document - its contents **are** the password.
-
-</div>
+---
 
 ### Key Commands
 

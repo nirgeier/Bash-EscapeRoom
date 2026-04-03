@@ -5,6 +5,8 @@ title_prefix: "🏗️ "
 summary: "Use diff and patch to identify changes between blueprint versions."
 ---
 
+[![Room-18](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-18.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-18.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 18</span>
   <div class="room-title">
@@ -13,32 +15,31 @@ summary: "Use diff and patch to identify changes between blueprint versions."
   </div>
 </div>
 
-[![Room-18](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-18.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-18.yml)
-
-
-**SPOT THE SABOTAGE!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use diff and patch to identify changes between blueprint versions.
 
 - Two versions of a building blueprint exist.
 - A saboteur changed something between version 1 and version 2.
 - Find exactly what changed and read the altered line.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### SPOT THE SABOTAGE!
 
-Two blueprint files exist: `blueprint_v1.txt` and `blueprint_v2.txt`.
+<ol class="tasks">
+  <li>Compare the two files to see what changed. <code>diff blueprint_v1.txt blueprint_v2.txt</code></li>
+  <li>Lines starting with <code><</code> are in v1 only; lines starting with <code>></code> are in v2 only.</li>
+  <li>The saboteur inserted a line containing the password in v2. Find the <strong>added line</strong> (starts with <code>></code>).</li>
+  <li>The value on that line <strong>is</strong> the password.</li>
+</ol>
 
-1. Compare the two files to see what changed.
-   > `diff blueprint_v1.txt blueprint_v2.txt`
-2. Lines starting with `<` are in v1 only; lines starting with `>` are in v2 only.
-3. The saboteur inserted a line containing the password in v2.
-   Find the **added line** (starts with `>`).
-4. The value on that line **is** the password.
-
-</div>
+---
 
 ### Key Commands
 

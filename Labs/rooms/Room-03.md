@@ -5,6 +5,8 @@ title_prefix: "⏳ "
 summary: "Use tac, rev, head, tail, and wc to decode a time capsule journal."
 ---
 
+[![Room-03](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-03.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-03.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 03</span>
   <div class="room-title">
@@ -13,37 +15,33 @@ summary: "Use tac, rev, head, tail, and wc to decode a time capsule journal."
   </div>
 </div>
 
-[![Room-03](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-03.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-03.yml)
-
-
-**DECODE THE TIME CAPSULE!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use tac, rev, head, tail, and wc to decode a time capsule journal.
 
 - An ancient journal was found buried underground.
 - Its last entry holds a secret - but the characters are written **backwards**.
 - Use line and character reversal tools to decode it.
 
-<div class="tasks" markdown="1">
-
-- The file `time_capsule.txt` contains journal entries.
-- The last entry holds a secret, but it is written **backwards**.
-
-1. Count how many lines the file has.
-   > `wc -l` counts lines
-2. Reverse the **line order** so the last line becomes the first.
-   > `tac` reverses line order (it is `cat` spelled backwards!)
-3. Take the first line of the reversed output.
-   > pipe `tac` output to `head -1`
-4. That line has its **characters** reversed -unreverse it!
-   > `rev` reverses character order within each line
-5. The decoded line reveals a secret word.
-6. The password is that word
-   followed by the total line count *(no space)*.
-   > Example: if the word is "hello" and there are 50 lines → `hello50`
-
 </div>
+
+---
+
+### DECODE THE TIME CAPSULE!
+
+<ol class="tasks">
+  <li>Count how many lines the file has. <code>wc -l</code> counts lines</li>
+  <li>Reverse the <strong>line order</strong> so the last line becomes the first. <code>tac</code> reverses line order (it is <code>cat</code> spelled backwards!)</li>
+  <li>Take the first line of the reversed output. pipe <code>tac</code> output to <code>head -1</code></li>
+  <li>That line has its <strong>characters</strong> reversed -unreverse it! <code>rev</code> reverses character order within each line</li>
+  <li>The decoded line reveals a secret word.</li>
+  <li>The password is that word followed by the total line count *(no space)*. Example: if the word is "hello" and there are 50 lines → <code>hello50</code></li>
+</ol>
+
+---
 
 ### Key Commands
 

@@ -5,6 +5,8 @@ title_prefix: "🔍 "
 summary: "Inspect system identity: kernel version, hostname, user info, and logged-in sessions."
 ---
 
+[![Room-55](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-55.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-55.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 55</span>
   <div class="room-title">
@@ -13,35 +15,31 @@ summary: "Inspect system identity: kernel version, hostname, user info, and logg
   </div>
 </div>
 
-[![Room-55](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-55.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-55.yml)
-
-
-**IDENTIFY THE SYSTEM!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Inspect system identity: kernel version, hostname, user info, and logged-in sessions.
 
 - You've entered an uncharted system with no documentation and no map.
 - Your mission: identify it completely using system inspection commands.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### IDENTIFY THE SYSTEM!
 
-The system holds its own identity as the key. Interrogate it fully.
+<ol class="tasks">
+  <li>Get the complete system information in one line. <code>uname -a</code></li>
+  <li>Find out the system's network name. <code>hostname</code></li>
+  <li>Confirm your user identity - uid, gid, and group memberships. <code>id</code></li>
+  <li>See who else is currently logged in. <code>who</code></li>
+  <li>Run <code>./getKey.sh</code> with your username and OS kernel name as arguments. <code>./getKey.sh "$(whoami)" "$(uname -s)"</code></li>
+</ol>
 
-1. Get the complete system information in one line.
-   > `uname -a`
-2. Find out the system's network name.
-   > `hostname`
-3. Confirm your user identity - uid, gid, and group memberships.
-   > `id`
-4. See who else is currently logged in.
-   > `who`
-5. Run `./getKey.sh` with your username and OS kernel name as arguments.
-   > `./getKey.sh "$(whoami)" "$(uname -s)"`
-
-</div>
+---
 
 ### Key Commands
 

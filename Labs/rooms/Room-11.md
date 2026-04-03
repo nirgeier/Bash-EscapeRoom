@@ -5,6 +5,8 @@ title_prefix: "🪆 "
 summary: "Unwrap a multi-layered archive using base64, gzip, and tar."
 ---
 
+[![Room-11](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-11.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-11.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 11</span>
   <div class="room-title">
@@ -13,33 +15,28 @@ summary: "Unwrap a multi-layered archive using base64, gzip, and tar."
   </div>
 </div>
 
-[![Room-11](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-11.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-11.yml)
-
-
-**UNWRAP THE MATRYOSHKA!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Unwrap a multi-layered archive using base64, gzip, and tar.
 
 A mysterious artifact has been encoded in **3 layers** -like a Russian nesting doll.
 Peel each layer to reveal the secret.
 
-<div class="tasks" markdown="1">
-
-The file `artifact.b64` has been wrapped in **3 layers** of encoding:
-
-- Layer 3 (outermost): **Base64**
-- Layer 2: **Gzip** compression
-- Layer 1 (innermost): **Tar** archive
-
-Unwrap in reverse order:
-
-1. Decode Base64 → `base64 -d artifact.b64 > artifact.tar.gz`
-2. Decompress gzip → `gunzip artifact.tar.gz`
-3. Extract tar → `tar xf artifact.tar`
-4. Read the extracted file -it contains the password!
-
 </div>
+
+---
+
+### UNWRAP THE MATRYOSHKA!
+
+<ol class="tasks">
+  <li>Decode Base64 → <code>base64 -d artifact.b64 > artifact.tar.gz</code></li>
+  <li>Decompress gzip → <code>gunzip artifact.tar.gz</code></li>
+  <li>Extract tar → <code>tar xf artifact.tar</code></li>
+  <li>Read the extracted file -it contains the password!</li>
+</ol>
 
 ### The 3 Layers (outermost to innermost)
 

@@ -5,6 +5,8 @@ title_prefix: "🗂️ "
 summary: "Use lsof to list open files and identify which process holds the secret."
 ---
 
+[![Room-42](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-42.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-42.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 42</span>
   <div class="room-title">
@@ -13,32 +15,30 @@ summary: "Use lsof to list open files and identify which process holds the secre
   </div>
 </div>
 
-[![Room-42](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-42.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-42.yml)
-
-
-**OPEN THE FILE ARCHIVE!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use lsof to list open files and identify which process holds the secret.
 
 - A process has opened a secret file but hasn't released it.
 - Use `lsof` to find which process is holding the key.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### OPEN THE FILE ARCHIVE!
 
-A process is keeping a file named `secret_key.txt` open.
+<ol class="tasks">
+  <li>Find which process has <code>secret_key.txt</code> open. <code>lsof | grep secret_key.txt</code></li>
+  <li>Note the PID of that process.</li>
+  <li>See what other files that process has open. <code>lsof -p <PID></code></li>
+  <li>Among those files, find one named <code>password.txt</code> - read it. use the path from <code>lsof</code> output, then <code>cat</code> it</li>
+</ol>
 
-1. Find which process has `secret_key.txt` open.
-   > `lsof | grep secret_key.txt`
-2. Note the PID of that process.
-3. See what other files that process has open.
-   > `lsof -p <PID>`
-4. Among those files, find one named `password.txt` - read it.
-   > use the path from `lsof` output, then `cat` it
-
-</div>
+---
 
 ### Key Commands
 

@@ -5,6 +5,8 @@ title_prefix: "💣 "
 summary: "Use timeout and watch to manage time-limited and repeated commands."
 ---
 
+[![Room-38](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-38.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-38.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 38</span>
   <div class="room-title">
@@ -13,33 +15,31 @@ summary: "Use timeout and watch to manage time-limited and repeated commands."
   </div>
 </div>
 
-[![Room-38](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-38.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-38.yml)
-
-
-**DEFUSE THE TIME BOMB!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use timeout and watch to manage time-limited and repeated commands.
 
 - A countdown timer is ticking.
 - Use `timeout` to run a command safely and `watch` to monitor the clock.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### DEFUSE THE TIME BOMB!
 
-The script `countdown.sh` takes a long time to complete naturally, but the answer
-is available after just a few seconds.
+<ol class="tasks">
+  <li>Run <code>countdown.sh</code> with a <code>timeout</code> of <strong>5 seconds</strong>. <code>timeout 5 ./countdown.sh</code></li>
+  <li>The script writes partial output to <code>progress.log</code> as it runs.</li>
+  <li>After the timeout, read <code>progress.log</code> to find the password fragment. <code>cat progress.log</code></li>
+  <li>The last non-empty line of <code>progress.log</code> contains <code>BOMB_CODE=<value></code>.</li>
+  <li>Extract the value - it <strong>is</strong> the password.</li>
+</ol>
 
-1. Run `countdown.sh` with a `timeout` of **5 seconds**.
-   > `timeout 5 ./countdown.sh`
-2. The script writes partial output to `progress.log` as it runs.
-3. After the timeout, read `progress.log` to find the password fragment.
-   > `cat progress.log`
-4. The last non-empty line of `progress.log` contains `BOMB_CODE=<value>`.
-5. Extract the value - it **is** the password.
-
-</div>
+---
 
 ### Key Commands
 

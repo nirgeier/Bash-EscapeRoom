@@ -5,6 +5,8 @@ title_prefix: "🎼 "
 summary: "Build a multi-stage pipeline using cut, tr, and pipes."
 ---
 
+[![Room-12](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-12.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-12.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 12</span>
   <div class="room-title">
@@ -13,35 +15,32 @@ summary: "Build a multi-stage pipeline using cut, tr, and pipes."
   </div>
 </div>
 
-[![Room-12](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-12.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-12.yml)
-
-
-**CONDUCT THE PIPELINE!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Build a multi-stage pipeline using cut, tr, and pipes.
 
 Master the art of chaining commands with pipes. Extract data from a structured
 file, transform it step by step, and reveal the password.
 
-<div class="tasks" markdown="1">
-
-The file `stations.txt` contains 8 city records.
-Format: `CityName|Population|Area|Code`
-
-Build a **single pipeline** to derive the password:
-
-1. Extract city names (first field, `|` delimiter).
-   > `cut -d'|' -f1 stations.txt`
-2. Take the **first letter** of each city name.
-   > `cut -c1`
-3. Combine all letters into one line (remove newlines).
-   > `tr -d '\n'`
-4. Convert to **lowercase**.
-   > `tr 'A-Z' 'a-z'`
-5. The result is the password!
-
 </div>
+
+---
+
+### CONDUCT THE PIPELINE!
+
+<ol class="tasks">
+  <li>Extract city names (first field, <code>|</code> delimiter). <code>cut -d'|' -f1 stations.txt</code></li>
+  <li>Take the <strong>first letter</strong> of each city name. <code>cut -c1</code></li>
+  <li>Combine all letters into one line (remove newlines). <code>tr -d '
+'</code></li>
+  <li>Convert to <strong>lowercase</strong>. <code>tr 'A-Z' 'a-z'</code></li>
+  <li>The result is the password!</li>
+</ol>
+
+---
 
 ### Key Commands
 

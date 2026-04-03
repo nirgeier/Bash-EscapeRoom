@@ -5,6 +5,8 @@ title_prefix: "🔁 "
 summary: "Use a for loop to process files and accumulate a result."
 ---
 
+[![Room-28](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-28.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-28.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 28</span>
   <div class="room-title">
@@ -13,33 +15,30 @@ summary: "Use a for loop to process files and accumulate a result."
   </div>
 </div>
 
-[![Room-28](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-28.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-28.yml)
-
-
-**LOOP THROUGH THE LABYRINTH!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use a for loop to process files and accumulate a result.
 
 - 50 numbered chambers each contain a single digit.
 - Loop through them all and sum the digits to unlock the exit.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### LOOP THROUGH THE LABYRINTH!
 
-The directory `chambers/` contains 50 files: `chamber_01.txt` through `chamber_50.txt`.
-Each file contains a single integer.
+<ol class="tasks">
+  <li>Write a <code>for</code> loop to iterate over all chamber files. <code>for f in chambers/chamber_*.txt; do ...</code></li>
+  <li>Read each file's value and add it to a running total. <code>total=$(( total + $(cat "$f") ))</code></li>
+  <li>After the loop, print the total.</li>
+  <li>The password is <code>loop</code> followed by the total *(no space)*. Example: if the sum is 250 → <code>loop250</code></li>
+</ol>
 
-1. Write a `for` loop to iterate over all chamber files.
-   > `for f in chambers/chamber_*.txt; do ...`
-2. Read each file's value and add it to a running total.
-   > `total=$(( total + $(cat "$f") ))`
-3. After the loop, print the total.
-4. The password is `loop` followed by the total *(no space)*.
-   > Example: if the sum is 250 → `loop250`
-
-</div>
+---
 
 ### Key Commands
 

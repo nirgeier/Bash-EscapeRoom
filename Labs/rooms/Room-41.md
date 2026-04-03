@@ -5,6 +5,8 @@ title_prefix: "🔌 "
 summary: "Use netcat (nc) to communicate with a local service and retrieve the key."
 ---
 
+[![Room-41](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-41.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-41.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 41</span>
   <div class="room-title">
@@ -13,30 +15,30 @@ summary: "Use netcat (nc) to communicate with a local service and retrieve the k
   </div>
 </div>
 
-[![Room-41](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-41.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-41.yml)
-
-
-**OPEN THE NETCAT TUNNEL!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use netcat (nc) to communicate with a local service and retrieve the key.
 
 - A secret server is listening, waiting for the magic word.
 - Send it the right message using `nc` and receive the key.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### OPEN THE NETCAT TUNNEL!
 
-A server is listening on `localhost` port `4444`.
+<ol class="tasks">
+  <li>Connect to the server using <code>nc</code>. <code>nc localhost 4444</code></li>
+  <li>The server will ask: <code>SEND THE MAGIC WORD:</code></li>
+  <li>Type the magic word: <code>OPEN</code></li>
+  <li>The server will respond with the password.</li>
+</ol>
 
-1. Connect to the server using `nc`.
-   > `nc localhost 4444`
-2. The server will ask: `SEND THE MAGIC WORD:`
-3. Type the magic word: `OPEN`
-4. The server will respond with the password.
-
-</div>
+---
 
 ### Key Commands
 

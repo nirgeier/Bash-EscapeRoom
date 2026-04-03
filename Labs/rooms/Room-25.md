@@ -5,6 +5,8 @@ title_prefix: "🔀 "
 summary: "Use tee to split output to both a file and the screen simultaneously."
 ---
 
+[![Room-25](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-25.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-25.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 25</span>
   <div class="room-title">
@@ -13,33 +15,30 @@ summary: "Use tee to split output to both a file and the screen simultaneously."
   </div>
 </div>
 
-[![Room-25](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-25.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-25.yml)
-
-
-**SPLIT THE SIGNAL!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use tee to split output to both a file and the screen simultaneously.
 
 - Incoming data must be routed simultaneously to two destinations.
 - Use `tee` to split the stream and write a log while still processing the data.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### SPLIT THE SIGNAL!
 
-The script `generate_signal.sh` outputs a stream of data lines.
+<ol class="tasks">
+  <li>Run <code>generate_signal.sh</code> and use <code>tee</code> to write the output to <code>signal.log</code> while also piping it onward. <code>./generate_signal.sh | tee signal.log | grep "CODE"</code></li>
+  <li>From the tee'd stream, filter lines containing <code>CODE:</code> and extract the code values. <code>grep "CODE:" | cut -d':' -f2</code></li>
+  <li>Sort the codes numerically and sum them. <code>sort -n | paste -sd'+' | bc</code></li>
+  <li>The password is <code>tee</code> followed by the total sum *(no space)*. Example: if the sum is 99 → <code>tee99</code></li>
+</ol>
 
-1. Run `generate_signal.sh` and use `tee` to write the output to `signal.log` while also piping it onward.
-   > `./generate_signal.sh | tee signal.log | grep "CODE"`
-2. From the tee'd stream, filter lines containing `CODE:` and extract the code values.
-   > `grep "CODE:" | cut -d':' -f2`
-3. Sort the codes numerically and sum them.
-   > `sort -n | paste -sd'+' | bc`
-4. The password is `tee` followed by the total sum *(no space)*.
-   > Example: if the sum is 99 → `tee99`
-
-</div>
+---
 
 ### Key Commands
 

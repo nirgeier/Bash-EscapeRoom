@@ -5,6 +5,8 @@ title_prefix: "⛏️ "
 summary: "Use awk to filter CSV data and calculate sums based on conditions."
 ---
 
+[![Room-10](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-10.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-10.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 10</span>
   <div class="room-title">
@@ -13,31 +15,28 @@ summary: "Use awk to filter CSV data and calculate sums based on conditions."
   </div>
 </div>
 
-[![Room-10](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-10.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-10.yml)
-
-
-**MINE THE DATA!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use awk to filter CSV data and calculate sums based on conditions.
 
 - A CSV file contains 100 mineral survey records.
 - Use `awk` to filter rows by depth and sum the weight values.
 
-<div class="tasks" markdown="1">
-
-The file `mine_data.csv` contains 100 mineral survey records.
-Format: `mineral,depth,weight,sector`
-
-1. Use `awk` to process `mine_data.csv`:
-   - Skip the header line (line 1)
-   - Filter rows where `depth` (field 2) is **greater than 50**
-   - Sum the `weight` values (field 3) of those filtered rows
-2. The password is `awk` followed by the calculated sum *(no space)*.
-   > Example: if the sum is 1234 → `awk1234`
-   > `awk -F',' 'NR>1 && $2>50 {sum+=$3} ..'
-
 </div>
+
+---
+
+### MINE THE DATA!
+
+<ol class="tasks">
+  <li>Use <code>awk</code> to process <code>mine_data.csv</code>: - Skip the header line (line 1) - Filter rows where <code>depth</code> (field 2) is <strong>greater than 50</strong> - Sum the <code>weight</code> values (field 3) of those filtered rows</li>
+  <li>The password is <code>awk</code> followed by the calculated sum *(no space)*. Example: if the sum is 1234 → <code>awk1234</code> `awk -F',' 'NR>1 && $2>50 {sum+=$3} ..'</li>
+</ol>
+
+---
 
 ### Key Commands
 

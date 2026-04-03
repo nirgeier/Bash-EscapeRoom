@@ -5,6 +5,8 @@ title_prefix: "⚙️ "
 summary: "Write and call bash functions to process a complex multi-step task."
 ---
 
+[![Room-32](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-32.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-32.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 32</span>
   <div class="room-title">
@@ -13,31 +15,30 @@ summary: "Write and call bash functions to process a complex multi-step task."
   </div>
 </div>
 
-[![Room-32](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-32.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-32.yml)
-
-
-**POWER UP THE FACTORY!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Write and call bash functions to process a complex multi-step task.
 
 - The factory machines only work when the right functions are called in the right order.
 - Write bash functions to process the assembly line.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### POWER UP THE FACTORY!
 
-The file `assembly.txt` contains 10 product codes, one per line.
-Write a bash script using functions to process them.
+<ol class="tasks">
+  <li>Write a function <code>validate</code> that checks if a code starts with <code>PROD-</code>.</li>
+  <li>Write a function <code>extract_id</code> that returns the numeric part after <code>PROD-</code>.</li>
+  <li>For each valid code, extract its ID and sum all IDs.</li>
+  <li>The password is <code>func</code> followed by the total sum *(no space)*. Example: if the sum is 550 → <code>func550</code></li>
+</ol>
 
-1. Write a function `validate` that checks if a code starts with `PROD-`.
-2. Write a function `extract_id` that returns the numeric part after `PROD-`.
-3. For each valid code, extract its ID and sum all IDs.
-4. The password is `func` followed by the total sum *(no space)*.
-   > Example: if the sum is 550 → `func550`
-
-</div>
+---
 
 ### Key Commands
 

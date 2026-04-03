@@ -111,12 +111,12 @@ next() {
     echo -e "\033[0;32m>> Moved to Room ${next_num}\033[0m"
     # Save progress
     local save_file="${HOME}/.escape_progress"
-    echo "LAST_ROOM=${next_num}" > "$save_file"
-    [ -n "${1:-}" ] && echo "LAST_PASSWORD=$1" >> "$save_file"
-    echo "SAVED_AT=$(date '+%Y-%m-%d %H:%M:%S')" >> "$save_file"
-    echo -e "\033[0;35m[Progress saved — run 'progress' to view]\033[0m"
+    echo "LAST_ROOM=${next_num}" >"$save_file"
+    [ -n "${1:-}" ] && echo "LAST_PASSWORD=$1" >>"$save_file"
+    echo "SAVED_AT=$(date '+%Y-%m-%d %H:%M:%S')" >>"$save_file"
+    echo -e "\033[0;35m[Progress saved - run 'progress' to view]\033[0m"
     # Notify VS Code sidebar via state file
-    echo "$((10#${next_num}))" > "${HOME}/.escape_room_state" 2>/dev/null || true
+    echo "$((10#${next_num}))" >"${HOME}/.escape_room_state" 2>/dev/null || true
 }
 
 # Jump directly to any room by number.
@@ -124,7 +124,8 @@ next() {
 room() {
     local target_num
     target_num=$(printf "%02d" "${1:-0}" 2>/dev/null) || {
-        echo -e "\033[0;31mUsage: room <number>\033[0m"; return 1
+        echo -e "\033[0;31mUsage: room <number>\033[0m"
+        return 1
     }
     local target_dir="${ESCAPE_ROOMS:-$(dirname "$PWD")}/room_${target_num}"
     if [ ! -d "$target_dir" ]; then
@@ -134,7 +135,7 @@ room() {
     cd "$target_dir"
     echo -e "\033[0;32m>> Moved to Room ${target_num}\033[0m"
     # Notify VS Code sidebar via state file
-    echo "$((10#${target_num}))" > "${HOME}/.escape_room_state" 2>/dev/null || true
+    echo "$((10#${target_num}))" >"${HOME}/.escape_room_state" 2>/dev/null || true
 }
 
 # Show saved progress.

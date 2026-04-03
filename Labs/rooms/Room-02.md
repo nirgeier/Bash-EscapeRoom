@@ -5,6 +5,8 @@ title_prefix: "📻 "
 summary: "Count SOS signals in intercepted radio transmissions using grep."
 ---
 
+[![Room-02](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-02.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-02.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 02</span>
   <div class="room-title">
@@ -13,30 +15,27 @@ summary: "Count SOS signals in intercepted radio transmissions using grep."
   </div>
 </div>
 
-[![Room-02](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-02.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-02.yml)
-
-
-**COUNT THE DISTRESS SIGNALS!**
 
 ---
 
+<div class="summary" markdown="1">
 
 - You intercepted **200 enemy radio transmissions**.
 - Each message has a status tag - `OK`, `SOS`, `LOST`, or `NOISE`.
 - Count the `SOS` signals to crack the code.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### COUNT THE DISTRESS SIGNALS!
 
-* The file `radio_intercepts.txt` contains **200** intercepted messages tagged with: `OK`, `SOS`, `LOST`, or `NOISE`.
+<ol class="tasks">
+  <li>Count the number of lines containing <code>"SOS"</code> in <code>radio_intercepts.txt</code>. <code>grep -c</code> counts matching lines</li>
+  <li>The password is the word <code>signal</code> followed by that count *(no space)*. Example: if there are 23 SOS lines → password is <code>signal23</code></li>
+</ol>
 
-1. Count the number of lines containing `"SOS"` in `radio_intercepts.txt`.
-   > `grep -c` counts matching lines
-2. The password is the word `signal` followed by that count *(no space)*.
-   > Example: if there are 23 SOS lines → password is `signal23`
-
-</div>
+---
 
 ### Key Commands
 
@@ -105,12 +104,13 @@ grep "pattern" file.txt | sort | uniq # unique matching lines
 
 > To count lines containing "SOS", use:
 
-</div>
 ```bash
 grep -c "<text>" <file>
 ```
     * This will return a single number - the count of lines that contain "S<text>".
     * `grep -c` gives you a single number -the count of matching lines.
+
+</div>
 
 ---
 

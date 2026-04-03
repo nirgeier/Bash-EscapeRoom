@@ -4,6 +4,8 @@ title_prefix: "🧭 "
 summary: "Use `find` to locate hidden map fragments in a deep directory tree."
 ---
 
+[![Room-01](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-01.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-01.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 01</span>
   <div class="room-title">
@@ -11,11 +13,6 @@ summary: "Use `find` to locate hidden map fragments in a deep directory tree."
     <span class="room-title-main">Lost Expedition</span>
   </div>
 </div>
-
-[![Room-01](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-01.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-01.yml)
-
-
-FIND THE MAP FRAGMENTS!
 
 ---
 
@@ -28,50 +25,50 @@ FIND THE MAP FRAGMENTS!
 
 ---
 
+<div class="summary" markdown="1">
 
-- A famous explorer vanished deep in the jungle, leaving **9 map fragments** scattered across a maze of directories, mixed in with thousands of noise files, only the `.map` files contain the clues.
-
----
-
-<div class="tasks" markdown="1">
-
-1. Navigate into the `expedition/` directory.
-2. The `expedition/` camp is littered with noise files (`.rock`, `.leaf`, `.twig`) everywhere.
-   **Ignore them all.**
-3. The explorer left exactly **`9 map fragments`** (files ending in `.map`) hidden across the sub-directories.
-   **Find them all.**
-   > the `find` command can search recursively for files by name pattern
-5. Once you locate all `.map` files, **sort** their full paths alphabetically and **read** (`cat`) their contents in that order.
-6. Concatenate the letters -they spell the **password for the next room**.
+A famous explorer vanished deep in the jungle, leaving **9 map fragments** scattered across a maze of directories, mixed in with thousands of noise files, only the `.map` files contain the clues.
 
 </div>
 
 ---
 
+### FIND THE MAP FRAGMENTS!
+
+<ol class="tasks">
+  <li>Navigate into the <code>expedition/</code> directory.</li>
+  <li>The <code>expedition/</code> camp is littered with noise files (<code>.rock</code>, <code>.leaf</code>, <code>.twig</code>) everywhere. <strong>Ignore them all.</strong></li>
+  <li>The explorer left exactly <strong><code>9 map fragments</code></strong> (files ending in <code>.map</code>) hidden across the sub-directories. <strong>Find them all.</strong></li>
+  <li>Once you locate all <code>.map</code> files, <strong>sort</strong> their full paths alphabetically and <strong>read</strong> (<code>cat</code>) their contents in that order.</li>
+  <li>Concatenate the letters - they spell the <strong>password for the next room</strong>.</li>
+</ol>
+
+---
+
 ### Key Commands
 
-| Command | Purpose |
-| --- | --- |
-| `find . -name "*.txt"` | Find files by name pattern |
-| `find . -type f` | Find only files (not dirs) |
-| `find . -type d` | Find only directories |
-| `find . -mtime -7` | Files modified in last 7 days |
-| `find . -size +1M` | Files larger than 1 MB |
-| `find . -perm 644` | Files with exact permissions |
-| `find . -name "*.log" -delete` | Find and delete matching files |
-| `find . -maxdepth 2` | Limit search depth |
-| `find . -not -name "*.txt"` | Exclude pattern |
-| `cat file` | Print file to stdout |
-| `cat -n file` | Show with line numbers |
-| `cat -A file` | Show non-printing chars (tabs, EOL) |
-| `cat file1 file2` | Concatenate files |
-| `sort file` | Sort lines alphabetically |
-| `sort -n file` | Numeric sort |
-| `sort -r file` | Reverse sort |
-| `sort -k2 file` | Sort by 2nd field |
-| `sort -u file` | Sort and deduplicate |
-| `xargs cmd` | Build cmd args from stdin |
-| `xargs -I{} cmd {}` | Replace {} with each item |
+| Command                        | Purpose                             |
+|--------------------------------|-------------------------------------|
+| `find . -name "*.txt"`         | Find files by name pattern          |
+| `find . -type f`               | Find only files (not dirs)          |
+| `find . -type d`               | Find only directories               |
+| `find . -mtime -7`             | Files modified in last 7 days       |
+| `find . -size +1M`             | Files larger than 1 MB              |
+| `find . -perm 644`             | Files with exact permissions        |
+| `find . -name "*.log" -delete` | Find and delete matching files      |
+| `find . -maxdepth 2`           | Limit search depth                  |
+| `find . -not -name "*.txt"`    | Exclude pattern                     |
+| `cat file`                     | Print file to stdout                |
+| `cat -n file`                  | Show with line numbers              |
+| `cat -A file`                  | Show non-printing chars (tabs, EOL) |
+| `cat file1 file2`              | Concatenate files                   |
+| `sort file`                    | Sort lines alphabetically           |
+| `sort -n file`                 | Numeric sort                        |
+| `sort -r file`                 | Reverse sort                        |
+| `sort -k2 file`                | Sort by 2nd field                   |
+| `sort -u file`                 | Sort and deduplicate                |
+| `xargs cmd`                    | Build cmd args from stdin           |
+| `xargs -I{} cmd {}`            | Replace {} with each item           |
 
 ---
 

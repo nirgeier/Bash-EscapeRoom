@@ -5,6 +5,8 @@ title_prefix: "🌿 "
 summary: "Use git to explore a repository's history and recover a deleted secret."
 ---
 
+[![Room-48](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-48.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-48.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 48</span>
   <div class="room-title">
@@ -13,33 +15,31 @@ summary: "Use git to explore a repository's history and recover a deleted secret
   </div>
 </div>
 
-[![Room-48](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-48.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-48.yml)
-
-
-**RECOVER THE LOST COMMIT!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use git to explore a repository's history and recover a deleted secret.
 
 - A secret was committed to a git repository, then immediately deleted.
 - Nothing is truly gone from git history - find the lost commit!
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### RECOVER THE LOST COMMIT!
 
-The directory `vault_repo/` is a git repository.
+<ol class="tasks">
+  <li>Navigate into the repository. <code>cd vault_repo</code></li>
+  <li>View the commit history. <code>git log --oneline</code></li>
+  <li>Find the commit where <code>secret.txt</code> was added (then later deleted).</li>
+  <li>Check out or show that specific commit's content. <code>git show <COMMIT_HASH>:secret.txt</code></li>
+  <li>The content of <code>secret.txt</code> from that commit <strong>is</strong> the password.</li>
+</ol>
 
-1. Navigate into the repository.
-   > `cd vault_repo`
-2. View the commit history.
-   > `git log --oneline`
-3. Find the commit where `secret.txt` was added (then later deleted).
-4. Check out or show that specific commit's content.
-   > `git show <COMMIT_HASH>:secret.txt`
-5. The content of `secret.txt` from that commit **is** the password.
-
-</div>
+---
 
 ### Key Commands
 

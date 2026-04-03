@@ -5,6 +5,8 @@ title_prefix: "🌀 "
 summary: "Use a while loop to read and process a file line by line."
 ---
 
+[![Room-29](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-29.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-29.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 29</span>
   <div class="room-title">
@@ -13,30 +15,29 @@ summary: "Use a while loop to read and process a file line by line."
   </div>
 </div>
 
-[![Room-29](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-29.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-29.yml)
-
-
-**TRAVERSE THE ENDLESS CORRIDOR!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use a while loop to read and process a file line by line.
 
 - A long corridor has doors on both sides.
 - Read the door log line by line and count how many doors were left **open**.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### TRAVERSE THE ENDLESS CORRIDOR!
 
-The file `door_log.txt` contains door status records, one per line.
-Each line has the format: `DOOR_ID STATUS` (e.g., `door_042 OPEN`).
+<ol class="tasks">
+  <li>Use a <code>while read</code> loop to process each line of <code>door_log.txt</code>.</li>
+  <li>Count lines where the status field is <code>OPEN</code>.</li>
+  <li>The password is <code>while</code> followed by the count of open doors *(no space)*. Example: if 73 doors are OPEN → <code>while73</code></li>
+</ol>
 
-1. Use a `while read` loop to process each line of `door_log.txt`.
-2. Count lines where the status field is `OPEN`.
-3. The password is `while` followed by the count of open doors *(no space)*.
-   > Example: if 73 doors are OPEN → `while73`
-
-</div>
+---
 
 ### Key Commands
 

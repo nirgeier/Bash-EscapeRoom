@@ -5,6 +5,8 @@ title_prefix: "📝 "
 summary: "Navigate vim to find and decode a password hidden in a large text file."
 ---
 
+[![Room-46](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-46.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-46.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 46</span>
   <div class="room-title">
@@ -13,33 +15,31 @@ summary: "Navigate vim to find and decode a password hidden in a large text file
   </div>
 </div>
 
-[![Room-46](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-46.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-46.yml)
-
-
-**ENTER THE VI VORTEX!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Navigate vim to find and decode a password hidden in a large text file.
 
 - A critical document is locked inside a file that can only be navigated with `vim`.
 - The password is hidden on a specific line - find it without scrolling forever.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### ENTER THE VI VORTEX!
 
-The file `ancient_tome.txt` has 1000 lines. The password is on **line 777**.
+<ol class="tasks">
+  <li>Open the file in vim. <code>vim ancient_tome.txt</code></li>
+  <li>Jump directly to line 777. In vim, type <code>777G</code> or <code>:777</code></li>
+  <li>The line reads <code>SECRET: <password></code> - note the password word.</li>
+  <li>Exit vim without saving. <code>:q!</code></li>
+  <li>The word after <code>SECRET:</code> <strong>is</strong> the password.</li>
+</ol>
 
-1. Open the file in vim.
-   > `vim ancient_tome.txt`
-2. Jump directly to line 777.
-   > In vim, type `777G` or `:777`
-3. The line reads `SECRET: <password>` - note the password word.
-4. Exit vim without saving.
-   > `:q!`
-5. The word after `SECRET:` **is** the password.
-
-</div>
+---
 
 ### Key Commands
 

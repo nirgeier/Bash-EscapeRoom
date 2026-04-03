@@ -4,5 +4,46 @@
     "editor.formatOnSave": false,
     "editor.formatOnPaste": false,
     "editor.formatOnType": false
-  }
+  },
+  "liveSassCompile.settings.autoprefix": "defaults",
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/.mkdocs-shared/mkdocs/overrides/assets/stylesheets"
+    },
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/mkdocs/overrides/assets/stylesheets"
+    },
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/Labs/assets/stylesheets"
+    },
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/.mkdocs-build/overrides/assets/stylesheets"
+    },
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/mkdocs-site/assets/stylesheets"
+    },
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/.vscode-extension/docs/assets/stylesheets"
+    }
+  ],
+  "liveSassCompile.settings.includeItems": [
+    "/.mkdocs-shared/mkdocs/overrides/assets/stylesheets/codewizard.scss"
+  ],
+  "liveSassCompile.settings.excludeList": [
+    "**/node_modules/**",
+    ".vscode/**"
+  ],
+  "liveSassCompile.settings.generateMap": false
 }

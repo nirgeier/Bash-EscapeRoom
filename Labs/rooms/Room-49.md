@@ -5,6 +5,8 @@ title_prefix: "🏭 "
 summary: "Build an advanced multi-stage pipeline combining awk, sed, sort, and uniq."
 ---
 
+[![Room-49](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-49.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-49.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 49</span>
   <div class="room-title">
@@ -13,37 +15,29 @@ summary: "Build an advanced multi-stage pipeline combining awk, sed, sort, and u
   </div>
 </div>
 
-[![Room-49](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-49.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-49.yml)
-
-
-**BUILD THE GRAND PIPELINE!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Build an advanced multi-stage pipeline combining awk, sed, sort, and uniq.
 
 - The final lock requires you to build a sophisticated data processing pipeline.
 - Combine your knowledge of multiple tools to crack it.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### BUILD THE GRAND PIPELINE!
 
-The file `factory_log.txt` contains production records with the format:
-`TIMESTAMP MACHINE_ID STATUS UNITS_PRODUCED`
-
-Build a pipeline to derive the password:
-
-1. Filter lines where `STATUS` is `SUCCESS`.
-   > `awk '$3 == "SUCCESS"'`
-2. Extract the `MACHINE_ID` field (field 2).
-   > `awk '{print $2}'`
-3. Sort and count occurrences of each machine ID.
-   > `sort | uniq -c | sort -rn`
-4. Find the machine with the **most** successes - note the count.
-5. The password is `pipeline` followed by that count *(no space)*.
-   > Example: if the top machine had 47 successes → `pipeline47`
-
-</div>
+<ol class="tasks">
+  <li>Filter lines where <code>STATUS</code> is <code>SUCCESS</code>. <code>awk '$3 == "SUCCESS"'</code></li>
+  <li>Extract the <code>MACHINE_ID</code> field (field 2). <code>awk '{print $2}'</code></li>
+  <li>Sort and count occurrences of each machine ID. <code>sort | uniq -c | sort -rn</code></li>
+  <li>Find the machine with the <strong>most</strong> successes - note the count.</li>
+  <li>The password is <code>pipeline</code> followed by that count *(no space)*. Example: if the top machine had 47 successes → <code>pipeline47</code></li>
+</ol>
 
 ### The Complete Pipeline
 

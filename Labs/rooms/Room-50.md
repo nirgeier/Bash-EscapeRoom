@@ -5,6 +5,8 @@ title_prefix: "👑 "
 summary: "The final challenge - combine all skills to defeat the Master Terminal."
 ---
 
+[![Room-50](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-50.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-50.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 50</span>
   <div class="room-title">
@@ -13,46 +15,34 @@ summary: "The final challenge - combine all skills to defeat the Master Terminal
   </div>
 </div>
 
-[![Room-50](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-50.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-50.yml)
-
-
-**CONQUER THE MASTER TERMINAL!**
 
 ---
 
+<div class="summary" markdown="1">
+
+The final challenge - combine all skills to defeat the Master Terminal.
 
 - You've made it to the final room.
 - The Master Terminal requires proof that you've mastered ALL the skills.
 - This challenge combines multiple tools in one epic puzzle.
-
----
-
 !!! danger "⚠️ Final Challenge"
-
     This is the last room before the exit exam. Give it everything you've got!
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### CONQUER THE MASTER TERMINAL!
 
-The directory `final_challenge/` contains multiple files.
-
-Complete ALL of the following tasks:
-
-1. **Find**: Locate all `.key` files recursively in `final_challenge/`.
-   > `find final_challenge/ -name "*.key"`
-2. **Decode**: Each `.key` file contains a base64-encoded value. Decode all of them.
-   > `base64 -d < each_file`
-3. **Filter**: Keep only decoded values that are purely numeric.
-   > `grep -E '^[0-9]+$'`
-4. **Calculate**: Sum all the numeric values.
-   > `paste -sd'+' | bc`
-5. **Verify**: The sum must be verified against `final_challenge/expected_checksum.txt`.
-   > `echo "sum" | sha256sum` and compare
-6. Once verified, run `./final_challenge/unlock.sh <sum>` to get the exit code.
-7. The exit code printed by the script **is** the password for the Final Exam (Room 99).
-
-</div>
+<ol class="tasks">
+  <li><strong>Find</strong>: Locate all <code>.key</code> files recursively in <code>final_challenge/</code>. <code>find final_challenge/ -name "*.key"</code></li>
+  <li><strong>Decode</strong>: Each <code>.key</code> file contains a base64-encoded value. Decode all of them. <code>base64 -d < each_file</code></li>
+  <li><strong>Filter</strong>: Keep only decoded values that are purely numeric. <code>grep -E '^[0-9]+$'</code></li>
+  <li><strong>Calculate</strong>: Sum all the numeric values. <code>paste -sd'+' | bc</code></li>
+  <li><strong>Verify</strong>: The sum must be verified against <code>final_challenge/expected_checksum.txt</code>. <code>echo "sum" | sha256sum</code> and compare</li>
+  <li>Once verified, run <code>./final_challenge/unlock.sh <sum></code> to get the exit code.</li>
+  <li>The exit code printed by the script <strong>is</strong> the password for the Final Exam (Room 99).</li>
+</ol>
 
 ### The Master Pipeline
 

@@ -5,6 +5,8 @@ title_prefix: "💍 "
 summary: "Chain base64, tr (ROT13), and rev to decode a triple-encoded message."
 ---
 
+[![Room-05](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-05.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-05.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 05</span>
   <div class="room-title">
@@ -13,34 +15,32 @@ summary: "Chain base64, tr (ROT13), and rev to decode a triple-encoded message."
   </div>
 </div>
 
-[![Room-05](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-05.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-05.yml)
-
-
-**DECODE THE TRIPLE-ENCODED MESSAGE!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Chain base64, tr (ROT13), and rev to decode a triple-encoded message.
 
 - A message was encoded with **3 layers** of transformation.
 - Peel them off in reverse order using pipes.
 
-<div class="tasks" markdown="1">
-
-The file `encoded_message.txt` has been encoded in **3 layers** (applied in this order):
-
-    1. Characters were **reversed** (`rev`)
-    2. **ROT13** was applied (each letter shifted 13 positions)
-    3. Result was **Base64-encoded**
-
-    To decode, undo the layers in **reverse order**:
-
-    1. Decode Base64 → `base64 -d`
-    2. Undo ROT13 → `tr 'a-zA-Z' 'n-za-mN-ZA-M'`
-    3. Reverse characters → `rev`
-    4. Chain all three with pipes in one command.
-    5. The decoded output **is** the password.
-
 </div>
+
+---
+
+### DECODE THE TRIPLE-ENCODED MESSAGE!
+
+<ol class="tasks">
+  <li>Characters were <strong>reversed</strong> (<code>rev</code>)</li>
+  <li><strong>ROT13</strong> was applied (each letter shifted 13 positions)</li>
+  <li>Result was <strong>Base64-encoded</strong> To decode, undo the layers in <strong>reverse order</strong>:</li>
+  <li>Decode Base64 → <code>base64 -d</code></li>
+  <li>Undo ROT13 → <code>tr 'a-zA-Z' 'n-za-mN-ZA-M'</code></li>
+  <li>Reverse characters → <code>rev</code></li>
+  <li>Chain all three with pipes in one command.</li>
+  <li>The decoded output <strong>is</strong> the password.</li>
+</ol>
 
 ---
 

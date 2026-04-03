@@ -5,6 +5,8 @@ title_prefix: "🔐 "
 summary: "Fix file permissions using chmod to unlock the gates."
 ---
 
+[![Room-07](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-07.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-07.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 07</span>
   <div class="room-title">
@@ -13,37 +15,27 @@ summary: "Fix file permissions using chmod to unlock the gates."
   </div>
 </div>
 
-[![Room-07](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-07.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-07.yml)
-
-
-**FIX THE PERMISSIONS!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Fix file permissions using chmod to unlock the gates.
 
 - Seven gates block your path, each with wrong permissions.
 - Set them correctly to proceed.
 
-<div class="tasks" markdown="1">
-
-Seven locked gates block your path. Each gate is a file with **wrong**
-permissions. Fix them all to proceed!
-
-| File   | Required Permission | Numeric |
-|--------|---------------------|---------|
-| gate_1 | rwxr-xr-x           | 755     |
-| gate_2 | rw-r--r--           | 644     |
-| gate_3 | rwx------           | 700     |
-| gate_4 | r--r--r--           | 444     |
-| gate_5 | rwxrwxr-x           | 775     |
-| gate_6 | rw-rw----           | 660     |
-| gate_7 | r-x--x--x           | 511     |
-
-1. Check current permissions: `ls -l gate_*`
-2. Fix each gate using `chmod`.
-3. Once **all** gates are correct, run `./getKey.sh` to get the password.
-
 </div>
+
+---
+
+### FIX THE PERMISSIONS!
+
+<ol class="tasks">
+  <li>Check current permissions: <code>ls -l gate_*</code></li>
+  <li>Fix each gate using <code>chmod</code>.</li>
+  <li>Once <strong>all</strong> gates are correct, run <code>./getKey.sh</code> to get the password.</li>
+</ol>
 
 ---
 

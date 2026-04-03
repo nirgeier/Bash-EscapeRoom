@@ -5,6 +5,8 @@ title_prefix: "🧩 "
 summary: "Master bash parameter expansion to extract and transform variable values."
 ---
 
+[![Room-26](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-26.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-26.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 26</span>
   <div class="room-title">
@@ -13,34 +15,30 @@ summary: "Master bash parameter expansion to extract and transform variable valu
   </div>
 </div>
 
-[![Room-26](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-26.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-26.yml)
-
-
-**EXPAND THE VARIABLES!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Master bash parameter expansion to extract and transform variable values.
 
 - The combination to the vault is hidden inside shell variable values.
 - Use Bash parameter expansion to extract and transform the pieces.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### EXPAND THE VARIABLES!
 
-The file `vault_env.sh` sets several environment variables. Source it and then use parameter expansion.
+<ol class="tasks">
+  <li>Source the file to load the variables. <code>source vault_env.sh</code></li>
+  <li>The variable <code>TREASURE_PATH</code> contains something like <code>/deep/in/the/vault/jewel</code>. Extract just the <strong>filename</strong> part (after the last <code>/</code>). <code>${TREASURE_PATH##*/}</code></li>
+  <li>The variable <code>GEMCODE</code> contains something like <code>gem-SECRETWORD-2024</code>. Extract the <strong>middle part</strong> between the two dashes. Use <code>${GEMCODE#*-}</code> then <code>${result%-*}</code></li>
+  <li>Combine the extracted filename and middle part (separated by a <code>-</code>) - that <strong>is</strong> the password.</li>
+</ol>
 
-1. Source the file to load the variables.
-   > `source vault_env.sh`
-2. The variable `TREASURE_PATH` contains something like `/deep/in/the/vault/jewel`.
-   Extract just the **filename** part (after the last `/`).
-   > `${TREASURE_PATH##*/}`
-3. The variable `GEMCODE` contains something like `gem-SECRETWORD-2024`.
-   Extract the **middle part** between the two dashes.
-   > Use `${GEMCODE#*-}` then `${result%-*}`
-4. Combine the extracted filename and middle part (separated by a `-`) - that **is** the password.
-
-</div>
+---
 
 ### Key Commands
 

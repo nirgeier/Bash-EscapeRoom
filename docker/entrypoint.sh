@@ -119,7 +119,7 @@ next() {
         echo "LAST_ROOM=${next_num}" > "$save_file"
         echo "LAST_PASSWORD=$1" >> "$save_file"
         echo "SAVED_AT=$(date '+%Y-%m-%d %H:%M:%S')" >> "$save_file"
-        echo -e "\033[0;35m[Progress saved — run 'progress' to view]\033[0m"
+        echo -e "\033[0;35m[Progress saved - run 'progress' to view]\033[0m"
         clear
     fi
 }

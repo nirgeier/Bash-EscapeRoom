@@ -5,6 +5,8 @@ title_prefix: "👻 "
 summary: "Create users, manage background processes, and find PIDs."
 ---
 
+[![Room-09](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-09.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-09.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 09</span>
   <div class="room-title">
@@ -13,32 +15,31 @@ summary: "Create users, manage background processes, and find PIDs."
   </div>
 </div>
 
-[![Room-09](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-09.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-09.yml)
-
-
-**SUMMON AND CAPTURE THE GHOST!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Create users, manage background processes, and find PIDs.
 
 - A ghost process haunts this room.
 - Create it, send it to the background, find its PID, and capture it!
 
-<div class="tasks" markdown="1">
-
-A ghost process must be summoned and captured!
-
-1. Create a new user named `ghost_user`.
-   > `sudo adduser -D ghost_user` (Alpine) or `sudo useradd ghost_user`
-2. Create a bash script `ghost_loop.sh` that runs an infinite loop silently.
-   > Example: `while true; do sleep 1; done`
-3. Run the script as `ghost_user` in the **background**.
-   > `sudo -u ghost_user bash ./ghost_loop.sh &`
-4. Find the process ID (PID) of the running ghost script.
-   > `ps aux | grep ghost` or `ps -eo pid,user,comm | grep ghost`
-5. Pass the PID to `./getKey.sh <PID>` to capture the ghost.
-
 </div>
+
+---
+
+### SUMMON AND CAPTURE THE GHOST!
+
+<ol class="tasks">
+  <li>Create a new user named <code>ghost_user</code>. <code>sudo adduser -D ghost_user</code> (Alpine) or <code>sudo useradd ghost_user</code></li>
+  <li>Create a bash script <code>ghost_loop.sh</code> that runs an infinite loop silently. Example: <code>while true; do sleep 1; done</code></li>
+  <li>Run the script as <code>ghost_user</code> in the <strong>background</strong>. <code>sudo -u ghost_user bash ./ghost_loop.sh &</code></li>
+  <li>Find the process ID (PID) of the running ghost script. <code>ps aux | grep ghost</code> or <code>ps -eo pid,user,comm | grep ghost</code></li>
+  <li>Pass the PID to <code>./getKey.sh <PID></code> to capture the ghost.</li>
+</ol>
+
+---
 
 ### Key Commands
 

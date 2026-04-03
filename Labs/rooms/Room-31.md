@@ -5,6 +5,8 @@ title_prefix: "🎭 "
 summary: "Use case statements to route inputs through a pattern-matching decision engine."
 ---
 
+[![Room-31](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-31.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-31.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 31</span>
   <div class="room-title">
@@ -13,30 +15,29 @@ summary: "Use case statements to route inputs through a pattern-matching decisio
   </div>
 </div>
 
-[![Room-31](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-31.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-31.yml)
-
-
-**CHOOSE YOUR DESTINY!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use case statements to route inputs through a pattern-matching decision engine.
 
 - The chamber has five doors, each labeled with a symbol.
 - Only the `case` statement can correctly route each symbol to the right door.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### CHOOSE YOUR DESTINY!
 
-The file `symbols.txt` contains 20 lines, each with a single symbol: `@`, `#`, `$`, `%`, or `&`.
+<ol class="tasks">
+  <li>Write a script or one-liner using a <code>case</code> statement to categorize each symbol.</li>
+  <li>Count how many lines contain <code>$</code> (the dollar sign). loop + case, or simply <code>grep -c '\$' symbols.txt</code></li>
+  <li>The password is <code>matched</code> followed by that count *(no space)*. Example: if 7 lines contain <code>$</code> → <code>matched7</code></li>
+</ol>
 
-1. Write a script or one-liner using a `case` statement to categorize each symbol.
-2. Count how many lines contain `$` (the dollar sign).
-   > loop + case, or simply `grep -c '\$' symbols.txt`
-3. The password is `matched` followed by that count *(no space)*.
-   > Example: if 7 lines contain `$` → `matched7`
-
-</div>
+---
 
 ### Key Commands
 

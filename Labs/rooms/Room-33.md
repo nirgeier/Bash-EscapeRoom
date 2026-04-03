@@ -5,6 +5,8 @@ title_prefix: "🎛️ "
 summary: "Use getopts to parse command-line arguments and unlock a protected script."
 ---
 
+[![Room-33](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-33.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-33.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 33</span>
   <div class="room-title">
@@ -13,31 +15,30 @@ summary: "Use getopts to parse command-line arguments and unlock a protected scr
   </div>
 </div>
 
-[![Room-33](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-33.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-33.yml)
-
-
-**CRACK THE ARGUMENT DECODER!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use getopts to parse command-line arguments and unlock a protected script.
 
 - A protected script only responds to the correct combination of flags.
 - Use `getopts` to build a command that passes all validations.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### CRACK THE ARGUMENT DECODER!
 
-The script `locked_program.sh` uses `getopts` to validate its arguments.
-Study it, then call it with the right flags to unlock the password.
+<ol class="tasks">
+  <li>Read <code>locked_program.sh</code> to understand what flags it expects. <code>cat locked_program.sh</code></li>
+  <li>The script expects flags <code>-u <username></code> <code>-p <pin></code> and optionally <code>-v</code> (verbose).</li>
+  <li>Call it with <code>-u agent -p 1337 -v</code>.</li>
+  <li>The output when all conditions pass <strong>is</strong> the password.</li>
+</ol>
 
-1. Read `locked_program.sh` to understand what flags it expects.
-   > `cat locked_program.sh`
-2. The script expects flags `-u <username>` `-p <pin>` and optionally `-v` (verbose).
-3. Call it with `-u agent -p 1337 -v`.
-4. The output when all conditions pass **is** the password.
-
-</div>
+---
 
 ### Key Commands
 

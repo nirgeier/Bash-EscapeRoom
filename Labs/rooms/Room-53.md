@@ -5,6 +5,8 @@ title_prefix: "📡 "
 summary: "Probe the network with ping and traceroute, then retrieve a remote resource using wget."
 ---
 
+[![Room-53](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-53.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-53.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 53</span>
   <div class="room-title">
@@ -13,33 +15,31 @@ summary: "Probe the network with ping and traceroute, then retrieve a remote res
   </div>
 </div>
 
-[![Room-53](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-53.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-53.yml)
-
-
-**TRACE THE SIGNAL!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Probe the network with ping and traceroute, then retrieve a remote resource using wget.
 
 - A signal is being transmitted from a remote beacon somewhere on the network.
 - You must verify connectivity, trace the route, and retrieve the transmission.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### TRACE THE SIGNAL!
 
-A local beacon is broadcasting a secret key. Probe your way to it.
+<ol class="tasks">
+  <li>Verify network connectivity by pinging the loopback address. <code>ping -c 3 127.0.0.1</code></li>
+  <li>Trace the network route to confirm the path. <code>traceroute 127.0.0.1</code> or <code>tracepath 127.0.0.1</code></li>
+  <li>Start the local beacon server. <code>./start_server.sh</code></li>
+  <li>Use <code>wget</code> to retrieve the secret key file from the beacon.</li>
+  <li>The content of <code>key.txt</code> <strong>is</strong> the next room's password.</li>
+</ol>
 
-1. Verify network connectivity by pinging the loopback address.
-   > `ping -c 3 127.0.0.1`
-2. Trace the network route to confirm the path.
-   > `traceroute 127.0.0.1` or `tracepath 127.0.0.1`
-3. Start the local beacon server.
-   > `./start_server.sh`
-4. Use `wget` to retrieve the secret key file from the beacon.
-5. The content of `key.txt` **is** the next room's password.
-
-</div>
+---
 
 ### Key Commands
 

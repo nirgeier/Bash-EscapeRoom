@@ -5,6 +5,8 @@ title_prefix: "🔍 "
 summary: "Use sort, uniq, comm, and wc to find unique gems between two vaults."
 ---
 
+[![Room-06](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-06.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-06.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 06</span>
   <div class="room-title">
@@ -13,32 +15,30 @@ summary: "Use sort, uniq, comm, and wc to find unique gems between two vaults."
   </div>
 </div>
 
-[![Room-06](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-06.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-06.yml)
-
-
-**FIND THE UNIQUE GEMS!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use sort, uniq, comm, and wc to find unique gems between two vaults.
 
 Two treasure vaults contain gem inventories. Some gems appear in both vaults,
 some are unique to one. Find the gems that exist ONLY in vault A.
 
-<div class="tasks" markdown="1">
-
-Two vaults (`vault_a.txt` and `vault_b.txt`) contain gem inventories with
-duplicates within each file.
-
-1. Remove duplicate entries within each file.
-   > `sort` + `uniq` removes duplicates from sorted input
-2. Find gems that appear **only** in `vault_a.txt` (not in `vault_b.txt`).
-   > `comm -23 file1 file2` shows lines only in file1 (both must be sorted)
-3. Count those unique-to-vault-a gems.
-   > pipe to `wc -l`
-4. The password is the word `unique` followed by that count *(no space)*.
-   > Example: if there are 15 unique gems → `unique15`
-
 </div>
+
+---
+
+### FIND THE UNIQUE GEMS!
+
+<ol class="tasks">
+  <li>Remove duplicate entries within each file. <code>sort</code> + <code>uniq</code> removes duplicates from sorted input</li>
+  <li>Find gems that appear <strong>only</strong> in <code>vault_a.txt</code> (not in <code>vault_b.txt</code>). <code>comm -23 file1 file2</code> shows lines only in file1 (both must be sorted)</li>
+  <li>Count those unique-to-vault-a gems. pipe to <code>wc -l</code></li>
+  <li>The password is the word <code>unique</code> followed by that count *(no space)*. Example: if there are 15 unique gems → <code>unique15</code></li>
+</ol>
+
+---
 
 ### Key Commands
 

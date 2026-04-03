@@ -5,6 +5,8 @@ title_prefix: "🔑 "
 summary: "Use openssl to decrypt a message encrypted with a symmetric cipher."
 ---
 
+[![Room-45](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-45.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-45.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 45</span>
   <div class="room-title">
@@ -13,31 +15,29 @@ summary: "Use openssl to decrypt a message encrypted with a symmetric cipher."
   </div>
 </div>
 
-[![Room-45](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-45.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-45.yml)
-
-
-**CRACK THE CRYPTOGRAPHER'S DEN!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use openssl to decrypt a message encrypted with a symmetric cipher.
 
 - A message was encrypted with `openssl` using a known algorithm and key.
 - Decrypt it to reveal the secret.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### CRACK THE CRYPTOGRAPHER'S DEN!
 
-The file `encrypted_message.enc` was encrypted using AES-256-CBC.
-The encryption password is hidden in a file called `keyfile.txt` in the same directory.
+<ol class="tasks">
+  <li>Find and read the encryption password. <code>cat keyfile.txt</code></li>
+  <li>Decrypt the file using <code>openssl</code> with the password you found. <code>openssl enc -aes-256-cbc -d -a -pbkdf2 -in encrypted_message.enc -pass pass:PASSWORD</code></li>
+  <li>The decrypted output <strong>is</strong> the password for Room 46.</li>
+</ol>
 
-1. Find and read the encryption password.
-   > `cat keyfile.txt`
-2. Decrypt the file using `openssl` with the password you found.
-   > `openssl enc -aes-256-cbc -d -a -pbkdf2 -in encrypted_message.enc -pass pass:PASSWORD`
-3. The decrypted output **is** the password for Room 46.
-
-</div>
+---
 
 ### Key Commands
 

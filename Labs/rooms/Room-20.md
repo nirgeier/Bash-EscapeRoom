@@ -5,6 +5,8 @@ title_prefix: "🔢 "
 summary: "Decode a hex dump using xxd to reveal the hidden message."
 ---
 
+[![Room-20](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-20.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-20.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 20</span>
   <div class="room-title">
@@ -13,30 +15,29 @@ summary: "Decode a hex dump using xxd to reveal the hidden message."
   </div>
 </div>
 
-[![Room-20](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-20.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-20.yml)
-
-
-**DECODE THE HEX DUNGEON!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Decode a hex dump using xxd to reveal the hidden message.
 
 - An ancient computer left a message encoded in hexadecimal.
 - Reverse the hex dump to read the original text.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### DECODE THE HEX DUNGEON!
 
-The file `hex_message.hex` contains a hex dump created with `xxd`.
+<ol class="tasks">
+  <li>View the hex dump file. <code>cat hex_message.hex</code></li>
+  <li>Reverse the hex dump back to its original text. <code>xxd -r hex_message.hex</code></li>
+  <li>The decoded text <strong>is</strong> the password.</li>
+</ol>
 
-1. View the hex dump file.
-   > `cat hex_message.hex`
-2. Reverse the hex dump back to its original text.
-   > `xxd -r hex_message.hex`
-3. The decoded text **is** the password.
-
-</div>
+---
 
 ### Key Commands
 

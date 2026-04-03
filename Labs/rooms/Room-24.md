@@ -5,6 +5,8 @@ title_prefix: "🖨️ "
 summary: "Use printf to format a template precisely and assemble the password."
 ---
 
+[![Room-24](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-24.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-24.yml)
+
 <div class="room-hero">
   <span class="room-badge">ROOM 24</span>
   <div class="room-title">
@@ -13,30 +15,31 @@ summary: "Use printf to format a template precisely and assemble the password."
   </div>
 </div>
 
-[![Room-24](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-24.yml/badge.svg)](https://github.com/nirgeier/Bash-EscapeRoom/actions/workflows/room-24.yml)
-
-
-**FORMAT THE TRANSMISSION!**
 
 ---
 
+<div class="summary" markdown="1">
+
+Use printf to format a template precisely and assemble the password.
 
 - A broken printer is garbling messages.
 - Only precisely formatted output will unlock the next door.
 
+</div>
+
 ---
 
-<div class="tasks" markdown="1">
+### FORMAT THE TRANSMISSION!
 
-The file `template.txt` contains a format string and values to plug in.
+<ol class="tasks">
+  <li>Read <code>template.txt</code> to see the required format and the values.</li>
+  <li>Use <code>printf</code> to format the output exactly as specified. <code>printf "%-10s %05d
+" "word" 42</code></li>
+  <li>The formatted output contains the password on the last line.</li>
+  <li>The password is the last word on the last output line.</li>
+</ol>
 
-1. Read `template.txt` to see the required format and the values.
-2. Use `printf` to format the output exactly as specified.
-   > `printf "%-10s %05d\n" "word" 42`
-3. The formatted output contains the password on the last line.
-4. The password is the last word on the last output line.
-
-</div>
+---
 
 ### Key Commands
 
