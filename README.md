@@ -1,3 +1,7 @@
+[![Install in VS Code](https://img.shields.io/badge/Install-VS%20Code%20Marketplace-0078d4?style=for-the-badge&logo=visual-studio-code&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=nirgeier.EscapeRoom-Bash)
+
+![Bash Escape Room](.vscode-extension/media/screenshots/banner.jpg)
+
 ![Bash-EscapeRoom](./mkdocs/overrides/assets/images/screenshot.png)
 
 # Bash-EscapeRoom
