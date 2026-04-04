@@ -3,8 +3,9 @@ set -e
 cd "$(dirname "$0")"
 
 REPO_ROOT="$(dirname "$(pwd)")"
-EXT_ID="nirgeier.7104198852270621241459005"
+EXT_ID="nirgeier.EscapeRoom-Bash"
 
+# ── Sync bundled content from repo ───────────────────────────────────────────
 echo "▶ Syncing bundled content from repo..."
 rm -rf content/ docs/ public/
 mkdir -p content/escapeRoom public
@@ -15,27 +16,21 @@ cp "$REPO_ROOT/.escaperoom-framework/public/index.html" public/index.html
 cp "$REPO_ROOT/mkdocs/passwords.yml" content/passwords.yml
 
 SCSS_SRC="$REPO_ROOT/.mkdocs-shared/mkdocs/overrides/assets/stylesheets"
-
 if command -v sass &>/dev/null; then
-  # Compile _escape-room-overrides.scss → append to docs codewizard.css
   sass --no-source-map --style=compressed \
     "$SCSS_SRC/_escape-room-overrides.scss" >>docs/assets/stylesheets/codewizard.css
   echo "   CSS overrides compiled from SCSS and appended"
-  # Compile _vscode.scss → media/style.css
   sass --no-source-map --style=expanded "$SCSS_SRC/_vscode.scss" media/style.css
   echo "   media/style.css compiled from _vscode.scss"
 else
-  # Fallback: append pre-built CSS
   cat assets/escape-room-overrides.css >>docs/assets/stylesheets/codewizard.css
   echo "   CSS overrides appended (sass not found - using pre-built CSS)"
 fi
 
-# Extract room metadata into JSON (so README doesn't need to be bundled)
+# ── Room setup ────────────────────────────────────────────────────────────────
 node scripts/build-metadata.js
 
-# ── Docker build-time room setup (mirrors Dockerfile RUN block) ──────────────
-
-# Room 07 - rename script only (permissions set at server start to avoid vsce packaging errors)
+# Room 07 - rename script (permissions set at server start)
 [ -f content/escapeRoom/room_07/script.sh ] &&
   mv content/escapeRoom/room_07/script.sh content/escapeRoom/room_07/getKey.sh &&
   chmod +x content/escapeRoom/room_07/getKey.sh || true
@@ -57,7 +52,7 @@ if [ -f content/escapeRoom/room_11/secret_scroll.txt ]; then
   cd ../../..
 fi
 
-# Room 01 - scatter 500 random noise files (fresh per install)
+# Room 01 - scatter 500 random noise files
 cd content/escapeRoom/room_01
 SUBDIRS=()
 while IFS= read -r d; do SUBDIRS+=("$d"); done < <(find expedition/ -type d 2>/dev/null)
@@ -75,12 +70,9 @@ if [ "$NSUBDIRS" -gt 0 ]; then
 fi
 cd ../../..
 
-echo "   Docker room setup complete (permissions, archives, noise)"
-
-# Room 14 - obfuscate server.js via base64 loader, copy to scripts/ for extension, remove from room
+# Room 14 - obfuscate server.js
 mkdir -p scripts
 if [ -f content/escapeRoom/room_14/server.js ]; then
-  # Obfuscate: strip shebang, base64-encode, wrap in thin loader
   node -e "
     const fs = require('fs');
     const src = fs.readFileSync('content/escapeRoom/room_14/server.js', 'utf8');
@@ -93,39 +85,65 @@ if [ -f content/escapeRoom/room_14/server.js ]; then
     fs.writeFileSync('scripts/room14_server.js', loader);
   "
   rm -f content/escapeRoom/room_14/server.js
-  echo "   room_14: server.js obfuscated → scripts/room14_server.js, removed from room"
+  echo "   room_14: server.js obfuscated → scripts/room14_server.js"
 fi
 
+# Strip solution/setup files
+find content/escapeRoom -name "README" -delete
+find content/escapeRoom -name "_solution*" -delete
+find content/escapeRoom -name "setup.sh" -delete
+echo "   rooms: $(ls content/escapeRoom | grep -c room) rooms ready"
+
+# ── Verify rooms ──────────────────────────────────────────────────────────────
 echo "▶ Verifying rooms..."
 node scripts/verify-rooms.js \
   content/escapeRoom \
   "$REPO_ROOT/mkdocs/passwords.yml" \
   "$REPO_ROOT/content/escapeRoom"
 
-# Strip README and solution files - clean rooms for users
-find content/escapeRoom -name "README" -delete
-find content/escapeRoom -name "_solution*" -delete
-find content/escapeRoom -name "setup.sh" -delete
-echo "   rooms: $(ls content/escapeRoom | grep -c room), README+solution+server stripped, metadata JSON written"
-
+# ── Build & package ───────────────────────────────────────────────────────────
 echo "▶ Bumping patch version..."
 npm version patch --no-git-tag-version
-echo "   version: $(node -p "require('./package.json').version")"
+VERSION="$(node -p "require('./package.json').version")"
+echo "   version: $VERSION"
 
 echo "▶ Uninstalling existing extension..."
-code-insiders --uninstall-extension "$EXT_ID" 2>/dev/null || echo "  (not installed - skipping)"
+code-insiders --uninstall-extension "$EXT_ID" 2>/dev/null || echo "   (not installed - skipping)"
 
-echo "▶ Building bundle..."
+echo "▶ Building & packaging..."
 npm run bundle
-
-echo "▶ Packaging VSIX..."
 npm run package
+VSIX="$(ls -t *.vsix | head -1)"
+echo "   built: $VSIX"
 
-VSIX=$(ls -t *.vsix | head -1)
-echo "▶ Installing $VSIX..."
-code-insiders --install-extension "$VSIX" --force
+mkdir -p dist
+rm -f dist/*.vsix
+mv "$VSIX" "dist/$VSIX"
+echo "   size: $(ls -lh "dist/$VSIX" | awk '{print $5}')"
 
-echo "▶ Opening VS Code Insiders..."
+# ── Publish ───────────────────────────────────────────────────────────────────
+if [ -n "$VSCE_PAT" ]; then
+  echo "▶ Publishing to VS Code Marketplace..."
+  npx vsce publish --allow-missing-repository --packagePath "dist/$VSIX"
+  echo "   ✅ VS Code Marketplace: v$VERSION published"
+else
+  echo "   ⚠ VSCE_PAT not set — skipping VS Code Marketplace publish"
+fi
+
+if [ -n "$OVSX_PAT" ]; then
+  echo "▶ Publishing to Open VSX Registry..."
+  npx ovsx publish "dist/$VSIX" --pat "$OVSX_PAT"
+  echo "   ✅ Open VSX: v$VERSION published"
+else
+  echo "   ⚠ OVSX_PAT not set — skipping Open VSX publish"
+fi
+
+# ── Install locally ───────────────────────────────────────────────────────────
+echo "▶ Installing..."
+code-insiders --install-extension "dist/$VSIX" --force
 code-insiders .
 
-echo "✅ Done - reload the window in VS Code Insiders (Cmd+Shift+P → Developer: Reload Window)"
+echo ""
+echo "✅ Done  (v$VERSION)"
+echo "   VSIX          : dist/$VSIX"
+echo "   Reload window : Cmd+Shift+P → Developer: Reload Window"

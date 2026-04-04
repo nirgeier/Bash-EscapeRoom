@@ -114,10 +114,8 @@ wc -l *.txt                           # count lines across multiple files
 
 !!! info "🔓 Unlock Room 04"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_04/README -out ../room_04/README.txt -pass pass:PASSWORD
-    cat ../room_04/README
+    next <PASSWORD>
     ```

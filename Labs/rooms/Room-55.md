@@ -129,10 +129,8 @@ echo "Host: $(hostname) | OS: $(uname -s) $(uname -r) | Arch: $(uname -m) | User
 
 !!! info "🔓 Unlock Room 56"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_56/README -out ../room_56/README.txt -pass pass:PASSWORD
-    cat ../room_56/README.txt
+    next <PASSWORD>
     ```

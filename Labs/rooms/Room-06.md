@@ -94,10 +94,8 @@ comm -23 <(sort fileA.txt | uniq) <(sort fileB.txt | uniq)
 
 !!! info "🔓 Unlock Room 07"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_07/README -out ../room_07/README.txt -pass pass:PASSWORD
-    cat ../room_07/README
+    next <PASSWORD>
     ```

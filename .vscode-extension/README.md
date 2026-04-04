@@ -1,37 +1,29 @@
-# Bash Escape Room - VS Code Extension
+# Bash Escape Room — VS Code Extension
+
+> If you find this useful, please ⭐ **[star the repo on GitHub](https://github.com/nirgeier/Bash-EscapeRoom)** — it helps others discover it!
 
 > Learn Bash by solving **57 escape-room puzzles** right inside VS Code.
-> No Docker. No browser. No workspace setup. Just install and start hacking.
+> No Docker. No setup. Just install and start hacking.
 
----
-
-![Overview](https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/overview.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/overview.png" width="900" alt="Overview"/>
+</p>
 
 ---
 
 ## What You Get
 
-- **Sidebar panel** - room list with titles, progress bar, navigation controls, auto-save
-- **Lesson panel** - styled room card with tasks, hints, and command examples
-- **Integrated terminal** - bash shell pre-loaded with `next`, `room`, `progress` commands
-- **57 rooms** - fully bundled, no repo clone needed
+- **Sidebar panel** — room list, progress bar, navigation controls, auto-save
+- **Lesson panel** — styled room card with mission brief, numbered tasks, and hints
+- **Integrated terminal** — bash shell pre-loaded with `next`, `room`, `progress` commands
+- **57 rooms** — fully bundled, no repo clone needed
 
 ---
 
 ## Installation
 
-### From VS Code Marketplace
-
-1. Press `Cmd+Shift+X` → search **Bash Escape Room** → **Install**
-2. Click the 🏃 icon in the Activity Bar
-
-### From VSIX
-
-```bash
-code --install-extension bash-escape-room-0.6.28.vsix
-```
-
-Or: `Cmd+Shift+P` → **Extensions: Install from VSIX...** → select the file → Reload.
+1. Press `Ctrl+Shift+X` (or `Cmd+Shift+X` on Mac) → search **Bash Escape Room** → **Install**
+2. Click the 🏃 icon in the Activity Bar to open the panel
 
 ---
 
@@ -41,15 +33,16 @@ Or: `Cmd+Shift+P` → **Extensions: Install from VSIX...** → select the file �
 
 Click the **🏃 icon** in the Activity Bar (left edge of VS Code).
 
-![Sidebar](https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/sidebar.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/sidebar.png" width="320" alt="Sidebar panel"/>
+</p>
 
 The sidebar shows:
-
 - Status dot (stopped / starting / running)
 - **▶ Launch** and **■ Stop** buttons
 - **⬛ Terminal** and **📖 Open Room** quick links
 - Room navigator `‹ 01 / 57 ›` with a progress bar
-- Full room list - click any room to jump directly
+- Full room list — click any room to jump directly
 
 ---
 
@@ -57,7 +50,9 @@ The sidebar shows:
 
 Click **▶ Launch** in the sidebar.
 
-![Launch button](https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/launch.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/launch.png" width="600" alt="Launch button"/>
+</p>
 
 The embedded server starts and **Room 01** opens automatically in the lesson panel.
 
@@ -67,10 +62,11 @@ The embedded server starts and **Room 01** opens automatically in the lesson pan
 
 The lesson panel shows everything you need to solve the room.
 
-![Lesson panel](https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/lesson-panel.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/lesson-panel.png" width="900" alt="Lesson panel"/>
+</p>
 
-- **Left column** - room title, section tag, ASCII art visual
-- **Right column** - mission brief, numbered tasks, hints, command examples
+Each room includes a mission brief, numbered tasks, hints, and command examples.
 
 ---
 
@@ -78,18 +74,22 @@ The lesson panel shows everything you need to solve the room.
 
 Click **⬛ Terminal** in the sidebar.
 
-![Terminal button](https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/terminal-button.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/terminal-button.png" width="600" alt="Terminal button"/>
+</p>
 
-A bash shell opens **inside the current room's directory**, with these commands available immediately:
+A bash shell opens **inside the current room's directory**, with these commands available:
 
-| Command    | Description                    |
-| ---------- | ------------------------------ |
-| `next`     | Move to the next room          |
-| `room <N>` | Jump directly to room N        |
-| `progress` | Show saved progress            |
-| `resume`   | Return to your last saved room |
+| Command      | Description                    |
+| ------------ | ------------------------------ |
+| `next`       | Move to the next room          |
+| `room <N>`   | Jump directly to room N        |
+| `progress`   | Show saved progress            |
+| `resume`     | Return to your last saved room |
 
-![Terminal](https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/terminal.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/terminal.png" width="700" alt="Terminal"/>
+</p>
 
 ---
 
@@ -97,7 +97,9 @@ A bash shell opens **inside the current room's directory**, with these commands 
 
 Work through the **Tasks** shown in the lesson panel.
 
-![Tasks](https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/tasks.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/tasks.png" width="900" alt="Tasks"/>
+</p>
 
 Once you find the password, run in the terminal:
 
@@ -105,23 +107,22 @@ Once you find the password, run in the terminal:
 next
 ```
 
-Or jump to any room:
+Or jump to any room directly:
 
 ```bash
 room 14
 ```
 
-The sidebar updates automatically and the next lesson opens.
-
 ---
 
 ### 6. Track Progress
 
-![Room list with checkmarks](https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/rooms-list.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nirgeier/Bash-EscapeRoom/main/.vscode-extension/media/screenshots/rooms-list.png" width="320" alt="Room list with checkmarks"/>
+</p>
 
 - Completed rooms show a **green checkmark** in the sidebar list
 - Progress is **saved automatically** on every room switch
-- The timestamp below the progress bar shows when it was last saved
 - On next VS Code launch the extension **resumes from your last room**
 
 ---
@@ -144,10 +145,10 @@ The sidebar updates automatically and the next lesson opens.
 
 ## Commands
 
-`Cmd+Shift+P`:
+`Ctrl+Shift+P` / `Cmd+Shift+P`:
 
-| Command                                 | Description                      |
-| --------------------------------------- | -------------------------------- |
+| Command                                 | Description                    |
+| --------------------------------------- | ------------------------------ |
 | `Bash Escape Room: Launch`              | Start the server and open Room 1 |
 | `Bash Escape Room: Stop`                | Stop the server                  |
 | `Bash Escape Room: Open Terminal Panel` | Open the bash terminal           |
@@ -159,10 +160,9 @@ The sidebar updates automatically and the next lesson opens.
 
 `Settings → Extensions → Bash Escape Room`:
 
-| Setting                   | Default | Description                             |
-| ------------------------- | ------- | --------------------------------------- |
-| `bashEscapeRoom.port`     | `3000`  | Port the embedded server listens on     |
-| `bashEscapeRoom.autoOpen` | `true`  | Auto-open terminal when server is ready |
+| Setting               | Default | Description                         |
+| --------------------- | ------- | ----------------------------------- |
+| `bashEscapeRoom.port` | `3000`  | Port the embedded server listens on |
 
 ---
 
@@ -170,11 +170,10 @@ The sidebar updates automatically and the next lesson opens.
 
 | Requirement   | Notes                                               |
 | ------------- | --------------------------------------------------- |
-| VS Code 1.85+ | Any platform                                        |
-| Node.js 18+   | Must be in PATH                                     |
+| VS Code 1.85+ | Any platform — Windows, macOS, Linux                |
 | `bash`        | macOS/Linux built-in; Windows needs WSL or Git Bash |
 
-> All 57 rooms are bundled inside the extension - no Docker, no repo clone needed.
+> All 57 rooms are bundled inside the extension — no Docker, no repo clone needed.
 
 ---
 
@@ -188,20 +187,6 @@ The sidebar updates automatically and the next lesson opens.
 
 **Port 3000 in use**
 → Change `bashEscapeRoom.port` in Settings (e.g. `3001`).
-
-**node-pty error on first install**
-→ `npm install` inside `.vscode-extension/`, then reinstall the VSIX.
-
----
-
-## Build from Source
-
-```bash
-git clone https://github.com/nirgeier/Bash-EscapeRoom
-cd Bash-EscapeRoom/.vscode-extension
-npm install
-./reinstall.sh    # builds, packages, and installs in VS Code Insiders
-```
 
 ---
 

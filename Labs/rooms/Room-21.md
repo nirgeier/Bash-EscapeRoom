@@ -85,10 +85,8 @@ xxd binary | grep "pass"              # search hex dump for "pass" in ASCII
 
 !!! info "🔓 Unlock Room 22"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_22/README -out ../room_22/README.txt -pass pass:PASSWORD
-    cat ../room_22/README.txt
+    next <PASSWORD>
     ```

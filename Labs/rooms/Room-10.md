@@ -115,10 +115,8 @@ silver,30,22,B2
 
 !!! info "🔓 Unlock Room 11"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_11/README -out ../room_11/README.txt -pass pass:PASSWORD
-    cat ../room_11/README
+    next <PASSWORD>
     ```

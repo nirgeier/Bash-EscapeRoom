@@ -121,10 +121,8 @@ vmstat -s | grep "total memory"    # total memory in kB
 
 !!! info "🔓 Unlock Room 55"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_55/README -out ../room_55/README.txt -pass pass:PASSWORD
-    cat ../room_55/README.txt
+    next <PASSWORD>
     ```

@@ -108,10 +108,8 @@ curl -s http://host/file.txt           # curl equivalent
 
 !!! info "🔓 Unlock Room 54"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_54/README -out ../room_54/README.txt -pass pass:PASSWORD
-    cat ../room_54/README.txt
+    next <PASSWORD>
     ```

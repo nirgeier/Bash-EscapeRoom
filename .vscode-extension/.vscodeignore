@@ -9,23 +9,13 @@ out/**/*.map
 test/**
 bash-escape-room-*.vsix
 
-# Exclude all tsc-compiled files except the esbuild bundle entry (extension.js)
+# Exclude all tsc-compiled files (only esbuild bundle out/extension.js is needed)
 out/RoomPanel.js
 out/ControlPanel.js
 out/server.js
 out/docker.js
 
-# Bundle everything except node-pty (native binary)
-node_modules/!(node-pty)/**
-
-# Keep only node-pty's JS + mac prebuilt - strip linux/win prebuilds
-node_modules/node-pty/src/**
-node_modules/node-pty/deps/**
-node_modules/node-pty/scripts/**
-node_modules/node-pty/prebuilds/linux-x64/**
-node_modules/node-pty/prebuilds/linux-arm64/**
-node_modules/node-pty/prebuilds/win32-x64/**
-node_modules/node-pty/prebuilds/win32-arm64/**
-node_modules/node-pty/third_party/**
+# All dependencies are bundled by esbuild - no node_modules needed in VSIX
+node_modules/**
 
 # content/, docs/, public/ are INCLUDED (bundled escape room content)

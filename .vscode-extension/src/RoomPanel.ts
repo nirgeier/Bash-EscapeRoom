@@ -13,6 +13,8 @@ interface RoomInfo {
   commands: string[];
   hint: string; // legacy compat
   raw: string;
+  summary: string;
+  labsRaw: string;
 }
 
 
@@ -217,6 +219,8 @@ export class RoomPanel {
       commands: entry.commands ?? [],
       hint: (entry.hints ?? [])[0] ?? '',
       raw: entry.raw ?? '',
+      summary: entry.summary ?? '',
+      labsRaw: entry.labsRaw ?? '',
     };
   }
 
@@ -303,12 +307,13 @@ export class RoomPanel {
     return count > 0 ? count : 56;
   }
 
-  // ── LESSON PANEL HTML (mirrors ) ───────────────────────
+  // ── LESSON PANEL HTML (mirrors MkDocs layout) ────────────────────────────
 
   private _lessonHtml(info: RoomInfo): string {
     const nonce = getNonce();
     const roomNum = String(info.number).padStart(2, '0');
-    const readmeHtml = readmeToHtml(info.raw);
+    // Use Labs markdown for rich rendering; fall back to raw README
+    const bodyHtml = labsMdToHtml(info.labsRaw || info.raw);
 
     return /* html */`<!DOCTYPE html>
 <html lang="en">
@@ -318,20 +323,20 @@ export class RoomPanel {
     content="default-src 'none'; style-src 'unsafe-inline'; script-src 'nonce-${nonce}';"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <style>
-    /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #000000; /* Override with pure black for better contrast */
+      --bg:      #0d0e16;
       --panel:   #12122a;
-      --border:  #1e1e3f;
+      --border:  #1e2040;
       --accent:  #e94560;
       --green:   #1abc9c;
       --yellow:  #f0c040;
-      --purple:  #c792ea;
       --blue:    #89b4fa;
+      --purple:  #c792ea;
       --text:    #c8d0e0;
       --muted:   #5a6380;
+      --r:       8px;
     }
 
     html, body {
@@ -339,323 +344,242 @@ export class RoomPanel {
       background: var(--bg);
       color: var(--text);
       font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* ── Layout: top nav + two-column content ── */
-    .layout {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-
-    /* ── Top nav bar ── */
+    /* ── Topbar ── */
     .topbar {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 20px;
-      background: #0a0a1f;
+      position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 20px;
+      background: #090910;
       border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
     }
-    .topbar-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      margin-right: auto;
-    }
-    .topbar-room {
-      font-size: 11px;
-      color: var(--muted);
-      font-family: monospace;
-    }
+    .topbar-title { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: .05em; margin-right: auto; }
+    .topbar-room  { font-size: 11px; color: var(--muted); font-family: monospace; }
     .nav-btn {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 4px 12px;
-      border-radius: 4px;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all .15s;
+      background: var(--panel); border: 1px solid var(--border);
+      color: var(--text); padding: 4px 14px;
+      border-radius: 4px; font-size: 12px; cursor: pointer; transition: all .15s;
     }
     .nav-btn:hover { background: var(--border); color: #fff; }
-    .btn-action {
-      background: var(--accent);
-      border: none;
-      color: #fff;
-      padding: 4px 14px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: filter .15s;
-    }
-    .btn-action:hover { filter: brightness(1.15); }
-    .btn-docs {
-      background: transparent;
-      border: 1px solid var(--green);
-      color: var(--green);
-      padding: 4px 12px;
-      border-radius: 4px;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all .15s;
-    }
-    .btn-docs:hover { background: rgba(26,188,156,.15); }
 
-    /* ── Main content ── */
-    .main {
-      display: flex;
-      flex: 1;
-      overflow: hidden;
-    }
+    /* ── Page body ── */
+    .page { max-width: 860px; margin: 0 auto; padding: 32px 28px 60px; }
 
-    /* ── LEFT: big visual card () ── */
-    .visual-col {
-      width: 30%;
-      min-width: 220px;
-      background: var(--panel);
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 32px 24px;
-      gap: 20px;
-      overflow-y: auto;
+    /* ── Room hero ── */
+    .room-hero {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+      padding: 28px 28px 22px;
+      background: linear-gradient(135deg, #0d0e20 0%, #12122a 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      margin-bottom: 24px;
+      position: relative; overflow: hidden;
     }
-
+    .room-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(233,69,96,.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
     .room-badge {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      border-radius: 20px;
-      padding: 3px 12px;
+      display: inline-block;
+      font-size: 10px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--accent);
+      border: 1px solid var(--accent); border-radius: 20px;
+      padding: 2px 10px;
     }
-
-    /* Big room title  */
-    .room-title {
-      font-size: clamp(22px, 3.5vw, 40px);
-      font-weight: 900;
-      text-transform: uppercase;
-      text-align: center;
-      line-height: 1.15;
-      letter-spacing: .04em;
+    .room-hero-title {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 900; text-transform: uppercase;
+      line-height: 1.1; letter-spacing: .03em;
       color: var(--text);
     }
-    .room-title .hl-accent { color: var(--accent); }
-    .room-title .hl-green  { color: var(--green); }
-
-    .section-tag {
-      font-size: 11px;
-      color: var(--green);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      font-weight: 600;
+    .room-hero-title .accent { color: var(--accent); }
+    .room-hero-section {
+      font-size: 11px; color: var(--green);
+      letter-spacing: .08em; text-transform: uppercase; font-weight: 600;
+      margin-top: 4px;
     }
 
-    /* ASCII art block */
-    .nav-prompt {
-      font-family: monospace;
-      font-size: 13px;
-      color: var(--green);
-      background: rgba(26,188,156,.08);
-      border: 1px solid rgba(26,188,156,.2);
-      border-radius: 6px;
-      padding: 10px 16px;
-      text-align: center;
-      width: 100%;
-    }
-    .nav-prompt kbd {
-      display: inline-block;
-      background: rgba(26,188,156,.2);
-      color: var(--green);
-      border-radius: 3px;
-      padding: 1px 6px;
-      font-family: monospace;
-      font-size: 12px;
-    }
+    /* ── Divider ── */
+    hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
 
-    /* ── RIGHT: full README content ── */
-    .content-col {
-      flex: 1;
-      overflow-y: auto;
-      padding: 32px 36px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    /* Rendered README markdown */
-    .readme-body { display: flex; flex-direction: column; gap: 14px; flex: 1; }
-
-    .readme-body h2 {
-      font-size: 13px; font-weight: 700; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--muted);
-      padding-bottom: 4px; border-bottom: 1px solid var(--border);
-      margin-top: 8px;
-    }
-    .readme-body h3 { font-size: 13px; font-weight: 700; color: var(--green); margin-top: 4px; }
-
-    .readme-body p { font-size: 14px; line-height: 1.75; color: var(--text); }
-    .readme-body p strong { color: var(--yellow); }
-
-    .readme-body code {
-      font-family: 'Cascadia Code','Fira Code',monospace;
-      font-size: 12px;
-      background: rgba(137,180,250,.12);
-      color: var(--blue);
-      border-radius: 3px;
-      padding: 1px 5px;
-    }
-    .readme-body pre {
-      background: rgba(137,180,250,.06);
+    /* ── Summary block ── */
+    .summary {
+      background: rgba(137,180,250,.05);
       border: 1px solid rgba(137,180,250,.15);
-      border-radius: 6px;
-      padding: 12px 16px;
-      overflow-x: auto;
+      border-left: 3px solid var(--blue);
+      border-radius: 0 var(--r) var(--r) 0;
+      padding: 14px 18px;
+      margin-bottom: 20px;
     }
-    .readme-body pre code {
-      background: none; padding: 0;
-      font-size: 13px; color: var(--green);
+    .summary p { color: var(--text); font-size: 14px; line-height: 1.7; }
+    .summary ul { padding-left: 18px; display: flex; flex-direction: column; gap: 5px; margin-top: 8px; }
+    .summary ul li { font-size: 13px; color: var(--text); }
+    .summary ul li strong { color: var(--yellow); }
+    .summary ul li code { font-family: monospace; font-size: 12px; background: rgba(137,180,250,.12); color: var(--blue); border-radius: 3px; padding: 1px 4px; }
+
+    /* ── Section headings (h3) ── */
+    h3 {
+      font-size: 14px; font-weight: 700;
+      color: var(--green); letter-spacing: .04em;
+      text-transform: uppercase;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+      margin: 24px 0 12px;
     }
 
-    /* Numbered task items (## Tasks section) */
-    .readme-body ol { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; counter-reset: task-counter; }
-    .readme-body ol > li {
-      display: flex; gap: 12px; align-items: flex-start;
+    /* ── Tasks (ol.tasks) ── */
+    ol.tasks {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 10px;
+      counter-reset: task-counter;
+    }
+    ol.tasks > li {
+      position: relative;
+      display: block;
       background: rgba(255,255,255,.03);
-      border: 1px solid var(--border); border-radius: 6px;
-      padding: 10px 14px; counter-increment: task-counter;
+      border: 1px solid var(--border); border-radius: var(--r);
+      padding: 10px 16px 10px 52px; counter-increment: task-counter;
+      font-size: 13px; line-height: 1.7;
       transition: border-color .2s;
     }
-    .readme-body ol > li:hover { border-color: var(--accent); }
-    .readme-body ol > li::before {
+    ol.tasks > li:hover { border-color: var(--accent); }
+    ol.tasks > li::before {
       content: counter(task-counter);
-      width: 22px; height: 22px; min-width: 22px; border-radius: 50%;
+      position: absolute; left: 14px; top: 10px;
+      width: 24px; height: 24px; border-radius: 50%;
       background: var(--accent); color: #fff;
       font-size: 11px; font-weight: 700;
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; margin-top: 1px;
     }
+    ol.tasks li strong { color: var(--yellow); }
+    ol.tasks li code  { font-family: monospace; font-size: 12px; background: rgba(137,180,250,.12); color: var(--blue); border-radius: 3px; padding: 1px 5px; white-space: pre-wrap; word-break: break-word; }
 
-    /* Unordered list (bullets) */
-    .readme-body ul { padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
-    .readme-body ul li { font-size: 13px; line-height: 1.6; color: var(--text); }
-
-    /* Hint lines (>> prefix) */
-    .readme-hint {
-      font-size: 12px; line-height: 1.6; color: #fffafa;
-      background: rgba(240,192,64,.05);
-      border-left: 3px solid var(--yellow);
-      border-radius: 0 6px 6px 0;
-      padding: 8px 14px;
-    }
-    .readme-hint::before {
-      content: "HINT";
-      display: inline-block;
-      font-size: 10px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: .08em;
-      color: var(--yellow); margin-right: 6px;
-    }
-
-    /* Markdown table */
-    .readme-body table { border-collapse: collapse; width: 100%; font-size: 13px; }
-    .readme-body th {
+    /* ── Key commands table ── */
+    table { border-collapse: collapse; width: 100%; font-size: 13px; margin-bottom: 8px; }
+    th {
       background: var(--panel); color: var(--accent);
-      font-weight: 700; padding: 6px 12px;
+      font-weight: 700; padding: 8px 12px;
       border: 1px solid var(--border); text-align: left;
+      font-size: 12px; text-transform: uppercase; letter-spacing: .05em;
     }
-    .readme-body td {
-      padding: 6px 12px; border: 1px solid var(--border);
-      color: var(--text); font-family: monospace;
+    td { padding: 7px 12px; border: 1px solid var(--border); color: var(--text); }
+    td:first-child { font-family: monospace; font-size: 12px; color: var(--blue); }
+    tr:nth-child(even) td { background: rgba(255,255,255,.02); }
+
+    /* ── Code blocks ── */
+    pre {
+      background: #0a0b14;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 16px 18px;
+      overflow-x: auto;
+      margin: 8px 0;
     }
-    .readme-body tr:nth-child(even) td { background: rgba(255,255,255,.02); }
+    pre code { font-family: 'Cascadia Code','Fira Code','Consolas',monospace; font-size: 12.5px; color: var(--green); background: none; padding: 0; }
+    code { font-family: monospace; font-size: 12px; background: rgba(137,180,250,.12); color: var(--blue); border-radius: 3px; padding: 1px 5px; }
 
-    /* Horizontal rule */
-    .readme-body hr { border: none; border-top: 1px solid var(--border); margin: 4px 0; }
+    /* ── Inline content ── */
+    p { font-size: 14px; line-height: 1.7; margin: 6px 0; }
+    p strong { color: var(--yellow); }
+    ul { padding-left: 20px; display: flex; flex-direction: column; gap: 5px; }
+    ul li { font-size: 13px; line-height: 1.6; }
+    ul li strong { color: var(--yellow); }
+    ul li code { font-family: monospace; font-size: 12px; background: rgba(137,180,250,.12); color: var(--blue); border-radius: 3px; padding: 1px 4px; }
 
-    /* ">> To move..." nav hint - styled differently */
-    .readme-nav {
-      font-size: 13px; color: var(--green);
-      background: rgba(26,188,156,.06);
-      border: 1px solid rgba(26,188,156,.2);
-      border-radius: 6px; padding: 10px 16px;
-      font-family: monospace;
+    /* ── Hints block ── */
+    .hints {
+      background: rgba(240,192,64,.04);
+      border: 1px solid rgba(240,192,64,.2);
+      border-radius: var(--r);
+      padding: 14px 18px;
+      display: flex; flex-direction: column; gap: 10px;
     }
+    .hint-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 13px; line-height: 1.6;
+    }
+    .hint-badge {
+      display: inline-block;
+      font-size: 9px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--yellow);
+      background: rgba(240,192,64,.12);
+      border: 1px solid rgba(240,192,64,.25);
+      border-radius: 4px; padding: 2px 6px;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .hint-item code { font-family: monospace; font-size: 12px; background: rgba(137,180,250,.12); color: var(--blue); border-radius: 3px; padding: 1px 4px; }
 
-    /* Next room CTA */
+    /* ── Info admonition (unlock next room) ── */
+    .admonition-info {
+      background: rgba(26,188,156,.05);
+      border: 1px solid rgba(26,188,156,.25);
+      border-left: 4px solid var(--green);
+      border-radius: 0 var(--r) var(--r) 0;
+      padding: 14px 18px;
+      margin-top: 8px;
+    }
+    .admonition-title {
+      font-size: 12px; font-weight: 700; color: var(--green);
+      letter-spacing: .05em; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .admonition-info pre { background: rgba(0,0,0,.3); border-color: rgba(26,188,156,.2); }
+    .admonition-info pre code { color: var(--green); }
+
+    /* ── Danger admonition (sudo) ── */
+    .admonition-danger {
+      background: rgba(233,69,96,.05);
+      border: 1px solid rgba(233,69,96,.25);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 var(--r) var(--r) 0;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+    }
+    .admonition-danger .admonition-title { color: var(--accent); }
+    .admonition-danger ul { margin-top: 6px; }
+    .admonition-danger li { font-size: 13px; }
+    .admonition-danger li code { font-family: monospace; font-size: 12px; background: rgba(233,69,96,.12); color: var(--accent); border-radius: 3px; padding: 1px 4px; }
+
+    /* ── Next room nav ── */
     .next-room {
-      margin-top: auto;
-      padding-top: 16px;
+      margin-top: 32px; padding-top: 16px;
       border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
     }
-    .next-room-text {
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .next-room-text code {
-      font-family: monospace;
-      color: var(--green);
-      font-size: 12px;
-    }
+    .next-hint { font-size: 12px; color: var(--muted); font-family: monospace; }
+    .next-hint code { color: var(--green); }
 
-    /* Scrollbar */
+    /* ── Scrollbar ── */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
   </style>
 </head>
 <body>
-<div class="layout">
 
-  <!-- Top nav bar -->
+  <!-- Sticky topbar -->
   <div class="topbar">
     <span class="topbar-title">🏃 Bash Escape Room</span>
-    <span class="topbar-room">room_${roomNum} / 56</span>
+    <span class="topbar-room">room_${roomNum}</span>
     <button class="nav-btn" id="btn-prev">← Prev</button>
     <button class="nav-btn" id="btn-next">Next →</button>
   </div>
 
-  <!-- Main split -->
-  <div class="main">
+  <!-- Single-column page -->
+  <div class="page">
+    ${bodyHtml}
 
-    <!-- LEFT: visual card -->
-    <div class="visual-col">
-      <div class="room-badge">Room ${roomNum}</div>
-
-      <div class="room-title">
-        ${formatTitle(info.title)}
-      </div>
-
-      <div class="section-tag">📂 ${escHtml(info.section)}</div>
-
-      <div class="nav-prompt">
-        To advance: <kbd>next</kbd><br/>
-        Jump to room: <kbd>room &lt;N&gt;</kbd>
-      </div>
+    <!-- Footer nav -->
+    <div class="next-room">
+      <span class="next-hint">In terminal: <code>next</code> to advance · <code>room &lt;N&gt;</code> to jump</span>
+      <button class="nav-btn" id="btn-next-room">Next Room →</button>
     </div>
-
-    <!-- RIGHT: full README content -->
-    <div class="content-col">
-      <div class="readme-body">${readmeHtml}</div>
-      <div class="next-room">
-        <button class="nav-btn" id="btn-next-room">Next Room →</button>
-      </div>
-    </div>
-
   </div>
-</div>
 
 <script nonce="${nonce}">
   const vscode = acquireVsCodeApi();
@@ -932,6 +856,316 @@ function getNonce(): string {
 
 function escHtml(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/**
+ * Convert Labs/rooms/Room-NN.md (MkDocs markdown) to extension HTML.
+ * Mirrors the MkDocs page layout: room-hero, summary, h3 title, tasks, table, code, hints, unlock.
+ */
+function labsMdToHtml(md: string): string {
+  if (!md) { return '<p>No content available.</p>'; }
+
+  const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  const inline = (s: string): string => {
+    s = esc(s);
+    s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+    s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    return s;
+  };
+
+  // Strip YAML frontmatter
+  let body = md.replace(/^---[\s\S]*?---\n?/, '');
+
+  // Strip GitHub badge lines
+  body = body.replace(/^\[!\[.*?\]\(.*?\)\]\(.*?\)\n?/gm, '');
+
+  const lines = body.split('\n');
+  const out: string[] = [];
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+    const trimmed = line.trim();
+
+    // Skip blank lines (handled contextually)
+    if (!trimmed) { i++; continue; }
+
+    // ── room-hero div (pass-through as styled block) ──────────────────────
+    if (trimmed === '<div class="room-hero">') {
+      let badge = '', accent = '', main = '';
+      i++;
+      while (i < lines.length && lines[i].trim() !== '</div>') {
+        const t = lines[i].trim();
+        const badgeM = t.match(/class="room-badge"[^>]*>([^<]+)</);
+        const accentM = t.match(/class="room-title-accent"[^>]*>([^<]+)</);
+        const mainM = t.match(/class="room-title-main"[^>]*>([^<]+)</);
+        if (badgeM) { badge = badgeM[1]; }
+        if (accentM) { accent = accentM[1]; }
+        if (mainM) { main = mainM[1]; }
+        i++;
+      }
+      i++; // skip </div>
+      out.push(`<div class="room-hero">
+  <div class="room-badge">${esc(badge)}</div>
+  <div class="room-hero-title"><span class="accent">${esc(accent)}</span> ${esc(main)}</div>
+</div>`);
+      continue;
+    }
+
+    // ── summary div ───────────────────────────────────────────────────────
+    if (trimmed === '<div class="summary" markdown="1">') {
+      const summaryLines: string[] = [];
+      i++;
+      while (i < lines.length && lines[i].trim() !== '</div>') {
+        summaryLines.push(lines[i]);
+        i++;
+      }
+      i++; // skip </div>
+      const summaryHtml = renderInlineBlock(summaryLines, inline);
+      out.push(`<div class="summary">${summaryHtml}</div>`);
+      continue;
+    }
+
+    // ── hints div ─────────────────────────────────────────────────────────
+    if (trimmed === '<div class="hints" markdown="1">') {
+      const hintLines: string[] = [];
+      i++;
+      while (i < lines.length && lines[i].trim() !== '</div>') {
+        hintLines.push(lines[i]);
+        i++;
+      }
+      i++; // skip </div>
+      const hintItems = hintLines
+        .filter(l => l.trim().startsWith('>'))
+        .map(l => l.trim().replace(/^>\s*/, '').trim())
+        .filter(l => l.length > 0);
+      if (hintItems.length > 0) {
+        out.push('<div class="hints">');
+        for (const h of hintItems) {
+          out.push(`<div class="hint-item"><span class="hint-badge">Hint</span><span>${inline(h)}</span></div>`);
+        }
+        out.push('</div>');
+      }
+      continue;
+    }
+
+    // ── !!! info admonition ───────────────────────────────────────────────
+    if (trimmed.startsWith('!!! info')) {
+      const titleM = trimmed.match(/!!! info\s+"([^"]+)"/);
+      const admonTitle = titleM ? titleM[1] : 'Info';
+      const admonLines: string[] = [];
+      i++;
+      // Collect indented lines (4 spaces)
+      while (i < lines.length && (lines[i].startsWith('    ') || lines[i].trim() === '')) {
+        admonLines.push(lines[i].startsWith('    ') ? lines[i].slice(4) : lines[i]);
+        i++;
+      }
+      const admonHtml = renderCodeBlock(admonLines);
+      out.push(`<div class="admonition-info"><div class="admonition-title">${esc(admonTitle)}</div>${admonHtml}</div>`);
+      continue;
+    }
+
+    // ── !!! danger admonition ─────────────────────────────────────────────
+    if (trimmed.startsWith('!!! danger')) {
+      const titleM = trimmed.match(/!!! danger\s+"([^"]+)"/);
+      const admonTitle = titleM ? titleM[1] : 'Warning';
+      const admonLines: string[] = [];
+      i++;
+      while (i < lines.length && (lines[i].startsWith('    ') || lines[i].trim() === '')) {
+        admonLines.push(lines[i].startsWith('    ') ? lines[i].slice(4) : lines[i]);
+        i++;
+      }
+      // Render as bullet list
+      const bullets = admonLines.filter(l => l.trim().startsWith('*') || l.trim().startsWith('-'));
+      const bulletHtml = bullets.length > 0
+        ? '<ul>' + bullets.map(l => `<li>${inline(l.trim().replace(/^[*-]\s*/, ''))}</li>`).join('') + '</ul>'
+        : admonLines.filter(l => l.trim()).map(l => `<p>${inline(l.trim())}</p>`).join('');
+      out.push(`<div class="admonition-danger"><div class="admonition-title">${esc(admonTitle)}</div>${bulletHtml}</div>`);
+      continue;
+    }
+
+    // ── <ol class="tasks"> ────────────────────────────────────────────────
+    if (trimmed === '<ol class="tasks">') {
+      out.push('<ol class="tasks">');
+      i++;
+      while (i < lines.length && lines[i].trim() !== '</ol>') {
+        const lt = lines[i].trim();
+        if (lt.startsWith('<li>') && lt.endsWith('</li>')) {
+          const content = lt.slice(4, -5);
+          // Already has HTML tags — just pass through with inline escaping skipped
+          out.push(`<li>${content}</li>`);
+        } else if (lt.startsWith('<li>')) {
+          // Multi-line li
+          const liLines = [lt];
+          i++;
+          while (i < lines.length && !lines[i].trim().endsWith('</li>') && lines[i].trim() !== '</ol>') {
+            liLines.push(lines[i].trim());
+            i++;
+          }
+          if (i < lines.length && lines[i].trim().endsWith('</li>')) {
+            liLines.push(lines[i].trim());
+          }
+          out.push(`<li>${liLines.join(' ').replace(/^<li>/, '').replace(/<\/li>$/, '')}</li>`);
+        }
+        i++;
+      }
+      out.push('</ol>');
+      i++; // skip </ol>
+      continue;
+    }
+
+    // ── h3 headings ───────────────────────────────────────────────────────
+    if (trimmed.startsWith('### ')) {
+      out.push(`<h3>${inline(trimmed.slice(4))}</h3>`);
+      i++;
+      continue;
+    }
+
+    // ── h2 headings (treat same as h3) ───────────────────────────────────
+    if (trimmed.startsWith('## ')) {
+      out.push(`<h3>${inline(trimmed.slice(3))}</h3>`);
+      i++;
+      continue;
+    }
+
+    // ── Horizontal rule ───────────────────────────────────────────────────
+    if (/^-{3,}$/.test(trimmed)) {
+      out.push('<hr>');
+      i++;
+      continue;
+    }
+
+    // ── Code fence (```...```) ────────────────────────────────────────────
+    if (trimmed.startsWith('```')) {
+      const codeLines: string[] = [];
+      i++;
+      while (i < lines.length && !lines[i].trim().startsWith('```')) {
+        codeLines.push(lines[i]);
+        i++;
+      }
+      i++; // skip closing ```
+      out.push(`<pre><code>${esc(codeLines.join('\n'))}</code></pre>`);
+      continue;
+    }
+
+    // ── Table ─────────────────────────────────────────────────────────────
+    if (trimmed.startsWith('|')) {
+      out.push('<table>');
+      let headerDone = false;
+      while (i < lines.length && lines[i].trim().startsWith('|')) {
+        const row = lines[i].trim();
+        if (/^\|[-| :]+\|$/.test(row)) {
+          if (!headerDone) { out.push('<tbody>'); headerDone = true; }
+          i++;
+          continue;
+        }
+        const cells = row.split('|').slice(1, -1).map(c => c.trim());
+        if (!headerDone) {
+          out.push('<thead><tr>' + cells.map(c => `<th>${inline(c)}</th>`).join('') + '</tr></thead>');
+        } else {
+          out.push('<tr>' + cells.map(c => `<td>${inline(c)}</td>`).join('') + '</tr>');
+        }
+        i++;
+      }
+      out.push('</tbody></table>');
+      continue;
+    }
+
+    // ── Bullet list ───────────────────────────────────────────────────────
+    if (/^[-*]\s/.test(trimmed)) {
+      out.push('<ul>');
+      while (i < lines.length && /^[-*]\s/.test(lines[i].trim())) {
+        out.push(`<li>${inline(lines[i].trim().replace(/^[-*]\s*/, ''))}</li>`);
+        i++;
+      }
+      out.push('</ul>');
+      continue;
+    }
+
+    // ── Numbered list ─────────────────────────────────────────────────────
+    if (/^\d+\.\s/.test(trimmed)) {
+      out.push('<ol>');
+      while (i < lines.length && /^\d+\.\s/.test(lines[i].trim())) {
+        out.push(`<li>${inline(lines[i].trim().replace(/^\d+\.\s*/, ''))}</li>`);
+        i++;
+      }
+      out.push('</ol>');
+      continue;
+    }
+
+    // ── Blockquote (>) ────────────────────────────────────────────────────
+    if (trimmed.startsWith('>')) {
+      // Skip standalone blockquotes (hints are in the hints div)
+      i++;
+      continue;
+    }
+
+    // ── Bold standalone lines (action title fallback) ─────────────────────
+    if (/^\*\*[A-Z]/.test(trimmed) && trimmed.endsWith('**')) {
+      out.push(`<h3>${inline(trimmed.replace(/^\*\*/, '').replace(/\*\*$/, ''))}</h3>`);
+      i++;
+      continue;
+    }
+
+    // ── Paragraph ─────────────────────────────────────────────────────────
+    if (trimmed && !trimmed.startsWith('<')) {
+      out.push(`<p>${inline(trimmed)}</p>`);
+      i++;
+      continue;
+    }
+
+    // Skip unknown HTML tags
+    i++;
+  }
+
+  return out.join('\n');
+}
+
+/** Render a block of lines as mixed content (paragraphs + bullets) */
+function renderInlineBlock(lines: string[], inline: (s: string) => string): string {
+  const out: string[] = [];
+  let inUl = false;
+  for (const line of lines) {
+    const t = line.trim();
+    if (!t) { if (inUl) { out.push('</ul>'); inUl = false; } continue; }
+    if (/^[-*]\s/.test(t)) {
+      if (!inUl) { out.push('<ul>'); inUl = true; }
+      out.push(`<li>${inline(t.replace(/^[-*]\s*/, ''))}</li>`);
+    } else {
+      if (inUl) { out.push('</ul>'); inUl = false; }
+      out.push(`<p>${inline(t)}</p>`);
+    }
+  }
+  if (inUl) { out.push('</ul>'); }
+  return out.join('');
+}
+
+/** Render indented admonition lines that may contain a code block */
+function renderCodeBlock(lines: string[]): string {
+  const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const out: string[] = [];
+  let i = 0;
+  while (i < lines.length) {
+    const t = lines[i].trim();
+    if (t.startsWith('```')) {
+      const codeLines: string[] = [];
+      i++;
+      while (i < lines.length && !lines[i].trim().startsWith('```')) {
+        codeLines.push(lines[i]);
+        i++;
+      }
+      i++;
+      out.push(`<pre><code>${esc(codeLines.join('\n'))}</code></pre>`);
+    } else if (t) {
+      out.push(`<p>${t}</p>`);
+      i++;
+    } else {
+      i++;
+    }
+  }
+  return out.join('');
 }
 
 /**

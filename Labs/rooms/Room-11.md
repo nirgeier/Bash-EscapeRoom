@@ -101,10 +101,8 @@ file artifact.tar           # "POSIX tar archive"
 
 !!! info "🔓 Unlock Room 12"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_12/README -out ../room_12/README.txt -pass pass:PASSWORD
-    cat ../room_12/README
+    next <PASSWORD>
     ```

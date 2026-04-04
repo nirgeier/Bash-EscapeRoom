@@ -91,10 +91,8 @@ echo "Size in MB: $(( size / 1048576 ))"
 
 !!! info "🔓 Unlock Room 36"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_36/README -out ../room_36/README.txt -pass pass:PASSWORD
-    cat ../room_36/README.txt
+    next <PASSWORD>
     ```

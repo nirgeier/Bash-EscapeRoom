@@ -122,10 +122,8 @@ echo "exit code: $?"
 
     **You are now truly a Bash Master.**
 
-    Use `masterkey` to take the **Exit Exam** if you haven't already:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_99/README -out ../room_99/README.txt -pass pass:masterkey
-    cat ../room_99/README.txt
+    next <PASSWORD>
     ```

@@ -1,27 +1,20 @@
 /**
  * Embedded escape room server - replaces Docker.
  *
- * Spawns a Node.js/express + node-pty server in-process so the extension
- * needs no Docker at all. The server:
- *   - Serves the xterm.js web terminal UI  (public/index.html)
- *   - Serves the MkDocs static site        (/docs/*)
- *   - Exposes a WebSocket terminal         (ws://localhost:<port>)
+ * Lightweight HTTP-only server (no node-pty, no WebSocket).
+ * The terminal is provided by VS Code's built-in createTerminal() API.
+ *
+ * The server:
+ *   - Serves the MkDocs static site  (/docs/*)
  *   - Exposes /config and /health
+ *   - Exposes /room-change  (called by _utils.sh when user types next/room)
  */
 
 import * as http from 'http';
 import * as path from 'path';
 import * as fs from 'fs';
-import * as os from 'os';
-// express and ws are bundled by esbuild into extension.js
-// node-pty is external (native binary) - loaded from node_modules at runtime
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const express = require('express');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const WebSocket = require('ws');
-// node-pty must resolve from the extension's own node_modules
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const pty = require('node-pty');
 
 export interface ServerConfig {
   port: number;
@@ -29,7 +22,7 @@ export interface ServerConfig {
   roomsPath: string;
   /** Absolute path to mkdocs-site/         */
   docsPath: string;
-  /** Absolute path to .escaperoom-framework/public/ */
+  /** Absolute path to .escaperoom-framework/public/ (unused, kept for API compat) */
   publicPath: string;
 }
 
@@ -55,7 +48,6 @@ export class EscapeRoomServer {
     this._log('▶ Starting Bash Escape Room server…');
     this._log(`  rooms  : ${cfg.roomsPath}`);
     this._log(`  docs   : ${cfg.docsPath}`);
-    this._log(`  public : ${cfg.publicPath}`);
     this._setStatus('starting');
 
     try {
@@ -85,7 +77,6 @@ export class EscapeRoomServer {
 
   private _setupRoomPermissions(roomsPath: string): void {
     this._log('  Setting room_07 gate permissions…');
-    // Room 07 - set deliberately wrong gate permissions (mirrors Dockerfile)
     const gates: Record<string, number> = {
       gate_1: 0o000, gate_2: 0o777, gate_3: 0o644,
       gate_4: 0o755, gate_5: 0o000, gate_6: 0o777, gate_7: 0o644,
@@ -99,26 +90,15 @@ export class EscapeRoomServer {
   }
 
   private async _boot(cfg: ServerConfig): Promise<void> {
-    // Apply room permissions that can't be stored in VSIX
     this._setupRoomPermissions(cfg.roomsPath);
 
-    this._log('  Creating HTTP + WebSocket server…');
+    this._log('  Creating HTTP server…');
     const app = express();
-    const server = http.createServer(app);
-    const wss = new WebSocket.Server({ server });
-
-    // ── Static: web terminal UI ──────────────────────────────────────────
-    if (fs.existsSync(cfg.publicPath)) {
-      app.use(express.static(cfg.publicPath));
-      this._log(`  ✓ Terminal UI  → ${cfg.publicPath}`);
-    } else {
-      this._log(`⚠️  public/ not found at ${cfg.publicPath} - using built-in terminal`);
-    }
 
     // ── Static: MkDocs site at /docs ─────────────────────────────────────
     if (fs.existsSync(cfg.docsPath)) {
       app.use('/docs', express.static(cfg.docsPath));
-      this._log(`  ✓ Docs         → ${cfg.docsPath}`);
+      this._log(`  ✓ Docs → ${cfg.docsPath}`);
     } else {
       this._log(`⚠️  mkdocs-site/ not found at ${cfg.docsPath}`);
     }
@@ -138,11 +118,6 @@ export class EscapeRoomServer {
       });
     });
 
-    // ── Fallback terminal UI (when no publicPath) ─────────────────────────
-    app.get('/', (_req: unknown, res: { send: (s: string) => void }) => {
-      res.send(TERMINAL_HTML(cfg.port));
-    });
-
     // ── /health ──────────────────────────────────────────────────────────
     app.get('/health', (_req: unknown, res: { json: (o: unknown) => void }) => {
       res.json({ status: 'ready' });
@@ -156,62 +131,10 @@ export class EscapeRoomServer {
       res.json({ ok: true });
     });
 
-    // ── WebSocket terminal ────────────────────────────────────────────────
-    wss.on('connection', (ws: typeof WebSocket) => {
-      this._log('Terminal client connected');
-
-      // Spawn a bash shell with the escape room environment set up
-      const shell = pty.spawn('bash', ['--login'], {
-        name: 'xterm-256color',
-        cols: 120,
-        rows: 40,
-        cwd: cfg.roomsPath,
-        env: {
-          ...process.env,
-          TERM: 'xterm-256color',
-          LANG: 'en_US.UTF-8',
-          HOME: os.homedir(),
-          ESCAPE_ROOMS: cfg.roomsPath,
-          // Inject the helper functions inline via BASH_ENV
-          BASH_ENV: path.join(cfg.roomsPath, '_utils.sh'),
-          PS1: '\\[\\033[01;32m\\]escape\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ ',
-        },
-      });
-
-      // Change into room_01 on first connect + source helpers
-      const initCmd =
-        `[ -f "${cfg.roomsPath}/_utils.sh" ] && source "${cfg.roomsPath}/_utils.sh"; ` +
-        `cd "${cfg.roomsPath}/room_01" 2>/dev/null || true; ` +
-        `echo -e "\\033[0;32mWelcome to Bash Escape Room!\\033[0m"; ` +
-        `echo -e "\\033[0;36mYou are in room_01. Type 'ls' to begin.\\033[0m"\n`;
-      shell.write(initCmd);
-
-      shell.onData((data: string) => {
-        try { ws.send(JSON.stringify({ type: 'output', data })); } catch { /* ws closed */ }
-      });
-
-      shell.onExit(({ exitCode }: { exitCode: number }) => {
-        try { ws.send(JSON.stringify({ type: 'exit', exitCode })); ws.close(); } catch { /* ok */ }
-        this._log(`Shell exited (code ${exitCode})`);
-      });
-
-      ws.on('message', (msg: Buffer | string) => {
-        try {
-          const message = JSON.parse(msg.toString());
-          switch (message.type) {
-            case 'input': shell.write(message.data); break;
-            case 'resize':
-              if (message.cols && message.rows) { shell.resize(message.cols, message.rows); }
-              break;
-          }
-        } catch { /* ignore bad frames */ }
-      });
-
-      ws.on('close', () => { shell.kill(); this._log('Terminal client disconnected'); });
-    });
-
     // ── Listen - auto-advance port if busy ───────────────────────────────
     const port = await new Promise<number>((resolve, reject) => {
+      const server = http.createServer(app);
+      this._httpServer = server;
       const tryPort = (p: number) => {
         server.removeAllListeners('error');
         server.on('error', (err: NodeJS.ErrnoException) => {
@@ -228,7 +151,6 @@ export class EscapeRoomServer {
     });
     this._log(`✅ Server ready on http://localhost:${port}`);
     this._port = port;
-    this._httpServer = server;
   }
 
   private _setStatus(s: ServerStatus): void {
@@ -239,42 +161,4 @@ export class EscapeRoomServer {
   private _log(line: string): void {
     this._onLog?.(line);
   }
-}
-
-// ── Built-in xterm.js terminal UI ─────────────────────────────────────────────
-function TERMINAL_HTML(port: number): string {
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <title>Bash Escape Room - Terminal</title>
-  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"><\/script>
-  <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js"><\/script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.min.css"/>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #0d0d1a; display: flex; flex-direction: column; height: 100vh; font-family: monospace; }
-    #header { background: #0a0a1f; padding: 8px 16px; color: #e94560; font-size: 13px; font-weight: 700; border-bottom: 1px solid #1e1e3f; }
-    #terminal { flex: 1; padding: 8px; }
-  </style>
-</head>
-<body>
-  <div id="header">🏃 Bash Escape Room - Terminal</div>
-  <div id="terminal"></div>
-  <script>
-    const term = new Terminal({ cursorBlink: true, fontSize: 14, theme: { background: '#0d0d1a', foreground: '#c8d0e0', cursor: '#e94560' } });
-    const fitAddon = new FitAddon.FitAddon();
-    term.loadAddon(fitAddon);
-    term.open(document.getElementById('terminal'));
-    fitAddon.fit();
-
-    const ws = new WebSocket('ws://localhost:${port}');
-    ws.onopen = () => { ws.send(JSON.stringify({ type: 'resize', cols: term.cols, rows: term.rows })); };
-    ws.onmessage = (e) => { const m = JSON.parse(e.data); if (m.type === 'output') term.write(m.data); };
-    ws.onclose = () => term.write('\\r\\n\\x1b[31m[disconnected]\\x1b[0m\\r\\n');
-    term.onData((d) => ws.send(JSON.stringify({ type: 'input', data: d })));
-    window.addEventListener('resize', () => { fitAddon.fit(); ws.send(JSON.stringify({ type: 'resize', cols: term.cols, rows: term.rows })); });
-  <\/script>
-</body>
-</html>`;
 }

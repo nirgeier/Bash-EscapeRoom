@@ -1,0 +1,289 @@
+name: VSCode Extension Build & Package
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - ".vscode-extension/**"
+      - "content/escapeRoom/**"
+      - "mkdocs-site/**"
+      - "mkdocs/passwords.yml"
+      - ".escaperoom-framework/public/index.html"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - ".vscode-extension/**"
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "Publish to VS Marketplace after build"
+        required: false
+        default: "false"
+        type: choice
+        options: ["false", "true"]
+
+env:
+  EXT_DIR: .vscode-extension
+
+jobs:
+  build:
+    name: Build & Package (${{ matrix.platform }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - win32-x64
+          - win32-arm64
+          - linux-x64
+          - linux-arm64
+          - linux-armhf
+          - darwin-x64
+          - darwin-arm64
+          - alpine-x64
+          - alpine-arm64
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          submodules: recursive
+
+      # ── Node setup ────────────────────────────────────────────────────────
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: ${{ env.EXT_DIR }}/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ${{ env.EXT_DIR }}
+        run: npm ci
+
+      # ── Sync bundled content (mirrors reinstall.sh) ───────────────────────
+      - name: Sync content from repo
+        working-directory: ${{ env.EXT_DIR }}
+        run: |
+          rm -rf content/ docs/ public/
+          mkdir -p content/escapeRoom public
+
+          cp -r ../content/escapeRoom/ content/escapeRoom/
+          cp -r ../mkdocs-site/        docs/
+          cp    ../.escaperoom-framework/public/index.html public/index.html
+          cp    ../mkdocs/passwords.yml content/passwords.yml
+
+      - name: Compile SCSS (if sass available) or use pre-built CSS
+        working-directory: ${{ env.EXT_DIR }}
+        run: |
+          SCSS_SRC="../.mkdocs-shared/mkdocs/overrides/assets/stylesheets"
+          if command -v sass &>/dev/null; then
+            sass --no-source-map --style=compressed \
+              "$SCSS_SRC/_escape-room-overrides.scss" >>docs/assets/stylesheets/codewizard.css
+            sass --no-source-map --style=expanded "$SCSS_SRC/_vscode.scss" media/style.css
+          elif [ -f assets/escape-room-overrides.css ]; then
+            cat assets/escape-room-overrides.css >>docs/assets/stylesheets/codewizard.css
+          fi
+
+      - name: Build room metadata
+        working-directory: ${{ env.EXT_DIR }}
+        run: node scripts/build-metadata.js
+
+      - name: Room setup (scripts, archives, noise)
+        working-directory: ${{ env.EXT_DIR }}
+        run: |
+          # Room 07
+          [ -f content/escapeRoom/room_07/script.sh ] && \
+            mv content/escapeRoom/room_07/script.sh content/escapeRoom/room_07/getKey.sh && \
+            chmod +x content/escapeRoom/room_07/getKey.sh || true
+
+          # Rooms 08 09 32 44 50 51 54
+          for room in room_08 room_09 room_32 room_44 room_50 room_51 room_54; do
+            [ -f "content/escapeRoom/$room/script.sh" ] && \
+              mv "content/escapeRoom/$room/script.sh" "content/escapeRoom/$room/getKey.sh" && \
+              chmod +x "content/escapeRoom/$room/getKey.sh" || true
+          done
+
+          # Room 11 - archive secret_scroll.txt
+          if [ -f content/escapeRoom/room_11/secret_scroll.txt ]; then
+            cd content/escapeRoom/room_11
+            tar cf secret.tar secret_scroll.txt
+            gzip secret.tar
+            base64 -w0 secret.tar.gz > artifact.b64
+            rm -f secret_scroll.txt secret.tar.gz
+            cd ../../..
+          fi
+
+          # Room 01 - scatter 500 noise files
+          cd content/escapeRoom/room_01
+          mapfile -t SUBDIRS < <(find expedition/ -type d 2>/dev/null)
+          NSUBDIRS=${#SUBDIRS[@]}
+          if [ "$NSUBDIRS" -gt 0 ]; then
+            for i in $(seq 1 500); do
+              target="${SUBDIRS[RANDOM%NSUBDIRS]}"
+              fname=$(dd if=/dev/urandom bs=4 count=1 2>/dev/null | od -An -tx1 | tr -dc 'a-f0-9')
+              case $((RANDOM % 3)) in
+                0) ext=".rock" ;; 1) ext=".leaf" ;; 2) ext=".twig" ;;
+              esac
+              echo "noise data $i" >"${target}/${fname}${ext}"
+            done
+          fi
+          cd ../../..
+
+      - name: Obfuscate room_14 server
+        working-directory: ${{ env.EXT_DIR }}
+        run: |
+          mkdir -p scripts
+          if [ -f content/escapeRoom/room_14/server.js ]; then
+            node -e "
+              const fs = require('fs');
+              const src = fs.readFileSync('content/escapeRoom/room_14/server.js', 'utf8');
+              const code = src.replace(/^#!.*\n/, '');
+              const b64 = Buffer.from(code).toString('base64');
+              const loader = '#!/usr/bin/env node\n' +
+                '(function(_0x1f2e,_0x3a){const _0xb7=Buffer.from(_0x1f2e,_0x3a).toString();' +
+                '(new Function(\'require\',\'process\',\'__filename\',\'__dirname\',_0xb7))(require,process,__filename,__dirname);}' +
+                '(\'' + b64 + '\',\'base64\'));\n';
+              fs.writeFileSync('scripts/room14_server.js', loader);
+            "
+            rm -f content/escapeRoom/room_14/server.js
+          fi
+
+      - name: Verify rooms
+        working-directory: ${{ env.EXT_DIR }}
+        run: |
+          node scripts/verify-rooms.js \
+            content/escapeRoom \
+            ../mkdocs/passwords.yml \
+            ../content/escapeRoom
+
+      - name: Strip README / solution / setup files
+        working-directory: ${{ env.EXT_DIR }}
+        run: |
+          find content/escapeRoom -name "README"    -delete
+          find content/escapeRoom -name "_solution*" -delete
+          find content/escapeRoom -name "setup.sh"  -delete
+
+      # ── Build bundle ──────────────────────────────────────────────────────
+      - name: Build bundle
+        working-directory: ${{ env.EXT_DIR }}
+        run: npm run bundle
+
+      # ── Package platform VSIX ─────────────────────────────────────────────
+      - name: Get version
+        id: ver
+        working-directory: ${{ env.EXT_DIR }}
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Package VSIX (${{ matrix.platform }})
+        working-directory: ${{ env.EXT_DIR }}
+        run: |
+          mkdir -p dist
+          npx vsce package \
+            --allow-missing-repository \
+            --target ${{ matrix.platform }} \
+            --out dist/EscapeRoom-Bash-${{ steps.ver.outputs.version }}-${{ matrix.platform }}.vsix
+
+      - name: Upload VSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vsix-${{ matrix.platform }}
+          path: ${{ env.EXT_DIR }}/dist/*.vsix
+          retention-days: 30
+
+  # ── Collect all platform VSIXs into one release artifact ────────────────────
+  release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    # Only on push to main (not PRs)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Get version
+        id: ver
+        working-directory: ${{ env.EXT_DIR }}
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Download all VSIX artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: vsix-*
+          merge-multiple: true
+          path: dist/
+
+      - name: List VSIXs
+        run: ls -lh dist/
+
+      - name: Create / update GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.ver.outputs.version }}
+          name: "v${{ steps.ver.outputs.version }}"
+          body: |
+            ## VSCode Extension — v${{ steps.ver.outputs.version }}
+
+            Platform-specific `.vsix` files for all supported targets.
+            Install manually: `code --install-extension <file>.vsix`
+
+            | Platform | File |
+            |---|---|
+            | Windows x64 | `EscapeRoom-Bash-*-win32-x64.vsix` |
+            | Windows ARM64 | `EscapeRoom-Bash-*-win32-arm64.vsix` |
+            | Linux x64 | `EscapeRoom-Bash-*-linux-x64.vsix` |
+            | Linux ARM64 | `EscapeRoom-Bash-*-linux-arm64.vsix` |
+            | Linux ARMhf | `EscapeRoom-Bash-*-linux-armhf.vsix` |
+            | macOS x64 | `EscapeRoom-Bash-*-darwin-x64.vsix` |
+            | macOS ARM64 (M-series) | `EscapeRoom-Bash-*-darwin-arm64.vsix` |
+            | Alpine x64 | `EscapeRoom-Bash-*-alpine-x64.vsix` |
+            | Alpine ARM64 | `EscapeRoom-Bash-*-alpine-arm64.vsix` |
+          files: dist/*.vsix
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  # ── Optional: publish to VS Marketplace ─────────────────────────────────────
+  publish:
+    name: Publish to VS Marketplace
+    needs: build
+    runs-on: ubuntu-latest
+    if: >
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.publish == 'true') ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[publish]'))
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: ${{ env.EXT_DIR }}/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ${{ env.EXT_DIR }}
+        run: npm ci
+
+      - name: Download all VSIX artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: vsix-*
+          merge-multiple: true
+          path: ${{ env.EXT_DIR }}/dist/
+
+      - name: Publish all platform VSIXs
+        working-directory: ${{ env.EXT_DIR }}
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: |
+          for vsix in dist/*.vsix; do
+            echo "Publishing $vsix..."
+            npx vsce publish --packagePath "$vsix" --pat "$VSCE_PAT"
+          done

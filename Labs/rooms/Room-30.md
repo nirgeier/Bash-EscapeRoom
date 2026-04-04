@@ -107,10 +107,8 @@ if [[ $x -gt 0 && $x -lt 100 ]]; then     # AND in double brackets
 
 !!! info "🔓 Unlock Room 31"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_31/README -out ../room_31/README.txt -pass pass:PASSWORD
-    cat ../room_31/README.txt
+    next <PASSWORD>
     ```

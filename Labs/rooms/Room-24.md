@@ -98,10 +98,8 @@ printf "%s %s\n" "Hello" "World"       # formatted with args
 
 !!! info "🔓 Unlock Room 25"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_25/README -out ../room_25/README.txt -pass pass:PASSWORD
-    cat ../room_25/README.txt
+    next <PASSWORD>
     ```

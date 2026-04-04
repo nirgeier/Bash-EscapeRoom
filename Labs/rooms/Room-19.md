@@ -100,10 +100,8 @@ sha256sum file1.txt file2.txt           # same hash = identical content
 
 !!! info "🔓 Unlock Room 20"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_20/README -out ../room_20/README.txt -pass pass:PASSWORD
-    cat ../room_20/README.txt
+    next <PASSWORD>
     ```

@@ -9,27 +9,35 @@ const roomsDir = path.join(__dirname, "..", "content", "escapeRoom");
 const navFile = path.join(__dirname, "..", "..", "mkdocs", "06-mkdocs-nav.yml");
 const outFile = path.join(__dirname, "..", "content", "rooms-metadata.json");
 
-// Parse room titles from Labs/rooms/Room-NN.md bold headline: **TITLE!**
+// Parse room titles and summary from Labs/rooms/Room-NN.md
 const labsDir = path.join(__dirname, "..", "..", "Labs", "rooms");
-function labsTitle(num) {
+function labsInfo(num) {
   const f = path.join(labsDir, `Room-${String(num).padStart(2, "0")}.md`);
-  if (!fs.existsSync(f)) {
-    return null;
-  }
-  const lines = fs.readFileSync(f, "utf8").split("\n");
-  // Match: **TITLE!** or bare TITLE! (all-caps standalone line)
+  if (!fs.existsSync(f)) return { title: null, summary: null, labsRaw: null };
+  const content = fs.readFileSync(f, "utf8");
+  const lines = content.split("\n");
+
+  // Extract frontmatter summary
+  let summary = null;
+  let inFrontmatter = false;
   for (const l of lines) {
-    const bold = l.match(/^\*\*([A-Z][^*]{3,})\*\*\s*$/);
-    if (bold) {
-      return bold[1].replace(/!$/, "").trim();
-    }
-    const bare = l.match(/^([A-Z][A-Z\s,&!'-]{4,})!\s*$/);
-    if (bare) {
-      return bare[1].trim();
+    if (l.trim() === "---") { inFrontmatter = !inFrontmatter; continue; }
+    if (inFrontmatter) {
+      const m = l.match(/^summary:\s*["']?(.+?)["']?\s*$/);
+      if (m) { summary = m[1]; }
     }
   }
-  return null;
+
+  // Extract ### action title (all-caps h3)
+  let title = null;
+  for (const l of lines) {
+    const h3 = l.match(/^###\s+([A-Z][A-Z\s,&!':'-]{3,}!?)\s*$/);
+    if (h3) { title = h3[1].replace(/!$/, "").trim(); break; }
+  }
+
+  return { title, summary, labsRaw: content };
 }
+function labsTitle(num) { return labsInfo(num).title; }
 
 // Parse room titles from mkdocs nav YAML as fallback: "Room NN - subtitle"
 const navTitles = {};
@@ -67,7 +75,8 @@ for (const dir of dirs) {
         .replace(/^Room\s+\d+\s*[-–]\s*/i, "")
         .trim()
     : null;
-  const title = labsTitle(num) || navTitles[num] || readmeTitle || dir;
+  const labsData = labsInfo(num);
+  const title = labsData.title || navTitles[num] || readmeTitle || dir;
 
   // Section
   const sectionLine = lines.find((l) => l.includes("Section:"));
@@ -140,6 +149,9 @@ for (const dir of dirs) {
     (c) => c.includes(" ") || c.length > 3,
   );
 
+  const summary = labsData.summary || '';
+  const labsRaw = labsData.labsRaw || '';
+
   metadata[num] = {
     number: num,
     title,
@@ -148,6 +160,8 @@ for (const dir of dirs) {
     hints,
     commands: uniqueCommands,
     raw,
+    summary,
+    labsRaw,
   };
 }
 

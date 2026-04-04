@@ -113,10 +113,8 @@ wc -w <<< "count these words please"
 
 !!! info "🔓 Unlock Room 35"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_35/README -out ../room_35/README.txt -pass pass:PASSWORD
-    cat ../room_35/README.txt
+    next <PASSWORD>
     ```

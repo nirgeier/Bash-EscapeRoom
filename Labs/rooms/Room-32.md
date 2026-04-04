@@ -117,10 +117,8 @@ echo "Total: $total"
 
 !!! info "🔓 Unlock Room 33"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_33/README -out ../room_33/README.txt -pass pass:PASSWORD
-    cat ../room_33/README.txt
+    next <PASSWORD>
     ```

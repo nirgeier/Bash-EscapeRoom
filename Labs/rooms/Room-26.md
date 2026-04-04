@@ -109,10 +109,8 @@ echo ${str: -6}                         # orld!  (from 6 chars from end)
 
 !!! info "🔓 Unlock Room 27"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_27/README -out ../room_27/README.txt -pass pass:PASSWORD
-    cat ../room_27/README.txt
+    next <PASSWORD>
     ```

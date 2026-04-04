@@ -83,10 +83,8 @@ Use `| head` after each step to preview the intermediate output.
 
 !!! info "🔓 Unlock the Final Exam (Room 99)"
 
-    Once you have the password, decrypt the exit exam README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_99/README -out ../room_99/README.txt -pass pass:PASSWORD
-    cat ../room_99/README.txt
+    next <PASSWORD>
     ```

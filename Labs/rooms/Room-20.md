@@ -91,10 +91,8 @@ hexdump -e '"%08.8_ax  " 16/1 "%02x " "\n"' file.txt  # custom format
 
 !!! info "🔓 Unlock Room 21"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_21/README -out ../room_21/README.txt -pass pass:PASSWORD
-    cat ../room_21/README.txt
+    next <PASSWORD>
     ```

@@ -555,8 +555,8 @@ img.width-24px {
   color: var(--color-yellow);
 }
 .md-typeset ol.tasks > li code {
-  word-break: normal;
-  white-space: nowrap;
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 .md-typeset ol.tasks > li:hover {
   border-color: #e94560 !important;
@@ -566,8 +566,8 @@ img.width-24px {
   font-family: "Inter";
   position: absolute;
   left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 10px;
+  transform: none;
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -759,8 +759,7 @@ body[data-path*="02"] .md-content {
   pre,
   table,
   img {
-    -moz-column-break-inside: avoid;
-         break-inside: avoid;
+    break-inside: avoid;
   }
   /* Remove page breaks before and after headers and sections */
   h1,
@@ -770,10 +769,8 @@ body[data-path*="02"] .md-content {
   h5,
   h6,
   section {
-    -moz-column-break-before: auto;
-         break-before: auto;
-    -moz-column-break-after: auto;
-         break-after: auto;
+    break-before: auto;
+    break-after: auto;
   }
   emsp {
     padding: 0 5px 0 0;
@@ -939,8 +936,7 @@ body[data-path*="02"] .md-content {
   border-radius: 50%;
   height: 100%;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border: 2px solid rgba(0, 0, 0, 0.1);
 }
 

@@ -100,10 +100,8 @@ cmd1 | sort | uniq -c | sort -rn    # frequency count pattern
 
 !!! info "🔓 Unlock Room 13"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_13/README -out ../room_13/README.txt -pass pass:PASSWORD
-    cat ../room_13/README.txt
+    next <PASSWORD>
     ```

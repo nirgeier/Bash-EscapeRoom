@@ -107,10 +107,8 @@ openssl help                           # list all commands
 
 !!! info "🔓 Unlock Room 46"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_46/README -out ../room_46/README.txt -pass pass:PASSWORD
-    cat ../room_46/README.txt
+    next <PASSWORD>
     ```

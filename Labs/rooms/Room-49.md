@@ -99,10 +99,8 @@ join <(sort file1.txt) <(sort file2.txt)     # inner join on first field
 
 !!! info "🔓 Unlock Room 50"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_50/README -out ../room_50/README.txt -pass pass:PASSWORD
-    cat ../room_50/README.txt
+    next <PASSWORD>
     ```

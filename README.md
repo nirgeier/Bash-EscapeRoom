@@ -2,6 +2,10 @@
 
 # Bash-EscapeRoom
 
+[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/nirgeier.EscapeRoom-Bash?label=VS%20Code%20Marketplace&logo=visual-studio-code&logoColor=white&color=0078d4)](https://marketplace.visualstudio.com/items?itemName=nirgeier.EscapeRoom-Bash)
+[![Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/nirgeier.EscapeRoom-Bash?label=Installs&logo=visual-studio-code&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=nirgeier.EscapeRoom-Bash)
+[![Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/nirgeier.EscapeRoom-Bash?label=Rating&logo=visual-studio-code&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=nirgeier.EscapeRoom-Bash)
+
 - An interactive learning environment to master Bash and command-line skills through a series of challenges and puzzles.
 
 ## Overview
@@ -10,9 +14,13 @@
 
 ## Getting Started
 
-To get started with the Bash-EscapeRoom
+**Play in your browser:**
 
 [https://nirgeier.github.io/Bash-EscapeRoom](https://nirgeier.github.io/Bash-EscapeRoom)
+
+**Play inside VS Code** — install the extension from the marketplace:
+
+[![Install in VS Code](https://img.shields.io/badge/Install%20in-VS%20Code-0078d4?logo=visual-studio-code&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=nirgeier.EscapeRoom-Bash)
 
 ---
 

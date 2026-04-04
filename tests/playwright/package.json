@@ -1,5 +1,5 @@
 {
-  "name": "bash-escaperoom-playwright",
+  "name": "EscapeRoom-Bash-playwright",
   "version": "1.0.0",
   "description": "Playwright E2E tests for Bash Escape Room",
   "scripts": {

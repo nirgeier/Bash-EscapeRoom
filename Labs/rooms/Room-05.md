@@ -102,10 +102,8 @@ echo "racecar" | rev              # outputs: racecar (palindrome)
 
 !!! info "🔓 Unlock Room 06"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_06/README -out ../room_06/README.txt -pass pass:PASSWORD
-    cat ../room_06/README
+    next <PASSWORD>
     ```

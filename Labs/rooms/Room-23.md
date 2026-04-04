@@ -101,10 +101,8 @@ echo $(( (end - start) / 86400 )) days
 
 !!! info "🔓 Unlock Room 24"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_24/README -out ../room_24/README.txt -pass pass:PASSWORD
-    cat ../room_24/README.txt
+    next <PASSWORD>
     ```

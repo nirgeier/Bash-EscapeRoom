@@ -92,10 +92,8 @@ echo -e "1\n2\n3" | paste -sd'+'      # join lines: "1+2+3" (for bc)
 
 !!! info "🔓 Unlock Room 26"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_26/README -out ../room_26/README.txt -pass pass:PASSWORD
-    cat ../room_26/README.txt
+    next <PASSWORD>
     ```

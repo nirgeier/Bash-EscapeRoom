@@ -98,10 +98,8 @@ ltrace -e malloc,free ./program        # only malloc and free calls
 
 !!! info "🔓 Unlock Room 44"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_44/README -out ../room_44/README.txt -pass pass:PASSWORD
-    cat ../room_44/README.txt
+    next <PASSWORD>
     ```

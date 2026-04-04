@@ -141,13 +141,8 @@ find . -print0 | xargs -0 ls -l                   # handle filenames with spaces
 
 !!! info "🔓 Unlock Room 02"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2  \
-            -in ../room_02/README           \
-            -out ../room_02/README.txt      \
-            -pass pass:PASSWORD
-
-    cat ../room_02/README.txt
+    next <PASSWORD>
     ```

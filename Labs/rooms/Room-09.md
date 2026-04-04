@@ -117,10 +117,8 @@ pkill -u username                     # kill all processes by user
 
 !!! info "🔓 Unlock Room 10"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_10/README -out ../room_10/README.txt -pass pass:PASSWORD
-    cat ../room_10/README
+    next <PASSWORD>
     ```

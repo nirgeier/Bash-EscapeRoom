@@ -115,10 +115,8 @@ scp -P 2222 file.txt user@host:/path/ # non-standard port
 
 !!! info "🔓 Unlock Room 48"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_48/README -out ../room_48/README.txt -pass pass:PASSWORD
-    cat ../room_48/README.txt
+    next <PASSWORD>
     ```

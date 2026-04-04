@@ -122,10 +122,8 @@ Examples:
 
 !!! info "🔓 Unlock Room 08"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_08/README -out ../room_08/README.txt -pass pass:PASSWORD
-    cat ../room_08/README
+    next <PASSWORD>
     ```

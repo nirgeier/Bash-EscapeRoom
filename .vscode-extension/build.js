@@ -9,7 +9,6 @@ esbuild
     outfile: "./out/extension.js",
     external: [
       "vscode",
-      "node-pty", // native binary - cannot be bundled
     ],
     format: "cjs",
     platform: "node",

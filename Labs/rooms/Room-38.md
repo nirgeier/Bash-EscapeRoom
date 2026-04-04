@@ -102,10 +102,8 @@ timeout 10 bash -c 'while true; do echo tick; sleep 1; done'
 
 !!! info "🔓 Unlock Room 39"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_39/README -out ../room_39/README.txt -pass pass:PASSWORD
-    cat ../room_39/README.txt
+    next <PASSWORD>
     ```

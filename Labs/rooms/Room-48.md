@@ -109,10 +109,8 @@ git show abc1234:file.txt > recovered.txt  # save to new file
 
 !!! info "🔓 Unlock Room 49"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_49/README -out ../room_49/README.txt -pass pass:PASSWORD
-    cat ../room_49/README.txt
+    next <PASSWORD>
     ```

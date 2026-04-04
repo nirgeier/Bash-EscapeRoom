@@ -109,10 +109,8 @@ Example: `find . -name "*.b64" | xargs -I{} sh -c 'base64 -d < {} | grep KEY'`
 
 !!! info "🔓 Unlock Room 52"
 
-    Once you have the password, decrypt the next room's README:
+    Once you solve the puzzle, run:
 
     ```bash
-    openssl enc -aes-256-cbc -d -a -pbkdf2 \
-      -in ../room_52/README -out ../room_52/README.txt -pass pass:PASSWORD
-    cat ../room_52/README.txt
+    next <PASSWORD>
     ```
