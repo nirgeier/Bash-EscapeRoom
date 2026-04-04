@@ -13,14 +13,7 @@ on:
     branches: ["main"]
     paths:
       - ".vscode-extension/**"
-  workflow_dispatch:
-    inputs:
-      publish:
-        description: "Publish to VS Marketplace after build"
-        required: false
-        default: "false"
-        type: choice
-        options: ["false", "true"]
+  workflow_dispatch: {}
 
 env:
   EXT_DIR: .vscode-extension
@@ -73,6 +66,8 @@ jobs:
           cp -r ../mkdocs-site/        docs/
           cp    ../.escaperoom-framework/public/index.html public/index.html
           cp    ../mkdocs/passwords.yml content/passwords.yml
+          mkdir -p media/screenshots
+          cp -r ../mkdocs/overrides/assets/images/screenshots/. media/screenshots/
 
       - name: Compile SCSS (if sass available) or use pre-built CSS
         working-directory: ${{ env.EXT_DIR }}
@@ -247,18 +242,22 @@ jobs:
           files: dist/*.vsix
           token: ${{ secrets.GITHUB_TOKEN }}
 
-  # ── Optional: publish to VS Marketplace ─────────────────────────────────────
+  # ── Publish to VS Marketplace + Open VSX on every push to main ──────────────
   publish:
-    name: Publish to VS Marketplace
+    name: Publish to Marketplaces
     needs: build
     runs-on: ubuntu-latest
-    if: >
-      (github.event_name == 'workflow_dispatch' && github.event.inputs.publish == 'true') ||
-      (github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[publish]'))
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -271,6 +270,22 @@ jobs:
         working-directory: ${{ env.EXT_DIR }}
         run: npm ci
 
+      - name: Bump patch version
+        id: ver
+        working-directory: ${{ env.EXT_DIR }}
+        run: |
+          npm version patch --no-git-tag-version
+          echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Commit version bump
+        working-directory: ${{ env.EXT_DIR }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          git commit -m "chore: bump extension to v${{ steps.ver.outputs.version }} [skip ci]"
+          git push
+
       - name: Download all VSIX artifacts
         uses: actions/download-artifact@v4
         with:
@@ -278,12 +293,26 @@ jobs:
           merge-multiple: true
           path: ${{ env.EXT_DIR }}/dist/
 
-      - name: Publish all platform VSIXs
+      - name: Publish to VS Code Marketplace
         working-directory: ${{ env.EXT_DIR }}
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
         run: |
           for vsix in dist/*.vsix; do
-            echo "Publishing $vsix..."
+            echo "Publishing $vsix to VS Marketplace..."
             npx vsce publish --packagePath "$vsix" --pat "$VSCE_PAT"
           done
+
+      - name: Publish to Open VSX Registry
+        working-directory: ${{ env.EXT_DIR }}
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        run: |
+          # ovsx publish takes one VSIX at a time; use the generic linux-x64 build
+          VSIX=$(ls dist/*-linux-x64.vsix 2>/dev/null | head -1)
+          if [ -n "$VSIX" ]; then
+            echo "Publishing $VSIX to Open VSX..."
+            npx ovsx publish "$VSIX" --pat "$OVSX_PAT"
+          else
+            echo "No linux-x64 VSIX found, skipping Open VSX"
+          fi
