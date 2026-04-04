@@ -6,7 +6,8 @@
       "mcp__plugin_context-mode_context-mode__ctx_search",
       "mcp__plugin_context-mode_context-mode__ctx_stats",
       "mcp__plugin_context-mode_context-mode__ctx_doctor",
-      "Skill(update-config)"
+      "Skill(update-config)",
+      "mcp__plugin_context-mode_context-mode__ctx_index"
     ]
   }
 }

@@ -1,8 +1,8 @@
-# Promotional Posts — Bash Escape Room VS Code Extension
+# Promotional Posts - Bash Escape Room VS Code Extension
 
-## Reddit — r/bash, r/commandline, r/vscode
+## Reddit - r/bash, r/commandline, r/vscode
 
-**Title:** I built a Bash escape room — 57 puzzle rooms inside VS Code (free)
+**Title:** I built a Bash escape room - 57 puzzle rooms inside VS Code (free)
 
 **Body:**
 ```
@@ -10,11 +10,11 @@ Hey r/bash!
 
 I've been working on an open-source Bash learning project and just shipped it as a VS Code extension.
 
-**Bash Escape Room** — 57 interactive escape-room challenges, each teaching a real Bash skill.
+**Bash Escape Room** - 57 interactive escape-room challenges, each teaching a real Bash skill.
 
 Rooms cover: find/grep/sed/awk, permissions, processes, pipes, scripting, networking, git, openssl, and more.
 
-- No Docker, no setup — install and start hacking immediately
+- No Docker, no setup - install and start hacking immediately
 - Integrated terminal pre-loaded with `next`, `room <N>`, `progress` commands
 - Tracks progress, auto-saves, resumes on next launch
 - Fully open source (MIT)
@@ -29,7 +29,7 @@ Would love feedback on the room difficulty curve and any commands you think are 
 
 ## dev.to Post
 
-**Title:** Learn Bash by breaking out of 57 escape rooms — inside VS Code
+**Title:** Learn Bash by breaking out of 57 escape rooms - inside VS Code
 
 **Tags:** bash, vscode, terminal, beginners
 
@@ -37,14 +37,14 @@ Would love feedback on the room difficulty curve and any commands you think are 
 ```markdown
 # Learn Bash by breaking out of 57 escape rooms
 
-I've always found that the best way to learn command-line tools is through challenges — not tutorials.
+I've always found that the best way to learn command-line tools is through challenges - not tutorials.
 
 So I built **Bash Escape Room**: 57 progressively harder puzzles, each centered on a real Bash skill.
 
 ## What it looks like
 
 Each room drops you into a scenario:
-- *"You're an explorer lost in a filesystem — find the hidden coordinates file"* → teaches `find`, `cat`, `sort`
+- *"You're an explorer lost in a filesystem - find the hidden coordinates file"* → teaches `find`, `cat`, `sort`
 - *"Decrypt the spy cipher"* → teaches `sed`
 - *"Escape the hex dungeon"* → teaches `xxd`, `od`, `hexdump`
 
@@ -90,7 +90,7 @@ Feedback and PRs welcome!
 ```
 🚀 Just shipped a VS Code extension I've been building for months.
 
-𝗕𝗮𝘀𝗵 𝗘𝘀𝗰𝗮𝗽𝗲 𝗥𝗼𝗼𝗺 — learn Bash by solving 57 escape-room puzzles, right inside VS Code.
+𝗕𝗮𝘀𝗵 𝗘𝘀𝗰𝗮𝗽𝗲 𝗥𝗼𝗼𝗺 - learn Bash by solving 57 escape-room puzzles, right inside VS Code.
 
 Each room is a story-driven challenge:
 🔍 Lost expedition → learn `find`
@@ -108,7 +108,7 @@ No Docker. No browser. No setup. Install → Launch → Start hacking.
 👉 VS Code Marketplace: https://marketplace.visualstudio.com/items?itemName=nirgeier.EscapeRoom-Bash
 👉 GitHub: https://github.com/nirgeier/Bash-EscapeRoom
 
-If you know someone learning Linux/Bash — share it with them!
+If you know someone learning Linux/Bash - share it with them!
 
 #bash #linux #vscode #devtools #opensource #terminal #learning
 ```

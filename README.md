@@ -18,7 +18,7 @@
 
 [https://nirgeier.github.io/Bash-EscapeRoom](https://nirgeier.github.io/Bash-EscapeRoom)
 
-**Play inside VS Code** — install the extension from the marketplace:
+**Play inside VS Code** - install the extension from the marketplace:
 
 [![Install in VS Code](https://img.shields.io/badge/Install%20in-VS%20Code-0078d4?logo=visual-studio-code&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=nirgeier.EscapeRoom-Bash)
 

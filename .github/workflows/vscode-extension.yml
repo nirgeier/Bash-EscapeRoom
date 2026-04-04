@@ -228,7 +228,7 @@ jobs:
           tag_name: v${{ steps.ver.outputs.version }}
           name: "v${{ steps.ver.outputs.version }}"
           body: |
-            ## VSCode Extension — v${{ steps.ver.outputs.version }}
+            ## VSCode Extension - v${{ steps.ver.outputs.version }}
 
             Platform-specific `.vsix` files for all supported targets.
             Install manually: `code --install-extension <file>.vsix`
