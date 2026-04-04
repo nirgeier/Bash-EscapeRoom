@@ -4,3 +4,6 @@
 [submodule ".escaperoom-framework"]
 	path = .escaperoom-framework
 	url = https://github.com/nirgeier/escaperoom-framework.git
+[submodule ".vscode-extension"]
+	path = .vscode-extension
+	url = https://github.com/nirgeier/vscode-escaperoom-extension.git
