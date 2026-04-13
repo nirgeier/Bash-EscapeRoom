@@ -35,7 +35,7 @@ Your shell environment must be configured precisely to unlock the lab door.
   <li>Source the hidden config file to load its settings. <code>source .filename</code> or <code>. .filename</code></li>
   <li>The config tells you what environment variables to set. Set them with <code>export</code>.</li>
   <li>Create an alias named <code>labstatus</code> that prints <code>ready</code>. <code>alias labstatus='echo ready'</code></li>
-  <li>Once everything is set, run <code>./getKey.sh</code> to verify and get the password.</li>
+  <li>Once everything is set, run <code>source ./getKey.sh</code> to verify and get the password.</li>
 </ol>
 
 ---
